@@ -1,0 +1,54 @@
+<project name="applet-fidelite" default="all">
+
+	<target name="all" depends="clean, signjar" />
+
+	<target name="clean">
+		<delete dir="${basedir}/build" />
+		<delete dir="${basedir}/dist" />
+	</target>
+
+	<target name="prepare">
+		<mkdir dir="${basedir}/build" />
+		<mkdir dir="${basedir}/dist" />
+	</target>
+
+	<target name="compile" depends="prepare, copy-images">
+		<javac srcdir="${basedir}/src" destdir="${basedir}/build">
+			<classpath>
+				<fileset dir="${basedir}/lib">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="expand-libs" depends="prepare">
+		<unjar dest="${basedir}/build">
+			<fileset dir="${basedir}/lib">
+				<include name="*.jar" />
+			</fileset>
+			<patternset>
+				<include name="**/*.class" />
+				<include name="**/*.properties" />
+			</patternset>
+		</unjar>
+	</target>
+
+	<target name="copy-images" depends="prepare">
+		<copy todir="${basedir}/build/Images">
+			<fileset dir="${basedir}/src/Images">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="jar" depends="prepare, compile, expand-libs">
+		<jar destfile="${basedir}/dist/lefournildesprovinces.jar" basedir="${basedir}/build" includes="**" />
+	</target>
+
+	<target name="signjar" depends="jar">
+		<input message="Please enter the store pass" addproperty="store.pass" />
+		<signjar jar="${basedir}/dist/lefournildesprovinces.jar" alias="eFyne" storepass="${store.pass}" />
+	</target>
+
+</project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/Scommons-validator-1.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/Sglazedlists_java16-1.10-20150612.084821-7.jar"/>
+	<classpathentry kind="lib" path="lib/Smysql-connector-java-5.1.30-bin.jar"/>
+	<classpathentry kind="lib" path="lib/poi-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="lib/poi-ooxml-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="lib/opencsv-3.5.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
