@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Collections;
 // import java.util.Collections;
 import java.util.Vector;
 
@@ -673,9 +674,9 @@ public class Select {
 		/*
 		 * Calendar now = Calendar.getInstance(); int
 		 * year=now.get(Calendar.YEAR); System.out.print(year+"\n");
-		 * 
+		 *
 		 * int AnneeFin=year-valuemin; int Anneedebut=year-valuemax;
-		 * 
+		 *
 		 * System.out.print(Anneedebut+"\n"); System.out.print(AnneeFin+"\n");
 		 */
 
@@ -762,9 +763,9 @@ public class Select {
 		/*
 		 * Calendar now = Calendar.getInstance(); int
 		 * year=now.get(Calendar.YEAR); System.out.print(year+"\n");
-		 * 
+		 *
 		 * int AnneeFin=year-valuemin; int Anneedebut=year-valuemax;
-		 * 
+		 *
 		 * System.out.print(Anneedebut+"\n"); System.out.print(AnneeFin+"\n");
 		 */
 
@@ -1735,9 +1736,9 @@ public class Select {
 		}
 
 //		Collections.sort(requete, NomClient.Comparators.NAME);
-//		
 //		Object[] result = requete.toArray(new Object[0]);
 //		return result;
+		Collections.sort(requete);
 		return requete.toArray(new Object[0]);
 	}
 
@@ -1921,7 +1922,7 @@ public class Select {
 
 		}
 
-//		Collections.sort(requete);
+		Collections.sort(requete);
 		return requete.toArray(new Object[0]);
 
 	}

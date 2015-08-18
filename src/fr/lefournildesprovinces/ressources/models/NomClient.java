@@ -21,16 +21,23 @@ public class NomClient implements Comparable<NomClient> {
 
 	@Override
 	public int compareTo(NomClient other) {
-		System.out.println("nom : "+this.nom);
-		System.out.println("nom to string : "+this.nom.toString());
-		System.out.println(other.nom);
-		System.out.println("compare to : "+other.nom.toString());		
+		int last = 10;
+		if (other != null){
+			System.out.println("nom to string : "+this.nom.toString());
+			last = -10;
+			if (this.nom != null){
+				System.out.println("compare to : "+other.nom.toString());
+				last = this.nom.compareTo(other.nom);
+				}
+		}
+		return last;
+
 		// compareTo should return < 0 if this is supposed to be
 		// less than other, > 0 if this is supposed to be greater than
 		// other and 0 if they are supposed to be equal
-		int last = this.nom.compareTo(other.nom);
-		return last == 0 ? this.nom.compareTo(other.nom) : last;
-//		return Comparators.NAME.compare(this, other);
+		// last = (other.nom.equals(null)) ? -10 : (this.nom.equals(null)) ? 10 : this.nom.compareTo(other.nom);
+		// return last == 0 ? this.nom.compareTo(other.nom) : last;
+		// return Comparators.NAME.compare(this, other);
 
 		//
 		// the following could be used later...
@@ -66,7 +73,7 @@ public class NomClient implements Comparable<NomClient> {
 //                	}
 //                }
 //                System.out.println(o2);
-//                
+//
 ////                result = o1.nom.compareTo("o2"+ o2.nom);
 //                return result;
 //            }

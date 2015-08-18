@@ -12,9 +12,10 @@ import javax.swing.*;
 class SortedComboBoxModel<E> extends DefaultComboBoxModel<E>
 {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -8726944773332037305L;
+	@SuppressWarnings("rawtypes")
 	private Comparator comparator;
 
 	/*
@@ -28,6 +29,7 @@ class SortedComboBoxModel<E> extends DefaultComboBoxModel<E>
 	/*
 	 *  Create an empty model that will use the specified Comparator
 	 */
+	@SuppressWarnings("rawtypes")
 	public SortedComboBoxModel(Comparator comparator)
 	{
 		super();
@@ -45,6 +47,7 @@ class SortedComboBoxModel<E> extends DefaultComboBoxModel<E>
 	/*
 	 *  Create a model with data and use the specified Comparator
 	 */
+	@SuppressWarnings("rawtypes")
 	public SortedComboBoxModel(E items[], Comparator comparator)
 	{
 		this.comparator = comparator;
@@ -67,6 +70,7 @@ class SortedComboBoxModel<E> extends DefaultComboBoxModel<E>
 	 *  Create a model with data and use the specified Comparator
 	 */
 
+	@SuppressWarnings("rawtypes")
 	public SortedComboBoxModel(Vector<E> items, Comparator comparator)
 	{
 		this.comparator = comparator;
@@ -83,7 +87,7 @@ class SortedComboBoxModel<E> extends DefaultComboBoxModel<E>
 		insertElementAt(element, 0);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void insertElementAt(E element, int index)
 	{
