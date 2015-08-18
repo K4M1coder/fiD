@@ -15,9 +15,13 @@ hs_err_pid*
 
 
 # confidentiel
-Connexion.java
+SQLCredentials.java
 /projet/
+
 /Resultats.csv
+
 /Resultats.xls
+
 /UML_CLASS.gif
+
 /UML_CLASS.ucls
