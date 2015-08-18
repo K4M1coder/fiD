@@ -34,24 +34,24 @@ public class choixgestionOC extends JFrame {
 	private static final long serialVersionUID = 1266027016940960939L;
 
 	private JComboBox<Object> comboBox;
-	private final JPanel contentPane;
 	private JLabel fond;
-	private final JFrame interfaceActuelle;
-	private JLabel label_BuletinParticipation;
-	private JLabel label_GestionOC;
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
-	private JLayeredPane layeredPane;
+	private JLabel label_BuletinParticipation;
+	private JLabel label_GestionOC;
 	private JLabel lblFermer;
 	private JLabel lblMenuPrincipal;
 	private JLabel lblMerciDeFaire;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblValider;
+	private JLayeredPane layeredPane;
 	private String privilege;
 	private String selection;
+	private final JFrame interfaceActuelle;
+	private final JPanel contentPane;
 
 	public choixgestionOC() {
 		this.addWindowListener(new WindowAdapter() {
@@ -277,6 +277,50 @@ public class choixgestionOC extends JFrame {
 		return this.label_3;
 	}
 
+	private JLabel getlabel_BuletinParticipation() {
+		if (this.label_BuletinParticipation == null) {
+			this.label_BuletinParticipation = new JLabel("");
+			this.label_BuletinParticipation.setIcon(new ImageIcon(choixgestionOC.class.getResource("/Images/menubutons/bouton-operations-saisie.png")));
+			this.label_BuletinParticipation
+					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_BuletinParticipation.setFont(new Font("Tahoma", Font.BOLD, 17));
+			this.label_BuletinParticipation.setForeground(Color.GRAY);
+			this.label_BuletinParticipation.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+
+					choixgestionOC.this.selection="BULLETIN PARTICIPATION (Saisie, MAJ ou Suppression)";
+					validateAction();
+				}
+			});
+			this.label_BuletinParticipation.setHorizontalAlignment(SwingConstants.CENTER);
+			this.label_BuletinParticipation.setBounds(256, 318, 145, 225);
+		}
+		return this.label_BuletinParticipation;
+	}
+
+	private JLabel getLabel_GestionOC() {
+		if (this.label_GestionOC == null) {
+			this.label_GestionOC = new JLabel("");
+			this.label_GestionOC.setIcon(new ImageIcon(choixgestionOC.class.getResource("/Images/menubutons/bouton-operations-gestion.png")));
+			this.label_GestionOC
+					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_GestionOC.setFont(new Font("Tahoma", Font.BOLD, 17));
+			this.label_GestionOC.setForeground(Color.GRAY);
+			this.label_GestionOC.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+
+					choixgestionOC.this.selection="GESTION OPERATIONS (Création, MAJ ou Suppression)";
+					validateAction();
+				}
+			});
+			this.label_GestionOC.setHorizontalAlignment(SwingConstants.CENTER);
+			this.label_GestionOC.setBounds(416, 318, 145, 225);
+		}
+		return this.label_GestionOC;
+	}
+
 	private JLayeredPane getLayeredPane_1() {
 		if (this.layeredPane == null) {
 			this.layeredPane = new JLayeredPane();
@@ -339,7 +383,7 @@ public class choixgestionOC extends JFrame {
 		}
 		return this.lblMerciDeFaire;
 	}
-
+	
 	private JLabel getLblNewLabel() {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel(
@@ -350,7 +394,7 @@ public class choixgestionOC extends JFrame {
 		}
 		return this.lblNewLabel;
 	}
-
+	
 	private JLabel getLblNewLabel_1() {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
@@ -361,50 +405,6 @@ public class choixgestionOC extends JFrame {
 			this.lblNewLabel_1.setBounds(0, 0, 1280, 800);
 		}
 		return this.lblNewLabel_1;
-	}
-	
-	private JLabel getLabel_GestionOC() {
-		if (this.label_GestionOC == null) {
-			this.label_GestionOC = new JLabel("");
-			this.label_GestionOC.setIcon(new ImageIcon(choixgestionOC.class.getResource("/Images/menubutons/bouton-operations-gestion.png")));
-			this.label_GestionOC
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			this.label_GestionOC.setFont(new Font("Tahoma", Font.BOLD, 17));
-			this.label_GestionOC.setForeground(Color.GRAY);
-			this.label_GestionOC.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(final MouseEvent e) {
-
-					choixgestionOC.this.selection="GESTION OPERATIONS (Création, MAJ ou Suppression)";
-					validateAction();
-				}
-			});
-			this.label_GestionOC.setHorizontalAlignment(SwingConstants.CENTER);
-			this.label_GestionOC.setBounds(416, 318, 145, 225);
-		}
-		return this.label_GestionOC;
-	}
-	
-	private JLabel getlabel_BuletinParticipation() {
-		if (this.label_BuletinParticipation == null) {
-			this.label_BuletinParticipation = new JLabel("");
-			this.label_BuletinParticipation.setIcon(new ImageIcon(choixgestionOC.class.getResource("/Images/menubutons/bouton-operations-saisie.png")));
-			this.label_BuletinParticipation
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			this.label_BuletinParticipation.setFont(new Font("Tahoma", Font.BOLD, 17));
-			this.label_BuletinParticipation.setForeground(Color.GRAY);
-			this.label_BuletinParticipation.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(final MouseEvent e) {
-
-					choixgestionOC.this.selection="BULLETIN PARTICIPATION (Saisie, MAJ ou Suppression)";
-					validateAction();
-				}
-			});
-			this.label_BuletinParticipation.setHorizontalAlignment(SwingConstants.CENTER);
-			this.label_BuletinParticipation.setBounds(256, 318, 145, 225);
-		}
-		return this.label_BuletinParticipation;
 	}
 
 	private JLabel getLblValider() {
