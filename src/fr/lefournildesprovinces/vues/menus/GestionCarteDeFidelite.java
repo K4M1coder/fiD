@@ -27,7 +27,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class GestionCarteDeFidelite extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -4113089650401818905L;
 	private JComboBox<Object> comboBox;
@@ -68,7 +68,7 @@ public class GestionCarteDeFidelite extends JFrame {
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 1.0f));
 		this.setResizable(false);
 		this.interfaceActuelle = this;
-		
+
 		GestionCarteDeFidelite.this.lblMerciDeFaire.setVisible(false);
 		GestionCarteDeFidelite.this.lblMerciDeFaire.setEnabled(false);
 		GestionCarteDeFidelite.this.lblValider.setVisible(false);
@@ -90,7 +90,7 @@ public class GestionCarteDeFidelite extends JFrame {
 						"RECHERCHER une carte de fidelité",
 						"MISE A JOUR d'une carte de fidélité",
 						"SUPPRESSION d'une carte de fidélité",
-						"DESINSCRIPTION Newsletter" };
+						"DESINSCRIPTION Publicité Commerciale" };
 
 				break;
 
@@ -99,7 +99,7 @@ public class GestionCarteDeFidelite extends JFrame {
 						"RECHERCHER une carte de fidelité",
 						"MISE A JOUR d'une carte de fidélité",
 						"SUPPRESSION d'une carte de fidélité",
-						"DESINSCRIPTION Newsletter" };
+						"DESINSCRIPTION Publicité Commerciale" };
 
 				break;
 
@@ -300,11 +300,11 @@ public class GestionCarteDeFidelite extends JFrame {
 			this.layeredPane.add(this.getLabel_3());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel());
-			
+
 		}
 		return this.layeredPane;
 	}
-	
+
 	private JLabel getLabel_NewCarteFid() {
 		if (this.label_NewCarteFid == null) {
 			this.label_NewCarteFid = new JLabel("");
@@ -326,7 +326,7 @@ public class GestionCarteDeFidelite extends JFrame {
 		}
 		return this.label_NewCarteFid;
 	}
-	
+
 	private JLabel getLabel_SearchCarteFid() {
 		if (this.label_SearchCarteFid == null) {
 			this.label_SearchCarteFid = new JLabel("");
@@ -348,7 +348,7 @@ public class GestionCarteDeFidelite extends JFrame {
 		}
 		return this.label_SearchCarteFid;
 	}
-	
+
 	private JLabel getLabel_ModCarteFid() {
 		if (this.label_ModCarteFid == null) {
 			this.label_ModCarteFid = new JLabel("");
@@ -370,7 +370,7 @@ public class GestionCarteDeFidelite extends JFrame {
 		}
 		return this.label_ModCarteFid;
 	}
-	
+
 	private JLabel getLabel_DeleteCarteFid() {
 		if (this.label_DeleteCarteFid == null) {
 			this.label_DeleteCarteFid = new JLabel("");
@@ -392,7 +392,7 @@ public class GestionCarteDeFidelite extends JFrame {
 		}
 		return this.label_DeleteCarteFid;
 	}
-	
+
 	private JLabel getLabel_UnsubscribeCarteFid() {
 		if (this.label_UnsubscribeCarteFid == null) {
 			this.label_UnsubscribeCarteFid = new JLabel("");
@@ -405,7 +405,7 @@ public class GestionCarteDeFidelite extends JFrame {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					GestionCarteDeFidelite.this.selection="DESINSCRIPTION Newsletter";
+					GestionCarteDeFidelite.this.selection="DESINSCRIPTION Publicité Commerciale";
 					validateAction();
 				}
 			});
@@ -414,8 +414,8 @@ public class GestionCarteDeFidelite extends JFrame {
 		}
 		return this.label_UnsubscribeCarteFid;
 	}
-	
-	
+
+
 
 	private JLabel getLblFermer() {
 		if (this.lblFermer == null) {
@@ -520,8 +520,8 @@ public class GestionCarteDeFidelite extends JFrame {
 			GestionCarteDeFidelite.this.dispose();
 			break;
 
-		case "DESINSCRIPTION Newsletter":
-			final String choix = "Menu > Gestion Carte de Fidélité > Désincription Newslettter";
+		case "DESINSCRIPTION Publicité Commerciale":
+			final String choix = "Menu > Gestion Carte de Fidélité > Désincription Pub";
 			final SelectionNumeroCarteFidelite2 desinscription = new SelectionNumeroCarteFidelite2(
 					GestionCarteDeFidelite.this.interfaceActuelle, choix);
 			desinscription.setVisible(true);
@@ -545,7 +545,7 @@ public class GestionCarteDeFidelite extends JFrame {
 			break;
 
 		case "RECHERCHER une carte de fidelité":
-			final String choix4 = "Consulter une carte de fidelité";
+			final String choix4 = "Menu > Gestion Carte de Fidélité > Consulter Fiche Client";
 			final SelectionNumeroCarteFidelite2 consultationfiche = new SelectionNumeroCarteFidelite2(
 					GestionCarteDeFidelite.this.interfaceActuelle, choix4);
 			consultationfiche.setVisible(true);
