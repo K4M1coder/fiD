@@ -206,9 +206,10 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 						SelectionNumeroCarteFidelite2.this.forname = SelectionNumeroCarteFidelite2.this.comboBox_1
 								.getSelectedItem().toString();
 						SelectionNumeroCarteFidelite2.this.mod3 = new DefaultComboBoxModel<Object>(
-								Select.listedateClientfidelite(
+								Select.listeClientFideliteHomonymes(
 										SelectionNumeroCarteFidelite2.this.name,
 										SelectionNumeroCarteFidelite2.this.forname));
+
 						SelectionNumeroCarteFidelite2.this.comboBox_2
 								.setModel(SelectionNumeroCarteFidelite2.this.mod3);
 						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_2
@@ -281,7 +282,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 			this.comboBox_2.setEditable(true);
 			this.comboBox_2.setBorder(null);
 			this.comboBox_2.setBackground(Color.WHITE);
-			this.comboBox_2.setBounds(528, 488, 278, 22);
+			this.comboBox_2.setBounds(285, 488, 521, 22);
 			AutoCompletion.enable(this.comboBox_2);
 
 		}
@@ -328,7 +329,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 
 			}
 
-			this.fond.setBounds(216, 231, 850, 338);
+			this.fond.setBounds(203, 231, 850, 338);
 		}
 		return this.fond;
 	}

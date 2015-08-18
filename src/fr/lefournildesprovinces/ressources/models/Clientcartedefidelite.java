@@ -140,18 +140,37 @@ public class Clientcartedefidelite {
 
 	@Override
 	public String toString() {
-		return "Clientcartedefidelite [idclient=" + this.idclient
-				+ ", numerocarte=" + this.numerocarte + ", Nommagasin="
-				+ this.Nommagasin + ", civiliteIndividu="
-				+ this.civiliteIndividu + ", nomIndividu=" + this.nomIndividu
-				+ ", prenomIndividu=" + this.prenomIndividu
-				+ ", adresseIndividu=" + this.adresseIndividu
-				+ ", villeIndividu=" + this.villeIndividu
-				+ ", codePostalIndividu=" + this.codePostalIndividu
-				+ ", dateNaissanceIndividu=" + this.dateNaissanceIndividu
-				+ ", email=" + this.email + ", newsletterIndividu="
-				+ this.newsletterIndividu + ", age=" + this.age + ", telfixe="
-				+ this.telfixe + ", mobile=" + this.mobile + "]";
+//		return "Clientcartedefidelite [idclient=" + this.idclient
+//				+ ", numerocarte=" + this.numerocarte
+//				+ ", Nommagasin=" + this.Nommagasin
+//				+ ", civiliteIndividu=" + this.civiliteIndividu
+//				+ ", nomIndividu="+ this.nomIndividu
+//				+ ", prenomIndividu=" + this.prenomIndividu
+//				+ ", adresseIndividu="+ this.adresseIndividu
+//				+ ", villeIndividu=" + this.villeIndividu
+//				+ ", codePostalIndividu="+ this.codePostalIndividu
+//				+ ", dateNaissanceIndividu=" + this.dateNaissanceIndividu
+//				+ ", email=" + this.email
+//				+ ", newsletterIndividu=" + this.newsletterIndividu
+//				+ ", age=" + this.age
+//				+ ", telfixe=" + this.telfixe
+//				+ ", mobile=" + this.mobile + "]";
+
+		String phone = new String(
+				(this.mobile != null) ?
+						this.mobile
+						: (this.telfixe != null) ?
+								this.telfixe
+								: "inconu"
+		);
+
+		String date=(this.dateNaissanceIndividu!=null)?	date =this.dateNaissanceIndividu:"?";
+
+		return this.age + " ans"
+				+ " - date " + date
+				+ " - tél. " + phone
+//				+ " - " + this.villeIndividu
+				+ " > " + this.Nommagasin;
 	}
 
 }

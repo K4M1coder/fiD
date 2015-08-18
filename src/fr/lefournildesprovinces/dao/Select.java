@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Collections;
-// import java.util.Collections;
 import java.util.Vector;
 
 import fr.lefournildesprovinces.ressources.models.ClientOperationCommerciale;
@@ -35,10 +34,10 @@ public class Select {
 
 	{
 
-		System.out.print("=======" + valeurCasechoix.length() + "=========");
-		System.out.print(valeurCasechoix);
+		System.out.println("=======" + valeurCasechoix.length() + "=========");
+		System.out.println(valeurCasechoix);
 
-		System.out.print(boutoncochetous);
+		System.out.println(boutoncochetous);
 
 		final Vector<ResultatRecherche> requete = new Vector<ResultatRecherche>();
 
@@ -55,7 +54,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 			if (boutoncochetous == false) {
@@ -71,7 +70,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 		}
@@ -86,7 +85,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 			if (boutoncochetous == false) {
@@ -101,7 +100,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 		}
@@ -118,7 +117,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 			if (boutoncochetous == false) {
@@ -134,7 +133,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 		}
@@ -167,7 +166,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -181,9 +180,9 @@ public class Select {
 
 	{
 
-		System.out.print("=======" + valeurCasechoix.length() + "=========");
+		System.out.println("=======" + valeurCasechoix.length() + "=========");
 
-		System.out.print(boutoncochetous);
+		System.out.println(boutoncochetous);
 
 		final Vector<ResultatRecherche> requete = new Vector<ResultatRecherche>();
 
@@ -200,7 +199,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 			if (boutoncochetous == false) {
@@ -216,7 +215,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 		}
@@ -231,7 +230,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 			if (boutoncochetous == false) {
@@ -246,7 +245,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 		}
@@ -263,7 +262,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 			if (boutoncochetous == false) {
@@ -279,7 +278,7 @@ public class Select {
 					rs = preStm.executeQuery();
 				} catch (final Exception e) {
 
-					System.out.print("erreur" + e.getMessage());
+					System.out.println("erreur" + e.getMessage());
 				}
 			}
 		}
@@ -311,7 +310,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -337,7 +336,7 @@ public class Select {
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -369,7 +368,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -395,7 +394,7 @@ public class Select {
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -426,7 +425,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -439,7 +438,7 @@ public class Select {
 			final boolean boutoncochetous)
 
 	{
-		System.out.print(boutoncochetous);
+		System.out.println(boutoncochetous);
 
 		final Vector<ResultatRecherche> requete = new Vector<ResultatRecherche>();
 
@@ -455,7 +454,7 @@ public class Select {
 				rs = preStm.executeQuery();
 			} catch (final Exception e) {
 
-				System.out.print("erreur" + e.getMessage());
+				System.out.println("erreur" + e.getMessage());
 			}
 		}
 		if (boutoncochetous == false) {
@@ -471,7 +470,7 @@ public class Select {
 				rs = preStm.executeQuery();
 			} catch (final Exception e) {
 
-				System.out.print("erreur" + e.getMessage());
+				System.out.println("erreur" + e.getMessage());
 			}
 		}
 
@@ -504,7 +503,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -517,7 +516,7 @@ public class Select {
 			final boolean boutoncochetous)
 
 	{
-		System.out.print(boutoncochetous);
+		System.out.println(boutoncochetous);
 
 		final Vector<ResultatRecherche> requete = new Vector<ResultatRecherche>();
 
@@ -533,7 +532,7 @@ public class Select {
 				rs = preStm.executeQuery();
 			} catch (final Exception e) {
 
-				System.out.print("erreur" + e.getMessage());
+				System.out.println("erreur" + e.getMessage());
 			}
 		}
 		if (boutoncochetous == false) {
@@ -549,7 +548,7 @@ public class Select {
 				rs = preStm.executeQuery();
 			} catch (final Exception e) {
 
-				System.out.print("erreur" + e.getMessage());
+				System.out.println("erreur" + e.getMessage());
 			}
 		}
 
@@ -581,7 +580,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -594,7 +593,7 @@ public class Select {
 			final boolean boutoncochetous)
 
 	{
-		System.out.print(boutoncochetous);
+		System.out.println(boutoncochetous);
 
 		final Vector<ResultatRecherche> requete = new Vector<ResultatRecherche>();
 
@@ -610,7 +609,7 @@ public class Select {
 				rs = preStm.executeQuery();
 			} catch (final Exception e) {
 
-				System.out.print("erreur" + e.getMessage());
+				System.out.println("erreur" + e.getMessage());
 			}
 		}
 		if (boutoncochetous == false) {
@@ -626,7 +625,7 @@ public class Select {
 				rs = preStm.executeQuery();
 			} catch (final Exception e) {
 
-				System.out.print("erreur" + e.getMessage());
+				System.out.println("erreur" + e.getMessage());
 			}
 		}
 
@@ -658,7 +657,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -673,14 +672,14 @@ public class Select {
 	{
 		/*
 		 * Calendar now = Calendar.getInstance(); int
-		 * year=now.get(Calendar.YEAR); System.out.print(year+"\n");
+		 * year=now.get(Calendar.YEAR); System.out.println(year+"\n");
 		 *
 		 * int AnneeFin=year-valuemin; int Anneedebut=year-valuemax;
 		 *
-		 * System.out.print(Anneedebut+"\n"); System.out.print(AnneeFin+"\n");
+		 * System.out.println(Anneedebut+"\n"); System.out.println(AnneeFin+"\n");
 		 */
 
-		System.out.print(boutoncochetous);
+		System.out.println(boutoncochetous);
 
 		final Vector<ResultatRecherche> requete = new Vector<ResultatRecherche>();
 
@@ -697,7 +696,7 @@ public class Select {
 				rs = preStm.executeQuery();
 			} catch (final Exception e) {
 
-				System.out.print("erreur" + e.getMessage());
+				System.out.println("erreur" + e.getMessage());
 			}
 		}
 		if (boutoncochetous == false) {
@@ -714,7 +713,7 @@ public class Select {
 				rs = preStm.executeQuery();
 			} catch (final Exception e) {
 
-				System.out.print("erreur" + e.getMessage());
+				System.out.println("erreur" + e.getMessage());
 			}
 		}
 
@@ -747,7 +746,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -762,14 +761,14 @@ public class Select {
 	{
 		/*
 		 * Calendar now = Calendar.getInstance(); int
-		 * year=now.get(Calendar.YEAR); System.out.print(year+"\n");
+		 * year=now.get(Calendar.YEAR); System.out.println(year+"\n");
 		 *
 		 * int AnneeFin=year-valuemin; int Anneedebut=year-valuemax;
 		 *
-		 * System.out.print(Anneedebut+"\n"); System.out.print(AnneeFin+"\n");
+		 * System.out.println(Anneedebut+"\n"); System.out.println(AnneeFin+"\n");
 		 */
 
-		System.out.print(boutoncochetous);
+		System.out.println(boutoncochetous);
 
 		final Vector<ResultatRecherche> requete = new Vector<ResultatRecherche>();
 
@@ -786,7 +785,7 @@ public class Select {
 				rs = preStm.executeQuery();
 			} catch (final Exception e) {
 
-				System.out.print("erreur" + e.getMessage());
+				System.out.println("erreur" + e.getMessage());
 			}
 		}
 		if (boutoncochetous == false) {
@@ -803,7 +802,7 @@ public class Select {
 				rs = preStm.executeQuery();
 			} catch (final Exception e) {
 
-				System.out.print("erreur" + e.getMessage());
+				System.out.println("erreur" + e.getMessage());
 			}
 		}
 
@@ -835,7 +834,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -846,7 +845,7 @@ public class Select {
 	public static Vector<ResultatRecherche> eMailingville(final int idville)
 
 	{
-		System.out.print(idville);
+		System.out.println(idville);
 
 		final Vector<ResultatRecherche> requete = new Vector<ResultatRecherche>();
 
@@ -861,7 +860,7 @@ public class Select {
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -893,7 +892,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -905,7 +904,7 @@ public class Select {
 			final int idville)
 
 	{
-		System.out.print(idville);
+		System.out.println(idville);
 
 		final Vector<ResultatRecherche> requete = new Vector<ResultatRecherche>();
 
@@ -920,7 +919,7 @@ public class Select {
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -951,7 +950,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -974,7 +973,7 @@ public class Select {
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1006,7 +1005,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1029,7 +1028,7 @@ public class Select {
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1060,7 +1059,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1087,7 +1086,7 @@ public class Select {
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1119,7 +1118,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1146,7 +1145,7 @@ public class Select {
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1177,7 +1176,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1190,9 +1189,9 @@ public class Select {
 
 	{
 
-		System.out.print(nom + "\n");
-		System.out.print(prenom + "\n");
-		System.out.print(age + "\n");
+		System.out.println(nom + "\n");
+		System.out.println(prenom + "\n");
+		System.out.println(age + "\n");
 
 		final Vector<ClientOperationCommerciale> requete = new Vector<ClientOperationCommerciale>();
 
@@ -1212,7 +1211,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1247,7 +1246,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1276,7 +1275,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1311,7 +1310,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1336,7 +1335,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1358,7 +1357,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1385,7 +1384,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1404,7 +1403,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1431,7 +1430,7 @@ public class Select {
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1452,7 +1451,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1485,7 +1484,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1507,7 +1506,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1540,7 +1539,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1562,7 +1561,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1591,7 +1590,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1613,13 +1612,99 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
 		return requete.toArray(new Object[0]);
 
 	}
+
+	public static Object[] listeClientFideliteHomonymes(final String nomClient,
+			final String prenomClient)
+
+	{
+		final Vector<Clientcartedefidelite> requete = new Vector<Clientcartedefidelite>();
+
+		try {
+
+			c = Connexion.getCon();
+			final String sql = "SELECT"
+					+ " CLIENT.IDCLIENT,"
+					+ " CIVILITECLIENT,"
+					+ " NOMCLIENT,"
+					+ " PRENOMCLIENT,"
+					+ " ADRESSECLIENT,"
+					+ " NOMVILLE,"
+					+ " CODEPOSTALVILLE,"
+					+ " DATENAISSANCECLIENT,"
+					+ " NOMMAGASIN,"
+					+ " MAILCLIENT,"
+					+ " ABONNEMENTNEWSLETTERCLIENT,"
+					+ " NUMEROCARTEDEFIDELITE,"
+					+ " AGECLIENT,"
+					+ " TELEPHONEFIXECLIENT,"
+					+ " TELEPHONEPORTABLECLIENT"
+					+ " FROM CLIENT INNER JOIN VILLE ON VILLE.IDVILLE=CLIENT.IDVILLE"
+					+ " INNER JOIN FREQUENTER ON FREQUENTER.IDCLIENT=CLIENT.IDCLIENT"
+					+ " INNER JOIN MAGASIN ON MAGASIN.IDMAGASIN=FREQUENTER.IDMAGASIN"
+					+ " INNER JOIN CARTE_DE_FIDELITE ON CARTE_DE_FIDELITE.IDCLIENT=CLIENT.IDCLIENT"
+					+ " WHERE NOMCLIENT=?"
+					+ " AND PRENOMCLIENT=?";
+
+			preStm = c.prepareStatement(sql);
+			preStm.setString(1, nomClient);
+			preStm.setString(2, prenomClient);
+			rs = preStm.executeQuery();
+
+		} catch (final Exception e) {
+
+			System.out.println("erreur\n" + e.getMessage()+"\n");
+			e.printStackTrace();
+		}
+
+		try {
+
+			requete.add(null);
+			Clientcartedefidelite cliForSearchByNomPrenom;
+			while (rs.next()) {
+
+				cliForSearchByNomPrenom = new Clientcartedefidelite();
+
+				cliForSearchByNomPrenom.setIdclient(rs.getInt(1));
+				cliForSearchByNomPrenom.setCiviliteIndividu(rs.getString(2));
+				cliForSearchByNomPrenom.setNomIndividu(rs.getString(3));
+				cliForSearchByNomPrenom.setPrenomIndividu(rs.getString(4));
+				cliForSearchByNomPrenom.setAdresseIndividu(rs.getString(5));
+				cliForSearchByNomPrenom.setVilleIndividu(rs.getString(6));
+				cliForSearchByNomPrenom.setCodePostalIndividu(rs.getString(7));
+				cliForSearchByNomPrenom.setDateNaissanceIndividu(rs.getString(8));
+				cliForSearchByNomPrenom.setNommagasin(rs.getString(9));
+				cliForSearchByNomPrenom.setEmail(rs.getString(10));
+				cliForSearchByNomPrenom.setNewsletterIndividu(rs.getString(11));
+				cliForSearchByNomPrenom.setNumerocarte(rs.getString(12));
+				cliForSearchByNomPrenom.setAge(rs.getString(13));
+				cliForSearchByNomPrenom.setTelfixe(rs.getString(14));
+				cliForSearchByNomPrenom.setMobile(rs.getString(15));
+
+				requete.add(cliForSearchByNomPrenom);
+
+			}
+
+			rs.close();
+			preStm.close();
+
+		} catch (final Exception e)
+
+		{
+			System.out.println("error" + e.getMessage());
+
+		}
+
+		return requete.toArray(new Object[0]);
+
+	}
+
 
 	public static Object[] listemagasins()
 
@@ -1636,7 +1721,7 @@ public class Select {
 			rs = stm.executeQuery(SQL);
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1656,7 +1741,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1680,7 +1765,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1702,7 +1787,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("errorlistenom" + e.getMessage());
+			System.out.println("errorlistenom" + e.getMessage());
 
 		}
 
@@ -1718,7 +1803,7 @@ public class Select {
 			preStm = c.prepareStatement(sql);
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 		try {
 			requete.add(null);
@@ -1732,7 +1817,7 @@ public class Select {
 			rs.close();
 			preStm.close();
 		} catch (final Exception e) {
-			System.out.print("errorlistenom" + e.getMessage());
+			System.out.println("errorlistenom" + e.getMessage());
 		}
 
 //		Collections.sort(requete, NomClient.Comparators.NAME);
@@ -1758,7 +1843,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1780,7 +1865,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("errorlistenom" + e.getMessage());
+			System.out.println("errorlistenom" + e.getMessage());
 
 		}
 
@@ -1802,7 +1887,7 @@ public class Select {
 			rs = stm.executeQuery(SQL);
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1822,7 +1907,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1848,7 +1933,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1870,7 +1955,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1896,7 +1981,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1918,7 +2003,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1945,7 +2030,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -1967,7 +2052,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -1998,7 +2083,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -2022,7 +2107,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -2044,7 +2129,7 @@ public class Select {
 			rs = stm.executeQuery(SQL);
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -2065,7 +2150,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -2090,7 +2175,7 @@ public class Select {
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -2105,7 +2190,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
@@ -2131,7 +2216,7 @@ public class Select {
 			rs = preStm.executeQuery();
 		} catch (final Exception e) {
 
-			System.out.print("erreur" + e.getMessage());
+			System.out.println("erreur" + e.getMessage());
 		}
 
 		try {
@@ -2152,7 +2237,7 @@ public class Select {
 		} catch (final Exception e)
 
 		{
-			System.out.print("error" + e.getMessage());
+			System.out.println("error" + e.getMessage());
 
 		}
 
