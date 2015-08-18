@@ -48,7 +48,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 	private static PreparedStatement preStm;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -7251756838212278175L;
 	private String birth;
@@ -66,7 +66,6 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 	ButtonGroup group = new ButtonGroup();
 	private int idclient = 0;
 	private int idclientconsulatation;
-	private JFrame interfaceactuelle;
 	private final JFrame interfaceActuelle;
 	private JLabel label;
 	private JLabel label_1;
@@ -167,10 +166,10 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						System.out.print("Nom " + message);
 						final AlerteSelection fenetre = new AlerteSelection(
-								SelectionNumeroCarteFidelite2.this.interfaceactuelle,
+								SelectionNumeroCarteFidelite2.this.interfaceActuelle,
 								message);
 						fenetre.setVisible(true);
-						SelectionNumeroCarteFidelite2.this.interfaceactuelle
+						SelectionNumeroCarteFidelite2.this.interfaceActuelle
 								.setEnabled(false);
 						SelectionNumeroCarteFidelite2.this.lblValider
 								.setVisible(false);
@@ -187,7 +186,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 			this.comboBox.setBorder(null);
 			this.comboBox.setBackground(Color.WHITE);
 			this.comboBox.setBounds(528, 426, 278, 22);
-			
+
 			this.mod = new DefaultComboBoxModel<Object>(
 					Select.listenomclientfidelite());
 			this.comboBox.setModel(this.mod);
@@ -220,10 +219,10 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						System.out.println("Prénom" + message);
 						final AlerteSelection fenetre = new AlerteSelection(
-								SelectionNumeroCarteFidelite2.this.interfaceactuelle,
+								SelectionNumeroCarteFidelite2.this.interfaceActuelle,
 								message);
 						fenetre.setVisible(true);
-						SelectionNumeroCarteFidelite2.this.interfaceactuelle
+						SelectionNumeroCarteFidelite2.this.interfaceActuelle
 								.setEnabled(false);
 						SelectionNumeroCarteFidelite2.this.lblValider
 								.setVisible(false);
@@ -263,10 +262,10 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 						System.out.print("Age impossible");
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						final AlerteSelection fenetre = new AlerteSelection(
-								SelectionNumeroCarteFidelite2.this.interfaceactuelle,
+								SelectionNumeroCarteFidelite2.this.interfaceActuelle,
 								message);
 						fenetre.setVisible(true);
-						SelectionNumeroCarteFidelite2.this.interfaceactuelle
+						SelectionNumeroCarteFidelite2.this.interfaceActuelle
 								.setEnabled(false);
 						SelectionNumeroCarteFidelite2.this.lblValider
 								.setVisible(false);
@@ -751,11 +750,11 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 						 * String month = eclatementDate[1];
 						 * System.out.print(month+"\n"); String year =
 						 * eclatementDate[2]; System.out.print(year+"\n");
-						 * 
+						 *
 						 * switch (month)
-						 * 
+						 *
 						 * {
-						 * 
+						 *
 						 * case "janvier": month="01"; break; case "février":
 						 * month="02"; break; case "mars":month="03"; break;
 						 * case "avril":month="04"; break; case
@@ -766,9 +765,9 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 						 * "octobre":month="10"; break; case
 						 * "novembre":month="11"; break; case
 						 * "décembre":month="12"; break;
-						 * 
+						 *
 						 * }
-						 * 
+						 *
 						 * String birthdate=year+"/"+month+"/"+day;
 						 */
 

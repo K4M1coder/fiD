@@ -332,7 +332,7 @@ public class MenuPrincipal extends JFrame {
 				}
 			});
 			this.label_OpCom.setHorizontalAlignment(SwingConstants.CENTER);
-			this.label_OpCom.setBounds(416, 318, 145, 225);
+			this.label_OpCom.setBounds(566, 318, 145, 225);
 		}
 		return this.label_OpCom;
 	}
@@ -356,7 +356,7 @@ public class MenuPrincipal extends JFrame {
 				}
 			});
 			this.label_Magasins.setHorizontalAlignment(SwingConstants.CENTER);
-			this.label_Magasins.setBounds(571, 318, 145, 225);
+			this.label_Magasins.setBounds(411, 318, 145, 225);
 		}
 		return this.label_Magasins;
 	}

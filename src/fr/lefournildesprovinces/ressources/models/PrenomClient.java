@@ -19,8 +19,9 @@ public class PrenomClient implements Comparable<PrenomClient> {
 
 	@Override
 	public int compareTo(PrenomClient other) {
-//		int last = this.prenom.compareTo(other.prenom);
-//		return last == 0 ? this.prenom.compareTo(other.prenom) : last;
+		// compareTo should return < 0 if this is supposed to be
+		// less than other, > 0 if this is supposed to be greater than
+		// other and 0 if they are supposed to be equal
 		int last = 10;
 		if (other != null){
 			System.out.println("nom to string : "+this.prenom.toString());
@@ -31,6 +32,9 @@ public class PrenomClient implements Comparable<PrenomClient> {
 				}
 		}
 		return last;
+
+		// int last = this.prenom.compareTo(other.prenom);
+		// return last == 0 ? this.prenom.compareTo(other.prenom) : last;
 	}
 
 }
