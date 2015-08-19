@@ -26,18 +26,18 @@ import fr.lefournildesprovinces.vues.menus.GestionMagasin;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.choixgestionOC;
 
+/**
+ * @author admin
+ *
+ */
 public class SuccesInsertionClientFidelite extends JFrame {
 
 	private static Connection c;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -8276626397309922805L;
-	private static PreparedStatement stm;
-	private final String choixmenuprecdentoperation;
-	private final String civiliteClient;
-	private final JPanel contentPane;
 	private JLabel fond;
 	private JLabel label;
 	private JLabel label_1;
@@ -46,23 +46,28 @@ public class SuccesInsertionClientFidelite extends JFrame {
 	private JLabel label_4;
 	private JLabel label_5;
 	private JLabel label_6;
-	private JLabel label_7;
-	private JLabel label_8;
-	private JLayeredPane layeredPane;
+	private JLabel label_Magasin;
+	private JLabel label_Operation;
 	private JLabel lblClientInsreAvec;
 	private JLabel lblContinuer;
 	private JLabel lblModifierLaDerniere;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblQuitter;
+	private JLayeredPane layeredPane;
 	private String libelleoperation;
-	private final int magasin;
-	private final String nomClient;
 	private String nommagasinconcerne;
-	private final String numerocarte;
-	private final int operation;
-	private final String prenomClient;
 	private String privilege;
+	private final JFrame interfaceActuelle;
+	private final JPanel contentPane;
+	private final String choixmenuprecdentoperation;
+	private final String civiliteClient;
+	private final String nomClient;
+	private final String numerocarte;
+	private final String prenomClient;
+	private final int magasin;
+	private final int operation;
+	private static PreparedStatement stm;
 
 	public SuccesInsertionClientFidelite(final String civilite,
 			final String nom, final String prenom, final String dateNaissance,
@@ -142,12 +147,12 @@ public class SuccesInsertionClientFidelite extends JFrame {
 
 					SuccesInsertionClientFidelite.this.label_5.setVisible(true);
 					SuccesInsertionClientFidelite.this.label_6.setVisible(true);
-					SuccesInsertionClientFidelite.this.label_7.setVisible(true);
-					SuccesInsertionClientFidelite.this.label_8.setVisible(true);
+					SuccesInsertionClientFidelite.this.label_Operation.setVisible(true);
+					SuccesInsertionClientFidelite.this.label_Magasin.setVisible(true);
 
-					SuccesInsertionClientFidelite.this.label_7
+					SuccesInsertionClientFidelite.this.label_Operation
 							.setText(SuccesInsertionClientFidelite.this.libelleoperation);
-					SuccesInsertionClientFidelite.this.label_8
+					SuccesInsertionClientFidelite.this.label_Magasin
 							.setText(SuccesInsertionClientFidelite.this.nommagasinconcerne);
 				}
 			}
@@ -172,6 +177,7 @@ public class SuccesInsertionClientFidelite extends JFrame {
 		this.choixmenuprecdentoperation = choixetprovenance;
 		this.operation = idoperation;
 		this.magasin = idmagasinoperation;
+		this.interfaceActuelle = this;
 
 	}
 
@@ -333,26 +339,26 @@ public class SuccesInsertionClientFidelite extends JFrame {
 		return this.label_6;
 	}
 
-	private JLabel getLabel_7() {
-		if (this.label_7 == null) {
-			this.label_7 = new JLabel("");
-			this.label_7.setVisible(false);
-			this.label_7.setForeground(Color.GRAY);
-			this.label_7.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.label_7.setBounds(938, 440, 145, 14);
+	private JLabel getLabel_Operation() {
+		if (this.label_Operation == null) {
+			this.label_Operation = new JLabel("");
+			this.label_Operation.setVisible(false);
+			this.label_Operation.setForeground(Color.GRAY);
+			this.label_Operation.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.label_Operation.setBounds(938, 440, 145, 14);
 		}
-		return this.label_7;
+		return this.label_Operation;
 	}
 
-	private JLabel getLabel_8() {
-		if (this.label_8 == null) {
-			this.label_8 = new JLabel("");
-			this.label_8.setVisible(false);
-			this.label_8.setForeground(Color.GRAY);
-			this.label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.label_8.setBounds(938, 466, 145, 14);
+	private JLabel getLabel_Magasin() {
+		if (this.label_Magasin == null) {
+			this.label_Magasin = new JLabel("");
+			this.label_Magasin.setVisible(false);
+			this.label_Magasin.setForeground(Color.GRAY);
+			this.label_Magasin.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.label_Magasin.setBounds(938, 466, 145, 14);
 		}
-		return this.label_8;
+		return this.label_Magasin;
 	}
 
 	private JLayeredPane getLayeredPane_1() {
@@ -370,8 +376,8 @@ public class SuccesInsertionClientFidelite extends JFrame {
 			this.layeredPane.add(this.getLblNewLabel());
 			this.layeredPane.add(this.getLabel_5());
 			this.layeredPane.add(this.getLabel_6());
-			this.layeredPane.add(this.getLabel_7());
-			this.layeredPane.add(this.getLabel_8());
+			this.layeredPane.add(this.getLabel_Operation());
+			this.layeredPane.add(this.getLabel_Magasin());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel_1());
 		}
@@ -418,7 +424,7 @@ public class SuccesInsertionClientFidelite extends JFrame {
 						final int nummagasin = 0;
 						final String choix = "succes";
 						final FideliteNouvelleFicheClient nouvelleFiche = new FideliteNouvelleFicheClient(
-								numcarte, numoperation, nummagasin, choix);
+								numcarte, numoperation, nummagasin, choix, interfaceActuelle);
 						nouvelleFiche.setVisible(true);
 						SuccesInsertionClientFidelite.this.dispose();
 					}
@@ -447,7 +453,7 @@ public class SuccesInsertionClientFidelite extends JFrame {
 					 * String eclatementDate[] = dateNaissanceClient.split("/");
 					 * String day = eclatementDate[0]; String month =
 					 * eclatementDate[1]; String year = eclatementDate[2];
-					 * 
+					 *
 					 * String dateNaissanceClientformat=year+"/"+month+"/"+day;
 					 */
 

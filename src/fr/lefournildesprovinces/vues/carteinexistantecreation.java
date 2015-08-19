@@ -19,7 +19,7 @@ import javax.swing.SwingConstants;
 public class carteinexistantecreation extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6445018466547613205L;
 
@@ -146,7 +146,7 @@ public class carteinexistantecreation extends JFrame {
 					final FideliteNouvelleFicheClient fenetre = new FideliteNouvelleFicheClient(
 							carteinexistantecreation.this.numerocarteclient,
 							carteinexistantecreation.this.idoperation,
-							carteinexistantecreation.this.idmagasin, choix);
+							carteinexistantecreation.this.idmagasin, choix, carteinexistantecreation.this);
 					fenetre.setVisible(true);
 					carteinexistantecreation.this.interfacePrecedente.dispose();
 					carteinexistantecreation.this.dispose();

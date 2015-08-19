@@ -515,7 +515,7 @@ public class GestionCarteDeFidelite extends JFrame {
 			final int numoperation = 0;
 			final int nummagasin = 0;
 			final FideliteNouvelleFicheClient nouvelleFiche = new FideliteNouvelleFicheClient(
-					numcarte, numoperation, nummagasin, choix1);
+					numcarte, numoperation, nummagasin, choix1,GestionCarteDeFidelite.this.interfaceActuelle);
 			nouvelleFiche.setVisible(true);
 			GestionCarteDeFidelite.this.dispose();
 			break;

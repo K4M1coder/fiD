@@ -41,38 +41,26 @@ import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.choixgestionOC;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
+/**
+ * @author <strong><br>k4m1coder</strong> @2015<br><strong>lefournildesprovinces</strong> @2012
+ * @see #SelectionNumeroCarteFidelite2
+ *
+ */
 public class SelectionNumeroCarteFidelite2 extends JFrame {
 
-	private static Connection c;
-	private static JFrame interfaceprecedente;
-	private static PreparedStatement preStm;
-	private static ResultSet rs;
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -7251756838212278175L;
-	private String birth;
-	private final String choixmenuprecedent;
+	ButtonGroup group = new ButtonGroup();
+	private ComboBoxModel<Object> mod2;
+	private ComboBoxModel<Object> mod3;
+	private ComboBoxModel<Object> mod;
 	private JComboBox<Object> comboBox;
 	private JComboBox<Object> comboBox_1;
 	private JComboBox<Object> comboBox_2;
-	private ComboBoxModel<Object> mod;
-	private ComboBoxModel<Object> mod2;
-	private ComboBoxModel<Object> mod3;
-	private final JPanel contentPane;
 	private JLabel fond;
-	private JTextField formattedTextField;
-	private String forname;
-	ButtonGroup group = new ButtonGroup();
-	private int idclient = 0;
-	private int idclientconsulatation;
-	private final JFrame interfaceActuelle;
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
 	private JLabel label_7;
-	private JLayeredPane layeredPane;
 	private JLabel lblChiffres;
 	private JLabel lblFermer;
 	private JLabel lblMenuChoix;
@@ -83,19 +71,44 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 	private JLabel lblTaperOuSlectionner_1;
 	private JLabel lblTaperOuSlectionner_2;
 	private JLabel lblValider;
+	private JLayeredPane layeredPane;
+	private JRadioButton rdbtnSelectionParNom;
+	private JTextField formattedTextField;
+	private String birth;
+	private String forname;
+	private final JFrame interfaceActuelle;
+	private final JPanel contentPane;
+	private final String choixmenuprecedent;
+	private int idclient = 0;
+	private int idclientconsulatation;
+	private static Connection c;
+	private static JFrame interfaceprecedente;
+	private static PreparedStatement preStm;
+	private static ResultSet rs;
+	private static final long serialVersionUID = -7251756838212278175L;
 	private String message;
 	private String name;
 	private String numcarteliste;
 	private String numeroCarteFidelite;
 	private String privilege;
-	private JRadioButton rdbtnSelectionParNom;
 
 	private JRadioButton rdbtnSelectionParNumero;
 
 	private JSeparator separator;
 	private String text;
 
-	public SelectionNumeroCarteFidelite2(final JFrame interfaceder,
+	/**
+	 * <center><strong>SelectionNumeroCarteFidelite2</strong> : cette vue permet de rechercher une fiche client</center>
+	 *
+	 * @param lastInterface : est une JFrame.<p>ceci est l'interface qui appelle la nouvelle, en général this.interfaceActuelle</p>
+	 * @param choix : est une String.<p>permet de savoir dans quel but cette fenettre à été appellée via 4 valeures possible<br>
+	 * "Menu > Gestion Carte de Fidélité > Désincription Newslettter" <br>
+	 * "Menu > Gestion Carte de Fidélité > Suppression Fiche Client"<br>
+	 * "Menu > Gestion Carte de Fidélité > Mise à  Jour Fiche Client"<br>
+	 * "Menu > Gestion Carte de Fidélité > Consulter Fiche Client"
+	 *
+	 */
+	public SelectionNumeroCarteFidelite2(final JFrame lastInterface,
 			final String choix) {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
@@ -106,9 +119,9 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 
 				switch (SelectionNumeroCarteFidelite2.this.choixmenuprecedent) {
 
-				case "Menu > Gestion Carte de Fidélité > Désincription Newslettter":
+				case "Menu > Gestion Carte de Fidélité > Désincription Pub":
 					SelectionNumeroCarteFidelite2.this.label_7
-							.setText("Désincription Newslettter");
+							.setText("Désincription Pub");
 					break;
 				case "Menu > Gestion Carte de Fidélité > Suppression Fiche Client":
 					SelectionNumeroCarteFidelite2.this.label_7
@@ -118,7 +131,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 					SelectionNumeroCarteFidelite2.this.label_7
 							.setText("Mise à  Jour d'une carte de fidélité");
 					break;
-				case "Consulter une carte de fidelité":
+				case "Menu > Gestion Carte de Fidélité > Consulter Fiche Client":
 					SelectionNumeroCarteFidelite2.this.label_7
 							.setText("Consulter une carte de fidelité");
 
@@ -140,7 +153,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 1.0f));
 		this.interfaceActuelle = this;
 		this.choixmenuprecedent = choix;
-		interfaceprecedente = interfaceder;
+		interfaceprecedente = lastInterface;
 
 	}
 

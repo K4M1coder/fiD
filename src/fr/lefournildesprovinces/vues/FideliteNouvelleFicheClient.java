@@ -56,41 +56,27 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	private static PreparedStatement preStm;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -7191493576702107874L;
-	private String adresseClient;
-	private String age;
-	private String annee;
-	private final String choixmenuprecedent;
-	private String civilite;
-	private String CodePostalClient;
-	private JComboBox<Object> comboBoxMagasins;
-	private JComboBox<Object> comboBoxCivilite;
-	private JComboBox<Object> comboBoxAnnee;
-	private JComboBox<Object> comboBoxJour;
-	private JComboBox<Object> comboBoxMois;
-	private int compteur2 = 0;
-	private final JPanel contentPane;
 
-	private String dateComplete;
-	private String email;
-	private JLabel fond;
-	private TextField formattedTextFieldNumCli;
 	ButtonGroup group = new ButtonGroup();
-	private int idmagasin;
-	private final int idmagasinparticipation;
-	private final int idoperationcommercialeparticipation;
-	private int idville;
-	private final JFrame interfaceActuelle;
-	private String jourdate;
-	private JLabel labelTelephone;
+	private ComboBoxModel<Object> listeVille;
+	private ComboBoxModel<Object> listemagasins;
+	private JComboBox<Object> comboBoxAnnee;
+	private JComboBox<Object> comboBoxCivilite;
+	private JComboBox<Object> comboBoxJour;
+	private JComboBox<Object> comboBoxMagasins;
+	private JComboBox<Object> comboBoxMois;
+	private JComboBox<Object> comboBoxVilles;
+	private JFormattedTextField textField_CodePostal;
+	private JLabel fond;
 	private JLabel labelMobile;
+	private JLabel labelTelephone;
 	private JLabel label_2;
 	private JLabel label_3;
 	private JLabel label_4;
 	private JLabel label_5;
-	private JLayeredPane layeredPane;
 	private JLabel lblAdresse;
 	private JLabel lblAge;
 	private JLabel lblChampObligatoire;
@@ -109,10 +95,20 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	private JLabel lblPrnom;
 	private JLabel lblValider;
 	private JLabel lblVille;
-	private ComboBoxModel<Object> listemagasins;
-	private ComboBoxModel<Object> listeVille;
-	private String magasin;
+	private JLayeredPane layeredPane;
+	private JRadioButton rdbtnDesinscrit;
+	private JRadioButton rdbtnNon;
+	private JRadioButton rdbtnOui;
 	private MaskFormatter mask;
+	private String CodePostalClient;
+	private String adresseClient;
+	private String age;
+	private String annee;
+	private String civilite;
+	private String dateComplete;
+	private String email;
+	private String jourdate;
+	private String magasin;
 	private String message;
 	private String moisdate;
 	private String newsletter;
@@ -120,26 +116,31 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	private String numerocarte;
 	private String prenomClient;
 	private String privilege;
-	private JRadioButton rdbtnDesinscrit;
-	private JRadioButton rdbtnNon;
-	private JRadioButton rdbtnOui;
 	private String telephonefixe;
 	private String telephoneportable;
+	private TextField formattedTextFieldNumCli;
+	private TextField textField_Adresse;
+	private TextField textField_Age;
+	private TextField textField_Mail;
 	private TextField textField_Nom;
 	private TextField textField_Prenom;
-	private TextField textField_Adresse;
-	private JComboBox<Object> comboBoxVilles;
-	private JFormattedTextField textField_CodePostal;
-	private TextField textField_Mail;
 	private TextField textField_TelFix;
 	private TextField textField_TelMob;
-	private TextField textField_Age;
+	private final JFrame interfaceActuelle;
+	private final JFrame interfacePrecedente;
+	private final JPanel contentPane;
+	private final String choixmenuprecedent;
+	private final int idmagasinparticipation;
+	private final int idoperationcommercialeparticipation;
+	private int compteur2 = 0;
+	private int idmagasin;
+	private int idville;
 
 
 	private class TextField extends JTextField {
 
 		/**
-		 * 
+		 *
 		 */
 		private static final long serialVersionUID = -2729405542981121442L;
 
@@ -161,11 +162,11 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	private String villeClient;
 
 	public FideliteNouvelleFicheClient(final String numcarte,
-			final int numoperation, final int nummagasin, final String choix) {
+			final int numoperation, final int nummagasin, final String choix, final JFrame interfacePrecedente) {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent arg0) {
-				
+
 				System.out.println("last choice was "+FideliteNouvelleFicheClient.this.choixmenuprecedent);
 				if (FideliteNouvelleFicheClient.this.choixmenuprecedent
 						.equals("creationcarteparoperation")) {
@@ -211,6 +212,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 1.0f));
 		this.choixmenuprecedent = choix;
+		this.interfacePrecedente = interfacePrecedente;
 		this.interfaceActuelle = this;
 		this.idoperationcommercialeparticipation = numoperation;
 		this.idmagasinparticipation = nummagasin;
@@ -268,7 +270,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		if (this.comboBoxCivilite == null) {
 			final String[] civiliteclient = { "", "Mr", "Mme", "NR" };
 			this.comboBoxCivilite = new JComboBox<Object>(civiliteclient);
-			
+
 			this.comboBoxCivilite.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
@@ -305,7 +307,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		if (this.comboBoxAnnee == null) {
 			this.comboBoxAnnee = new JComboBox<Object>();
 			this.comboBoxAnnee.setBackground(Color.WHITE);
-			
+
 			this.comboBoxAnnee.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
@@ -354,7 +356,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			this.comboBoxAnnee.setBounds(929, 428, 103, 22);
 			this.comboBoxAnnee.addItem(" --Année--");
 
-			
+
 			final int year = Calendar.getInstance().get(Calendar.YEAR);
 			for (int anneemenu = year - 18; anneemenu >= 1900; anneemenu--) {
 				this.comboBoxAnnee.addItem(anneemenu);
