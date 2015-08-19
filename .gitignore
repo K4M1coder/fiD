@@ -16,15 +16,14 @@ hs_err_pid*
 
 # confidentiel
 SQLCredentials.java
+
 /projet/
-
-/Resultats.csv
-
-/Resultats.xls
-
-/UML_CLASS.gif
-
-/UML_CLASS.ucls
 /lib/
 /build/
 /dist/
+
+/Resultats.csv
+/Resultats.xls
+/UML_CLASS.gif
+/UML_CLASS.ucls
+
