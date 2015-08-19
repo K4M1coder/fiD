@@ -273,7 +273,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 								.setVisible(false);
 					} catch (final Exception e3) {
 
-						System.out.print("Age impossible");
+						System.out.print("Choix impossible");
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						final AlerteSelection fenetre = new AlerteSelection(
 								SelectionNumeroCarteFidelite2.this.interfaceActuelle,
@@ -632,15 +632,15 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 							SelectionNumeroCarteFidelite2.this.message = "Merci de vérifier le numéro de carte renseigné - Ce champ ne peut pas être vide";
 						}
 
-						// if (!numeroCarteFidelite.isEmpty()) {
-						//
-						// if (numeroCarteFidelite.length() != 13) {
-						// verification = false;
-						// message =
-						// "Merci de vérifier le numéro de carte renseigné - 13 caractéres obligatoires";
-						// }
-						//
-						// }
+						 if (!numeroCarteFidelite.isEmpty()) {
+
+						 if (numeroCarteFidelite.length() > 13) {
+						 verification = false;
+						 message =
+						 "Merci de vérifier le numéro de carte renseigné - 13 caractères Maximum";
+						 }
+
+						 }
 
 						if (!SelectionNumeroCarteFidelite2.this.numeroCarteFidelite
 								.isEmpty()) {
@@ -751,39 +751,45 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 
 					if (SelectionNumeroCarteFidelite2.this.rdbtnSelectionParNom
 							.isSelected()) {
-						SelectionNumeroCarteFidelite2.this.name = SelectionNumeroCarteFidelite2.this.comboBox
-								.getSelectedItem().toString();
-						SelectionNumeroCarteFidelite2.this.forname = SelectionNumeroCarteFidelite2.this.comboBox_1
-								.getSelectedItem().toString();
-						SelectionNumeroCarteFidelite2.this.birth = SelectionNumeroCarteFidelite2.this.comboBox_2
-								.getSelectedItem().toString();
+						SelectionNumeroCarteFidelite2.this.name = SelectionNumeroCarteFidelite2
+								.this.comboBox.getSelectedItem().toString();
+						SelectionNumeroCarteFidelite2.this.forname = SelectionNumeroCarteFidelite2
+								.this.comboBox_1.getSelectedItem().toString();
+						SelectionNumeroCarteFidelite2.this.birth = SelectionNumeroCarteFidelite2
+								.this.comboBox_2.getSelectedItem().toString();
+						System.out.println("selected : "+SelectionNumeroCarteFidelite2.this.birth);
+						SelectionNumeroCarteFidelite2.this.birth= SelectionNumeroCarteFidelite2
+								.this.birth.substring(0, SelectionNumeroCarteFidelite2.this.birth.indexOf(" "));
+						System.out.println("birth value : "+SelectionNumeroCarteFidelite2.this.birth);
 
-						/*
-						 * String eclatementDate[] = birth.split(" "); String
-						 * day = eclatementDate[0]; System.out.print(day+"\n");
-						 * String month = eclatementDate[1];
-						 * System.out.print(month+"\n"); String year =
-						 * eclatementDate[2]; System.out.print(year+"\n");
-						 *
-						 * switch (month)
-						 *
-						 * {
-						 *
-						 * case "janvier": month="01"; break; case "février":
-						 * month="02"; break; case "mars":month="03"; break;
-						 * case "avril":month="04"; break; case
-						 * "mai":month="05"; break; case "juin":month="06";
-						 * break; case "juillet":month="07"; break; case
-						 * "Août":month="08"; break; case
-						 * "septembre":month="09"; break; case
-						 * "octobre":month="10"; break; case
-						 * "novembre":month="11"; break; case
-						 * "décembre":month="12"; break;
-						 *
-						 * }
-						 *
-						 * String birthdate=year+"/"+month+"/"+day;
-						 */
+
+
+
+/*	desactivated		 String eclatementDate[] = birth.split(" "); String
+						 day = eclatementDate[0]; System.out.print(day+"\n");
+						 String month = eclatementDate[1];
+						 System.out.print(month+"\n"); String year =
+						 eclatementDate[2]; System.out.print(year+"\n");
+
+						 switch (month)
+
+						 {
+
+						 case "janvier": month="01"; break; case "février":
+						 month="02"; break; case "mars":month="03"; break;
+						 case "avril":month="04"; break; case
+						 "mai":month="05"; break; case "juin":month="06";
+						 break; case "juillet":month="07"; break; case
+						 "Août":month="08"; break; case
+						 "septembre":month="09"; break; case
+						 "octobre":month="10"; break; case
+						 "novembre":month="11"; break; case
+						 "décembre":month="12"; break;
+
+						 }
+
+						 String birthdate=year+"/"+month+"/"+day;			*/
+
 
 						try {
 							c = Connexion.getCon();
@@ -806,8 +812,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 										.getString(1);
 							}
 
-							System.out
-									.print(SelectionNumeroCarteFidelite2.this.numcarteliste);
+							System.out.println(SelectionNumeroCarteFidelite2.this.name+" "+SelectionNumeroCarteFidelite2.this.forname+" "+SelectionNumeroCarteFidelite2.this.birth+"; corespond to card N° : "+SelectionNumeroCarteFidelite2.this.numcarteliste);
 							rs.close();
 							preStm.close();
 
@@ -836,8 +841,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 										.getInt(1);
 							}
 
-							System.out
-									.print(SelectionNumeroCarteFidelite2.this.idclientconsulatation);
+							System.out.println("idclient is : "+SelectionNumeroCarteFidelite2.this.idclientconsulatation);
 							rs.close();
 							preStm.close();
 
@@ -884,7 +888,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 							SelectionNumeroCarteFidelite2.this.dispose();
 							break;
 
-						case "Consulter une carte de fidelité":
+						case "Menu > Gestion Carte de Fidélité > Consulter Fiche Client":
 							final FicheClientComplete consultationfiche = new FicheClientComplete(
 									SelectionNumeroCarteFidelite2.this.idclientconsulatation);
 							consultationfiche.setVisible(true);

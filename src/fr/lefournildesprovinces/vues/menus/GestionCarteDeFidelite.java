@@ -31,27 +31,27 @@ public class GestionCarteDeFidelite extends JFrame {
 	 */
 	private static final long serialVersionUID = -4113089650401818905L;
 	private JComboBox<Object> comboBox;
-	private final JPanel contentPane;
 	private JLabel fond;
-	private final JFrame interfaceActuelle;
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
+	private JLabel label_DeleteCarteFid;
+	private JLabel label_ModCarteFid;
 	private JLabel label_NewCarteFid;
 	private JLabel label_SearchCarteFid;
-	private JLabel label_ModCarteFid;
-	private JLabel label_DeleteCarteFid;
 	private JLabel label_UnsubscribeCarteFid;
-	private JLayeredPane layeredPane;
 	private JLabel lblFermer;
 	private JLabel lblMenu;
 	private JLabel lblMerciDeFaire;
 	private JLabel lblNewLabel;
 	private JLabel lblNouvelleFicheClientmise;
 	private JLabel lblValider;
+	private JLayeredPane layeredPane;
 	private String privilege;
 	private String selection;
+	private final JFrame interfaceActuelle;
+	private final JPanel contentPane;
 
 	public GestionCarteDeFidelite() {
 
@@ -514,6 +514,7 @@ public class GestionCarteDeFidelite extends JFrame {
 			final String numcarte = null;
 			final int numoperation = 0;
 			final int nummagasin = 0;
+
 			final FideliteNouvelleFicheClient nouvelleFiche = new FideliteNouvelleFicheClient(
 					numcarte, numoperation, nummagasin, choix1,GestionCarteDeFidelite.this.interfaceActuelle);
 			nouvelleFiche.setVisible(true);
@@ -522,6 +523,7 @@ public class GestionCarteDeFidelite extends JFrame {
 
 		case "DESINSCRIPTION Publicité Commerciale":
 			final String choix = "Menu > Gestion Carte de Fidélité > Désincription Pub";
+
 			final SelectionNumeroCarteFidelite2 desinscription = new SelectionNumeroCarteFidelite2(
 					GestionCarteDeFidelite.this.interfaceActuelle, choix);
 			desinscription.setVisible(true);
