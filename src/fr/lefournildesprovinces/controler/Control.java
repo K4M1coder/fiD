@@ -1,6 +1,6 @@
 package fr.lefournildesprovinces.controler;
 
-import fr.lefournildesprovinces.vues.Login;
+import fr.lefournildesprovinces.vues.menus.Login;
 
 public class Control {
 	

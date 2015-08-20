@@ -21,7 +21,6 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
-import fr.lefournildesprovinces.vues.Login;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class MenuPrincipal extends JFrame {
@@ -280,7 +279,7 @@ public class MenuPrincipal extends JFrame {
 			this.label_Import.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final Utilisateurs fenetre = new Utilisateurs();
+					final GestionAdministrativeUttilisateursApplication fenetre = new GestionAdministrativeUttilisateursApplication();
 					fenetre.setVisible(true);
 					MenuPrincipal.this.dispose();
 				}
@@ -469,31 +468,31 @@ public class MenuPrincipal extends JFrame {
 		if (selection != null) {
 			switch (MenuPrincipal.this.selection) {
 			case "1": case "CARTES DE FIDELITE (Création, Mise à jour ou suppression d'une carte de fidelité)" :
-				final GestionCarteDeFidelite gestionclientcarte = new GestionCarteDeFidelite();
+				final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 				gestionclientcarte.setVisible(true);
 				MenuPrincipal.this.dispose();
 				break;
 
 			case "2": case "MAGASIN (Création, Mise à jour ou suppression d'un magasin)":
-				final GestionMagasin gestionMagasin = new GestionMagasin();
+				final GestionMagasins gestionMagasin = new GestionMagasins();
 				gestionMagasin.setVisible(true);
 				MenuPrincipal.this.dispose();
 				break;
 
 			case "3": case "OPERATION COMMERCIALE (Participation Jeux-Concours, Gestion des opérations commerciales)":
-				final choixgestionOC operation = new choixgestionOC();
+				final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 				operation.setVisible(true);
 				MenuPrincipal.this.dispose();
 				break;
 
 			case "4": case "EXTRACTION des informations":
-				final Extraction collecte = new Extraction();
+				final GestionExtractionBases collecte = new GestionExtractionBases();
 				collecte.setVisible(true);
 				MenuPrincipal.this.dispose();
 				break;
 	
 			case "5":
-				final Utilisateurs fenetre = new Utilisateurs();
+				final GestionAdministrativeUttilisateursApplication fenetre = new GestionAdministrativeUttilisateursApplication();
 				fenetre.setVisible(true);
 				MenuPrincipal.this.dispose();
 				break;
@@ -509,7 +508,7 @@ public class MenuPrincipal extends JFrame {
 			this.lienextraction.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final Extraction collecte = new Extraction();
+					final GestionExtractionBases collecte = new GestionExtractionBases();
 					collecte.setVisible(true);
 					MenuPrincipal.this.dispose();
 				}
@@ -527,7 +526,7 @@ public class MenuPrincipal extends JFrame {
 			this.lienfidelite.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionCarteDeFidelite gestionclientcarte = new GestionCarteDeFidelite();
+					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 					gestionclientcarte.setVisible(true);
 					MenuPrincipal.this.dispose();
 				}
@@ -545,7 +544,7 @@ public class MenuPrincipal extends JFrame {
 			this.lienmagasin.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionMagasin gestionMagasin = new GestionMagasin();
+					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
 					MenuPrincipal.this.dispose();
 				}
@@ -563,7 +562,7 @@ public class MenuPrincipal extends JFrame {
 			this.lienoperation.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final choixgestionOC operation = new choixgestionOC();
+					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 					operation.setVisible(true);
 					MenuPrincipal.this.dispose();
 				}
