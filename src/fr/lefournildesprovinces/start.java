@@ -8,12 +8,17 @@ import fr.lefournildesprovinces.controler.Control;
 
 public class start {
 
+	/**
+	 *  this is the entry point of the application
+	 *
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		
+
 		lookNFeel();
 
 	}
-	
+
 	public static void lookNFeel(){
 		/**
 		 *  set look and feel
@@ -24,10 +29,10 @@ public class start {
 					.getCrossPlatformLookAndFeelClassName());
 		} catch (Exception e) {
 		}
-		new start();	
-		
+		new start();
+
 	}
-	
+
 	/**
 	 * Launch the application GUI.
 	 */
