@@ -22,11 +22,12 @@ import javax.swing.border.LineBorder;
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.ressources.models.Message;
 import fr.lefournildesprovinces.ressources.models.Motdepassesuppression;
-import fr.lefournildesprovinces.vues.menus.Extraction;
-import fr.lefournildesprovinces.vues.menus.GestionCarteDeFidelite;
-import fr.lefournildesprovinces.vues.menus.GestionMagasin;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
+import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.menus.choixgestionOC;
+import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class Password extends JFrame {
 
@@ -125,7 +126,7 @@ public class Password extends JFrame {
 			this.label_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionCarteDeFidelite gestionclientcarte = new GestionCarteDeFidelite();
+					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 					gestionclientcarte.setVisible(true);
 					Password.this.dispose();
 				}
@@ -143,7 +144,7 @@ public class Password extends JFrame {
 			this.label_3.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final choixgestionOC operation = new choixgestionOC();
+					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 					operation.setVisible(true);
 					Password.this.dispose();
 				}
@@ -161,7 +162,7 @@ public class Password extends JFrame {
 			this.label_4.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final Extraction collecte = new Extraction();
+					final GestionExtractionBases collecte = new GestionExtractionBases();
 					collecte.setVisible(true);
 					Password.this.dispose();
 				}
@@ -223,7 +224,7 @@ public class Password extends JFrame {
 			this.lblAnnuler.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionMagasin fenetre = new GestionMagasin();
+					final GestionMagasins fenetre = new GestionMagasins();
 					fenetre.setVisible(true);
 					Password.this.dispose();
 				}

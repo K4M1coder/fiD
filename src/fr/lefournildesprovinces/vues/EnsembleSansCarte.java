@@ -27,10 +27,10 @@ import javax.swing.table.DefaultTableModel;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.excelandcvsoperations.ExcelExporter;
 import fr.lefournildesprovinces.ressources.models.ResultatRecherche;
-import fr.lefournildesprovinces.vues.menus.GestionCarteDeFidelite;
-import fr.lefournildesprovinces.vues.menus.GestionMagasin;
+import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.menus.choixgestionOC;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class EnsembleSansCarte extends JFrame {
@@ -476,7 +476,7 @@ public class EnsembleSansCarte extends JFrame {
 			this.label_1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionCarteDeFidelite gestionclientcarte = new GestionCarteDeFidelite();
+					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 					gestionclientcarte.setVisible(true);
 					EnsembleSansCarte.this.dispose();
 				}
@@ -494,7 +494,7 @@ public class EnsembleSansCarte extends JFrame {
 			this.label_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionMagasin gestionMagasin = new GestionMagasin();
+					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
 					EnsembleSansCarte.this.dispose();
 				}
@@ -512,7 +512,7 @@ public class EnsembleSansCarte extends JFrame {
 			this.label_3.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final choixgestionOC operation = new choixgestionOC();
+					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 					operation.setVisible(true);
 					EnsembleSansCarte.this.dispose();
 				}

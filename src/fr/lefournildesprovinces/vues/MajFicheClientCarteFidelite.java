@@ -36,10 +36,12 @@ import fr.lefournildesprovinces.ressources.models.Clientcartedefidelite;
 import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.Ville;
 import fr.lefournildesprovinces.ressources.util.AutoCompletion;
-import fr.lefournildesprovinces.vues.menus.Extraction;
-import fr.lefournildesprovinces.vues.menus.GestionCarteDeFidelite;
-import fr.lefournildesprovinces.vues.menus.GestionMagasin;
-import fr.lefournildesprovinces.vues.menus.choixgestionOC;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
+import fr.lefournildesprovinces.vues.fidelite.ConfirmationMAJClientFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.Login;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class MajFicheClientCarteFidelite extends JFrame {
@@ -690,7 +692,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			this.label_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionCarteDeFidelite fenetre = new GestionCarteDeFidelite();
+					final GestionCartesDeFidelite fenetre = new GestionCartesDeFidelite();
 					fenetre.setVisible(true);
 					MajFicheClientCarteFidelite.this.dispose();
 				}
@@ -708,7 +710,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			this.label_3.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionMagasin gestionMagasin = new GestionMagasin();
+					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
 					MajFicheClientCarteFidelite.this.dispose();
 				}
@@ -726,7 +728,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			this.label_4.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final choixgestionOC operation = new choixgestionOC();
+					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 					operation.setVisible(true);
 					MajFicheClientCarteFidelite.this.dispose();
 				}
@@ -744,7 +746,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			this.label_5.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final Extraction collecte = new Extraction();
+					final GestionExtractionBases collecte = new GestionExtractionBases();
 					collecte.setVisible(true);
 					MajFicheClientCarteFidelite.this.dispose();
 				}
@@ -897,7 +899,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			this.lblFermer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
-					final GestionCarteDeFidelite fenetre = new GestionCarteDeFidelite();
+					final GestionCartesDeFidelite fenetre = new GestionCartesDeFidelite();
 					fenetre.setVisible(true);
 					MajFicheClientCarteFidelite.this.dispose();
 				}

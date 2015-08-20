@@ -31,10 +31,12 @@ import org.apache.commons.validator.routines.EmailValidator;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Ville;
 import fr.lefournildesprovinces.ressources.util.AutoCompletion;
-import fr.lefournildesprovinces.vues.menus.Extraction;
-import fr.lefournildesprovinces.vues.menus.GestionCarteDeFidelite;
-import fr.lefournildesprovinces.vues.menus.GestionMagasin;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
+import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
+import fr.lefournildesprovinces.vues.opcom.ConfirmationInsertionClientOC;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class GestionClientOperationCommerciale extends JFrame {
@@ -234,7 +236,7 @@ public class GestionClientOperationCommerciale extends JFrame {
 			this.label_1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionCarteDeFidelite gestionclientcarte = new GestionCarteDeFidelite();
+					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 					gestionclientcarte.setVisible(true);
 					GestionClientOperationCommerciale.this.dispose();
 				}
@@ -252,7 +254,7 @@ public class GestionClientOperationCommerciale extends JFrame {
 			this.label_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionMagasin gestionMagasin = new GestionMagasin();
+					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
 					GestionClientOperationCommerciale.this.dispose();
 				}
@@ -270,7 +272,7 @@ public class GestionClientOperationCommerciale extends JFrame {
 			this.label_3.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final Extraction collecte = new Extraction();
+					final GestionExtractionBases collecte = new GestionExtractionBases();
 					collecte.setVisible(true);
 					GestionClientOperationCommerciale.this.dispose();
 				}

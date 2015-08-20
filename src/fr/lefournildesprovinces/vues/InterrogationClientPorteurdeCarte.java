@@ -22,10 +22,12 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import fr.lefournildesprovinces.dao.Connexion;
-import fr.lefournildesprovinces.vues.menus.Extraction;
-import fr.lefournildesprovinces.vues.menus.GestionCarteDeFidelite;
-import fr.lefournildesprovinces.vues.menus.GestionMagasin;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
+import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
+import fr.lefournildesprovinces.vues.opcom.carteinexistantecreation;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class InterrogationClientPorteurdeCarte extends JFrame {
@@ -223,7 +225,7 @@ public class InterrogationClientPorteurdeCarte extends JFrame {
 			this.label_1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionCarteDeFidelite gestionclientcarte = new GestionCarteDeFidelite();
+					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 					gestionclientcarte.setVisible(true);
 					InterrogationClientPorteurdeCarte.this.dispose();
 				}
@@ -241,7 +243,7 @@ public class InterrogationClientPorteurdeCarte extends JFrame {
 			this.label_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionMagasin gestionMagasin = new GestionMagasin();
+					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
 					InterrogationClientPorteurdeCarte.this.dispose();
 				}
@@ -259,7 +261,7 @@ public class InterrogationClientPorteurdeCarte extends JFrame {
 			this.label_3.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final Extraction collecte = new Extraction();
+					final GestionExtractionBases collecte = new GestionExtractionBases();
 					collecte.setVisible(true);
 					InterrogationClientPorteurdeCarte.this.dispose();
 				}

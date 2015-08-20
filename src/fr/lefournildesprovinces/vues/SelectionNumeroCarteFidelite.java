@@ -26,12 +26,14 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import fr.lefournildesprovinces.dao.Connexion;
-import fr.lefournildesprovinces.vues.menus.Extraction;
-import fr.lefournildesprovinces.vues.menus.GestionCarteDeFidelite;
-import fr.lefournildesprovinces.vues.menus.GestionMagasin;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
+import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.menus.choixgestionOC;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
+import fr.lefournildesprovinces.vues.popups.ConfirmationOperationCarteFidelite;
 
 public class SelectionNumeroCarteFidelite extends JFrame {
 
@@ -197,7 +199,7 @@ public class SelectionNumeroCarteFidelite extends JFrame {
 			this.label_1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionMagasin gestionMagasin = new GestionMagasin();
+					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
 					SelectionNumeroCarteFidelite.this.dispose();
 				}
@@ -215,7 +217,7 @@ public class SelectionNumeroCarteFidelite extends JFrame {
 			this.label_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final choixgestionOC operation = new choixgestionOC();
+					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 					operation.setVisible(true);
 					SelectionNumeroCarteFidelite.this.dispose();
 				}
@@ -233,7 +235,7 @@ public class SelectionNumeroCarteFidelite extends JFrame {
 			this.label_3.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final Extraction collecte = new Extraction();
+					final GestionExtractionBases collecte = new GestionExtractionBases();
 					collecte.setVisible(true);
 					SelectionNumeroCarteFidelite.this.dispose();
 				}
@@ -283,7 +285,7 @@ public class SelectionNumeroCarteFidelite extends JFrame {
 			this.lblFermer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionCarteDeFidelite fenetre = new GestionCarteDeFidelite();
+					final GestionCartesDeFidelite fenetre = new GestionCartesDeFidelite();
 					fenetre.setVisible(true);
 					SelectionNumeroCarteFidelite.this.dispose();
 				}

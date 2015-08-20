@@ -28,10 +28,11 @@ import javax.swing.border.LineBorder;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.ResultatRecherche;
 import fr.lefournildesprovinces.ressources.models.infosparticipation;
-import fr.lefournildesprovinces.vues.menus.GestionCarteDeFidelite;
-import fr.lefournildesprovinces.vues.menus.GestionMagasin;
+import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.menus.choixgestionOC;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class FicheClientComplete extends JFrame {
@@ -261,7 +262,7 @@ public class FicheClientComplete extends JFrame {
 			this.label_13.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionCarteDeFidelite gestionclientcarte = new GestionCarteDeFidelite();
+					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 					gestionclientcarte.setVisible(true);
 					FicheClientComplete.this.dispose();
 				}
@@ -279,7 +280,7 @@ public class FicheClientComplete extends JFrame {
 			this.label_14.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final GestionMagasin gestionMagasin = new GestionMagasin();
+					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
 					FicheClientComplete.this.dispose();
 				}
@@ -297,7 +298,7 @@ public class FicheClientComplete extends JFrame {
 			this.label_15.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final choixgestionOC operation = new choixgestionOC();
+					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 					operation.setVisible(true);
 					FicheClientComplete.this.dispose();
 				}
