@@ -344,7 +344,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 
 			}
 
-			this.fond.setBounds(295, 231, 850, 338);
+			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
 	}

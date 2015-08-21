@@ -1,0 +1,27 @@
+<aspectj>
+	<aspects>
+		<concrete-aspect name="com.maintainj.inst.J2SEAspect" extends="com.maintainj.aspect.J2SEExecutionDataAspect">
+			<pointcut name="anyExecution" expression="execution( * *.*(..)) || execution( *.new(..))"/>
+			<pointcut name="beforeMain" expression="execution(public static void fr.lefournildesprovinces.start.main(String[])) || execution(public static void fr.lefournildesprovinces.start.main(String...))"/>
+			<pointcut name="excludedPointcut" expression="execution(* com.mysql.jdbc..*.*(..)) || execution(com.mysql.jdbc..*.new(..))"/>
+		</concrete-aspect>
+	</aspects>
+	<weaver options="-proceedOnError -nowarn -XaddSerialVersionUID  -Xset:makeTjpFieldsTransient=true -Xset:avoidFinal=true">
+		<include within="fr.lefournildesprovinces.controler..*"/>
+		<include within="fr.lefournildesprovinces.dao..*"/>
+		<include within="fr.lefournildesprovinces.ressources.excelandcvsoperations..*"/>
+		<include within="fr.lefournildesprovinces.ressources.models..*"/>
+		<include within="fr.lefournildesprovinces.ressources.util..*"/>
+		<include within="fr.lefournildesprovinces.vues.admininstartaion..*"/>
+		<include within="fr.lefournildesprovinces.vues.extrationbases..*"/>
+		<include within="fr.lefournildesprovinces.vues.fidelite..*"/>
+		<include within="fr.lefournildesprovinces.vues.magasins..*"/>
+		<include within="fr.lefournildesprovinces.vues.menus..*"/>
+		<include within="fr.lefournildesprovinces.vues.opcom..*"/>
+		<include within="com.mysql.jdbc..*"/>
+		<include within="fr.lefournildesprovinces.start"/>
+		<exclude within="*ObjectFactory"/>
+		<exclude within="*..*CGLIB*"/>
+		<exclude within="com.maintainj..*"/>
+	</weaver>
+</aspectj>
