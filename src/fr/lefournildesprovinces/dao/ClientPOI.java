@@ -2,8 +2,10 @@ package fr.lefournildesprovinces.dao;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -16,9 +18,10 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import fr.lefournildesprovinces.ressources.models.imports.Client;
 import fr.lefournildesprovinces.ressources.models.imports.FicheClient;
+import fr.lefournildesprovinces.ressources.models.imports.PublicationsCommierciale;
 import sun.org.mozilla.javascript.internal.json.JsonParser.ParseException;
 
-public class ClientPOI implements ClientDAO{
+public class ClientPOI implements ClientDAO {
 
 	private static final Logger log = Logger.getLogger(ClientPOI.class);
 
@@ -27,7 +30,7 @@ public class ClientPOI implements ClientDAO{
 	@Override
 	public List<Client> allclients() {
 
-		final  File file = new File(filename);
+		final File file = new File(filename);
 
 		final List<Client> clients = new ArrayList<Client>();
 
@@ -54,7 +57,7 @@ public class ClientPOI implements ClientDAO{
 		return clients;
 	}
 
-	private static Client rowToClient(final Row row){
+	private static Client rowToClient(final Row row) {
 		final FicheClient client = new FicheClient();
 
 		final String civilite = row.getCell(0).getStringCellValue();
@@ -75,61 +78,79 @@ public class ClientPOI implements ClientDAO{
 		final int codePostal = (int) row.getCell(5).getNumericCellValue();
 		client.setCodePostal(codePostal);
 
-		final String dateDeNaissance =  row.getCell(6).getStringCellValue();
-		final dateNaissance = (Date) dateDeNaissance;
-		client.setDateNaissance(dateNaissance);
+		final String dateDeNaissance = row.getCell(6).getStringCellValue();
+		try {
+			client.setDateNaissance(dateForMySQL(dateDeNaissance));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
-		final int age = (int) row.getCell(7).getNumericCellValue();
+		final String age = row.getCell(7).getStringCellValue();
 		client.setAge(age);
 
 		final String mail = row.getCell(8).getStringCellValue();
 		client.setMail(mail);
 
 		final String newletterStatus = row.getCell(9).getStringCellValue();
-		final Boolean newsletter = PubliationsCommerciales.valueOfByCode(newsletterStatus);
+		final Boolean newsletter = PublicationsCommierciale.valueOfByCode(newletterStatus).getCode();
 		client.setNewsletter(newsletter);
 
-		final String numCli = row.getCell(10).getStringCellValu);
+		final String numCli = row.getCell(10).getStringCellValue();
 		client.setNumCli(numCli);
 
 		final String magasin = row.getCell(11).getStringCellValue();
 		client.setMagasin(magasin);
 
 		final String fix = row.getCell(12).getStringCellValue();
-		final int telFix = (int) fix;
+		final int telFix = Integer.parseInt(fix);
 		client.setTelFix(telFix);
 
 		final String gsm = row.getCell(13).getStringCellValue();
-		final int telMob = (int) gsm;
+		final int telMob = Integer.parseInt(gsm);
 		client.setTelMob(telMob);
-
 
 		return client;
 
 	}
 
-	private static List<String> stringToList(final String s) {	// if there is more than one entry coma separated in a cell
-		final List<String> list = new ArrayList<String>();		// this could be usefull to convert the CellString into ArrayList
-		// TODO ... Utilise le Splitter de Guava...
+	/**
+	 * Split an input String with a regex delimiter.
+	 *
+	 * @param string
+	 *            to split<br><br>
+	 *
+	 * @param splitRegEx
+	 *            for split delimiters.
+	 * <br>if splitRegEx is empty, default one (<strong>\\s*,\\s*</strong>) will be used :<br>
+	 * zero or more whitespace, a literal comma, zero or more whitespace which
+	 * will place the words into the list and collapse any whitespace between
+	 * the words and commas.
+	 * @return ArrayList of String from <strong>string</strong>
+	 */
+
+	@SuppressWarnings("unused")
+	private static List<String> stringToList(final String string, String splitRegEx) {
+		String defaultdelimiter = "\\s*,\\s*";
+		splitRegEx = (splitRegEx.equals("")) ? defaultdelimiter : splitRegEx;
+
+		final List<String> list = Arrays.asList(string.split(splitRegEx));
+
 		return list;
 	}
-	
-	private static Date dateformat(final String dateInString) throws ParseException {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-		
-		try{
-			Date date = formatter.parse(dateInString);
-			String dateNaissance = formatter.format(date));
-			
+
+	private static String dateForMySQL(final String dateInString) throws ParseException {
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+		Date date = new Date();
+		try {
+			date = dateFormat.parse(dateInString);
 		} catch (java.text.ParseException e) {
 			e.printStackTrace();
-			throw new IllegalArgumentException("invalid date");
 		}
-		
-		return null;
-		
-		
-		
+
+		return dateFormat.format(date);
+
 	}
 
 }

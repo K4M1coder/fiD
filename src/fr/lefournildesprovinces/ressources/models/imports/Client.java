@@ -1,7 +1,6 @@
 package fr.lefournildesprovinces.ressources.models.imports;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public interface Client extends Serializable {
 
@@ -11,7 +10,7 @@ public interface Client extends Serializable {
 	String getAdresse();
 	String getVille();
 	Integer getCodePostal();
-	Date getDateNaissance();
+	String getDateNaissance();
 	String getAge();
 	String getMail();
 	Boolean getNewsletter();
