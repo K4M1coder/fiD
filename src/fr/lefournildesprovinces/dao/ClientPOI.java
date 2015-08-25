@@ -26,14 +26,16 @@ public class ClientPOI implements ClientDAO {
 	private static final Logger log = Logger.getLogger(ClientPOI.class);
 
 	private String fileName;
+	private String sheetName;
 
-	public ClientPOI(String filename) {
+	public ClientPOI(String filename, String sheetName) {
 		super();
 		this.fileName = filename;
+		this.sheetName = sheetName;
 	}
 
 	@Override
-	public List<Client> allclients() {
+	public List<Client> findAllClients() {
 
 		final File file = new File(fileName);
 
@@ -41,7 +43,7 @@ public class ClientPOI implements ClientDAO {
 
 		try {
 			final Workbook workbook = WorkbookFactory.create(file);
-			final Sheet sheet = workbook.getSheet("Feuil1");
+			final Sheet sheet = workbook.getSheet(sheetName);
 
 			int index = 1;
 			Row row = sheet.getRow(index++);

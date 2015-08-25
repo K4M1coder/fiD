@@ -6,6 +6,6 @@ import fr.lefournildesprovinces.ressources.models.imports.Client;
 
 public interface ClientDAO {
 
-	List<Client> allclients();
+	List<Client> findAllClients();
 
 }

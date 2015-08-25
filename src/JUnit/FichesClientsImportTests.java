@@ -1,50 +1,70 @@
 package JUnit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
+
+import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import fr.lefournildesprovinces.dao.ClientDAO;
 import fr.lefournildesprovinces.dao.ClientPOI;
+import fr.lefournildesprovinces.ressources.models.imports.Client;
 
 public class FichesClientsImportTests {
 
 	private static final Logger log = Logger.getLogger(FichesClientsImportTests.class);
 
-	private static final String fileName = "src/JUnit/resouces/TemplateImportClients.xlsx";
+	private static final String fileName = "src/JUnit/resources/TemplateImportClients.xlsx";
+	private static final String sheetName = "NouvelleFichesClients";
 
 	private ClientDAO dao;
 
-
 	@Before
-	public void doBefore(){
-		dao = new ClientPOI(fileName);
-	}
-	@Test
-	public void findAllRecords() {
-		fail("Not yet implemented");
+	public void doBefore() {
+		dao = new ClientPOI(fileName, sheetName);
 	}
 
 	@Test
-	public void findNewsletterAllowedRecords(){
-		fail("Not yet implemented");
+	public void findAllClients() {
+		log.debug("findAllClients");
+
+		// Arrange
+		final int expectedSize = 9;
+
+		// Act
+		final List<Client> clients = dao.findAllClients();
+
+		// Assert
+		Assert.assertNotNull(clients);
+		Assert.assertEquals(expectedSize, clients.size());
+
 	}
 
 	@Test
-	public void ClientCiviliteIsValid(){
-		fail("Not yet implemented");
+	public void findNewsletterAllowedRecords() {
+		fail("not yet implemented");
+
 	}
 
 	@Test
-	public void mailIsValid(){
-		fail("Not yet implemented");
+	public void ClientCiviliteIsValid() {
+		fail("not yet implemented");
+
 	}
 
 	@Test
-	public void dateForMySQLisValid(){
-		fail("Not yet implemented");
+	public void mailIsValid() {
+		fail("not yet implemented");
+
+	}
+
+	@Test
+	public void dateForMySQLisValid() {
+		fail("not yet implemented");
+
 	}
 
 }
