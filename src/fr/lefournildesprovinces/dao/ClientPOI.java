@@ -25,12 +25,17 @@ public class ClientPOI implements ClientDAO {
 
 	private static final Logger log = Logger.getLogger(ClientPOI.class);
 
-	private String filename;
+	private String fileName;
+
+	public ClientPOI(String filename) {
+		super();
+		this.fileName = filename;
+	}
 
 	@Override
 	public List<Client> allclients() {
 
-		final File file = new File(filename);
+		final File file = new File(fileName);
 
 		final List<Client> clients = new ArrayList<Client>();
 
@@ -80,7 +85,7 @@ public class ClientPOI implements ClientDAO {
 
 		final String dateDeNaissance = row.getCell(6).getStringCellValue();
 		try {
-			client.setDateNaissance(dateForMySQL(dateDeNaissance));
+			client.setDateNaissance(formatStringToDate(dateDeNaissance, "yyyy/MM/dd"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -138,18 +143,19 @@ public class ClientPOI implements ClientDAO {
 		return list;
 	}
 
-	private static String dateForMySQL(final String dateInString) throws ParseException {
+	private static Date formatStringToDate(final String dateInString, String format) throws ParseException {
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		DateFormat dateFormat = new SimpleDateFormat(format);
 
 		Date date = new Date();
 		try {
 			date = dateFormat.parse(dateInString);
 		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return dateFormat.format(date);
+		return date;
 
 	}
 

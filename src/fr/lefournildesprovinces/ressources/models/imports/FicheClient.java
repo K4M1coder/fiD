@@ -1,5 +1,7 @@
 package fr.lefournildesprovinces.ressources.models.imports;
 
+import java.util.Date;
+
 public class FicheClient implements Client{
 
 	/**
@@ -19,7 +21,7 @@ public class FicheClient implements Client{
 	private String magasin;
 	private Integer telFix;
 	private Integer telMob;
-	private String dateNaissance;
+	private Date dateNaissance;
 
 	public FicheClient() {
 		// rien ...
@@ -29,7 +31,7 @@ public class FicheClient implements Client{
 		this.numCli=numCli;
 	}
 
-	public FicheClient(final String civilite, final String nom, final String prenom, final String adresse , final String ville, final Integer codePostal, final String dateNaissance, final String age, final String mail, final Boolean newsletter, final String numCli, final String magasin, final Integer telFix, final Integer telMob){
+	public FicheClient(final String civilite, final String nom, final String prenom, final String adresse , final String ville, final Integer codePostal, final Date dateNaissance, final String age, final String mail, final Boolean newsletter, final String numCli, final String magasin, final Integer telFix, final Integer telMob){
 		this(numCli);
 		this.civilite=civilite;
 		this.nom=nom;
@@ -157,12 +159,12 @@ public class FicheClient implements Client{
 		this.telMob = telMob;
 	}
 
-	public String getDateNaissance() {
+	public Date getDateNaissance() {
 		return dateNaissance;
 	}
 
-	public void setDateNaissance(String string) {
-		this.dateNaissance = string;
+	public void setDateNaissance(Date date) {
+		this.dateNaissance = date;
 	}
 
 
