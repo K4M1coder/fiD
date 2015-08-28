@@ -32,12 +32,15 @@ public class FichesClientsImportTests {
 		log.debug("findAllClients");
 
 		// Arrange
-		final int expectedSize = 9;
+		final int expectedSize = 8;
 
 		// Act
 		final List<Client> clients = dao.findAllClients();
 
 		// Assert
+		for(Client cli:clients){
+			System.out.println(cli.toString());
+		}
 		Assert.assertNotNull(clients);
 		Assert.assertEquals(expectedSize, clients.size());
 
