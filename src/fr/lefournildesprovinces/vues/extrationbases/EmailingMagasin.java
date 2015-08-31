@@ -1085,7 +1085,7 @@ public class EmailingMagasin extends JFrame {
 								if (EmailingMagasin.this.chckbxNom.isSelected() == true) {
 									EmailingMagasin.this.entetes[i] = "Nom";
 									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
-											.get(j).getNomIndividu();
+											.get(j).getNomIndividu().toUpperCase();
 									i++;
 
 								}
@@ -1093,7 +1093,7 @@ public class EmailingMagasin extends JFrame {
 										.isSelected() == true) {
 									EmailingMagasin.this.entetes[i] = "Prénom";
 									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
-											.get(j).getPrenomIndividu();
+											.get(j).getPrenomIndividu().toLowerCase();
 									i++;
 
 								}

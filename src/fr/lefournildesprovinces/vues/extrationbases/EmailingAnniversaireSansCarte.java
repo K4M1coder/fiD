@@ -46,7 +46,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class EmailingAnniversaireSansCarte extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 3368686024287846135L;
 	private JCheckBox chckbxAbonnementNewsletter;
@@ -1230,7 +1230,7 @@ public class EmailingAnniversaireSansCarte extends JFrame {
 										.isSelected() == true) {
 									EmailingAnniversaireSansCarte.this.entetes[i] = "Nom";
 									EmailingAnniversaireSansCarte.this.donnees[j][i] = EmailingAnniversaireSansCarte.this.membres
-											.get(j).getNomIndividu();
+											.get(j).getNomIndividu().toUpperCase();
 									i++;
 
 								}
@@ -1238,7 +1238,7 @@ public class EmailingAnniversaireSansCarte extends JFrame {
 										.isSelected() == true) {
 									EmailingAnniversaireSansCarte.this.entetes[i] = "Prénom";
 									EmailingAnniversaireSansCarte.this.donnees[j][i] = EmailingAnniversaireSansCarte.this.membres
-											.get(j).getPrenomIndividu();
+											.get(j).getPrenomIndividu().toLowerCase();
 									i++;
 
 								}

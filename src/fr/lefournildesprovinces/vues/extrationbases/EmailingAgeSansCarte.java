@@ -1165,7 +1165,7 @@ public class EmailingAgeSansCarte extends JFrame {
 										.isSelected() == true) {
 									EmailingAgeSansCarte.this.entetes[i] = "Nom";
 									EmailingAgeSansCarte.this.donnees[j][i] = EmailingAgeSansCarte.this.membres
-											.get(j).getNomIndividu();
+											.get(j).getNomIndividu().toUpperCase();
 									i++;
 
 								}
@@ -1173,7 +1173,7 @@ public class EmailingAgeSansCarte extends JFrame {
 										.isSelected() == true) {
 									EmailingAgeSansCarte.this.entetes[i] = "Prénom";
 									EmailingAgeSansCarte.this.donnees[j][i] = EmailingAgeSansCarte.this.membres
-											.get(j).getPrenomIndividu();
+											.get(j).getPrenomIndividu().toLowerCase();
 									i++;
 
 								}

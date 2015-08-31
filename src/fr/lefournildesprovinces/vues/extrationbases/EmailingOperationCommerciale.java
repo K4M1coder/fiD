@@ -1351,7 +1351,7 @@ public class EmailingOperationCommerciale extends JFrame {
 										.isSelected() == true) {
 									EmailingOperationCommerciale.this.entetes[i] = "Nom";
 									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
-											.get(j).getNomIndividu();
+											.get(j).getNomIndividu().toUpperCase();
 									i++;
 
 								}
@@ -1359,7 +1359,7 @@ public class EmailingOperationCommerciale extends JFrame {
 										.isSelected() == true) {
 									EmailingOperationCommerciale.this.entetes[i] = "Prénom";
 									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
-											.get(j).getPrenomIndividu();
+											.get(j).getPrenomIndividu().toLowerCase();
 									i++;
 
 								}
