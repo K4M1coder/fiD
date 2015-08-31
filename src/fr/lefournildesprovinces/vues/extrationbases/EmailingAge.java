@@ -44,7 +44,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class EmailingAge extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 3216508257207380800L;
 	private JCheckBox chckbxAbonnementNewsletter;
@@ -802,6 +802,8 @@ public class EmailingAge extends JFrame {
 						for (int j = 0; j < EmailingAge.this.membres.size(); j++) {
 
 							for (int i = 0; i <= (EmailingAge.this.entetes.length - 1); i++) {
+								System.out.println(writer.append(EmailingAge.this.donnees[j][i]
+										.toString()));
 								if (EmailingAge.this.donnees[j][i] != null) {
 									writer.append(EmailingAge.this.donnees[j][i]
 											.toString());
@@ -1195,8 +1197,7 @@ public class EmailingAge extends JFrame {
 									if (EmailingAge.this.membres.get(j)
 											.getDateNaissanceIndividu() != null) {
 										EmailingAge.this.entetes[i] = "Date de Naissance";
-										EmailingAge.this.donnees[j][i] = "'"
-												+ EmailingAge.this.membres
+										EmailingAge.this.donnees[j][i] = ""+EmailingAge.this.membres
 														.get(j)
 														.getDateNaissanceIndividu();
 										i++;
@@ -1217,10 +1218,10 @@ public class EmailingAge extends JFrame {
 									 * String datenai=
 									 * membres.get(j).getDateNaissanceIndividu
 									 * ();
-									 * 
-									 * 
+									 *
+									 *
 									 * System.out.print("/////"+datenai+"\n");
-									 * 
+									 *
 									 * String[] str=datenai.split("/"); String
 									 * year2=str[2]; int
 									 * AnneeNaissance=Integer.valueOf(year2);
@@ -1250,8 +1251,7 @@ public class EmailingAge extends JFrame {
 									if (EmailingAge.this.membres.get(j)
 											.getNumerocarte() != null) {
 										EmailingAge.this.entetes[i] = "N°Client";
-										EmailingAge.this.donnees[j][i] = "'"
-												+ EmailingAge.this.membres.get(
+										EmailingAge.this.donnees[j][i] = ""+EmailingAge.this.membres.get(
 														j).getNumerocarte();
 										i++;
 									} else {
@@ -1273,8 +1273,7 @@ public class EmailingAge extends JFrame {
 									if (EmailingAge.this.membres.get(j)
 											.getTelephonefixe() != null) {
 										EmailingAge.this.entetes[i] = "Telephone";
-										EmailingAge.this.donnees[j][i] = "'"
-												+ EmailingAge.this.membres.get(
+										EmailingAge.this.donnees[j][i] = ""+EmailingAge.this.membres.get(
 														j).getTelephonefixe();
 										i++;
 									} else {
@@ -1290,8 +1289,7 @@ public class EmailingAge extends JFrame {
 									if (EmailingAge.this.membres.get(j)
 											.getTelephonemobile() != null) {
 										EmailingAge.this.entetes[i] = "Mobile";
-										EmailingAge.this.donnees[j][i] = "'"
-												+ EmailingAge.this.membres.get(
+										EmailingAge.this.donnees[j][i] = ""+EmailingAge.this.membres.get(
 														j).getTelephonemobile();
 										i++;
 									} else {
