@@ -1169,14 +1169,14 @@ public class EmailingAge extends JFrame {
 								if (EmailingAge.this.chckbxPrnom.isSelected() == true) {
 									EmailingAge.this.entetes[i] = "Prénom";
 									EmailingAge.this.donnees[j][i] = EmailingAge.this.membres
-											.get(j).getPrenomIndividu();
+											.get(j).getPrenomIndividu().toUpperCase();
 									i++;
 
 								}
 								if (EmailingAge.this.chckbxAdresse.isSelected() == true) {
 									EmailingAge.this.entetes[i] = "Adresse";
 									EmailingAge.this.donnees[j][i] = EmailingAge.this.membres
-											.get(j).getAdresseIndividu();
+											.get(j).getAdresseIndividu().toLowerCase();
 									i++;
 								}
 								if (EmailingAge.this.chckbxVille.isSelected() == true) {

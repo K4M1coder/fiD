@@ -1269,7 +1269,7 @@ public class EmailingAnniversaire extends JFrame {
 										.isSelected() == true) {
 									EmailingAnniversaire.this.entetes[i] = "Nom";
 									EmailingAnniversaire.this.donnees[j][i] = EmailingAnniversaire.this.membres
-											.get(j).getNomIndividu();
+											.get(j).getNomIndividu().toUpperCase();
 									i++;
 
 								}
@@ -1277,7 +1277,7 @@ public class EmailingAnniversaire extends JFrame {
 										.isSelected() == true) {
 									EmailingAnniversaire.this.entetes[i] = "Prénom";
 									EmailingAnniversaire.this.donnees[j][i] = EmailingAnniversaire.this.membres
-											.get(j).getPrenomIndividu();
+											.get(j).getPrenomIndividu().toLowerCase();
 									i++;
 
 								}

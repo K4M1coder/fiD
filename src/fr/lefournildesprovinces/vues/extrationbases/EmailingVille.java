@@ -1062,14 +1062,14 @@ public class EmailingVille extends JFrame {
 								if (EmailingVille.this.chckbxNom.isSelected() == true) {
 									EmailingVille.this.entetes[i] = "Nom";
 									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
-											.get(j).getNomIndividu();
+											.get(j).getNomIndividu().toUpperCase();
 									i++;
 
 								}
 								if (EmailingVille.this.chckbxPrnom.isSelected() == true) {
 									EmailingVille.this.entetes[i] = "Prénom";
 									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
-											.get(j).getPrenomIndividu();
+											.get(j).getPrenomIndividu().toLowerCase();
 									i++;
 
 								}

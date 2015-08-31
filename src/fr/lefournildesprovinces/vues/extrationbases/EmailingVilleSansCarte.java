@@ -1064,7 +1064,7 @@ public class EmailingVilleSansCarte extends JFrame {
 										.isSelected() == true) {
 									EmailingVilleSansCarte.this.entetes[i] = "Nom";
 									EmailingVilleSansCarte.this.donnees[j][i] = EmailingVilleSansCarte.this.membres
-											.get(j).getNomIndividu();
+											.get(j).getNomIndividu().toUpperCase();
 									i++;
 
 								}
@@ -1072,7 +1072,7 @@ public class EmailingVilleSansCarte extends JFrame {
 										.isSelected() == true) {
 									EmailingVilleSansCarte.this.entetes[i] = "Prénom";
 									EmailingVilleSansCarte.this.donnees[j][i] = EmailingVilleSansCarte.this.membres
-											.get(j).getPrenomIndividu();
+											.get(j).getPrenomIndividu().toLowerCase();
 									i++;
 
 								}

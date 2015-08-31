@@ -992,7 +992,7 @@ public class Ensembleporteurcarte extends JFrame {
 										.isSelected() == true) {
 									Ensembleporteurcarte.this.entetes[i] = "Nom";
 									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
-											.get(j).getNomIndividu();
+											.get(j).getNomIndividu().toUpperCase();
 									i++;
 
 								}
@@ -1000,7 +1000,7 @@ public class Ensembleporteurcarte extends JFrame {
 										.isSelected() == true) {
 									Ensembleporteurcarte.this.entetes[i] = "Prénom";
 									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
-											.get(j).getPrenomIndividu();
+											.get(j).getPrenomIndividu().toLowerCase();
 									i++;
 
 								}
