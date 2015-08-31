@@ -44,7 +44,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class EmailingAgeSansCarte extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -1396355761524848072L;
 	private JCheckBox chckbxAbonnementNewsletter;
@@ -1209,10 +1209,10 @@ public class EmailingAgeSansCarte extends JFrame {
 									 * String datenai=
 									 * membres.get(j).getDateNaissanceIndividu
 									 * ();
-									 * 
-									 * 
+									 *
+									 *
 									 * System.out.print("/////"+datenai+"\n");
-									 * 
+									 *
 									 * String[] str=datenai.split("/"); String
 									 * year2=str[2]; int
 									 * AnneeNaissance=Integer.valueOf(year2);
@@ -1251,7 +1251,7 @@ public class EmailingAgeSansCarte extends JFrame {
 									if (EmailingAgeSansCarte.this.membres
 											.get(j).getTelephonefixe() != null) {
 										EmailingAgeSansCarte.this.entetes[i] = "Téléphone";
-										EmailingAgeSansCarte.this.donnees[j][i] = "'"
+										EmailingAgeSansCarte.this.donnees[j][i] = ""
 												+ EmailingAgeSansCarte.this.membres
 														.get(j)
 														.getTelephonefixe();
@@ -1268,7 +1268,7 @@ public class EmailingAgeSansCarte extends JFrame {
 									if (EmailingAgeSansCarte.this.membres
 											.get(j).getTelephonemobile() != null) {
 										EmailingAgeSansCarte.this.entetes[i] = "Mobile";
-										EmailingAgeSansCarte.this.donnees[j][i] = "'"
+										EmailingAgeSansCarte.this.donnees[j][i] = ""
 												+ EmailingAgeSansCarte.this.membres
 														.get(j)
 														.getTelephonemobile();

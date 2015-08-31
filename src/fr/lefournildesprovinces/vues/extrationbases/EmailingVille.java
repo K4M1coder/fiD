@@ -42,7 +42,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class EmailingVille extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 3693514439799046063L;
 	private JCheckBox chckbxAbonnementNewsletter;
@@ -1098,7 +1098,7 @@ public class EmailingVille extends JFrame {
 									if (EmailingVille.this.membres.get(j)
 											.getDateNaissanceIndividu() != null) {
 										EmailingVille.this.entetes[i] = "Date de Naissance";
-										EmailingVille.this.donnees[j][i] = "'"
+										EmailingVille.this.donnees[j][i] = ""
 												+ EmailingVille.this.membres
 														.get(j)
 														.getDateNaissanceIndividu();
@@ -1136,7 +1136,7 @@ public class EmailingVille extends JFrame {
 									if (EmailingVille.this.membres.get(j)
 											.getNumerocarte() != null) {
 										EmailingVille.this.entetes[i] = "N°Client";
-										EmailingVille.this.donnees[j][i] = "'"
+										EmailingVille.this.donnees[j][i] = ""
 												+ EmailingVille.this.membres
 														.get(j)
 														.getNumerocarte();
@@ -1159,7 +1159,7 @@ public class EmailingVille extends JFrame {
 									if (EmailingVille.this.membres.get(j)
 											.getTelephonefixe() != null) {
 										EmailingVille.this.entetes[i] = "Téléphone";
-										EmailingVille.this.donnees[j][i] = "'"
+										EmailingVille.this.donnees[j][i] = ""
 												+ EmailingVille.this.membres
 														.get(j)
 														.getTelephonefixe();
@@ -1176,7 +1176,7 @@ public class EmailingVille extends JFrame {
 									if (EmailingVille.this.membres.get(j)
 											.getTelephonemobile() != null) {
 										EmailingVille.this.entetes[i] = "Mobile";
-										EmailingVille.this.donnees[j][i] = "'"
+										EmailingVille.this.donnees[j][i] = ""
 												+ EmailingVille.this.membres
 														.get(j)
 														.getTelephonemobile();

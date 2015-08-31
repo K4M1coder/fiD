@@ -41,7 +41,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class EmailingMagasin extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 2506007625316389210L;
 	private JCheckBox chckbxAbonnementNewsletter;
@@ -1123,7 +1123,7 @@ public class EmailingMagasin extends JFrame {
 									if (EmailingMagasin.this.membres.get(j)
 											.getDateNaissanceIndividu() != null) {
 										EmailingMagasin.this.entetes[i] = "Date de Naissance";
-										EmailingMagasin.this.donnees[j][i] = "'"
+										EmailingMagasin.this.donnees[j][i] = ""
 												+ EmailingMagasin.this.membres
 														.get(j)
 														.getDateNaissanceIndividu();
@@ -1162,7 +1162,7 @@ public class EmailingMagasin extends JFrame {
 									if (EmailingMagasin.this.membres.get(j)
 											.getNumerocarte() != null) {
 										EmailingMagasin.this.entetes[i] = "N°Client";
-										EmailingMagasin.this.donnees[j][i] = "'"
+										EmailingMagasin.this.donnees[j][i] = ""
 												+ EmailingMagasin.this.membres
 														.get(j)
 														.getNumerocarte();
@@ -1185,7 +1185,7 @@ public class EmailingMagasin extends JFrame {
 									if (EmailingMagasin.this.membres.get(j)
 											.getTelephonefixe() != null) {
 										EmailingMagasin.this.entetes[i] = "Téléphone";
-										EmailingMagasin.this.donnees[j][i] = "'"
+										EmailingMagasin.this.donnees[j][i] = ""
 												+ EmailingMagasin.this.membres
 														.get(j)
 														.getTelephonefixe();
@@ -1202,7 +1202,7 @@ public class EmailingMagasin extends JFrame {
 									if (EmailingMagasin.this.membres.get(j)
 											.getTelephonemobile() != null) {
 										EmailingMagasin.this.entetes[i] = "Mobile";
-										EmailingMagasin.this.donnees[j][i] = "'"
+										EmailingMagasin.this.donnees[j][i] = ""
 												+ EmailingMagasin.this.membres
 														.get(j)
 														.getTelephonemobile();

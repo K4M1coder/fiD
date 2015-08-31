@@ -37,7 +37,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class Ensembleporteurcarte extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -19159476119965582L;
 	private JCheckBox chckbxAbonnementNewsletter;
@@ -1030,7 +1030,7 @@ public class Ensembleporteurcarte extends JFrame {
 									if (Ensembleporteurcarte.this.membres
 											.get(j).getDateNaissanceIndividu() != null) {
 										Ensembleporteurcarte.this.entetes[i] = "Date de Naissance";
-										Ensembleporteurcarte.this.donnees[j][i] = "'"
+										Ensembleporteurcarte.this.donnees[j][i] = ""
 												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getDateNaissanceIndividu();
@@ -1070,7 +1070,7 @@ public class Ensembleporteurcarte extends JFrame {
 									if (Ensembleporteurcarte.this.membres
 											.get(j).getNumerocarte() != null) {
 										Ensembleporteurcarte.this.entetes[i] = "N°Client";
-										Ensembleporteurcarte.this.donnees[j][i] = "'"
+										Ensembleporteurcarte.this.donnees[j][i] = ""
 												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getNumerocarte();
@@ -1094,7 +1094,7 @@ public class Ensembleporteurcarte extends JFrame {
 									if (Ensembleporteurcarte.this.membres
 											.get(j).getTelephonefixe() != null) {
 										Ensembleporteurcarte.this.entetes[i] = "Téléphone";
-										Ensembleporteurcarte.this.donnees[j][i] = "'"
+										Ensembleporteurcarte.this.donnees[j][i] = ""
 												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getTelephonefixe();
@@ -1112,7 +1112,7 @@ public class Ensembleporteurcarte extends JFrame {
 									if (Ensembleporteurcarte.this.membres
 											.get(j).getTelephonemobile() != null) {
 										Ensembleporteurcarte.this.entetes[i] = "Mobile";
-										Ensembleporteurcarte.this.donnees[j][i] = "'"
+										Ensembleporteurcarte.this.donnees[j][i] = ""
 												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getTelephonemobile();

@@ -46,7 +46,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class EmailingAnniversaire extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -7169564489625204733L;
 	private JCheckBox chckbxAbonnementNewsletter;
@@ -1307,7 +1307,7 @@ public class EmailingAnniversaire extends JFrame {
 									if (EmailingAnniversaire.this.membres
 											.get(j).getDateNaissanceIndividu() != null) {
 										EmailingAnniversaire.this.entetes[i] = "Date de Naissance";
-										EmailingAnniversaire.this.donnees[j][i] = "'"
+										EmailingAnniversaire.this.donnees[j][i] = ""
 												+ EmailingAnniversaire.this.membres
 														.get(j)
 														.getDateNaissanceIndividu();
@@ -1330,10 +1330,10 @@ public class EmailingAnniversaire extends JFrame {
 									 * String datenai=
 									 * membres.get(j).getDateNaissanceIndividu
 									 * ();
-									 * 
-									 * 
+									 *
+									 *
 									 * System.out.print("/////"+datenai+"\n");
-									 * 
+									 *
 									 * String[] str=datenai.split("/"); String
 									 * year2=str[2]; int
 									 * AnneeNaissance=Integer.valueOf(year2);
@@ -1364,7 +1364,7 @@ public class EmailingAnniversaire extends JFrame {
 									if (EmailingAnniversaire.this.membres
 											.get(j).getNumerocarte() != null) {
 										EmailingAnniversaire.this.entetes[i] = "N°Client";
-										EmailingAnniversaire.this.donnees[j][i] = "'"
+										EmailingAnniversaire.this.donnees[j][i] = ""
 												+ EmailingAnniversaire.this.membres
 														.get(j)
 														.getNumerocarte();
@@ -1389,7 +1389,7 @@ public class EmailingAnniversaire extends JFrame {
 									if (EmailingAnniversaire.this.membres
 											.get(j).getTelephonefixe() != null) {
 										EmailingAnniversaire.this.entetes[i] = "Téléphone";
-										EmailingAnniversaire.this.donnees[j][i] = "'"
+										EmailingAnniversaire.this.donnees[j][i] = ""
 												+ EmailingAnniversaire.this.membres
 														.get(j)
 														.getTelephonefixe();
@@ -1407,7 +1407,7 @@ public class EmailingAnniversaire extends JFrame {
 									if (EmailingAnniversaire.this.membres
 											.get(j).getTelephonemobile() != null) {
 										EmailingAnniversaire.this.entetes[i] = "Mobile";
-										EmailingAnniversaire.this.donnees[j][i] = "'"
+										EmailingAnniversaire.this.donnees[j][i] = ""
 												+ EmailingAnniversaire.this.membres
 														.get(j)
 														.getTelephonemobile();

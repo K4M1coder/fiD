@@ -43,7 +43,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class EmailingOperationCommerciale extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -4585613773891453209L;
 	private JCheckBox chckbxAbonnementNewsletter;
@@ -1389,7 +1389,7 @@ public class EmailingOperationCommerciale extends JFrame {
 									if (EmailingOperationCommerciale.this.membres
 											.get(j).getDateNaissanceIndividu() != null) {
 										EmailingOperationCommerciale.this.entetes[i] = "Date de Naissance";
-										EmailingOperationCommerciale.this.donnees[j][i] = "'"
+										EmailingOperationCommerciale.this.donnees[j][i] = ""
 												+ EmailingOperationCommerciale.this.membres
 														.get(j)
 														.getDateNaissanceIndividu();
@@ -1429,7 +1429,7 @@ public class EmailingOperationCommerciale extends JFrame {
 									if (EmailingOperationCommerciale.this.membres
 											.get(j).getNumerocarte() != null) {
 										EmailingOperationCommerciale.this.entetes[i] = "N°Client";
-										EmailingOperationCommerciale.this.donnees[j][i] = "'"
+										EmailingOperationCommerciale.this.donnees[j][i] = ""
 												+ EmailingOperationCommerciale.this.membres
 														.get(j)
 														.getNumerocarte();
@@ -1453,7 +1453,7 @@ public class EmailingOperationCommerciale extends JFrame {
 									if (EmailingOperationCommerciale.this.membres
 											.get(j).getTelephonefixe() != null) {
 										EmailingOperationCommerciale.this.entetes[i] = "Téléphone";
-										EmailingOperationCommerciale.this.donnees[j][i] = "'"
+										EmailingOperationCommerciale.this.donnees[j][i] = ""
 												+ EmailingOperationCommerciale.this.membres
 														.get(j)
 														.getTelephonefixe();
@@ -1471,7 +1471,7 @@ public class EmailingOperationCommerciale extends JFrame {
 									if (EmailingOperationCommerciale.this.membres
 											.get(j).getTelephonemobile() != null) {
 										EmailingOperationCommerciale.this.entetes[i] = "Mobile";
-										EmailingOperationCommerciale.this.donnees[j][i] = "'"
+										EmailingOperationCommerciale.this.donnees[j][i] = ""
 												+ EmailingOperationCommerciale.this.membres
 														.get(j)
 														.getTelephonemobile();

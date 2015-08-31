@@ -42,7 +42,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class EmailingOperationCommercialeSansCarte extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -3712303591581720760L;
 	private JCheckBox chckbxAbonnementNewsletter;
@@ -1356,7 +1356,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 									if (EmailingOperationCommercialeSansCarte.this.membres
 											.get(j).getTelephonefixe() != null) {
 										EmailingOperationCommercialeSansCarte.this.entetes[i] = "Téléphone";
-										EmailingOperationCommercialeSansCarte.this.donnees[j][i] = "'"
+										EmailingOperationCommercialeSansCarte.this.donnees[j][i] = ""
 												+ EmailingOperationCommercialeSansCarte.this.membres
 														.get(j)
 														.getTelephonefixe();
@@ -1374,7 +1374,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 									if (EmailingOperationCommercialeSansCarte.this.membres
 											.get(j).getTelephonemobile() != null) {
 										EmailingOperationCommercialeSansCarte.this.entetes[i] = "Mobile";
-										EmailingOperationCommercialeSansCarte.this.donnees[j][i] = "'"
+										EmailingOperationCommercialeSansCarte.this.donnees[j][i] = ""
 												+ EmailingOperationCommercialeSansCarte.this.membres
 														.get(j)
 														.getTelephonemobile();
