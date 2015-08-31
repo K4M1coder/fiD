@@ -17,12 +17,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import fr.lefournildesprovinces.vues.EmailingAgeSansCarte;
-import fr.lefournildesprovinces.vues.EmailingAnniversaireSansCarte;
-import fr.lefournildesprovinces.vues.EmailingMagasinSansCarte;
-import fr.lefournildesprovinces.vues.EmailingOperationCommercialeSansCarte;
-import fr.lefournildesprovinces.vues.EmailingVilleSansCarte;
-import fr.lefournildesprovinces.vues.EnsembleSansCarte;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;

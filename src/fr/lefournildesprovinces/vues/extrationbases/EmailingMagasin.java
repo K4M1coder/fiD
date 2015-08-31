@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues;
+package fr.lefournildesprovinces.vues.extrationbases;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,24 +31,28 @@ import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.ResultatRecherche;
 import fr.lefournildesprovinces.ressources.util.ExcelExporter;
+import fr.lefournildesprovinces.vues.MessageExport;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
-public class EmailingMagasinSansCarte extends JFrame {
+public class EmailingMagasin extends JFrame {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1639729966865609398L;
+	private static final long serialVersionUID = 2506007625316389210L;
 	private JCheckBox chckbxAbonnementNewsletter;
 	private JCheckBox chckbxAdresse;
+	private JCheckBox chckbxAge;
 	private JCheckBox chckbxCivilit;
 	private JCheckBox chckbxCodepostal;
+	private JCheckBox chckbxDateDeNaissance;
 	private JCheckBox chckbxEmail;
 	private JCheckBox chckbxMagasinDeReference;
+	private JCheckBox chckbxNCarteDe;
 	private JCheckBox chckbxNom;
 	private JCheckBox chckbxPrnom;
 	private JCheckBox chckbxSelectionnerLensembleDes;
@@ -57,7 +61,6 @@ public class EmailingMagasinSansCarte extends JFrame {
 	private JCheckBox chckbxVille;
 	private JCheckBox checkBox;
 	private JCheckBox checkBox_1;
-	private JCheckBox checkBox_2;
 	private String choixformat;
 	private JComboBox<Object> comboBox;
 	private final JPanel contentPane;
@@ -90,7 +93,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 	private int selectionIDMagasin;
 	private JTable table_3;
 
-	public EmailingMagasinSansCarte(final JFrame interfacepre) {
+	public EmailingMagasin(final JFrame interfacepre) {
 		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1280, 800);
@@ -114,16 +117,16 @@ public class EmailingMagasinSansCarte extends JFrame {
 					.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(final MouseEvent e) {
-							EmailingMagasinSansCarte.this.chckbxToutDselectionner
+							EmailingMagasin.this.chckbxToutDselectionner
 									.setSelected(false);
-							EmailingMagasinSansCarte.this.chckbxToutSlectionner
+							EmailingMagasin.this.chckbxToutSlectionner
 									.setSelected(false);
 						}
 					});
 			this.chckbxAbonnementNewsletter.setForeground(Color.GRAY);
 			this.chckbxAbonnementNewsletter.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
-			this.chckbxAbonnementNewsletter.setBounds(855, 266, 197, 23);
+			this.chckbxAbonnementNewsletter.setBounds(863, 265, 185, 23);
 			this.chckbxAbonnementNewsletter.setSelected(true);
 		}
 		return this.chckbxAbonnementNewsletter;
@@ -135,18 +138,38 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.chckbxAdresse.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
+					EmailingMagasin.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
+					EmailingMagasin.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxAdresse.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxAdresse.setForeground(Color.GRAY);
-			this.chckbxAdresse.setBounds(488, 266, 96, 23);
+			this.chckbxAdresse.setBounds(336, 265, 109, 23);
 			this.chckbxAdresse.setSelected(true);
 		}
 		return this.chckbxAdresse;
+	}
+
+	private JCheckBox getChckbxAge() {
+		if (this.chckbxAge == null) {
+			this.chckbxAge = new JCheckBox("Age");
+			this.chckbxAge.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					EmailingMagasin.this.chckbxToutDselectionner
+							.setSelected(false);
+					EmailingMagasin.this.chckbxToutSlectionner
+							.setSelected(false);
+				}
+			});
+			this.chckbxAge.setSelected(true);
+			this.chckbxAge.setForeground(Color.GRAY);
+			this.chckbxAge.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.chckbxAge.setBounds(447, 293, 150, 23);
+		}
+		return this.chckbxAge;
 	}
 
 	private JCheckBox getChckbxCivilit() {
@@ -155,15 +178,15 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.chckbxCivilit.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
+					EmailingMagasin.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
+					EmailingMagasin.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxCivilit.setForeground(Color.GRAY);
 			this.chckbxCivilit.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxCivilit.setBounds(242, 266, 92, 23);
+			this.chckbxCivilit.setBounds(242, 265, 92, 23);
 			this.chckbxCivilit.setSelected(true);
 
 		}
@@ -176,18 +199,39 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.chckbxCodepostal.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
+					EmailingMagasin.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
+					EmailingMagasin.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxCodepostal.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxCodepostal.setForeground(Color.GRAY);
-			this.chckbxCodepostal.setBounds(347, 292, 132, 23);
+			this.chckbxCodepostal.setBounds(336, 319, 109, 23);
 			this.chckbxCodepostal.setSelected(true);
 		}
 		return this.chckbxCodepostal;
+	}
+
+	private JCheckBox getChckbxDateDeNaissance() {
+		if (this.chckbxDateDeNaissance == null) {
+			this.chckbxDateDeNaissance = new JCheckBox("Date de Naissance");
+			this.chckbxDateDeNaissance.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					EmailingMagasin.this.chckbxToutDselectionner
+							.setSelected(false);
+					EmailingMagasin.this.chckbxToutSlectionner
+							.setSelected(false);
+				}
+			});
+			this.chckbxDateDeNaissance.setForeground(Color.GRAY);
+			this.chckbxDateDeNaissance
+					.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.chckbxDateDeNaissance.setBounds(447, 265, 150, 23);
+			this.chckbxDateDeNaissance.setSelected(true);
+		}
+		return this.chckbxDateDeNaissance;
 	}
 
 	private JCheckBox getChckbxEmail() {
@@ -196,15 +240,15 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.chckbxEmail.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
+					EmailingMagasin.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
+					EmailingMagasin.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxEmail.setForeground(Color.GRAY);
 			this.chckbxEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxEmail.setBounds(586, 266, 165, 23);
+			this.chckbxEmail.setBounds(863, 293, 185, 23);
 			this.chckbxEmail.setSelected(true);
 		}
 		return this.chckbxEmail;
@@ -217,19 +261,40 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.chckbxMagasinDeReference.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
+					EmailingMagasin.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
+					EmailingMagasin.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxMagasinDeReference.setFont(new Font("Tahoma", Font.BOLD,
 					11));
 			this.chckbxMagasinDeReference.setForeground(Color.GRAY);
-			this.chckbxMagasinDeReference.setBounds(586, 290, 165, 23);
+			this.chckbxMagasinDeReference.setBounds(586, 291, 167, 23);
 			this.chckbxMagasinDeReference.setSelected(true);
 		}
 		return this.chckbxMagasinDeReference;
+	}
+
+	private JCheckBox getChckbxNCarteDe() {
+		if (this.chckbxNCarteDe == null) {
+			this.chckbxNCarteDe = new JCheckBox(
+					"N\u00B0 Carte de Fid\u00E9lit\u00E9");
+			this.chckbxNCarteDe.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					EmailingMagasin.this.chckbxToutDselectionner
+							.setSelected(false);
+					EmailingMagasin.this.chckbxToutSlectionner
+							.setSelected(false);
+				}
+			});
+			this.chckbxNCarteDe.setForeground(Color.GRAY);
+			this.chckbxNCarteDe.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.chckbxNCarteDe.setBounds(586, 265, 167, 23);
+			this.chckbxNCarteDe.setSelected(true);
+		}
+		return this.chckbxNCarteDe;
 	}
 
 	private JCheckBox getChckbxNom() {
@@ -238,15 +303,15 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.chckbxNom.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
+					EmailingMagasin.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
+					EmailingMagasin.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxNom.setForeground(Color.GRAY);
 			this.chckbxNom.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxNom.setBounds(242, 292, 92, 23);
+			this.chckbxNom.setBounds(242, 293, 92, 23);
 			this.chckbxNom.setSelected(true);
 		}
 		return this.chckbxNom;
@@ -258,15 +323,15 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.chckbxPrnom.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
+					EmailingMagasin.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
+					EmailingMagasin.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxPrnom.setForeground(Color.GRAY);
 			this.chckbxPrnom.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxPrnom.setBounds(347, 266, 132, 23);
+			this.chckbxPrnom.setBounds(242, 319, 92, 23);
 			this.chckbxPrnom.setSelected(true);
 
 		}
@@ -283,12 +348,10 @@ public class EmailingMagasinSansCarte extends JFrame {
 						@Override
 						public void mouseClicked(final MouseEvent e) {
 
-							if (EmailingMagasinSansCarte.this.chckbxSelectionnerLensembleDes
+							if (EmailingMagasin.this.chckbxSelectionnerLensembleDes
 									.isSelected() == true) {
-								EmailingMagasinSansCarte.this.table_3
-										.selectAll();
-								EmailingMagasinSansCarte.this.table_3
-										.setFocusable(true);
+								EmailingMagasin.this.table_3.selectAll();
+								EmailingMagasin.this.table_3.setFocusable(true);
 
 							}
 						}
@@ -296,7 +359,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.chckbxSelectionnerLensembleDes.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
 			this.chckbxSelectionnerLensembleDes.setForeground(Color.GRAY);
-			this.chckbxSelectionnerLensembleDes.setBounds(242, 657, 270, 23);
+			this.chckbxSelectionnerLensembleDes.setBounds(242, 658, 281, 23);
 		}
 		return this.chckbxSelectionnerLensembleDes;
 	}
@@ -309,28 +372,24 @@ public class EmailingMagasinSansCarte extends JFrame {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
 
-					EmailingMagasinSansCarte.this.chckbxNom.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxPrnom
+					EmailingMagasin.this.chckbxNom.setSelected(false);
+					EmailingMagasin.this.chckbxPrnom.setSelected(false);
+					EmailingMagasin.this.chckbxCivilit.setSelected(false);
+					EmailingMagasin.this.chckbxAdresse.setSelected(false);
+					EmailingMagasin.this.chckbxCodepostal.setSelected(false);
+					EmailingMagasin.this.chckbxVille.setSelected(false);
+					EmailingMagasin.this.chckbxEmail.setSelected(false);
+					EmailingMagasin.this.chckbxAge.setSelected(false);
+					EmailingMagasin.this.checkBox.setSelected(false);
+					EmailingMagasin.this.checkBox_1.setSelected(false);
+					EmailingMagasin.this.chckbxAbonnementNewsletter
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxCivilit
+					EmailingMagasin.this.chckbxNCarteDe.setSelected(false);
+					EmailingMagasin.this.chckbxDateDeNaissance
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxAdresse
+					EmailingMagasin.this.chckbxMagasinDeReference
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxCodepostal
-							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxVille
-							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxEmail
-							.setSelected(false);
-					EmailingMagasinSansCarte.this.checkBox.setSelected(false);
-					EmailingMagasinSansCarte.this.checkBox_1.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxAbonnementNewsletter
-							.setSelected(false);
-					EmailingMagasinSansCarte.this.checkBox_2.setSelected(false);
-
-					EmailingMagasinSansCarte.this.chckbxMagasinDeReference
-							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
+					EmailingMagasin.this.chckbxToutSlectionner
 							.setSelected(false);
 
 				}
@@ -338,7 +397,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.chckbxToutDselectionner.setFont(new Font("Tahoma", Font.BOLD,
 					11));
 			this.chckbxToutDselectionner.setForeground(Color.GRAY);
-			this.chckbxToutDselectionner.setBounds(242, 367, 169, 23);
+			this.chckbxToutDselectionner.setBounds(242, 366, 150, 23);
 		}
 		return this.chckbxToutDselectionner;
 	}
@@ -349,32 +408,31 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.chckbxToutSlectionner.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasinSansCarte.this.chckbxNom.setSelected(true);
-					EmailingMagasinSansCarte.this.chckbxPrnom.setSelected(true);
-					EmailingMagasinSansCarte.this.chckbxCivilit
+					EmailingMagasin.this.chckbxNom.setSelected(true);
+					EmailingMagasin.this.chckbxPrnom.setSelected(true);
+					EmailingMagasin.this.chckbxCivilit.setSelected(true);
+					EmailingMagasin.this.chckbxAdresse.setSelected(true);
+					EmailingMagasin.this.chckbxCodepostal.setSelected(true);
+					EmailingMagasin.this.chckbxVille.setSelected(true);
+					EmailingMagasin.this.checkBox.setSelected(true);
+					EmailingMagasin.this.chckbxAge.setSelected(true);
+					EmailingMagasin.this.checkBox_1.setSelected(true);
+					EmailingMagasin.this.chckbxEmail.setSelected(true);
+					EmailingMagasin.this.chckbxAbonnementNewsletter
 							.setSelected(true);
-					EmailingMagasinSansCarte.this.chckbxAdresse
+					EmailingMagasin.this.chckbxNCarteDe.setSelected(true);
+					EmailingMagasin.this.chckbxDateDeNaissance
 							.setSelected(true);
-					EmailingMagasinSansCarte.this.chckbxCodepostal
+					EmailingMagasin.this.chckbxMagasinDeReference
 							.setSelected(true);
-					EmailingMagasinSansCarte.this.chckbxVille.setSelected(true);
-					EmailingMagasinSansCarte.this.checkBox.setSelected(true);
-					EmailingMagasinSansCarte.this.checkBox_1.setSelected(true);
-					EmailingMagasinSansCarte.this.chckbxEmail.setSelected(true);
-					EmailingMagasinSansCarte.this.chckbxAbonnementNewsletter
-							.setSelected(true);
-					EmailingMagasinSansCarte.this.checkBox_2.setSelected(true);
-
-					EmailingMagasinSansCarte.this.chckbxMagasinDeReference
-							.setSelected(true);
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
+					EmailingMagasin.this.chckbxToutDselectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxToutSlectionner
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxToutSlectionner.setForeground(Color.GRAY);
-			this.chckbxToutSlectionner.setBounds(413, 367, 160, 23);
+			this.chckbxToutSlectionner.setBounds(412, 366, 150, 23);
 			this.chckbxToutSlectionner.setSelected(true);
 		}
 		return this.chckbxToutSlectionner;
@@ -386,15 +444,15 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.chckbxVille.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
+					EmailingMagasin.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
+					EmailingMagasin.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxVille.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxVille.setForeground(Color.GRAY);
-			this.chckbxVille.setBounds(488, 292, 96, 23);
+			this.chckbxVille.setBounds(336, 291, 109, 23);
 			this.chckbxVille.setSelected(true);
 		}
 		return this.chckbxVille;
@@ -407,14 +465,14 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.checkBox.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
+					EmailingMagasin.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
+					EmailingMagasin.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.checkBox.setForeground(Color.GRAY);
-			this.checkBox.setBounds(753, 292, 100, 23);
+			this.checkBox.setBounds(757, 293, 104, 23);
 			this.checkBox.setSelected(true);
 		}
 		return this.checkBox;
@@ -427,37 +485,17 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.checkBox_1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
+					EmailingMagasin.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
+					EmailingMagasin.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.checkBox_1.setForeground(Color.GRAY);
-			this.checkBox_1.setBounds(753, 266, 100, 23);
+			this.checkBox_1.setBounds(757, 265, 104, 23);
 			this.checkBox_1.setSelected(true);
 		}
 		return this.checkBox_1;
-	}
-
-	private JCheckBox getCheckBox_2() {
-		if (this.checkBox_2 == null) {
-			this.checkBox_2 = new JCheckBox("Age");
-			this.checkBox_2.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasinSansCarte.this.chckbxToutDselectionner
-							.setSelected(false);
-					EmailingMagasinSansCarte.this.chckbxToutSlectionner
-							.setSelected(false);
-				}
-			});
-			this.checkBox_2.setSelected(true);
-			this.checkBox_2.setForeground(Color.GRAY);
-			this.checkBox_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.checkBox_2.setBounds(855, 292, 197, 23);
-		}
-		return this.checkBox_2;
 	}
 
 	private JComboBox<Object> getComboBox() {
@@ -473,81 +511,65 @@ public class EmailingMagasinSansCarte extends JFrame {
 				@Override
 				public void actionPerformed(final ActionEvent arg0) {
 					try {
-						EmailingMagasinSansCarte.this.selectionIDMagasin = ((Magasin) EmailingMagasinSansCarte.this.comboBox
+						EmailingMagasin.this.selectionIDMagasin = ((Magasin) EmailingMagasin.this.comboBox
 								.getSelectedItem()).getIdMagasin();
-						EmailingMagasinSansCarte.this.lblMerciDeSlectionner
+						EmailingMagasin.this.lblMerciDeSlectionner
 								.setVisible(false);
-						EmailingMagasinSansCarte.this.lblValider
-								.setVisible(true);
+						EmailingMagasin.this.lblValider.setVisible(true);
 					} catch (final Exception e) {
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingMagasinSansCarte.this.interfaceActuelle,
-								message);
+								EmailingMagasin.this.interfaceActuelle, message);
 						fenetre.setVisible(true);
-						EmailingMagasinSansCarte.this.interfaceActuelle
+						EmailingMagasin.this.interfaceActuelle
 								.setEnabled(false);
-						EmailingMagasinSansCarte.this.interfaceActuelle
+						EmailingMagasin.this.interfaceActuelle
 								.setVisible(false);
-						EmailingMagasinSansCarte.this.lblValider
-								.setVisible(false);
-						EmailingMagasinSansCarte.this.lblValider
-								.setEnabled(false);
-						EmailingMagasinSansCarte.this.lblMerciDeSlectionner
+						EmailingMagasin.this.lblValider.setVisible(false);
+						EmailingMagasin.this.lblValider.setEnabled(false);
+						EmailingMagasin.this.lblMerciDeSlectionner
 								.setVisible(true);
-						EmailingMagasinSansCarte.this.chckbxNom
+						EmailingMagasin.this.chckbxNom.setSelected(true);
+						EmailingMagasin.this.chckbxPrnom.setSelected(true);
+						EmailingMagasin.this.chckbxCivilit.setSelected(true);
+						EmailingMagasin.this.chckbxAdresse.setSelected(true);
+						EmailingMagasin.this.checkBox.setSelected(true);
+						EmailingMagasin.this.checkBox_1.setSelected(true);
+						EmailingMagasin.this.chckbxCodepostal.setSelected(true);
+						EmailingMagasin.this.chckbxVille.setSelected(true);
+						EmailingMagasin.this.chckbxEmail.setSelected(true);
+						EmailingMagasin.this.chckbxAge.setSelected(true);
+						EmailingMagasin.this.chckbxAbonnementNewsletter
 								.setSelected(true);
-						EmailingMagasinSansCarte.this.chckbxPrnom
+						EmailingMagasin.this.chckbxNCarteDe.setSelected(true);
+						EmailingMagasin.this.chckbxDateDeNaissance
 								.setSelected(true);
-						EmailingMagasinSansCarte.this.chckbxCivilit
+						EmailingMagasin.this.chckbxMagasinDeReference
 								.setSelected(true);
-						EmailingMagasinSansCarte.this.chckbxAdresse
-								.setSelected(true);
-						EmailingMagasinSansCarte.this.chckbxCodepostal
-								.setSelected(true);
-						EmailingMagasinSansCarte.this.chckbxVille
-								.setSelected(true);
-						EmailingMagasinSansCarte.this.chckbxEmail
-								.setSelected(true);
-						EmailingMagasinSansCarte.this.chckbxAbonnementNewsletter
-								.setSelected(true);
-						EmailingMagasinSansCarte.this.checkBox
-								.setSelected(true);
-						EmailingMagasinSansCarte.this.checkBox_2
-								.setSelected(true);
-						EmailingMagasinSansCarte.this.checkBox_1
-								.setSelected(true);
-
-						EmailingMagasinSansCarte.this.chckbxMagasinDeReference
-								.setSelected(true);
-						EmailingMagasinSansCarte.this.chckbxSelectionnerLensembleDes
+						EmailingMagasin.this.chckbxSelectionnerLensembleDes
 								.setSelected(false);
-						EmailingMagasinSansCarte.this.chckbxToutSlectionner
+						EmailingMagasin.this.chckbxToutSlectionner
 								.setSelected(false);
-						EmailingMagasinSansCarte.this.chckbxToutDselectionner
+						EmailingMagasin.this.chckbxToutDselectionner
 								.setSelected(false);
-						EmailingMagasinSansCarte.this.chckbxSelectionnerLensembleDes
+						EmailingMagasin.this.chckbxSelectionnerLensembleDes
 								.setVisible(false);
-						EmailingMagasinSansCarte.this.lblExportxls
-								.setVisible(false);
-						EmailingMagasinSansCarte.this.lblExportCvs
-								.setVisible(false);
-						if ((EmailingMagasinSansCarte.this.table_3
-								.getRowCount() != 0)
-								&& (EmailingMagasinSansCarte.this.table_3
+						EmailingMagasin.this.lblExportxls.setVisible(false);
+						EmailingMagasin.this.lblExportCvs.setVisible(false);
+						if ((EmailingMagasin.this.table_3.getRowCount() != 0)
+								&& (EmailingMagasin.this.table_3
 										.getColumnCount() != 0)) {
-							EmailingMagasinSansCarte.this.model
-									.setColumnCount(0);
-							EmailingMagasinSansCarte.this.model.setRowCount(0);
-							EmailingMagasinSansCarte.this.table_3
-									.setModel(EmailingMagasinSansCarte.this.model);
-							EmailingMagasinSansCarte.this.table_3.repaint();
+							EmailingMagasin.this.model.setColumnCount(0);
+							EmailingMagasin.this.model.setRowCount(0);
+							EmailingMagasin.this.table_3
+									.setModel(EmailingMagasin.this.model);
+							EmailingMagasin.this.table_3.repaint();
 						}
 					}
 
 				}
 			});
-			this.comboBox.setBounds(242, 185, 790, 22);
+			this.comboBox.setBounds(242, 187, 792, 22);
 			this.comboBox.setFocusable(false);
 			this.listemagasins = new DefaultComboBoxModel<Object>(
 					Select.listemagasins());
@@ -560,7 +582,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 	private JLabel getFond() {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
-			this.fond.setIcon(new ImageIcon(EmailingMagasinSansCarte.class
+			this.fond.setIcon(new ImageIcon(EmailingMagasin.class
 					.getResource("/Images/menus-extraction-long.png")));
 			this.fond.setBounds(216, 55, 850, 690);
 		}
@@ -575,7 +597,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final MenuPrincipal fenetre = new MenuPrincipal();
 					fenetre.setVisible(true);
-					EmailingMagasinSansCarte.this.dispose();
+					EmailingMagasin.this.dispose();
 				}
 			});
 			this.label
@@ -593,7 +615,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 					gestionclientcarte.setVisible(true);
-					EmailingMagasinSansCarte.this.dispose();
+					EmailingMagasin.this.dispose();
 				}
 			});
 			this.label_1.setCursor(Cursor
@@ -611,7 +633,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
-					EmailingMagasinSansCarte.this.dispose();
+					EmailingMagasin.this.dispose();
 				}
 			});
 			this.label_2.setCursor(Cursor
@@ -629,7 +651,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 					operation.setVisible(true);
-					EmailingMagasinSansCarte.this.dispose();
+					EmailingMagasin.this.dispose();
 				}
 			});
 			this.label_3.setCursor(Cursor
@@ -645,7 +667,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 					"(CTRL+C ou Pomme+C pour copier les donn\u00E9es)");
 			this.label_4.setForeground(Color.GRAY);
 			this.label_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.label_4.setBounds(242, 687, 303, 14);
+			this.label_4.setBounds(242, 688, 331, 14);
 		}
 		return this.label_4;
 	}
@@ -667,6 +689,8 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.layeredPane.add(this.getChckbxVille());
 			this.layeredPane.add(this.getChckbxEmail());
 			this.layeredPane.add(this.getChckbxAbonnementNewsletter());
+			this.layeredPane.add(this.getChckbxNCarteDe());
+			this.layeredPane.add(this.getChckbxDateDeNaissance());
 			this.layeredPane.add(this.getChckbxMagasinDeReference());
 			this.layeredPane.add(this.getScrollPane_1());
 			this.layeredPane.add(this.getLblSelectionnerLesInformations());
@@ -680,7 +704,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.layeredPane.add(this.getLabel_1());
 			this.layeredPane.add(this.getLabel_2());
 			this.layeredPane.add(this.getLabel_3());
-			this.layeredPane.add(this.getCheckBox_2());
+			this.layeredPane.add(this.getChckbxAge());
 			this.layeredPane.add(this.getLabel_4());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel());
@@ -692,11 +716,11 @@ public class EmailingMagasinSansCarte extends JFrame {
 	private JLabel getLblEmailingParMagasin() {
 		if (this.lblEmailingParMagasin == null) {
 			this.lblEmailingParMagasin = new JLabel(
-					"Tri par magasin (Clients  non titulaire d'une carte de fidelit\u00E9)");
+					"Tri par magasin (Clients  titulaire d'une carte de fidelit\u00E9)");
 			this.lblEmailingParMagasin
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblEmailingParMagasin.setForeground(Color.GRAY);
-			this.lblEmailingParMagasin.setBounds(242, 110, 369, 14);
+			this.lblEmailingParMagasin.setBounds(242, 110, 355, 14);
 		}
 		return this.lblEmailingParMagasin;
 	}
@@ -704,45 +728,42 @@ public class EmailingMagasinSansCarte extends JFrame {
 	private JLabel getLblExportCvs() {
 		if (this.lblExportCvs == null) {
 			this.lblExportCvs = new JLabel("");
-			this.lblExportCvs.setIcon(new ImageIcon(
-					EmailingMagasinSansCarte.class
-							.getResource("/Images/export-csv.png")));
+			this.lblExportCvs.setIcon(new ImageIcon(EmailingMagasin.class
+					.getResource("/Images/export-csv.png")));
 			this.lblExportCvs.setVisible(false);
 			this.lblExportCvs.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
 
 					try {
-
 						final String os = System.getProperty("os.name")
 								.toLowerCase();
 						;
 						if (os.contains("mac")) {
-							EmailingMagasinSansCarte.this.desktopPath = System
+							EmailingMagasin.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 						} else {
-							EmailingMagasinSansCarte.this.desktopPath = System
+							EmailingMagasin.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 
 						}
 
 						final File dir = new File(
-								EmailingMagasinSansCarte.this.desktopPath
+								EmailingMagasin.this.desktopPath
 										+ "/Base Marketing Client/");
 						dir.mkdirs();
 						final File file = new File(dir,
-								"Extraction par magasin (non titulaire carte).csv");
+								"Extraction par magasin (titulaire carte).csv");
 
 						final FileWriter writer = new FileWriter(file);
 
-						for (int j = 0; j < EmailingMagasinSansCarte.this.membres
-								.size(); j++) {
+						for (int j = 0; j < EmailingMagasin.this.membres.size(); j++) {
 
-							for (int i = 0; i <= (EmailingMagasinSansCarte.this.entetes.length - 1); i++) {
-								if (EmailingMagasinSansCarte.this.donnees[j][i] != null) {
-									writer.append(EmailingMagasinSansCarte.this.donnees[j][i]
+							for (int i = 0; i <= (EmailingMagasin.this.entetes.length - 1); i++) {
+								if (EmailingMagasin.this.donnees[j][i] != null) {
+									writer.append(EmailingMagasin.this.donnees[j][i]
 											.toString());
-									if (i == (EmailingMagasinSansCarte.this.entetes.length - 1)) {
+									if (i == (EmailingMagasin.this.entetes.length - 1)) {
 										writer.append("\n");
 									} else {
 										writer.append(",");
@@ -757,16 +778,16 @@ public class EmailingMagasinSansCarte extends JFrame {
 							}
 						}
 
-						EmailingMagasinSansCarte.this.Message = "Exportation du fichier Extraction par magasin (non titulaire carte).csv réalisée avec succès";
-						EmailingMagasinSansCarte.this.etat = true;
-						EmailingMagasinSansCarte.this.choixformat = "CSV4";
+						EmailingMagasin.this.Message = "Exportation du fichier Extraction par magasin (titulaire carte).csv réalisée avec succès";
+						EmailingMagasin.this.etat = true;
+						EmailingMagasin.this.choixformat = "CSV3";
 						final MessageExport fenetre = new MessageExport(
-								EmailingMagasinSansCarte.this.Message,
-								EmailingMagasinSansCarte.this.interfaceActuelle,
-								EmailingMagasinSansCarte.this.etat,
-								EmailingMagasinSansCarte.this.choixformat);
+								EmailingMagasin.this.Message,
+								EmailingMagasin.this.interfaceActuelle,
+								EmailingMagasin.this.etat,
+								EmailingMagasin.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingMagasinSansCarte.this.interfaceActuelle
+						EmailingMagasin.this.interfaceActuelle
 								.setEnabled(false);
 
 						writer.flush();
@@ -774,16 +795,16 @@ public class EmailingMagasinSansCarte extends JFrame {
 
 					} catch (final IOException e) {
 						e.printStackTrace();
-						EmailingMagasinSansCarte.this.Message = "Impossible de générer le fichier CSV";
-						EmailingMagasinSansCarte.this.etat = false;
-						EmailingMagasinSansCarte.this.choixformat = "CSV";
+						EmailingMagasin.this.Message = "Impossible de générer le fichier CSV";
+						EmailingMagasin.this.etat = false;
+						EmailingMagasin.this.choixformat = "CSV";
 						final MessageExport fenetre = new MessageExport(
-								EmailingMagasinSansCarte.this.Message,
-								EmailingMagasinSansCarte.this.interfaceActuelle,
-								EmailingMagasinSansCarte.this.etat,
-								EmailingMagasinSansCarte.this.choixformat);
+								EmailingMagasin.this.Message,
+								EmailingMagasin.this.interfaceActuelle,
+								EmailingMagasin.this.etat,
+								EmailingMagasin.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingMagasinSansCarte.this.interfaceActuelle
+						EmailingMagasin.this.interfaceActuelle
 								.setEnabled(false);
 
 					}
@@ -794,7 +815,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblExportCvs.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblExportCvs.setForeground(Color.GRAY);
-			this.lblExportCvs.setBounds(899, 667, 133, 34);
+			this.lblExportCvs.setBounds(894, 673, 133, 34);
 		}
 		return this.lblExportCvs;
 	}
@@ -802,9 +823,8 @@ public class EmailingMagasinSansCarte extends JFrame {
 	private JLabel getLblExportxls() {
 		if (this.lblExportxls == null) {
 			this.lblExportxls = new JLabel("");
-			this.lblExportxls.setIcon(new ImageIcon(
-					EmailingMagasinSansCarte.class
-							.getResource("/Images/export-excel.png")));
+			this.lblExportxls.setIcon(new ImageIcon(EmailingMagasin.class
+					.getResource("/Images/export-excel.png")));
 			this.lblExportxls.setVisible(false);
 			this.lblExportxls.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblExportxls.setForeground(Color.GRAY);
@@ -817,56 +837,55 @@ public class EmailingMagasinSansCarte extends JFrame {
 								.toLowerCase();
 						;
 						if (os.contains("mac")) {
-							EmailingMagasinSansCarte.this.desktopPath = System
+							EmailingMagasin.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 						} else {
-							EmailingMagasinSansCarte.this.desktopPath = System
+							EmailingMagasin.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 
 						}
 
 						final File dir = new File(
-								EmailingMagasinSansCarte.this.desktopPath
+								EmailingMagasin.this.desktopPath
 										+ "/Base Marketing Client/");
 						dir.mkdirs();
 						final File file = new File(dir,
-								"Extraction par magasin (non titulaire carte).xls");
+								"Extraction par magasin (titulaire carte).xls");
 
 						final ExcelExporter exp = new ExcelExporter();
-						exp.exportTable(EmailingMagasinSansCarte.this.table_3,
-								file);
-						EmailingMagasinSansCarte.this.etat = true;
-						EmailingMagasinSansCarte.this.Message = "Exportation du fichier Extraction par magasin (non titulaire carte).xls réalisée avec succès";
-						EmailingMagasinSansCarte.this.choixformat = "XLS";
+						exp.exportTable(EmailingMagasin.this.table_3, file);
+						EmailingMagasin.this.etat = true;
+						EmailingMagasin.this.Message = "Exportation du fichier Extraction par magasin (titulaire carte).xls réalisée avec succès";
+						EmailingMagasin.this.choixformat = "XLS3";
 						final MessageExport fenetre = new MessageExport(
-								EmailingMagasinSansCarte.this.Message,
-								EmailingMagasinSansCarte.this.interfaceActuelle,
-								EmailingMagasinSansCarte.this.etat,
-								EmailingMagasinSansCarte.this.choixformat);
+								EmailingMagasin.this.Message,
+								EmailingMagasin.this.interfaceActuelle,
+								EmailingMagasin.this.etat,
+								EmailingMagasin.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingMagasinSansCarte.this.interfaceActuelle
+						EmailingMagasin.this.interfaceActuelle
 								.setEnabled(false);
 
 					} catch (final IOException ex) {
 						System.out.println(ex.getMessage());
 						ex.printStackTrace();
-						EmailingMagasinSansCarte.this.etat = false;
-						EmailingMagasinSansCarte.this.choixformat = "XLS4";
-						EmailingMagasinSansCarte.this.Message = "Impossible de générer le fichier XLS";
+						EmailingMagasin.this.etat = false;
+						EmailingMagasin.this.choixformat = "XLS";
+						EmailingMagasin.this.Message = "Impossible de générer le fichier XLS";
 						final MessageExport fenetre = new MessageExport(
-								EmailingMagasinSansCarte.this.Message,
-								EmailingMagasinSansCarte.this.interfaceActuelle,
-								EmailingMagasinSansCarte.this.etat,
-								EmailingMagasinSansCarte.this.choixformat);
+								EmailingMagasin.this.Message,
+								EmailingMagasin.this.interfaceActuelle,
+								EmailingMagasin.this.etat,
+								EmailingMagasin.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingMagasinSansCarte.this.interfaceActuelle
+						EmailingMagasin.this.interfaceActuelle
 								.setEnabled(false);
 
 					}
 
 				}
 			});
-			this.lblExportxls.setBounds(732, 673, 133, 28);
+			this.lblExportxls.setBounds(743, 679, 133, 28);
 		}
 		return this.lblExportxls;
 	}
@@ -879,16 +898,14 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.lblFermer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
-					EmailingMagasinSansCarte.this.dispose();
-					EmailingMagasinSansCarte.this.interfacePrecedente
-							.setVisible(true);
-					EmailingMagasinSansCarte.this.interfacePrecedente
-							.setEnabled(true);
+					EmailingMagasin.this.dispose();
+					EmailingMagasin.this.interfacePrecedente.setVisible(true);
+					EmailingMagasin.this.interfacePrecedente.setEnabled(true);
 				}
 			});
 			this.lblFermer.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblFermer.setForeground(Color.GRAY);
-			this.lblFermer.setBounds(882, 55, 170, 45);
+			this.lblFermer.setBounds(874, 55, 178, 48);
 		}
 		return this.lblFermer;
 	}
@@ -900,7 +917,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.lblMerciDeSlectionner
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblMerciDeSlectionner.setForeground(Color.GRAY);
-			this.lblMerciDeSlectionner.setBounds(543, 189, 230, 14);
+			this.lblMerciDeSlectionner.setBounds(544, 191, 237, 14);
 		}
 		return this.lblMerciDeSlectionner;
 	}
@@ -908,9 +925,8 @@ public class EmailingMagasinSansCarte extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
-			this.lblNewLabel.setIcon(new ImageIcon(
-					EmailingMagasinSansCarte.class
-							.getResource("/Images/fond-logiciel.png")));
+			this.lblNewLabel.setIcon(new ImageIcon(EmailingMagasin.class
+					.getResource("/Images/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -923,7 +939,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 			this.lblSelectionnerLesInformations.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
 			this.lblSelectionnerLesInformations.setForeground(Color.GRAY);
-			this.lblSelectionnerLesInformations.setBounds(242, 245, 288, 14);
+			this.lblSelectionnerLesInformations.setBounds(242, 244, 270, 14);
 		}
 		return this.lblSelectionnerLesInformations;
 	}
@@ -931,9 +947,8 @@ public class EmailingMagasinSansCarte extends JFrame {
 	private JLabel getLblValider() {
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
-			this.lblValider.setIcon(new ImageIcon(
-					EmailingMagasinSansCarte.class
-							.getResource("/Images/valider.png")));
+			this.lblValider.setIcon(new ImageIcon(EmailingMagasin.class
+					.getResource("/Images/valider.png")));
 			this.lblValider.setHorizontalAlignment(SwingConstants.RIGHT);
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -942,233 +957,259 @@ public class EmailingMagasinSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent arg0) {
 
 					int compteur = 0;
-					if (EmailingMagasinSansCarte.this.checkBox.isSelected() == true) {
+					if (EmailingMagasin.this.checkBox.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasinSansCarte.this.checkBox_1.isSelected() == true) {
+					if (EmailingMagasin.this.checkBox_1.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasinSansCarte.this.chckbxCivilit
+					if (EmailingMagasin.this.chckbxCivilit.isSelected() == true) {
+
+						compteur++;
+					}
+					if (EmailingMagasin.this.chckbxNom.isSelected() == true) {
+
+						compteur++;
+					}
+					if (EmailingMagasin.this.chckbxPrnom.isSelected() == true) {
+
+						compteur++;
+					}
+					if (EmailingMagasin.this.chckbxAdresse.isSelected() == true) {
+
+						compteur++;
+					}
+					if (EmailingMagasin.this.chckbxVille.isSelected() == true) {
+
+						compteur++;
+					}
+					if (EmailingMagasin.this.chckbxCodepostal.isSelected() == true) {
+
+						compteur++;
+					}
+					if (EmailingMagasin.this.chckbxDateDeNaissance.isSelected() == true) {
+
+						compteur++;
+					}
+					if (EmailingMagasin.this.chckbxEmail.isSelected() == true) {
+
+						compteur++;
+					}
+					if (EmailingMagasin.this.chckbxAbonnementNewsletter
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasinSansCarte.this.chckbxNom.isSelected() == true) {
+					if (EmailingMagasin.this.chckbxAge.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasinSansCarte.this.chckbxPrnom.isSelected() == true) {
+					if (EmailingMagasin.this.chckbxNCarteDe.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasinSansCarte.this.checkBox_2.isSelected() == true) {
-
-						compteur++;
-					}
-					if (EmailingMagasinSansCarte.this.chckbxAdresse
-							.isSelected() == true) {
-
-						compteur++;
-					}
-					if (EmailingMagasinSansCarte.this.chckbxVille.isSelected() == true) {
-
-						compteur++;
-					}
-					if (EmailingMagasinSansCarte.this.chckbxCodepostal
-							.isSelected() == true) {
-
-						compteur++;
-					}
-
-					if (EmailingMagasinSansCarte.this.chckbxEmail.isSelected() == true) {
-
-						compteur++;
-					}
-					if (EmailingMagasinSansCarte.this.chckbxAbonnementNewsletter
-							.isSelected() == true) {
-
-						compteur++;
-					}
-
-					if (EmailingMagasinSansCarte.this.chckbxMagasinDeReference
+					if (EmailingMagasin.this.chckbxMagasinDeReference
 							.isSelected() == true) {
 
 						compteur++;
 					}
 					if (compteur > 4) {
-						EmailingMagasinSansCarte.this.table_3
+						EmailingMagasin.this.table_3
 								.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 					}
 					System.out.print(compteur);
 
-					EmailingMagasinSansCarte.this.membres = Select
-							.eMailingmagasinSansCarte(EmailingMagasinSansCarte.this.selectionIDMagasin);
+					EmailingMagasin.this.membres = Select
+							.eMailingmagasin(EmailingMagasin.this.selectionIDMagasin);
 
-					if (EmailingMagasinSansCarte.this.membres.size() == 0) {
+					if (EmailingMagasin.this.membres.size() == 0) {
 						final String message = "Aucun Résultat";
 
 						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingMagasinSansCarte.this.interfaceActuelle,
-								message);
+								EmailingMagasin.this.interfaceActuelle, message);
 						fenetre.setVisible(true);
-						EmailingMagasinSansCarte.this.interfaceActuelle
+						EmailingMagasin.this.interfaceActuelle
 								.setEnabled(false);
-						EmailingMagasinSansCarte.this.chckbxSelectionnerLensembleDes
+						EmailingMagasin.this.chckbxSelectionnerLensembleDes
 								.setSelected(false);
-						EmailingMagasinSansCarte.this.lblValider
-								.setVisible(false);
+						EmailingMagasin.this.lblValider.setVisible(false);
 
-						if ((EmailingMagasinSansCarte.this.table_3
-								.getRowCount() != 0)
-								|| (EmailingMagasinSansCarte.this.table_3
+						if ((EmailingMagasin.this.table_3.getRowCount() != 0)
+								|| (EmailingMagasin.this.table_3
 										.getColumnCount() != 0)) {
-							EmailingMagasinSansCarte.this.model
-									.setColumnCount(0);
-							EmailingMagasinSansCarte.this.model.setRowCount(0);
-							EmailingMagasinSansCarte.this.table_3
-									.setModel(EmailingMagasinSansCarte.this.model);
-							EmailingMagasinSansCarte.this.table_3.repaint();
+							EmailingMagasin.this.model.setColumnCount(0);
+							EmailingMagasin.this.model.setRowCount(0);
+							EmailingMagasin.this.table_3
+									.setModel(EmailingMagasin.this.model);
+							EmailingMagasin.this.table_3.repaint();
 						}
 					}
 					if (compteur < 2) {
 						final String message = "Deux choix en sortie minimum";
 
 						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingMagasinSansCarte.this.interfaceActuelle,
-								message);
+								EmailingMagasin.this.interfaceActuelle, message);
 						fenetre.setVisible(true);
-						EmailingMagasinSansCarte.this.interfaceActuelle
+						EmailingMagasin.this.interfaceActuelle
 								.setEnabled(false);
-						EmailingMagasinSansCarte.this.interfaceActuelle
+						EmailingMagasin.this.interfaceActuelle
 								.setVisible(false);
-						EmailingMagasinSansCarte.this.lblValider
-								.setVisible(false);
+						EmailingMagasin.this.lblValider.setVisible(false);
 
-						EmailingMagasinSansCarte.this.lblMerciDeSlectionner
+						EmailingMagasin.this.lblMerciDeSlectionner
 								.setVisible(true);
 
 					} else
 
 					{
 
-						EmailingMagasinSansCarte.this.entetes = new String[compteur];
+						EmailingMagasin.this.entetes = new String[compteur];
 
-						EmailingMagasinSansCarte.this.donnees = new Object[EmailingMagasinSansCarte.this.membres
-								.size()][EmailingMagasinSansCarte.this.entetes.length];
+						EmailingMagasin.this.donnees = new Object[EmailingMagasin.this.membres
+								.size()][EmailingMagasin.this.entetes.length];
 
-						for (int j = 0; j < EmailingMagasinSansCarte.this.membres
-								.size(); j++) {
+						for (int j = 0; j < EmailingMagasin.this.membres.size(); j++) {
 
-							for (int i = 0; i < (EmailingMagasinSansCarte.this.entetes.length - 1); i++) {
+							for (int i = 0; i < (EmailingMagasin.this.entetes.length - 1); i++) {
 
-								if (EmailingMagasinSansCarte.this.chckbxCivilit
+								if (EmailingMagasin.this.chckbxCivilit
 										.isSelected() == true) {
-									EmailingMagasinSansCarte.this.entetes[i] = "Civilité";
-									EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+									EmailingMagasin.this.entetes[i] = "Civilité";
+									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 											.get(j).getCiviliteIndividu();
 									i++;
 
 								}
-								if (EmailingMagasinSansCarte.this.chckbxNom
-										.isSelected() == true) {
-									EmailingMagasinSansCarte.this.entetes[i] = "Nom";
-									EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+								if (EmailingMagasin.this.chckbxNom.isSelected() == true) {
+									EmailingMagasin.this.entetes[i] = "Nom";
+									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 											.get(j).getNomIndividu();
 									i++;
 
 								}
-								if (EmailingMagasinSansCarte.this.chckbxPrnom
+								if (EmailingMagasin.this.chckbxPrnom
 										.isSelected() == true) {
-									EmailingMagasinSansCarte.this.entetes[i] = "Prénom";
-									EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+									EmailingMagasin.this.entetes[i] = "Prénom";
+									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 											.get(j).getPrenomIndividu();
 									i++;
 
 								}
-								if (EmailingMagasinSansCarte.this.chckbxAdresse
+								if (EmailingMagasin.this.chckbxAdresse
 										.isSelected() == true) {
-									EmailingMagasinSansCarte.this.entetes[i] = "Adresse";
-									EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+									EmailingMagasin.this.entetes[i] = "Adresse";
+									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 											.get(j).getAdresseIndividu();
 									i++;
 								}
-								if (EmailingMagasinSansCarte.this.chckbxVille
+								if (EmailingMagasin.this.chckbxVille
 										.isSelected() == true) {
-									EmailingMagasinSansCarte.this.entetes[i] = "Ville";
-									EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+									EmailingMagasin.this.entetes[i] = "Ville";
+									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 											.get(j).getVilleIndividu();
 									i++;
 								}
-								if (EmailingMagasinSansCarte.this.chckbxCodepostal
+								if (EmailingMagasin.this.chckbxCodepostal
 										.isSelected() == true) {
-									EmailingMagasinSansCarte.this.entetes[i] = "Code Postal";
-									EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+									EmailingMagasin.this.entetes[i] = "Code Postal";
+									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 											.get(j).getCodePostalIndividu();
 									i++;
 								}
-
-								if (EmailingMagasinSansCarte.this.checkBox_2
+								if (EmailingMagasin.this.chckbxDateDeNaissance
 										.isSelected() == true) {
-									EmailingMagasinSansCarte.this.entetes[i] = "Age";
+									if (EmailingMagasin.this.membres.get(j)
+											.getDateNaissanceIndividu() != null) {
+										EmailingMagasin.this.entetes[i] = "Date de Naissance";
+										EmailingMagasin.this.donnees[j][i] = "'"
+												+ EmailingMagasin.this.membres
+														.get(j)
+														.getDateNaissanceIndividu();
+										i++;
+									} else {
+										EmailingMagasin.this.entetes[i] = "Date de Naissance";
+										EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+												.get(j)
+												.getDateNaissanceIndividu();
+										i++;
+									}
+								}
+								if (EmailingMagasin.this.chckbxAge.isSelected() == true) {
+									EmailingMagasin.this.entetes[i] = "Age";
 
-									EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 											.get(j).getAge() + " ans";
 									i++;
 								}
-								if (EmailingMagasinSansCarte.this.chckbxEmail
+								if (EmailingMagasin.this.chckbxEmail
 										.isSelected() == true) {
-									EmailingMagasinSansCarte.this.entetes[i] = "Adresse Mail";
-									EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+									EmailingMagasin.this.entetes[i] = "Adresse Mail";
+									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 											.get(j).getEmail();
 									i++;
 								}
-								if (EmailingMagasinSansCarte.this.chckbxAbonnementNewsletter
+								if (EmailingMagasin.this.chckbxAbonnementNewsletter
 										.isSelected() == true) {
-									EmailingMagasinSansCarte.this.entetes[i] = "Newsletter";
-									EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+									EmailingMagasin.this.entetes[i] = "Newsletter";
+									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 											.get(j).getNewsletterIndividu();
 									i++;
 								}
-
-								if (EmailingMagasinSansCarte.this.chckbxMagasinDeReference
+								if (EmailingMagasin.this.chckbxNCarteDe
 										.isSelected() == true) {
-									EmailingMagasinSansCarte.this.entetes[i] = "Magasin";
-									EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+									if (EmailingMagasin.this.membres.get(j)
+											.getNumerocarte() != null) {
+										EmailingMagasin.this.entetes[i] = "N°Client";
+										EmailingMagasin.this.donnees[j][i] = "'"
+												+ EmailingMagasin.this.membres
+														.get(j)
+														.getNumerocarte();
+										i++;
+									} else {
+										EmailingMagasin.this.entetes[i] = "N°Client";
+										EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+												.get(j).getNumerocarte();
+										i++;
+									}
+								}
+								if (EmailingMagasin.this.chckbxMagasinDeReference
+										.isSelected() == true) {
+									EmailingMagasin.this.entetes[i] = "Magasin";
+									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 											.get(j).getNommagasin();
 									i++;
 								}
-								if (EmailingMagasinSansCarte.this.checkBox
-										.isSelected() == true) {
-									if (EmailingMagasinSansCarte.this.membres
-											.get(j).getTelephonefixe() != null) {
-										EmailingMagasinSansCarte.this.entetes[i] = "Téléphone";
-										EmailingMagasinSansCarte.this.donnees[j][i] = "'"
-												+ EmailingMagasinSansCarte.this.membres
+								if (EmailingMagasin.this.checkBox.isSelected() == true) {
+									if (EmailingMagasin.this.membres.get(j)
+											.getTelephonefixe() != null) {
+										EmailingMagasin.this.entetes[i] = "Téléphone";
+										EmailingMagasin.this.donnees[j][i] = "'"
+												+ EmailingMagasin.this.membres
 														.get(j)
 														.getTelephonefixe();
 										i++;
 									} else {
-										EmailingMagasinSansCarte.this.entetes[i] = "Téléphone";
-										EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+										EmailingMagasin.this.entetes[i] = "Téléphone";
+										EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 												.get(j).getTelephonefixe();
 										i++;
 									}
 								}
-								if (EmailingMagasinSansCarte.this.checkBox_1
+								if (EmailingMagasin.this.checkBox_1
 										.isSelected() == true) {
-									if (EmailingMagasinSansCarte.this.membres
-											.get(j).getTelephonemobile() != null) {
-										EmailingMagasinSansCarte.this.entetes[i] = "Mobile";
-										EmailingMagasinSansCarte.this.donnees[j][i] = "'"
-												+ EmailingMagasinSansCarte.this.membres
+									if (EmailingMagasin.this.membres.get(j)
+											.getTelephonemobile() != null) {
+										EmailingMagasin.this.entetes[i] = "Mobile";
+										EmailingMagasin.this.donnees[j][i] = "'"
+												+ EmailingMagasin.this.membres
 														.get(j)
 														.getTelephonemobile();
 										i++;
 									} else {
-										EmailingMagasinSansCarte.this.entetes[i] = "Mobile";
-										EmailingMagasinSansCarte.this.donnees[j][i] = EmailingMagasinSansCarte.this.membres
+										EmailingMagasin.this.entetes[i] = "Mobile";
+										EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
 												.get(j).getTelephonemobile();
 										i++;
 									}
@@ -1178,30 +1219,30 @@ public class EmailingMagasinSansCarte extends JFrame {
 
 						}
 
-						if (EmailingMagasinSansCarte.this.membres.size() != 0) {
+						if (EmailingMagasin.this.membres.size() != 0) {
 
-							EmailingMagasinSansCarte.this.model = new DefaultTableModel(
-									EmailingMagasinSansCarte.this.donnees,
-									EmailingMagasinSansCarte.this.entetes);
+							EmailingMagasin.this.model = new DefaultTableModel(
+									EmailingMagasin.this.donnees,
+									EmailingMagasin.this.entetes);
 
-							EmailingMagasinSansCarte.this.table_3
-									.setModel(EmailingMagasinSansCarte.this.model);
+							EmailingMagasin.this.table_3
+									.setModel(EmailingMagasin.this.model);
 
 						}
 
 					}
 
-					EmailingMagasinSansCarte.this.chckbxSelectionnerLensembleDes
+					EmailingMagasin.this.chckbxSelectionnerLensembleDes
 							.setVisible(true);
-					EmailingMagasinSansCarte.this.lblExportxls.setVisible(true);
-					EmailingMagasinSansCarte.this.lblExportCvs.setVisible(true);
+					EmailingMagasin.this.lblExportxls.setVisible(true);
+					EmailingMagasin.this.lblExportCvs.setVisible(true);
 
 				}
 			});
 			this.lblValider.setVisible(false);
 			this.lblValider.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblValider.setForeground(Color.GRAY);
-			this.lblValider.setBounds(882, 367, 142, 23);
+			this.lblValider.setBounds(935, 366, 99, 23);
 		}
 		return this.lblValider;
 	}
@@ -1210,7 +1251,7 @@ public class EmailingMagasinSansCarte extends JFrame {
 		if (this.scrollPane_1 == null) {
 			this.scrollPane_1 = new JScrollPane();
 			this.scrollPane_1.setBorder(null);
-			this.scrollPane_1.setBounds(242, 400, 792, 250);
+			this.scrollPane_1.setBounds(242, 400, 788, 251);
 			this.scrollPane_1.setViewportView(this.getTable_3());
 		}
 		return this.scrollPane_1;

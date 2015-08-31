@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues;
+package fr.lefournildesprovinces.vues.extrationbases;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,11 +13,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Vector;
 
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -29,21 +26,20 @@ import javax.swing.table.DefaultTableModel;
 
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.ResultatRecherche;
-import fr.lefournildesprovinces.ressources.models.Ville;
-import fr.lefournildesprovinces.ressources.util.AutoCompletion;
 import fr.lefournildesprovinces.ressources.util.ExcelExporter;
+import fr.lefournildesprovinces.vues.MessageExport;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
-public class EmailingVille extends JFrame {
+public class Ensembleporteurcarte extends JFrame {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3693514439799046063L;
+	private static final long serialVersionUID = -19159476119965582L;
 	private JCheckBox chckbxAbonnementNewsletter;
 	private JCheckBox chckbxAdresse;
 	private JCheckBox chckbxCivilit;
@@ -62,7 +58,6 @@ public class EmailingVille extends JFrame {
 	private JCheckBox checkBox_1;
 	private JCheckBox checkBox_2;
 	private String choixformat;
-	private JComboBox<Object> comboBox;
 	private final JPanel contentPane;
 	private String desktopPath;
 	private Object[][] donnees;
@@ -81,19 +76,16 @@ public class EmailingVille extends JFrame {
 	private JLabel lblExportCvs;
 	private JLabel lblExportxls;
 	private JLabel lblFermer;
-	private JLabel lblMerciDeSlectionner;
 	private JLabel lblNewLabel;
 	private JLabel lblSelectionnerLesInformations;
 	private JLabel lblValider;
-	private ComboBoxModel<Object> listeville;
 	private Vector<ResultatRecherche> membres;
 	private String Message;
 	private DefaultTableModel model;
 	private JScrollPane scrollPane_1;
-	private int selectionIDville;
 	private JTable table_3;
 
-	public EmailingVille(final JFrame interfacepre) {
+	public Ensembleporteurcarte(final JFrame interfacepre) {
 		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1280, 800);
@@ -117,16 +109,16 @@ public class EmailingVille extends JFrame {
 					.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(final MouseEvent e) {
-							EmailingVille.this.chckbxToutDselectionner
+							Ensembleporteurcarte.this.chckbxToutDselectionner
 									.setSelected(false);
-							EmailingVille.this.chckbxToutSlectionner
+							Ensembleporteurcarte.this.chckbxToutSlectionner
 									.setSelected(false);
 						}
 					});
 			this.chckbxAbonnementNewsletter.setForeground(Color.GRAY);
 			this.chckbxAbonnementNewsletter.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
-			this.chckbxAbonnementNewsletter.setBounds(853, 263, 199, 23);
+			this.chckbxAbonnementNewsletter.setBounds(854, 197, 191, 23);
 			this.chckbxAbonnementNewsletter.setSelected(true);
 		}
 		return this.chckbxAbonnementNewsletter;
@@ -138,14 +130,15 @@ public class EmailingVille extends JFrame {
 			this.chckbxAdresse.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.chckbxAdresse.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxAdresse.setForeground(Color.GRAY);
-			this.chckbxAdresse.setBounds(343, 263, 102, 23);
+			this.chckbxAdresse.setBounds(337, 197, 93, 23);
 			this.chckbxAdresse.setSelected(true);
 		}
 		return this.chckbxAdresse;
@@ -157,14 +150,15 @@ public class EmailingVille extends JFrame {
 			this.chckbxCivilit.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.chckbxCivilit.setForeground(Color.GRAY);
 			this.chckbxCivilit.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxCivilit.setBounds(242, 263, 99, 23);
+			this.chckbxCivilit.setBounds(242, 197, 93, 23);
 			this.chckbxCivilit.setSelected(true);
 
 		}
@@ -177,14 +171,15 @@ public class EmailingVille extends JFrame {
 			this.chckbxCodepostal.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.chckbxCodepostal.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxCodepostal.setForeground(Color.GRAY);
-			this.chckbxCodepostal.setBounds(343, 315, 102, 23);
+			this.chckbxCodepostal.setBounds(337, 251, 109, 23);
 			this.chckbxCodepostal.setSelected(true);
 		}
 		return this.chckbxCodepostal;
@@ -196,15 +191,16 @@ public class EmailingVille extends JFrame {
 			this.chckbxDateDeNaissance.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.chckbxDateDeNaissance.setForeground(Color.GRAY);
 			this.chckbxDateDeNaissance
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxDateDeNaissance.setBounds(447, 263, 150, 23);
+			this.chckbxDateDeNaissance.setBounds(431, 197, 150, 23);
 			this.chckbxDateDeNaissance.setSelected(true);
 		}
 		return this.chckbxDateDeNaissance;
@@ -216,14 +212,15 @@ public class EmailingVille extends JFrame {
 			this.chckbxEmail.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.chckbxEmail.setForeground(Color.GRAY);
 			this.chckbxEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxEmail.setBounds(853, 289, 199, 23);
+			this.chckbxEmail.setBounds(431, 223, 150, 23);
 			this.chckbxEmail.setSelected(true);
 		}
 		return this.chckbxEmail;
@@ -236,15 +233,16 @@ public class EmailingVille extends JFrame {
 			this.chckbxMagasinDeReference.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.chckbxMagasinDeReference.setFont(new Font("Tahoma", Font.BOLD,
 					11));
 			this.chckbxMagasinDeReference.setForeground(Color.GRAY);
-			this.chckbxMagasinDeReference.setBounds(585, 289, 160, 23);
+			this.chckbxMagasinDeReference.setBounds(854, 223, 191, 23);
 			this.chckbxMagasinDeReference.setSelected(true);
 		}
 		return this.chckbxMagasinDeReference;
@@ -257,14 +255,15 @@ public class EmailingVille extends JFrame {
 			this.chckbxNCarteDe.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.chckbxNCarteDe.setForeground(Color.GRAY);
 			this.chckbxNCarteDe.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxNCarteDe.setBounds(585, 263, 160, 23);
+			this.chckbxNCarteDe.setBounds(583, 197, 157, 23);
 			this.chckbxNCarteDe.setSelected(true);
 		}
 		return this.chckbxNCarteDe;
@@ -276,14 +275,15 @@ public class EmailingVille extends JFrame {
 			this.chckbxNom.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.chckbxNom.setForeground(Color.GRAY);
 			this.chckbxNom.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxNom.setBounds(242, 289, 51, 23);
+			this.chckbxNom.setBounds(242, 223, 93, 23);
 			this.chckbxNom.setSelected(true);
 		}
 		return this.chckbxNom;
@@ -295,14 +295,15 @@ public class EmailingVille extends JFrame {
 			this.chckbxPrnom.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.chckbxPrnom.setForeground(Color.GRAY);
 			this.chckbxPrnom.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxPrnom.setBounds(242, 315, 99, 23);
+			this.chckbxPrnom.setBounds(242, 251, 93, 23);
 			this.chckbxPrnom.setSelected(true);
 
 		}
@@ -319,10 +320,11 @@ public class EmailingVille extends JFrame {
 						@Override
 						public void mouseClicked(final MouseEvent e) {
 
-							if (EmailingVille.this.chckbxSelectionnerLensembleDes
+							if (Ensembleporteurcarte.this.chckbxSelectionnerLensembleDes
 									.isSelected() == true) {
-								EmailingVille.this.table_3.selectAll();
-								EmailingVille.this.table_3.setFocusable(true);
+								Ensembleporteurcarte.this.table_3.selectAll();
+								Ensembleporteurcarte.this.table_3
+										.setFocusable(true);
 
 							}
 						}
@@ -330,7 +332,7 @@ public class EmailingVille extends JFrame {
 			this.chckbxSelectionnerLensembleDes.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
 			this.chckbxSelectionnerLensembleDes.setForeground(Color.GRAY);
-			this.chckbxSelectionnerLensembleDes.setBounds(242, 655, 270, 23);
+			this.chckbxSelectionnerLensembleDes.setBounds(242, 681, 270, 23);
 		}
 		return this.chckbxSelectionnerLensembleDes;
 	}
@@ -343,30 +345,33 @@ public class EmailingVille extends JFrame {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
 
-					EmailingVille.this.chckbxNom.setSelected(false);
-					EmailingVille.this.chckbxPrnom.setSelected(false);
-					EmailingVille.this.chckbxCivilit.setSelected(false);
-					EmailingVille.this.chckbxAdresse.setSelected(false);
-					EmailingVille.this.chckbxCodepostal.setSelected(false);
-					EmailingVille.this.chckbxVille.setSelected(false);
-					EmailingVille.this.chckbxEmail.setSelected(false);
-					EmailingVille.this.checkBox.setSelected(false);
-					EmailingVille.this.checkBox_2.setSelected(false);
-					EmailingVille.this.checkBox_1.setSelected(false);
-					EmailingVille.this.chckbxAbonnementNewsletter
+					Ensembleporteurcarte.this.chckbxNom.setSelected(false);
+					Ensembleporteurcarte.this.chckbxPrnom.setSelected(false);
+					Ensembleporteurcarte.this.chckbxCivilit.setSelected(false);
+					Ensembleporteurcarte.this.chckbxAdresse.setSelected(false);
+					Ensembleporteurcarte.this.chckbxCodepostal
 							.setSelected(false);
-					EmailingVille.this.chckbxNCarteDe.setSelected(false);
-					EmailingVille.this.chckbxDateDeNaissance.setSelected(false);
-					EmailingVille.this.chckbxMagasinDeReference
+					Ensembleporteurcarte.this.chckbxVille.setSelected(false);
+					Ensembleporteurcarte.this.chckbxEmail.setSelected(false);
+					Ensembleporteurcarte.this.checkBox.setSelected(false);
+					Ensembleporteurcarte.this.checkBox_2.setSelected(false);
+					Ensembleporteurcarte.this.checkBox_1.setSelected(false);
+					Ensembleporteurcarte.this.chckbxAbonnementNewsletter
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxNCarteDe.setSelected(false);
+					Ensembleporteurcarte.this.chckbxDateDeNaissance
+							.setSelected(false);
+					Ensembleporteurcarte.this.chckbxMagasinDeReference
+							.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 
 				}
 			});
 			this.chckbxToutDselectionner.setFont(new Font("Tahoma", Font.BOLD,
 					11));
 			this.chckbxToutDselectionner.setForeground(Color.GRAY);
-			this.chckbxToutDselectionner.setBounds(242, 365, 165, 23);
+			this.chckbxToutDselectionner.setBounds(242, 334, 176, 23);
 		}
 		return this.chckbxToutDselectionner;
 	}
@@ -377,30 +382,32 @@ public class EmailingVille extends JFrame {
 			this.chckbxToutSlectionner.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxNom.setSelected(true);
-					EmailingVille.this.chckbxPrnom.setSelected(true);
-					EmailingVille.this.chckbxCivilit.setSelected(true);
-					EmailingVille.this.chckbxAdresse.setSelected(true);
-					EmailingVille.this.chckbxCodepostal.setSelected(true);
-					EmailingVille.this.chckbxVille.setSelected(true);
-					EmailingVille.this.chckbxEmail.setSelected(true);
-					EmailingVille.this.checkBox.setSelected(true);
-					EmailingVille.this.checkBox_2.setSelected(true);
-					EmailingVille.this.checkBox_1.setSelected(true);
-					EmailingVille.this.chckbxAbonnementNewsletter
+					Ensembleporteurcarte.this.chckbxNom.setSelected(true);
+					Ensembleporteurcarte.this.chckbxPrnom.setSelected(true);
+					Ensembleporteurcarte.this.chckbxCivilit.setSelected(true);
+					Ensembleporteurcarte.this.chckbxAdresse.setSelected(true);
+					Ensembleporteurcarte.this.chckbxCodepostal
 							.setSelected(true);
-					EmailingVille.this.chckbxNCarteDe.setSelected(true);
-					EmailingVille.this.chckbxDateDeNaissance.setSelected(true);
-					EmailingVille.this.chckbxMagasinDeReference
+					Ensembleporteurcarte.this.chckbxVille.setSelected(true);
+					Ensembleporteurcarte.this.chckbxEmail.setSelected(true);
+					Ensembleporteurcarte.this.checkBox.setSelected(true);
+					Ensembleporteurcarte.this.checkBox_2.setSelected(true);
+					Ensembleporteurcarte.this.checkBox_1.setSelected(true);
+					Ensembleporteurcarte.this.chckbxAbonnementNewsletter
 							.setSelected(true);
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxNCarteDe.setSelected(true);
+					Ensembleporteurcarte.this.chckbxDateDeNaissance
+							.setSelected(true);
+					Ensembleporteurcarte.this.chckbxMagasinDeReference
+							.setSelected(true);
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxToutSlectionner
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxToutSlectionner.setForeground(Color.GRAY);
-			this.chckbxToutSlectionner.setBounds(409, 365, 164, 23);
+			this.chckbxToutSlectionner.setBounds(420, 334, 199, 23);
 			this.chckbxToutSlectionner.setSelected(true);
 		}
 		return this.chckbxToutSlectionner;
@@ -412,14 +419,15 @@ public class EmailingVille extends JFrame {
 			this.chckbxVille.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.chckbxVille.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxVille.setForeground(Color.GRAY);
-			this.chckbxVille.setBounds(343, 289, 102, 23);
+			this.chckbxVille.setBounds(337, 223, 93, 23);
 			this.chckbxVille.setSelected(true);
 		}
 		return this.chckbxVille;
@@ -432,13 +440,14 @@ public class EmailingVille extends JFrame {
 			this.checkBox.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.checkBox.setForeground(Color.GRAY);
-			this.checkBox.setBounds(752, 263, 103, 23);
+			this.checkBox.setBounds(742, 197, 110, 23);
 			this.checkBox.setSelected(true);
 		}
 		return this.checkBox;
@@ -451,13 +460,14 @@ public class EmailingVille extends JFrame {
 			this.checkBox_1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.checkBox_1.setForeground(Color.GRAY);
-			this.checkBox_1.setBounds(752, 289, 103, 23);
+			this.checkBox_1.setBounds(742, 223, 110, 23);
 			this.checkBox_1.setSelected(true);
 		}
 		return this.checkBox_1;
@@ -469,104 +479,24 @@ public class EmailingVille extends JFrame {
 			this.checkBox_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingVille.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingVille.this.chckbxToutSlectionner.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
 			this.checkBox_2.setSelected(true);
 			this.checkBox_2.setForeground(Color.GRAY);
 			this.checkBox_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.checkBox_2.setBounds(447, 289, 150, 23);
+			this.checkBox_2.setBounds(583, 223, 157, 23);
 		}
 		return this.checkBox_2;
-	}
-
-	private JComboBox<Object> getComboBox() {
-		if (this.comboBox == null) {
-			this.comboBox = new JComboBox<Object>();
-			this.comboBox.setEditable(false);
-			this.comboBox.setBackground(Color.WHITE);
-			this.comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.comboBox.setForeground(Color.GRAY);
-			this.comboBox.setBorder(null);
-			this.comboBox.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
-			this.comboBox.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(final ActionEvent arg0) {
-					try {
-						EmailingVille.this.selectionIDville = ((Ville) EmailingVille.this.comboBox
-								.getSelectedItem()).getIdville();
-						System.out.print(EmailingVille.this.selectionIDville);
-						EmailingVille.this.lblMerciDeSlectionner
-								.setVisible(false);
-						EmailingVille.this.lblValider.setVisible(true);
-					} catch (final Exception e) {
-						final String message = "Choix Impossible - Merci de vérifier votre sélection";
-						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingVille.this.interfaceActuelle, message);
-						fenetre.setVisible(true);
-						EmailingVille.this.interfaceActuelle.setEnabled(false);
-						EmailingVille.this.interfaceActuelle.setVisible(false);
-						EmailingVille.this.lblValider.setVisible(false);
-						EmailingVille.this.lblValider.setEnabled(false);
-						EmailingVille.this.lblMerciDeSlectionner
-								.setVisible(true);
-						EmailingVille.this.chckbxNom.setSelected(true);
-						EmailingVille.this.chckbxPrnom.setSelected(true);
-						EmailingVille.this.chckbxCivilit.setSelected(true);
-						EmailingVille.this.chckbxAdresse.setSelected(true);
-						EmailingVille.this.chckbxCodepostal.setSelected(true);
-						EmailingVille.this.chckbxVille.setSelected(true);
-						EmailingVille.this.checkBox.setSelected(true);
-						EmailingVille.this.checkBox_2.setSelected(true);
-						EmailingVille.this.checkBox_1.setSelected(true);
-						EmailingVille.this.chckbxEmail.setSelected(true);
-						EmailingVille.this.chckbxAbonnementNewsletter
-								.setSelected(true);
-						EmailingVille.this.chckbxNCarteDe.setSelected(true);
-						EmailingVille.this.chckbxDateDeNaissance
-								.setSelected(true);
-						EmailingVille.this.chckbxMagasinDeReference
-								.setSelected(true);
-						EmailingVille.this.chckbxSelectionnerLensembleDes
-								.setSelected(false);
-						EmailingVille.this.chckbxToutSlectionner
-								.setSelected(false);
-						EmailingVille.this.chckbxToutDselectionner
-								.setSelected(false);
-						EmailingVille.this.chckbxSelectionnerLensembleDes
-								.setVisible(false);
-						EmailingVille.this.lblExportxls.setVisible(false);
-						EmailingVille.this.lblExportCvs.setVisible(false);
-						if ((EmailingVille.this.table_3.getRowCount() != 0)
-								&& (EmailingVille.this.table_3.getColumnCount() != 0)) {
-							EmailingVille.this.model.setColumnCount(0);
-							EmailingVille.this.model.setRowCount(0);
-							EmailingVille.this.table_3
-									.setModel(EmailingVille.this.model);
-							EmailingVille.this.table_3.repaint();
-						}
-					}
-
-				}
-			});
-			this.comboBox.setBounds(242, 187, 795, 22);
-
-			this.listeville = new DefaultComboBoxModel<Object>(
-					Select.listeVille());
-			this.comboBox.setModel(this.listeville);
-			AutoCompletion.enable(this.comboBox);
-
-		}
-		return this.comboBox;
 	}
 
 	private JLabel getFond() {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
-			this.fond.setIcon(new ImageIcon(EmailingVille.class
+			this.fond.setIcon(new ImageIcon(Ensembleporteurcarte.class
 					.getResource("/Images/menus-extraction-long.png")));
 			this.fond.setBounds(216, 55, 850, 690);
 		}
@@ -581,7 +511,7 @@ public class EmailingVille extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final MenuPrincipal fenetre = new MenuPrincipal();
 					fenetre.setVisible(true);
-					EmailingVille.this.dispose();
+					Ensembleporteurcarte.this.dispose();
 				}
 			});
 			this.label
@@ -599,7 +529,7 @@ public class EmailingVille extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 					gestionclientcarte.setVisible(true);
-					EmailingVille.this.dispose();
+					Ensembleporteurcarte.this.dispose();
 				}
 			});
 			this.label_1.setCursor(Cursor
@@ -617,7 +547,7 @@ public class EmailingVille extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
-					EmailingVille.this.dispose();
+					Ensembleporteurcarte.this.dispose();
 				}
 			});
 			this.label_2.setCursor(Cursor
@@ -635,7 +565,7 @@ public class EmailingVille extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 					operation.setVisible(true);
-					EmailingVille.this.dispose();
+					Ensembleporteurcarte.this.dispose();
 				}
 			});
 			this.label_3.setCursor(Cursor
@@ -651,7 +581,7 @@ public class EmailingVille extends JFrame {
 					"(CTRL+C ou Pomme+C pour copier les donn\u00E9es)");
 			this.label_4.setForeground(Color.GRAY);
 			this.label_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.label_4.setBounds(242, 682, 317, 14);
+			this.label_4.setBounds(242, 706, 298, 14);
 		}
 		return this.label_4;
 	}
@@ -659,10 +589,8 @@ public class EmailingVille extends JFrame {
 	private JLayeredPane getLayeredPane_1() {
 		if (this.layeredPane == null) {
 			this.layeredPane = new JLayeredPane();
-			this.layeredPane.add(this.getLblMerciDeSlectionner());
 			this.layeredPane.add(this.getLblEmailingParMagasin());
 			this.layeredPane.add(this.getLblFermer());
-			this.layeredPane.add(this.getComboBox());
 			this.layeredPane.add(this.getLblValider());
 			this.layeredPane.add(this.getLblExportCvs());
 			this.layeredPane.add(this.getChckbxNom());
@@ -700,11 +628,11 @@ public class EmailingVille extends JFrame {
 	private JLabel getLblEmailingParMagasin() {
 		if (this.lblEmailingParMagasin == null) {
 			this.lblEmailingParMagasin = new JLabel(
-					"Tri par Ville (Clients titulaire d'une carte de fidelit\u00E9");
+					"Ensemble des client porteur d'une carte de fid\u00E9lit\u00E9");
 			this.lblEmailingParMagasin
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblEmailingParMagasin.setForeground(Color.GRAY);
-			this.lblEmailingParMagasin.setBounds(242, 110, 317, 14);
+			this.lblEmailingParMagasin.setBounds(242, 110, 331, 14);
 		}
 		return this.lblEmailingParMagasin;
 	}
@@ -712,7 +640,7 @@ public class EmailingVille extends JFrame {
 	private JLabel getLblExportCvs() {
 		if (this.lblExportCvs == null) {
 			this.lblExportCvs = new JLabel("");
-			this.lblExportCvs.setIcon(new ImageIcon(EmailingVille.class
+			this.lblExportCvs.setIcon(new ImageIcon(Ensembleporteurcarte.class
 					.getResource("/Images/export-csv.png")));
 			this.lblExportCvs.setVisible(false);
 			this.lblExportCvs.addMouseListener(new MouseAdapter() {
@@ -720,34 +648,36 @@ public class EmailingVille extends JFrame {
 				public void mouseClicked(final MouseEvent arg0) {
 
 					try {
+
 						final String os = System.getProperty("os.name")
 								.toLowerCase();
 						;
 						if (os.contains("mac")) {
-							EmailingVille.this.desktopPath = System
+							Ensembleporteurcarte.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 						} else {
-							EmailingVille.this.desktopPath = System
+							Ensembleporteurcarte.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 
 						}
 
 						final File dir = new File(
-								EmailingVille.this.desktopPath
+								Ensembleporteurcarte.this.desktopPath
 										+ "/Base Marketing Client/");
 						dir.mkdirs();
 						final File file = new File(dir,
-								"Extraction par ville (titulaire carte).csv");
+								"Extraction par ensemble client (titulaire carte).csv");
 
 						final FileWriter writer = new FileWriter(file);
 
-						for (int j = 0; j < EmailingVille.this.membres.size(); j++) {
+						for (int j = 0; j < Ensembleporteurcarte.this.membres
+								.size(); j++) {
 
-							for (int i = 0; i <= (EmailingVille.this.entetes.length - 1); i++) {
-								if (EmailingVille.this.donnees[j][i] != null) {
-									writer.append(EmailingVille.this.donnees[j][i]
+							for (int i = 0; i <= (Ensembleporteurcarte.this.entetes.length - 1); i++) {
+								if (Ensembleporteurcarte.this.donnees[j][i] != null) {
+									writer.append(Ensembleporteurcarte.this.donnees[j][i]
 											.toString());
-									if (i == (EmailingVille.this.entetes.length - 1)) {
+									if (i == (Ensembleporteurcarte.this.entetes.length - 1)) {
 										writer.append("\n");
 									} else {
 										writer.append(",");
@@ -762,32 +692,34 @@ public class EmailingVille extends JFrame {
 							}
 						}
 
-						EmailingVille.this.Message = "Exportation du fichier Extraction par ville (titulaire carte).csv réalisée avec succès";
-						EmailingVille.this.etat = true;
-						EmailingVille.this.choixformat = "CSV7";
+						Ensembleporteurcarte.this.Message = "Exportation du fichier Extraction par ensemble client (titulaire carte).csv réalisée avec succès";
+						Ensembleporteurcarte.this.etat = true;
+						Ensembleporteurcarte.this.choixformat = "CSV9";
 						final MessageExport fenetre = new MessageExport(
-								EmailingVille.this.Message,
-								EmailingVille.this.interfaceActuelle,
-								EmailingVille.this.etat,
-								EmailingVille.this.choixformat);
+								Ensembleporteurcarte.this.Message,
+								Ensembleporteurcarte.this.interfaceActuelle,
+								Ensembleporteurcarte.this.etat,
+								Ensembleporteurcarte.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingVille.this.interfaceActuelle.setEnabled(false);
+						Ensembleporteurcarte.this.interfaceActuelle
+								.setEnabled(false);
 
 						writer.flush();
 						writer.close();
 
 					} catch (final IOException e) {
 						e.printStackTrace();
-						EmailingVille.this.Message = "Impossible de générer le fichier CSV";
-						EmailingVille.this.etat = false;
-						EmailingVille.this.choixformat = "CSV";
+						Ensembleporteurcarte.this.Message = "Impossible de générer le fichier CSV";
+						Ensembleporteurcarte.this.etat = false;
+						Ensembleporteurcarte.this.choixformat = "CSV";
 						final MessageExport fenetre = new MessageExport(
-								EmailingVille.this.Message,
-								EmailingVille.this.interfaceActuelle,
-								EmailingVille.this.etat,
-								EmailingVille.this.choixformat);
+								Ensembleporteurcarte.this.Message,
+								Ensembleporteurcarte.this.interfaceActuelle,
+								Ensembleporteurcarte.this.etat,
+								Ensembleporteurcarte.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingVille.this.interfaceActuelle.setEnabled(false);
+						Ensembleporteurcarte.this.interfaceActuelle
+								.setEnabled(false);
 
 					}
 
@@ -797,7 +729,7 @@ public class EmailingVille extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblExportCvs.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblExportCvs.setForeground(Color.GRAY);
-			this.lblExportCvs.setBounds(891, 675, 133, 34);
+			this.lblExportCvs.setBounds(901, 681, 133, 34);
 		}
 		return this.lblExportCvs;
 	}
@@ -805,7 +737,7 @@ public class EmailingVille extends JFrame {
 	private JLabel getLblExportxls() {
 		if (this.lblExportxls == null) {
 			this.lblExportxls = new JLabel("");
-			this.lblExportxls.setIcon(new ImageIcon(EmailingVille.class
+			this.lblExportxls.setIcon(new ImageIcon(Ensembleporteurcarte.class
 					.getResource("/Images/export-excel.png")));
 			this.lblExportxls.setVisible(false);
 			this.lblExportxls.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -819,53 +751,55 @@ public class EmailingVille extends JFrame {
 								.toLowerCase();
 						;
 						if (os.contains("mac")) {
-							EmailingVille.this.desktopPath = System
+							Ensembleporteurcarte.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 						} else {
-							EmailingVille.this.desktopPath = System
+							Ensembleporteurcarte.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 
 						}
 
 						final File dir = new File(
-								EmailingVille.this.desktopPath
+								Ensembleporteurcarte.this.desktopPath
 										+ "/Base Marketing Client/");
 						dir.mkdirs();
 						final File file = new File(dir,
-								"Extraction par ville (titulaire carte).xls");
+								"Extraction par ensemble client (titulaire carte).xls");
 
 						final ExcelExporter exp = new ExcelExporter();
-						exp.exportTable(EmailingVille.this.table_3, file);
-						EmailingVille.this.etat = true;
-						EmailingVille.this.Message = "Exportation du fichier Extraction par ville (titulaire carte).xls réalisée avec succès";
-						EmailingVille.this.choixformat = "XLS7";
+						exp.exportTable(Ensembleporteurcarte.this.table_3, file);
+						Ensembleporteurcarte.this.etat = true;
+						Ensembleporteurcarte.this.Message = "Exportation du fichier Extraction par ensemble client (titulaire carte).xls réalisée avec succès";
+						Ensembleporteurcarte.this.choixformat = "XLS9";
 						final MessageExport fenetre = new MessageExport(
-								EmailingVille.this.Message,
-								EmailingVille.this.interfaceActuelle,
-								EmailingVille.this.etat,
-								EmailingVille.this.choixformat);
+								Ensembleporteurcarte.this.Message,
+								Ensembleporteurcarte.this.interfaceActuelle,
+								Ensembleporteurcarte.this.etat,
+								Ensembleporteurcarte.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingVille.this.interfaceActuelle.setEnabled(false);
+						Ensembleporteurcarte.this.interfaceActuelle
+								.setEnabled(false);
 
 					} catch (final IOException ex) {
 						System.out.println(ex.getMessage());
 						ex.printStackTrace();
-						EmailingVille.this.etat = false;
-						EmailingVille.this.choixformat = "XLS";
-						EmailingVille.this.Message = "Impossible de générer le fichier XLS";
+						Ensembleporteurcarte.this.etat = false;
+						Ensembleporteurcarte.this.choixformat = "XLS";
+						Ensembleporteurcarte.this.Message = "Impossible de générer le fichier XLS";
 						final MessageExport fenetre = new MessageExport(
-								EmailingVille.this.Message,
-								EmailingVille.this.interfaceActuelle,
-								EmailingVille.this.etat,
-								EmailingVille.this.choixformat);
+								Ensembleporteurcarte.this.Message,
+								Ensembleporteurcarte.this.interfaceActuelle,
+								Ensembleporteurcarte.this.etat,
+								Ensembleporteurcarte.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingVille.this.interfaceActuelle.setEnabled(false);
+						Ensembleporteurcarte.this.interfaceActuelle
+								.setEnabled(false);
 
 					}
 
 				}
 			});
-			this.lblExportxls.setBounds(720, 681, 133, 28);
+			this.lblExportxls.setBounds(744, 687, 133, 28);
 		}
 		return this.lblExportxls;
 	}
@@ -878,34 +812,24 @@ public class EmailingVille extends JFrame {
 			this.lblFermer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
-					EmailingVille.this.dispose();
-					EmailingVille.this.interfacePrecedente.setVisible(true);
-					EmailingVille.this.interfacePrecedente.setEnabled(true);
+					Ensembleporteurcarte.this.dispose();
+					Ensembleporteurcarte.this.interfacePrecedente
+							.setVisible(true);
+					Ensembleporteurcarte.this.interfacePrecedente
+							.setEnabled(true);
 				}
 			});
 			this.lblFermer.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblFermer.setForeground(Color.GRAY);
-			this.lblFermer.setBounds(873, 55, 179, 44);
+			this.lblFermer.setBounds(871, 55, 169, 44);
 		}
 		return this.lblFermer;
-	}
-
-	private JLabel getLblMerciDeSlectionner() {
-		if (this.lblMerciDeSlectionner == null) {
-			this.lblMerciDeSlectionner = new JLabel(
-					"Merci de s\u00E9lectionner une ville");
-			this.lblMerciDeSlectionner
-					.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lblMerciDeSlectionner.setForeground(Color.GRAY);
-			this.lblMerciDeSlectionner.setBounds(554, 191, 205, 14);
-		}
-		return this.lblMerciDeSlectionner;
 	}
 
 	private JLabel getLblNewLabel() {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
-			this.lblNewLabel.setIcon(new ImageIcon(EmailingVille.class
+			this.lblNewLabel.setIcon(new ImageIcon(Ensembleporteurcarte.class
 					.getResource("/Images/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
@@ -919,7 +843,7 @@ public class EmailingVille extends JFrame {
 			this.lblSelectionnerLesInformations.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
 			this.lblSelectionnerLesInformations.setForeground(Color.GRAY);
-			this.lblSelectionnerLesInformations.setBounds(242, 242, 292, 14);
+			this.lblSelectionnerLesInformations.setBounds(242, 165, 283, 14);
 		}
 		return this.lblSelectionnerLesInformations;
 	}
@@ -927,7 +851,7 @@ public class EmailingVille extends JFrame {
 	private JLabel getLblValider() {
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
-			this.lblValider.setIcon(new ImageIcon(EmailingVille.class
+			this.lblValider.setIcon(new ImageIcon(Ensembleporteurcarte.class
 					.getResource("/Images/valider.png")));
 			this.lblValider.setHorizontalAlignment(SwingConstants.RIGHT);
 			this.lblValider.setCursor(Cursor
@@ -937,252 +861,265 @@ public class EmailingVille extends JFrame {
 				public void mouseClicked(final MouseEvent arg0) {
 
 					int compteur = 0;
-					if (EmailingVille.this.checkBox.isSelected() == true) {
+
+					if (Ensembleporteurcarte.this.checkBox.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingVille.this.checkBox_1.isSelected() == true) {
+					if (Ensembleporteurcarte.this.checkBox_1.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingVille.this.checkBox_2.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxCivilit.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingVille.this.chckbxCivilit.isSelected() == true) {
+					if (Ensembleporteurcarte.this.checkBox_2.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingVille.this.chckbxNom.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxNom.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingVille.this.chckbxPrnom.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxPrnom.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingVille.this.chckbxAdresse.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxAdresse.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingVille.this.chckbxVille.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxVille.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingVille.this.chckbxCodepostal.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxCodepostal.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingVille.this.chckbxDateDeNaissance.isSelected() == true) {
-
-						compteur++;
-					}
-					if (EmailingVille.this.chckbxEmail.isSelected() == true) {
-
-						compteur++;
-					}
-					if (EmailingVille.this.chckbxAbonnementNewsletter
+					if (Ensembleporteurcarte.this.chckbxDateDeNaissance
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingVille.this.chckbxNCarteDe.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxEmail.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingVille.this.chckbxMagasinDeReference
+					if (Ensembleporteurcarte.this.chckbxAbonnementNewsletter
+							.isSelected() == true) {
+
+						compteur++;
+					}
+					if (Ensembleporteurcarte.this.chckbxNCarteDe.isSelected() == true) {
+
+						compteur++;
+					}
+					if (Ensembleporteurcarte.this.chckbxMagasinDeReference
 							.isSelected() == true) {
 
 						compteur++;
 					}
 					if (compteur > 4) {
-						EmailingVille.this.table_3
+						Ensembleporteurcarte.this.table_3
 								.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 					}
 					System.out.print(compteur);
 
-					EmailingVille.this.membres = Select
-							.eMailingville(EmailingVille.this.selectionIDville);
+					Ensembleporteurcarte.this.membres = Select
+							.ensembleporteurcarte();
 
-					if (EmailingVille.this.membres.size() == 0) {
+					if (Ensembleporteurcarte.this.membres.size() == 0) {
 						final String message = "Aucun Résultat";
 
 						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingVille.this.interfaceActuelle, message);
+								Ensembleporteurcarte.this.interfaceActuelle,
+								message);
 						fenetre.setVisible(true);
-						EmailingVille.this.interfaceActuelle.setEnabled(false);
-						EmailingVille.this.chckbxSelectionnerLensembleDes
+						Ensembleporteurcarte.this.interfaceActuelle
+								.setEnabled(false);
+						Ensembleporteurcarte.this.chckbxSelectionnerLensembleDes
 								.setSelected(false);
-						EmailingVille.this.lblValider.setVisible(false);
+						Ensembleporteurcarte.this.lblValider.setVisible(false);
 
-						if ((EmailingVille.this.table_3.getRowCount() != 0)
-								|| (EmailingVille.this.table_3.getColumnCount() != 0)) {
-							EmailingVille.this.model.setColumnCount(0);
-							EmailingVille.this.model.setRowCount(0);
-							EmailingVille.this.table_3
-									.setModel(EmailingVille.this.model);
-							EmailingVille.this.table_3.repaint();
+						if ((Ensembleporteurcarte.this.table_3.getRowCount() != 0)
+								|| (Ensembleporteurcarte.this.table_3
+										.getColumnCount() != 0)) {
+							Ensembleporteurcarte.this.model.setColumnCount(0);
+							Ensembleporteurcarte.this.model.setRowCount(0);
+							Ensembleporteurcarte.this.table_3
+									.setModel(Ensembleporteurcarte.this.model);
+							Ensembleporteurcarte.this.table_3.repaint();
 						}
 					}
 					if (compteur < 2) {
 						final String message = "Deux choix en sortie minimum";
 
 						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingVille.this.interfaceActuelle, message);
+								Ensembleporteurcarte.this.interfaceActuelle,
+								message);
 						fenetre.setVisible(true);
-						EmailingVille.this.interfaceActuelle.setEnabled(false);
-						EmailingVille.this.interfaceActuelle.setVisible(false);
-						EmailingVille.this.lblValider.setVisible(false);
-
-						EmailingVille.this.lblMerciDeSlectionner
-								.setVisible(true);
+						Ensembleporteurcarte.this.interfaceActuelle
+								.setEnabled(false);
+						Ensembleporteurcarte.this.interfaceActuelle
+								.setVisible(false);
+						Ensembleporteurcarte.this.lblValider.setVisible(false);
 
 					} else
 
 					{
 
-						EmailingVille.this.entetes = new String[compteur];
+						Ensembleporteurcarte.this.entetes = new String[compteur];
 
-						EmailingVille.this.donnees = new Object[EmailingVille.this.membres
-								.size()][EmailingVille.this.entetes.length];
+						Ensembleporteurcarte.this.donnees = new Object[Ensembleporteurcarte.this.membres
+								.size()][Ensembleporteurcarte.this.entetes.length];
 
-						for (int j = 0; j < EmailingVille.this.membres.size(); j++) {
+						for (int j = 0; j < Ensembleporteurcarte.this.membres
+								.size(); j++) {
 
-							for (int i = 0; i < (EmailingVille.this.entetes.length - 1); i++) {
+							for (int i = 0; i < (Ensembleporteurcarte.this.entetes.length - 1); i++) {
 
-								if (EmailingVille.this.chckbxCivilit
+								if (Ensembleporteurcarte.this.chckbxCivilit
 										.isSelected() == true) {
-									EmailingVille.this.entetes[i] = "Civilité";
-									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Civilité";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getCiviliteIndividu();
 									i++;
 
 								}
-								if (EmailingVille.this.chckbxNom.isSelected() == true) {
-									EmailingVille.this.entetes[i] = "Nom";
-									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+								if (Ensembleporteurcarte.this.chckbxNom
+										.isSelected() == true) {
+									Ensembleporteurcarte.this.entetes[i] = "Nom";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getNomIndividu();
 									i++;
 
 								}
-								if (EmailingVille.this.chckbxPrnom.isSelected() == true) {
-									EmailingVille.this.entetes[i] = "Prénom";
-									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+								if (Ensembleporteurcarte.this.chckbxPrnom
+										.isSelected() == true) {
+									Ensembleporteurcarte.this.entetes[i] = "Prénom";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getPrenomIndividu();
 									i++;
 
 								}
-								if (EmailingVille.this.chckbxAdresse
+								if (Ensembleporteurcarte.this.chckbxAdresse
 										.isSelected() == true) {
-									EmailingVille.this.entetes[i] = "Adresse";
-									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Adresse";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getAdresseIndividu();
 									i++;
 								}
-								if (EmailingVille.this.chckbxVille.isSelected() == true) {
-									EmailingVille.this.entetes[i] = "Ville";
-									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+								if (Ensembleporteurcarte.this.chckbxVille
+										.isSelected() == true) {
+									Ensembleporteurcarte.this.entetes[i] = "Ville";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getVilleIndividu();
 									i++;
 								}
-								if (EmailingVille.this.chckbxCodepostal
+								if (Ensembleporteurcarte.this.chckbxCodepostal
 										.isSelected() == true) {
-									EmailingVille.this.entetes[i] = "Code Postal";
-									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Code Postal";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getCodePostalIndividu();
 									i++;
 								}
-								if (EmailingVille.this.chckbxDateDeNaissance
+								if (Ensembleporteurcarte.this.chckbxDateDeNaissance
 										.isSelected() == true) {
-									if (EmailingVille.this.membres.get(j)
-											.getDateNaissanceIndividu() != null) {
-										EmailingVille.this.entetes[i] = "Date de Naissance";
-										EmailingVille.this.donnees[j][i] = "'"
-												+ EmailingVille.this.membres
+									if (Ensembleporteurcarte.this.membres
+											.get(j).getDateNaissanceIndividu() != null) {
+										Ensembleporteurcarte.this.entetes[i] = "Date de Naissance";
+										Ensembleporteurcarte.this.donnees[j][i] = "'"
+												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getDateNaissanceIndividu();
 										i++;
 									} else {
-										EmailingVille.this.entetes[i] = "Date de Naissance";
-										EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+										Ensembleporteurcarte.this.entetes[i] = "Date de Naissance";
+										Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 												.get(j)
 												.getDateNaissanceIndividu();
 										i++;
 									}
 								}
-								if (EmailingVille.this.checkBox_2.isSelected() == true) {
-									EmailingVille.this.entetes[i] = "Age";
+								if (Ensembleporteurcarte.this.checkBox_2
+										.isSelected() == true) {
+									Ensembleporteurcarte.this.entetes[i] = "Age";
 
-									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getAge() + " ans";
 									i++;
 								}
-								if (EmailingVille.this.chckbxEmail.isSelected() == true) {
-									EmailingVille.this.entetes[i] = "Adresse Mail";
-									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+								if (Ensembleporteurcarte.this.chckbxEmail
+										.isSelected() == true) {
+									Ensembleporteurcarte.this.entetes[i] = "Adresse Mail";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getEmail();
 									i++;
 								}
-								if (EmailingVille.this.chckbxAbonnementNewsletter
+								if (Ensembleporteurcarte.this.chckbxAbonnementNewsletter
 										.isSelected() == true) {
-									EmailingVille.this.entetes[i] = "Newsletter";
-									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Newsletter";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getNewsletterIndividu();
 									i++;
 								}
-								if (EmailingVille.this.chckbxNCarteDe
+								if (Ensembleporteurcarte.this.chckbxNCarteDe
 										.isSelected() == true) {
-									if (EmailingVille.this.membres.get(j)
-											.getNumerocarte() != null) {
-										EmailingVille.this.entetes[i] = "N°Client";
-										EmailingVille.this.donnees[j][i] = "'"
-												+ EmailingVille.this.membres
+									if (Ensembleporteurcarte.this.membres
+											.get(j).getNumerocarte() != null) {
+										Ensembleporteurcarte.this.entetes[i] = "N°Client";
+										Ensembleporteurcarte.this.donnees[j][i] = "'"
+												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getNumerocarte();
 										i++;
 									} else {
-										EmailingVille.this.entetes[i] = "N°Client";
-										EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+										Ensembleporteurcarte.this.entetes[i] = "N°Client";
+										Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 												.get(j).getNumerocarte();
 										i++;
 									}
 								}
-								if (EmailingVille.this.chckbxMagasinDeReference
+								if (Ensembleporteurcarte.this.chckbxMagasinDeReference
 										.isSelected() == true) {
-									EmailingVille.this.entetes[i] = "Magasin";
-									EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Magasin";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getNommagasin();
 									i++;
 								}
-								if (EmailingVille.this.checkBox.isSelected() == true) {
-									if (EmailingVille.this.membres.get(j)
-											.getTelephonefixe() != null) {
-										EmailingVille.this.entetes[i] = "Téléphone";
-										EmailingVille.this.donnees[j][i] = "'"
-												+ EmailingVille.this.membres
+								if (Ensembleporteurcarte.this.checkBox
+										.isSelected() == true) {
+									if (Ensembleporteurcarte.this.membres
+											.get(j).getTelephonefixe() != null) {
+										Ensembleporteurcarte.this.entetes[i] = "Téléphone";
+										Ensembleporteurcarte.this.donnees[j][i] = "'"
+												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getTelephonefixe();
 										i++;
 									} else {
-										EmailingVille.this.entetes[i] = "Téléphone";
-										EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+										Ensembleporteurcarte.this.entetes[i] = "Téléphone";
+										Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 												.get(j).getTelephonefixe();
 										i++;
 									}
 
 								}
-								if (EmailingVille.this.checkBox_1.isSelected() == true) {
-									if (EmailingVille.this.membres.get(j)
-											.getTelephonemobile() != null) {
-										EmailingVille.this.entetes[i] = "Mobile";
-										EmailingVille.this.donnees[j][i] = "'"
-												+ EmailingVille.this.membres
+								if (Ensembleporteurcarte.this.checkBox_1
+										.isSelected() == true) {
+									if (Ensembleporteurcarte.this.membres
+											.get(j).getTelephonemobile() != null) {
+										Ensembleporteurcarte.this.entetes[i] = "Mobile";
+										Ensembleporteurcarte.this.donnees[j][i] = "'"
+												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getTelephonemobile();
 										i++;
 									} else {
-										EmailingVille.this.entetes[i] = "Mobile";
-										EmailingVille.this.donnees[j][i] = EmailingVille.this.membres
+										Ensembleporteurcarte.this.entetes[i] = "Mobile";
+										Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 												.get(j).getTelephonemobile();
 										i++;
 									}
@@ -1192,30 +1129,29 @@ public class EmailingVille extends JFrame {
 
 						}
 
-						if (EmailingVille.this.membres.size() != 0) {
+						if (Ensembleporteurcarte.this.membres.size() != 0) {
 
-							EmailingVille.this.model = new DefaultTableModel(
-									EmailingVille.this.donnees,
-									EmailingVille.this.entetes);
+							Ensembleporteurcarte.this.model = new DefaultTableModel(
+									Ensembleporteurcarte.this.donnees,
+									Ensembleporteurcarte.this.entetes);
 
-							EmailingVille.this.table_3
-									.setModel(EmailingVille.this.model);
+							Ensembleporteurcarte.this.table_3
+									.setModel(Ensembleporteurcarte.this.model);
 
 						}
 
 					}
 
-					EmailingVille.this.chckbxSelectionnerLensembleDes
+					Ensembleporteurcarte.this.chckbxSelectionnerLensembleDes
 							.setVisible(true);
-					EmailingVille.this.lblExportxls.setVisible(true);
-					EmailingVille.this.lblExportCvs.setVisible(true);
+					Ensembleporteurcarte.this.lblExportxls.setVisible(true);
+					Ensembleporteurcarte.this.lblExportCvs.setVisible(true);
 
 				}
 			});
-			this.lblValider.setVisible(false);
 			this.lblValider.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblValider.setForeground(Color.GRAY);
-			this.lblValider.setBounds(935, 365, 99, 23);
+			this.lblValider.setBounds(901, 334, 135, 23);
 		}
 		return this.lblValider;
 	}
@@ -1224,7 +1160,7 @@ public class EmailingVille extends JFrame {
 		if (this.scrollPane_1 == null) {
 			this.scrollPane_1 = new JScrollPane();
 			this.scrollPane_1.setBorder(null);
-			this.scrollPane_1.setBounds(242, 403, 785, 245);
+			this.scrollPane_1.setBounds(242, 377, 794, 295);
 			this.scrollPane_1.setViewportView(this.getTable_3());
 		}
 		return this.scrollPane_1;
