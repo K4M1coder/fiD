@@ -68,11 +68,13 @@ public class Login extends JFrame {
 		this.setContentPane(this.contentPane);
 		this.contentPane.add(this.getLayeredPane_1(), BorderLayout.CENTER);
 		this.setLocationRelativeTo(null);
-
 		this.setResizable(false);
-
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 1.0f));
 
+	}
+
+	public void setLblLoading(Loading lblLoading) {
+		this.lblLoading = lblLoading;
 	}
 
 	/**
@@ -94,12 +96,14 @@ public class Login extends JFrame {
 		if (validation == true) {
 			privilege = Select.privilege(this.utilisateur, this.motdepasse);
 			System.out.println("user "+this.utilisateur+" have "+privilege+" privilege ");
+			this.lblLoading.setVisible(false);
 			final MenuPrincipal menu = new MenuPrincipal();
 			menu.setVisible(true);
-			this.lblLoading.setVisible(true);
+//			this.lblLoading.setVisible(false);
 			this.dispose();
 		} else {
 			System.out.println("#### credential error ####");
+//			this.lblLoading.setVisible(false);
 			final LoginDenied fenetre = new LoginDenied();
 			fenetre.setVisible(true);
 			this.dispose();
@@ -116,7 +120,9 @@ public class Login extends JFrame {
 			this.boutonValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
+					lblLoading.setVisible(true);
 					Login.this.connect();
+					lblLoading.setVisible(false);
 				}
 			});
 			this.boutonValider.setForeground(Color.GRAY);
@@ -198,7 +204,7 @@ public class Login extends JFrame {
 		if (this.lblLoading==null){
 			this.lblLoading = new Loading();
 		}
-		this.lblLoading.setVisible(true);
+		this.lblLoading.setVisible(false);
 		return this.lblLoading;
 	}
 
