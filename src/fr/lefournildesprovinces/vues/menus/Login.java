@@ -8,7 +8,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,12 +24,13 @@ import javax.swing.SwingConstants;
 import fr.lefournildesprovinces.applet.Accueil;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Motdepassesuppression;
+import fr.lefournildesprovinces.vues.popups.Loading;
 
 public class Login extends JFrame {
 
 	private static String privilege;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -1017183315514673563L;
 
@@ -47,6 +51,7 @@ public class Login extends JFrame {
 	private JLabel lblFermer;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
+	private Loading lblLoading;
 
 	private String motdepasse = null;
 
@@ -91,6 +96,7 @@ public class Login extends JFrame {
 			System.out.println("user "+this.utilisateur+" have "+privilege+" privilege ");
 			final MenuPrincipal menu = new MenuPrincipal();
 			menu.setVisible(true);
+			this.lblLoading.setVisible(true);
 			this.dispose();
 		} else {
 			System.out.println("#### credential error ####");
@@ -120,6 +126,7 @@ public class Login extends JFrame {
 	}
 
 	private JTextField getFieldIdentifiant() {
+
 		if (this.fieldIdentifiant == null) {
 			this.fieldIdentifiant = new JTextField();
 			this.fieldIdentifiant.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -175,6 +182,7 @@ public class Login extends JFrame {
 	private JLayeredPane getLayeredPane_1() {
 		if (this.layeredPane == null) {
 			this.layeredPane = new JLayeredPane();
+			this.layeredPane.add(this.getLoading());
 			this.layeredPane.add(this.getFieldIdentifiant());
 			this.layeredPane.add(this.getFieldPassword());
 			this.layeredPane.add(this.getBoutonValider());
@@ -184,6 +192,14 @@ public class Login extends JFrame {
 			this.layeredPane.add(this.getLblNewLabel_1());
 		}
 		return this.layeredPane;
+	}
+
+	private Loading getLoading(){
+		if (this.lblLoading==null){
+			this.lblLoading = new Loading();
+		}
+		this.lblLoading.setVisible(true);
+		return this.lblLoading;
 	}
 
 	private JLabel getLblFermer() {
@@ -222,8 +238,7 @@ public class Login extends JFrame {
 	private JLabel getLblNewLabel_1() {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
-			this.lblNewLabel_1.setIcon(new ImageIcon(Login.class
-					.getResource("/Images/fond-logiciel.png")));
+			this.lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/Images/fond-logiciel.png")));
 			this.lblNewLabel_1.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNewLabel_1.setBounds(0, 0, 1280, 800);
