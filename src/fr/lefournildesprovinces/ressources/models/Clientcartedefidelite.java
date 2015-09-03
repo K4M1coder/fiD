@@ -17,6 +17,7 @@ public class Clientcartedefidelite {
 	String prenomIndividu;
 	String telfixe;
 	String villeIndividu;
+	Boolean vip;
 
 	public String getAdresseIndividu() {
 		return this.adresseIndividu;
@@ -138,6 +139,14 @@ public class Clientcartedefidelite {
 		this.villeIndividu = villeIndividu;
 	}
 
+	public Boolean getVip() {
+		return vip;
+	}
+
+	public void setVip(Boolean vip) {
+		this.vip = vip;
+	}
+
 	@Override
 	public String toString() {
 //		return "Clientcartedefidelite [idclient=" + this.idclient
@@ -170,7 +179,8 @@ public class Clientcartedefidelite {
 				+ " - date " + date
 				+ " - tél. " + phone
 //				+ " - " + this.villeIndividu
-				+ " > " + this.Nommagasin;
+				+ " > " + this.Nommagasin
+				+((this.vip==true)?" VIP":"");
 	}
 
 }
