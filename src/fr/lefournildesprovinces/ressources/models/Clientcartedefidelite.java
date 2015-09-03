@@ -175,12 +175,13 @@ public class Clientcartedefidelite {
 
 		String date=(this.dateNaissanceIndividu!=null)?	date =this.dateNaissanceIndividu:"?";
 
+		System.out.print("vip : " +(this.vip) != null? this.vip:"null");
 		return this.age + " ans"
 				+ " - date " + date
 				+ " - tél. " + phone
 //				+ " - " + this.villeIndividu
 				+ " > " + this.Nommagasin
-				+((this.vip==true)?" VIP":"");
+				+" - VIP : "+(this.vip != null ? ((this.vip = true) ? "OUI":"NON"):"?");
 	}
 
 }

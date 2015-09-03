@@ -297,7 +297,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 			this.comboBox_2.setEditable(true);
 			this.comboBox_2.setBorder(null);
 			this.comboBox_2.setBackground(Color.WHITE);
-			this.comboBox_2.setBounds(285, 488, 521, 22);
+			this.comboBox_2.setBounds(285, 488, 738, 22);
 			AutoCompletion.enable(this.comboBox_2);
 
 		}
@@ -577,7 +577,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 	private JLabel getLblTaperOuSlectionner_1() {
 		if (this.lblTaperOuSlectionner_1 == null) {
 			this.lblTaperOuSlectionner_1 = new JLabel(
-					"Taper ou sélectionner un âge");
+					"Taper ou sélectionner un Client");
 			this.lblTaperOuSlectionner_1.setEnabled(false);
 			this.lblTaperOuSlectionner_1.setForeground(Color.GRAY);
 			this.lblTaperOuSlectionner_1.setFont(new Font("Tahoma", Font.BOLD,
@@ -905,7 +905,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 				}
 
 			});
-			this.lblValider.setBounds(902, 450, 121, 92);
+			this.lblValider.setBounds(902, 354, 121, 92);
 		}
 		return this.lblValider;
 	}

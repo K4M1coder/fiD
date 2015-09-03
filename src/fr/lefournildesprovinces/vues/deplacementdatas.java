@@ -29,7 +29,7 @@ public class deplacementdatas extends JFrame {
 	private static Connection c;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 2168098610236879418L;
 	private static PreparedStatement stm;
@@ -64,6 +64,7 @@ public class deplacementdatas extends JFrame {
 	private final String prenomClient;
 	private Vector<infostemporaire> requete;
 	private final String villeClient;
+	private final Boolean privilegeClient;
 
 	public deplacementdatas(final JFrame interfaceActuelle,
 			final String numerocarte, final String magasin,
@@ -72,7 +73,7 @@ public class deplacementdatas extends JFrame {
 			final String ville, final String CodePostal,
 			final String dateComplete, final String email,
 			final String newsletter, final String numfixe, final String numpor,
-			final String age, final int idoperationcommercialeparticipation,
+			final String age, final Boolean privilege, final int idoperationcommercialeparticipation,
 			final int idmagasinparticipation, final String choixmenuprecedent,
 			final int compteur2) {
 		this.setUndecorated(true);
@@ -101,6 +102,7 @@ public class deplacementdatas extends JFrame {
 		this.numerofixe = numfixe;
 		this.numeroportable = numpor;
 		this.ageClient = age;
+		this.privilegeClient=privilege;
 		this.idoperationclientparticipant = idoperationcommercialeparticipation;
 		this.idmagasinclientparticipant = idmagasinparticipation;
 		this.choixetprovenance = choixmenuprecedent;
@@ -278,6 +280,7 @@ public class deplacementdatas extends JFrame {
 							deplacementdatas.this.numerofixe,
 							deplacementdatas.this.numeroportable,
 							deplacementdatas.this.ageClient,
+							deplacementdatas.this.privilegeClient,
 							deplacementdatas.this.idoperationclientparticipant,
 							deplacementdatas.this.idmagasinclientparticipant,
 							deplacementdatas.this.choixetprovenance,

@@ -37,7 +37,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	private static Connection c;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -1441799905319467945L;
 	private static PreparedStatement stm;
@@ -109,7 +109,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 			final String ville, final String CodePostal,
 			final String dateComplete, final String email,
 			final String newsletter, final String numfixe, final String numpor,
-			final String age, final int idoperationcommercialeparticipation,
+			final String age, final Boolean vip, final int idoperationcommercialeparticipation,
 			final int idmagasinparticipation, final String choixmenuprecedent,
 			final int compteur2, final Vector<infostemporaire> requete) {
 		this.addWindowListener(new WindowAdapter() {
