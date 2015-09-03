@@ -408,7 +408,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 
 	private JComboBox<Object> getComboBoxMois() {
 		if (this.comboBoxMois == null) {
-			final String[] mois = { " --Mois--", "01 - Janvier",
+			final String[] mois = { "--Mois--", "01 - Janvier",
 					"02 - Février", "03 - Mars", "04 - Avril", "05 - Mai",
 					"06 - Juin", "07 - Juillet", "08 - Août", "09 - Septembre",
 					"10 - Octobre", "11 - Novembre", "12 - Décembre" };
@@ -422,9 +422,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 								.getSelectedItem().toString();
 
 						if (!"--Mois--".equals(moisdate)) {
-							System.out.println("mois="
-									+ FideliteNouvelleFicheClient.this.moisdate
-									+ "\n");
+							System.out.print("mois = "+ FideliteNouvelleFicheClient.this.moisdate);
 							FideliteNouvelleFicheClient.this.comboBoxAnnee
 									.setEnabled(true);
 
@@ -432,7 +430,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 							case "01 - Janvier":
 								FideliteNouvelleFicheClient.this.moisdate = "01";
 								break;
-							case "02 - Fevrier":
+							case "02 - Février":
 								FideliteNouvelleFicheClient.this.moisdate = "02";
 								break;
 							case "03 - Mars":
@@ -467,6 +465,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 								break;
 
 							}
+							System.out.println((moisdate.equals("--Mois--"))?"\"\"":" -> "+moisdate);
 						}
 
 					} catch (final Exception e1) {
