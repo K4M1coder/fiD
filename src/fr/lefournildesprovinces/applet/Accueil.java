@@ -20,7 +20,7 @@ import fr.lefournildesprovinces.start;
 public class Accueil extends JApplet {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 

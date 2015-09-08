@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.ressources.models.Message;
@@ -89,6 +90,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	private JLabel lblOui;
 	private JLabel lblville;
 	private JLabel lblVille;
+	private JLabel label_CartesFid;
 	private String messageInsertion;
 	private final String messageinsertion2 = null;
 	private final String newsletterClient;
@@ -385,10 +387,26 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 			this.layeredPane.add(this.getLblNewLabel_1());
 			this.layeredPane.add(this.getLblMail());
 			this.layeredPane.add(this.getLblNewLabel_2());
+			this.layeredPane.add(this.getLabel_CartesFid());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel_3());
 		}
 		return this.layeredPane;
+	}
+
+	private JLabel getLabel_CartesFid() {
+		if (this.label_CartesFid == null) {
+			this.label_CartesFid = new JLabel("");
+			this.label_CartesFid.setIcon(new ImageIcon(MenuPrincipal.class
+					.getResource("/Images/menus-carte-fid.png")));
+			this.label_CartesFid
+					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_CartesFid.setFont(new Font("Tahoma", Font.BOLD, 17));
+			this.label_CartesFid.setForeground(Color.GRAY);
+			this.label_CartesFid.setHorizontalAlignment(SwingConstants.CENTER);
+			this.label_CartesFid.setBounds(878, 313, 225, 145);
+		}
+		return this.label_CartesFid;
 	}
 
 	private JLabel getLblAdresse() {
