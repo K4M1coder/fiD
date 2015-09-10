@@ -228,7 +228,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 
 					FideliteNouvelleFicheClient.this.vip = FideliteNouvelleFicheClient.this.checkBoxVIP.isSelected();
 
-					System.out.println("vip change to : "+vip);
+					System.out.println("vip change to : "+FideliteNouvelleFicheClient.this.vip);
 
 				}
 			});

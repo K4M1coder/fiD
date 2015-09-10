@@ -41,23 +41,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	 *
 	 */
 	private static final long serialVersionUID = -1441799905319467945L;
-	private static PreparedStatement stm;
-	private final String adresseClient;
-	private final String ageClient;
-	private final String choixetprovenance;
-	private final String civiliteClient;
-	private final String codePostalClient;
-	private final int compteurprecedent;
-	private final JPanel contentPane;
-	private final String dateNaissanceClient;
-	private String dateNaissanceClientfinale = null;
-	private final String emailClient;
 	private JLabel fond;
-	private final int idmagasinClient;
-	private final int idmagasinclientparticipant;
-	private final int idoperationclientparticipant;
-	private final int idvilleClient;
-	private final JFrame InterfacePrecedente;
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
@@ -67,17 +51,14 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	private JLabel label_6;
 	private JLabel label_7;
 	private JLabel label_8;
-	private JLayeredPane layeredPane;
+	private JLabel label_CartesFid;
 	private JLabel lblAdresse;
-	private JLabel lbladresseClient;
 	private JLabel lblAge;
 	private JLabel lblCivilite;
 	private JLabel lblCiviliteNomPrenom;
-	private JLabel lblcodePostal;
 	private JLabel lblCodePostal;
 	private JLabel lblConfirmezVousLinsertion;
 	private JLabel lblDateDeNaissance;
-	private JLabel lbldateNaissance;
 	private JLabel lblInscriptionNewsletter;
 	private JLabel lblMail;
 	private JLabel lblMerciDeVerifier;
@@ -85,13 +66,29 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
-	private JLabel lblnewsletter;
 	private JLabel lblNon;
 	private JLabel lblOui;
-	private JLabel lblville;
 	private JLabel lblVille;
-	private JLabel label_CartesFid;
+	private JLabel lbladresseClient;
+	private JLabel lblcodePostal;
+	private JLabel lbldateNaissance;
+	private JLabel lblnewsletter;
+	private JLabel lblville;
+	private JLayeredPane layeredPane;
+	private String dateNaissanceClientfinale = null;
 	private String messageInsertion;
+	private String privilege;
+	private String text;
+	private final Boolean vip;
+	private final JFrame InterfacePrecedente;
+	private final JPanel contentPane;
+	private final String adresseClient;
+	private final String ageClient;
+	private final String choixetprovenance;
+	private final String civiliteClient;
+	private final String codePostalClient;
+	private final String dateNaissanceClient;
+	private final String emailClient;
 	private final String messageinsertion2 = null;
 	private final String newsletterClient;
 	private final String nomClient;
@@ -99,29 +96,29 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	private final String numerofixe;
 	private final String numeroportable;
 	private final String prenomClient;
-	private String privilege;
-	private final Vector<infostemporaire> requeteprecedente;
-	private String text;
 	private final String villeClient;
+	private final Vector<infostemporaire> requeteprecedente;
+	private final int compteurprecedent;
+	private final int idmagasinClient;
+	private final int idmagasinclientparticipant;
+	private final int idoperationclientparticipant;
+	private final int idvilleClient;
+	private static PreparedStatement stm;
 
-	public ConfirmationInsertionClientFidelite(final JFrame interfaceActuelle,
-			final String numerocarte, final String magasin,
-			final int idmagasin, final String civilite, final String nom,
-			final String prenom, final String adresse, final int idville,
-			final String ville, final String CodePostal,
-			final String dateComplete, final String email,
-			final String newsletter, final String numfixe, final String numpor,
-			final String age, final Boolean vip, final int idoperationcommercialeparticipation,
-			final int idmagasinparticipation, final String choixmenuprecedent,
-			final int compteur2, final Vector<infostemporaire> requete) {
+	public ConfirmationInsertionClientFidelite(final JFrame interfaceActuelle, final String numerocarte,
+			final String magasin, final int idmagasin, final String civilite, final String nom, final String prenom,
+			final String adresse, final int idville, final String ville, final String CodePostal,
+			final String dateComplete, final String email, final String newsletter, final String numfixe,
+			final String numpor, final String age, final Boolean vip, final int idoperationcommercialeparticipation,
+			final int idmagasinparticipation, final String choixmenuprecedent, final int compteur2,
+			final Vector<infostemporaire> requete) {
+		System.out.println("VIP is "+vip);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent e) {
 				ConfirmationInsertionClientFidelite.this.lblCiviliteNomPrenom
-						.setText(ConfirmationInsertionClientFidelite.this.civiliteClient
-								+ " "
-								+ ConfirmationInsertionClientFidelite.this.nomClient
-								+ " "
+						.setText(ConfirmationInsertionClientFidelite.this.civiliteClient + " "
+								+ ConfirmationInsertionClientFidelite.this.nomClient + " "
 								+ ConfirmationInsertionClientFidelite.this.prenomClient);
 				ConfirmationInsertionClientFidelite.this.lbladresseClient
 						.setText(ConfirmationInsertionClientFidelite.this.adresseClient);
@@ -145,6 +142,10 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 			}
 		});
 
+
+
+		this.vip = vip;
+		System.out.println("now VIP is "+this.vip);
 		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1280, 800);
@@ -189,10 +190,8 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 
 			case "utilisateur":
 
-				this.fond
-						.setIcon(new ImageIcon(
-								ConfirmationInsertionClientFidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+				this.fond.setIcon(new ImageIcon(
+						ConfirmationInsertionClientFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
 				this.label_5.setEnabled(false);
 				this.label_5.setVisible(false);
 				this.label_7.setEnabled(false);
@@ -204,16 +203,13 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 				this.label_5.setVisible(false);
 				this.label_7.setEnabled(false);
 				this.label_7.setVisible(false);
-				this.fond
-						.setIcon(new ImageIcon(
-								ConfirmationInsertionClientFidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+				this.fond.setIcon(new ImageIcon(
+						ConfirmationInsertionClientFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
-						ConfirmationInsertionClientFidelite.class
-								.getResource("/Images/menus_fidelite.png")));
+						ConfirmationInsertionClientFidelite.class.getResource("/Images/menus_fidelite.png")));
 				break;
 
 			}
@@ -224,7 +220,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 
 	private JLabel getLabel() {
 		if (this.label == null) {
-			this.label = new JLabel("T\u00E9l\u00E9phone :");
+			this.label = new JLabel("Téléphone :");
 			this.label.setForeground(Color.GRAY);
 			this.label.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.label.setBounds(397, 459, 79, 14);
@@ -273,8 +269,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 					ConfirmationInsertionClientFidelite.this.dispose();
 				}
 			});
-			this.label_4.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_4.setBounds(235, 231, 114, 44);
 		}
 		return this.label_4;
@@ -291,8 +286,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 					ConfirmationInsertionClientFidelite.this.dispose();
 				}
 			});
-			this.label_5.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_5.setBounds(472, 231, 114, 44);
 		}
 		return this.label_5;
@@ -309,8 +303,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 					ConfirmationInsertionClientFidelite.this.dispose();
 				}
 			});
-			this.label_6.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_6.setBounds(589, 231, 114, 44);
 		}
 		return this.label_6;
@@ -327,8 +320,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 					ConfirmationInsertionClientFidelite.this.dispose();
 				}
 			});
-			this.label_7.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_7.setBounds(703, 231, 114, 44);
 		}
 		return this.label_7;
@@ -345,8 +337,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 					ConfirmationInsertionClientFidelite.this.dispose();
 				}
 			});
-			this.label_8.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_8.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_8.setForeground(Color.GRAY);
 			this.label_8.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.label_8.setBounds(878, 231, 175, 48);
@@ -395,16 +386,22 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	}
 
 	private JLabel getLabel_CartesFid() {
+		System.out.print(ConfirmationInsertionClientFidelite.this.vip);
 		if (this.label_CartesFid == null) {
 			this.label_CartesFid = new JLabel("");
-			this.label_CartesFid.setIcon(new ImageIcon(MenuPrincipal.class
-					.getResource("/Images/menus-carte-fid.png")));
-			this.label_CartesFid
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_CartesFid.setIcon(new ImageIcon(
+					ConfirmationInsertionClientFidelite.class.getResource("/Images/carte-fidelite-3d.png")));
+			if (!ConfirmationInsertionClientFidelite.this.vip.equals(null)) {
+				if (ConfirmationInsertionClientFidelite.this.vip) {
+					this.label_CartesFid.setIcon(new ImageIcon(
+							ConfirmationInsertionClientFidelite.class.getResource("/Images/carte-privilege-3d.png")));
+				}
+			}
+			this.label_CartesFid.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_CartesFid.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_CartesFid.setForeground(Color.GRAY);
 			this.label_CartesFid.setHorizontalAlignment(SwingConstants.CENTER);
-			this.label_CartesFid.setBounds(878, 313, 225, 145);
+			this.label_CartesFid.setBounds(820, 340, 225, 145);
 		}
 		return this.label_CartesFid;
 	}
@@ -452,8 +449,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	private JLabel getLblCiviliteNomPrenom() {
 		if (this.lblCiviliteNomPrenom == null) {
 			this.lblCiviliteNomPrenom = new JLabel("");
-			this.lblCiviliteNomPrenom
-					.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lblCiviliteNomPrenom.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblCiviliteNomPrenom.setForeground(Color.GRAY);
 			this.lblCiviliteNomPrenom.setBounds(469, 356, 348, 14);
 		}
@@ -482,11 +478,9 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 
 	private JLabel getLblConfirmezVousLinsertion() {
 		if (this.lblConfirmezVousLinsertion == null) {
-			this.lblConfirmezVousLinsertion = new JLabel(
-					"Confirmez vous l'insertion de cette nouvelle Fiche Client ?");
+			this.lblConfirmezVousLinsertion = new JLabel("Confirmez vous l'insertion de cette nouvelle Fiche Client ?");
 			this.lblConfirmezVousLinsertion.setForeground(Color.GRAY);
-			this.lblConfirmezVousLinsertion.setFont(new Font("Tahoma",
-					Font.BOLD, 11));
+			this.lblConfirmezVousLinsertion.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblConfirmezVousLinsertion.setBounds(380, 524, 348, 14);
 		}
 		return this.lblConfirmezVousLinsertion;
@@ -515,8 +509,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	private JLabel getLblInscriptionNewsletter() {
 		if (this.lblInscriptionNewsletter == null) {
 			this.lblInscriptionNewsletter = new JLabel("Newsletter :");
-			this.lblInscriptionNewsletter.setFont(new Font("Tahoma", Font.BOLD,
-					11));
+			this.lblInscriptionNewsletter.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblInscriptionNewsletter.setForeground(Color.GRAY);
 			this.lblInscriptionNewsletter.setBounds(395, 484, 81, 14);
 		}
@@ -535,8 +528,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 
 	private JLabel getLblMerciDeVerifier() {
 		if (this.lblMerciDeVerifier == null) {
-			this.lblMerciDeVerifier = new JLabel(
-					"Merci de v\u00E9rifier votre saisie avant de confirmer :");
+			this.lblMerciDeVerifier = new JLabel("Merci de vérifier votre saisie avant de confirmer :");
 			this.lblMerciDeVerifier.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblMerciDeVerifier.setForeground(Color.GRAY);
 			this.lblMerciDeVerifier.setBounds(501, 321, 302, 14);
@@ -546,8 +538,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 
 	private JLabel getLblNewLabel() {
 		if (this.lblNewLabel == null) {
-			this.lblNewLabel = new JLabel(
-					"Nouvelle carte de fid\u00E9lit\u00E9");
+			this.lblNewLabel = new JLabel("Nouvelle carte de fidélité");
 			this.lblNewLabel.setForeground(Color.GRAY);
 			this.lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblNewLabel.setBounds(242, 286, 438, 14);
@@ -578,10 +569,9 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	private JLabel getLblNewLabel_3() {
 		if (this.lblNewLabel_3 == null) {
 			this.lblNewLabel_3 = new JLabel("");
-			this.lblNewLabel_3.setIcon(new ImageIcon(
-					ConfirmationInsertionClientFidelite.class
-							.getResource("/Images/fond-logiciel.png")));
-			this.lblNewLabel_3.setBounds(0, 0, 1281, 800);
+			this.lblNewLabel_3.setIcon(
+					new ImageIcon(ConfirmationInsertionClientFidelite.class.getResource("/Images/fond-logiciel.png")));
+			this.lblNewLabel_3.setBounds(-49, 0, 1281, 800);
 		}
 		return this.lblNewLabel_3;
 	}
@@ -599,21 +589,17 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	private JLabel getLblNon() {
 		if (this.lblNon == null) {
 			this.lblNon = new JLabel("");
-			this.lblNon.setIcon(new ImageIcon(
-					ConfirmationInsertionClientFidelite.class
-							.getResource("/Images/annuler.png")));
+			this.lblNon.setIcon(
+					new ImageIcon(ConfirmationInsertionClientFidelite.class.getResource("/Images/annuler.png")));
 			this.lblNon.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 					ConfirmationInsertionClientFidelite.this.dispose();
-					ConfirmationInsertionClientFidelite.this.InterfacePrecedente
-							.setVisible(true);
-					ConfirmationInsertionClientFidelite.this.InterfacePrecedente
-							.setEnabled(true);
+					ConfirmationInsertionClientFidelite.this.InterfacePrecedente.setVisible(true);
+					ConfirmationInsertionClientFidelite.this.InterfacePrecedente.setEnabled(true);
 				}
 			});
-			this.lblNon.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblNon.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblNon.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblNon.setForeground(Color.RED);
 			this.lblNon.setBounds(738, 520, 99, 23);
@@ -624,22 +610,20 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 	private JLabel getLblOui() {
 		if (this.lblOui == null) {
 			this.lblOui = new JLabel("");
-			this.lblOui.setIcon(new ImageIcon(
-					ConfirmationInsertionClientFidelite.class
-							.getResource("/Images/valider.png")));
+			this.lblOui.setIcon(
+					new ImageIcon(ConfirmationInsertionClientFidelite.class.getResource("/Images/valider.png")));
 			this.lblOui.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 					boolean etat = true;
 
 					if (ConfirmationInsertionClientFidelite.this.dateNaissanceClient != null) {
-						final String[] tab = ConfirmationInsertionClientFidelite.this.dateNaissanceClient
-								.split("/");
+						final String[] tab = ConfirmationInsertionClientFidelite.this.dateNaissanceClient.split("/");
 						final String day = tab[0];
 						final String month = tab[1];
 						final String year = tab[2];
-						ConfirmationInsertionClientFidelite.this.dateNaissanceClientfinale = year
-								+ "/" + month + "/" + day;
+						ConfirmationInsertionClientFidelite.this.dateNaissanceClientfinale = year + "/" + month + "/"
+								+ day;
 					}
 
 					try {
@@ -649,41 +633,21 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 						final String sql = "INSERT INTO CLIENT (CIVILITECLIENT,NOMCLIENT,PRENOMCLIENT,ADRESSECLIENT,IDVILLE,DATENAISSANCECLIENT,MAILCLIENT,ABONNEMENTNEWSLETTERCLIENT,TELEPHONEFIXECLIENT,TELEPHONEPORTABLECLIENT,AGECLIENT) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 						stm = c.prepareStatement(sql);
 
-						stm.setString(
-								1,
-								ConfirmationInsertionClientFidelite.this.civiliteClient);
-						stm.setString(
-								2,
-								ConfirmationInsertionClientFidelite.this.nomClient);
-						stm.setString(
-								3,
-								ConfirmationInsertionClientFidelite.this.prenomClient);
-						stm.setString(
-								4,
-								ConfirmationInsertionClientFidelite.this.adresseClient);
+						stm.setString(1, ConfirmationInsertionClientFidelite.this.civiliteClient);
+						stm.setString(2, ConfirmationInsertionClientFidelite.this.nomClient);
+						stm.setString(3, ConfirmationInsertionClientFidelite.this.prenomClient);
+						stm.setString(4, ConfirmationInsertionClientFidelite.this.adresseClient);
 						if (idvilleClient == 0) {
 							stm.setNull(5, Types.INTEGER);
 						} else {
 							stm.setInt(5, idvilleClient);
 						}
-						stm.setString(
-								6,
-								ConfirmationInsertionClientFidelite.this.dateNaissanceClientfinale);
-						stm.setString(
-								7,
-								ConfirmationInsertionClientFidelite.this.emailClient);
-						stm.setString(
-								8,
-								ConfirmationInsertionClientFidelite.this.newsletterClient);
-						stm.setString(
-								9,
-								ConfirmationInsertionClientFidelite.this.numerofixe);
-						stm.setString(
-								10,
-								ConfirmationInsertionClientFidelite.this.numeroportable);
-						stm.setString(
-								11,
-								ConfirmationInsertionClientFidelite.this.ageClient);
+						stm.setString(6, ConfirmationInsertionClientFidelite.this.dateNaissanceClientfinale);
+						stm.setString(7, ConfirmationInsertionClientFidelite.this.emailClient);
+						stm.setString(8, ConfirmationInsertionClientFidelite.this.newsletterClient);
+						stm.setString(9, ConfirmationInsertionClientFidelite.this.numerofixe);
+						stm.setString(10, ConfirmationInsertionClientFidelite.this.numeroportable);
+						stm.setString(11, ConfirmationInsertionClientFidelite.this.ageClient);
 
 						stm.executeUpdate();
 
@@ -705,9 +669,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 							stm = c.prepareStatement(table_frequenter);
 
 							stm.setInt(1, lastidclient);
-							stm.setInt(
-									2,
-									ConfirmationInsertionClientFidelite.this.idmagasinClient);
+							stm.setInt(2, ConfirmationInsertionClientFidelite.this.idmagasinClient);
 
 							stm.executeUpdate();
 							stm.close();
@@ -717,9 +679,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 						stm = c.prepareStatement(table_carte_de_fidelite);
 
 						stm.setInt(1, lastidclient);
-						stm.setString(
-								2,
-								ConfirmationInsertionClientFidelite.this.numcarte);
+						stm.setString(2, ConfirmationInsertionClientFidelite.this.numcarte);
 
 						stm.executeUpdate();
 						stm.close();
@@ -742,9 +702,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 							stm = c.prepareStatement(table_delivrer);
 
 							stm.setInt(1, lastidcarte);
-							stm.setInt(
-									2,
-									ConfirmationInsertionClientFidelite.this.idmagasinClient);
+							stm.setInt(2, ConfirmationInsertionClientFidelite.this.idmagasinClient);
 
 							stm.executeUpdate();
 							stm.close();
@@ -757,17 +715,11 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 								final String majcopyparticiper = "INSERT INTO PARTICIPER (IDOPERATIONCOMMERCIALE,IDCLIENT,IDMAGASIN) VALUES (?,?,?)";
 								stm = c.prepareStatement(majcopyparticiper);
 
-								stm.setInt(
-										1,
-										ConfirmationInsertionClientFidelite.this.requeteprecedente
-												.get(i)
-												.getIdoperationTemporaire());
+								stm.setInt(1, ConfirmationInsertionClientFidelite.this.requeteprecedente.get(i)
+										.getIdoperationTemporaire());
 								stm.setInt(2, lastidclient);
-								stm.setInt(
-										3,
-										ConfirmationInsertionClientFidelite.this.requeteprecedente
-												.get(i)
-												.getIdMagasinTemporaire());
+								stm.setInt(3, ConfirmationInsertionClientFidelite.this.requeteprecedente.get(i)
+										.getIdMagasinTemporaire());
 
 								stm.executeUpdate();
 
@@ -784,13 +736,9 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 							final String majcopyparticiper = "INSERT INTO PARTICIPER(IDOPERATIONCOMMERCIALE,IDCLIENT,IDMAGASIN) VALUES (?,?,?)";
 							stm = c.prepareStatement(majcopyparticiper);
 
-							stm.setInt(
-									1,
-									ConfirmationInsertionClientFidelite.this.idoperationclientparticipant);
+							stm.setInt(1, ConfirmationInsertionClientFidelite.this.idoperationclientparticipant);
 							stm.setInt(2, lastidclient);
-							stm.setInt(
-									3,
-									ConfirmationInsertionClientFidelite.this.idmagasinclientparticipant);
+							stm.setInt(3, ConfirmationInsertionClientFidelite.this.idmagasinclientparticipant);
 
 							stm.executeUpdate();
 
@@ -812,8 +760,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 								ConfirmationInsertionClientFidelite.this.idoperationclientparticipant,
 								ConfirmationInsertionClientFidelite.this.idmagasinclientparticipant);
 						fenetre.setVisible(true);
-						ConfirmationInsertionClientFidelite.this.InterfacePrecedente
-								.dispose();
+						ConfirmationInsertionClientFidelite.this.InterfacePrecedente.dispose();
 						ConfirmationInsertionClientFidelite.this.dispose();
 
 					} catch (final Exception e1)
@@ -829,41 +776,30 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 							 * year=tab[2];
 							 */
 							final String erreurtype = "Duplicate entry '"
-									+ ConfirmationInsertionClientFidelite.this.nomClient
-									+ "-"
-									+ ConfirmationInsertionClientFidelite.this.prenomClient
-									+ "-"
-									+ ConfirmationInsertionClientFidelite.this.ageClient
-									+ "-"
-									+ ConfirmationInsertionClientFidelite.this.idvilleClient
-									+ "' for key 'NOMCLIENT'";
+									+ ConfirmationInsertionClientFidelite.this.nomClient + "-"
+									+ ConfirmationInsertionClientFidelite.this.prenomClient + "-"
+									+ ConfirmationInsertionClientFidelite.this.ageClient + "-"
+									+ ConfirmationInsertionClientFidelite.this.idvilleClient + "' for key 'NOMCLIENT'";
 
 							if (erreur.equals(erreurtype)) {
 								ConfirmationInsertionClientFidelite.this.messageInsertion = "le Client "
-										+ ConfirmationInsertionClientFidelite.this.civiliteClient
-										+ " "
-										+ ConfirmationInsertionClientFidelite.this.nomClient
-										+ " "
+										+ ConfirmationInsertionClientFidelite.this.civiliteClient + " "
+										+ ConfirmationInsertionClientFidelite.this.nomClient + " "
 										+ ConfirmationInsertionClientFidelite.this.prenomClient
 										+ " possède deja une carte";
 
 							} else {
 								ConfirmationInsertionClientFidelite.this.messageInsertion = "Impossible d'insérer le Client "
-										+ ConfirmationInsertionClientFidelite.this.civiliteClient
-										+ " "
-										+ ConfirmationInsertionClientFidelite.this.nomClient
-										+ " "
-										+ ConfirmationInsertionClientFidelite.this.prenomClient
-										+ "";
+										+ ConfirmationInsertionClientFidelite.this.civiliteClient + " "
+										+ ConfirmationInsertionClientFidelite.this.nomClient + " "
+										+ ConfirmationInsertionClientFidelite.this.prenomClient + "";
 							}
-							System.out
-									.print(ConfirmationInsertionClientFidelite.this.messageInsertion);
+							System.out.print(ConfirmationInsertionClientFidelite.this.messageInsertion);
 							etat = false;
 							ConfirmationInsertionClientFidelite.this.text = "Nouvelle Fiche Client";
 							Message.setMessageaffichagefond(ConfirmationInsertionClientFidelite.this.text);
 							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
-									ConfirmationInsertionClientFidelite.this.messageInsertion,
-									etat,
+									ConfirmationInsertionClientFidelite.this.messageInsertion, etat,
 									ConfirmationInsertionClientFidelite.this.text,
 									ConfirmationInsertionClientFidelite.this.messageinsertion2,
 									ConfirmationInsertionClientFidelite.this.choixetprovenance,
@@ -891,8 +827,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 
 				}
 			});
-			this.lblOui.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblOui.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblOui.setForeground(Color.RED);
 			this.lblOui.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblOui.setBounds(878, 520, 99, 23);

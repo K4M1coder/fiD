@@ -1,8 +1,10 @@
 package fr.lefournildesprovinces.ressources.util;
 
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
@@ -15,7 +17,8 @@ public class ExcelExporter {
 			throws IOException {
 
 		final TableModel model = table.getModel();
-		final FileWriter out = new FileWriter(file);
+//		final FileWriter out = new FileWriter(file);
+		final BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file),"Windows-1252"));
 		for (int i = 0; i < model.getColumnCount(); i++) {
 			out.write(model.getColumnName(i) + "\t");
 		}

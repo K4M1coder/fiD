@@ -22,11 +22,12 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
+import fr.lefournildesprovinces.vues.popups.Loading;
 
 public class MenuPrincipal extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6634457681738095157L;
 	private JComboBox<Object> comboBoxMenu;
@@ -51,6 +52,7 @@ public class MenuPrincipal extends JFrame {
 	private JLabel lienoperation;
 	private String privilege;
 	private String selection;
+	private Loading lblLoading;
 
 	public MenuPrincipal() {
 		this.setUndecorated(true);
@@ -77,7 +79,7 @@ public class MenuPrincipal extends JFrame {
 		this.interfaceActuelle = this;
 
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 1.0f));
-		
+
 		MenuPrincipal.this.lblMerciDeSelectionner.setVisible(false);
 		MenuPrincipal.this.lblMerciDeSelectionner.setEnabled(false);
 		MenuPrincipal.this.lblValider.setVisible(false);
@@ -221,12 +223,13 @@ public class MenuPrincipal extends JFrame {
 		}
 		return this.fond;
 	}
-	
+
 	private JLayeredPane getLayeredPane_1() {
 		if (this.layeredPane == null) {
 			this.layeredPane = new JLayeredPane();
 			this.layeredPane.add(this.getLblMerciDeSelectionner());
 			this.layeredPane.add(this.getLblFermer());
+			this.layeredPane.add(this.getLoading());
 			this.layeredPane.add(this.getComboBoxMenu());
 			this.layeredPane.add(this.getLblValider());
 			this.layeredPane.add(this.getLblAccueilPour());
@@ -244,6 +247,14 @@ public class MenuPrincipal extends JFrame {
 			this.layeredPane.add(this.getCadre());
 		}
 		return this.layeredPane;
+	}
+
+	private Loading getLoading(){
+		if (this.lblLoading==null){
+			this.lblLoading = new Loading();
+		}
+		this.lblLoading.setVisible(false);
+		return this.lblLoading;
 	}
 
 	private JLabel getLabel_ADM() {
@@ -266,7 +277,7 @@ public class MenuPrincipal extends JFrame {
 		}
 		return this.label_ADM;
 	}
-	
+
 	private JLabel getLabel_Import() {
 		if (this.label_Import == null) {
 			this.label_Import = new JLabel("");
@@ -289,7 +300,7 @@ public class MenuPrincipal extends JFrame {
 		}
 		return this.label_Import;
 	}
-	
+
 	private JLabel getLabel_CartesFid() {
 		if (this.label_CartesFid == null) {
 			this.label_CartesFid = new JLabel("");
@@ -312,7 +323,7 @@ public class MenuPrincipal extends JFrame {
 		}
 		return this.label_CartesFid;
 	}
-	
+
 	private JLabel getLabel_OpCom() {
 		if (this.label_OpCom == null) {
 			this.label_OpCom = new JLabel("");
@@ -335,7 +346,7 @@ public class MenuPrincipal extends JFrame {
 		}
 		return this.label_OpCom;
 	}
-	
+
 	private JLabel getLabel_Magasins() {
 		if (this.label_Magasins == null) {
 			this.label_Magasins = new JLabel("");
@@ -359,7 +370,7 @@ public class MenuPrincipal extends JFrame {
 		}
 		return this.label_Magasins;
 	}
-	
+
 	private JLabel getLabel_Extraction() {
 		if (this.label_Extraction == null) {
 			this.label_Extraction = new JLabel("");
@@ -372,7 +383,7 @@ public class MenuPrincipal extends JFrame {
 			this.label_Extraction.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					
+
 					MenuPrincipal.this.selection="4";
 					validateAction();
 				}
@@ -466,6 +477,7 @@ public class MenuPrincipal extends JFrame {
 
 	private void validateAction() {
 		if (selection != null) {
+			this.lblLoading.setVisible(true);
 			switch (MenuPrincipal.this.selection) {
 			case "1": case "CARTES DE FIDELITE (Création, Mise à jour ou suppression d'une carte de fidelité)" :
 				final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
@@ -490,7 +502,7 @@ public class MenuPrincipal extends JFrame {
 				collecte.setVisible(true);
 				MenuPrincipal.this.dispose();
 				break;
-	
+
 			case "5":
 				final GestionAdministrativeUttilisateursApplication fenetre = new GestionAdministrativeUttilisateursApplication();
 				fenetre.setVisible(true);

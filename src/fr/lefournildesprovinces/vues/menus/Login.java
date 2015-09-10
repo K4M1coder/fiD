@@ -70,30 +70,39 @@ public class Login extends JFrame {
 
 	}
 
-	public void setLblLoading(Loading lblLoading) {
-		this.lblLoading = lblLoading;
-	}
-
 	/**
 	 * Connect to the database and forward, either on the welcome screen, or
 	 * display an error message.
 	 */
 	private void connect() {
-		this.lblLoading.setVisible(true);
+		Login.this.lblLoading.setVisible(true);
 
+		Thread longThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				connectcheck();
+			}
+		});
+
+		longThread.start();
+
+
+
+	}
+
+	private void connectcheck() {
 		this.utilisateur = this.fieldIdentifiant.getText();
-		System.out.print("connect user : "+this.utilisateur+" / ");
+		System.out.print("connect user : " + this.utilisateur + " / ");
 		final char[] tabPassword = this.fieldPassword.getPassword();
 		this.motdepasse = String.valueOf(tabPassword);
 		System.out.println(this.motdepasse);
 
 		Motdepassesuppression.setPasswordelete(this.motdepasse);
 
-		final boolean validation = Select.verificationuUsers(this.utilisateur,
-				this.motdepasse);
+		final boolean validation = Select.verificationuUsers(this.utilisateur, this.motdepasse);
 		if (validation == true) {
 			privilege = Select.privilege(this.utilisateur, this.motdepasse);
-			System.out.println("user "+this.utilisateur+" have "+privilege+" privilege ");
+			System.out.println("user " + this.utilisateur + " have " + privilege + " privilege ");
 			final MenuPrincipal menu = new MenuPrincipal();
 			menu.setVisible(true);
 			this.dispose();
@@ -103,19 +112,19 @@ public class Login extends JFrame {
 			fenetre.setVisible(true);
 			this.dispose();
 		}
+
 	}
 
 	private JLabel getBoutonValider() {
 		if (this.boutonValider == null) {
 			this.boutonValider = new JLabel("");
 			this.boutonValider.setIcon(null);
-			this.boutonValider.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.boutonValider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.boutonValider.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.boutonValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
-					Login.this.connect();
+					connect();
 				}
 			});
 			this.boutonValider.setForeground(Color.GRAY);
@@ -138,7 +147,7 @@ public class Login extends JFrame {
 				public void keyTyped(final KeyEvent e) {
 					super.keyTyped(e);
 					if ('\n' == e.getKeyChar()) {
-						Login.this.connect();
+						connect();
 					}
 				}
 			});
@@ -158,7 +167,7 @@ public class Login extends JFrame {
 				public void keyTyped(final KeyEvent e) {
 					super.keyTyped(e);
 					if ('\n' == e.getKeyChar()) {
-						Login.this.connect();
+						connect();
 					}
 				}
 			});
@@ -169,8 +178,7 @@ public class Login extends JFrame {
 	private JLabel getLabel_1() {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
-			this.fond.setIcon(new ImageIcon(Login.class
-					.getResource("/Images/administration.png")));
+			this.fond.setIcon(new ImageIcon(Login.class.getResource("/Images/administration.png")));
 			this.fond.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.fond.setHorizontalAlignment(SwingConstants.CENTER);
 			this.fond.setBounds(216, 231, 850, 357);
@@ -193,8 +201,8 @@ public class Login extends JFrame {
 		return this.layeredPane;
 	}
 
-	private Loading getLoading(){
-		if (this.lblLoading==null){
+	private Loading getLoading() {
+		if (this.lblLoading == null) {
 			this.lblLoading = new Loading();
 		}
 		this.lblLoading.setVisible(false);
@@ -205,8 +213,7 @@ public class Login extends JFrame {
 		if (this.lblFermer == null) {
 			this.lblFermer = new JLabel("");
 			this.lblFermer.setIcon(null);
-			this.lblFermer.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblFermer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblFermer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

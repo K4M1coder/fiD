@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import fr.lefournildesprovinces.vues.fidelite.FideliteNouvelleFicheClient;
 import fr.lefournildesprovinces.vues.fidelite.SelectionNumeroCarteFidelite2;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
+import fr.lefournildesprovinces.vues.popups.Loading;
 
 public class GestionCartesDeFidelite extends JFrame {
 
@@ -51,6 +52,7 @@ public class GestionCartesDeFidelite extends JFrame {
 	private String selection;
 	private final JFrame interfaceActuelle;
 	private final JPanel contentPane;
+	private Loading lblLoading;
 
 	public GestionCartesDeFidelite() {
 
@@ -85,26 +87,21 @@ public class GestionCartesDeFidelite extends JFrame {
 
 			switch (this.privilege) {
 			case "administrateur":
-				choix = new String[] { "", "NOUVELLE carte de fidélité",
-						"RECHERCHER une carte de fidelité",
-						"MISE A JOUR d'une carte de fidélité",
-						"SUPPRESSION d'une carte de fidélité",
+				choix = new String[] { "", "NOUVELLE carte de fidélité", "RECHERCHER une carte de fidelité",
+						"MISE A JOUR d'une carte de fidélité", "SUPPRESSION d'une carte de fidélité",
 						"DESINSCRIPTION Publicité Commerciale" };
 
 				break;
 
 			case "utilisateur":
-				choix = new String[] { "", "NOUVELLE carte de fidélité",
-						"RECHERCHER une carte de fidelité",
-						"MISE A JOUR d'une carte de fidélité",
-						"SUPPRESSION d'une carte de fidélité",
+				choix = new String[] { "", "NOUVELLE carte de fidélité", "RECHERCHER une carte de fidelité",
+						"MISE A JOUR d'une carte de fidélité", "SUPPRESSION d'une carte de fidélité",
 						"DESINSCRIPTION Publicité Commerciale" };
 
 				break;
 
 			case "invite":
-				choix = new String[] { "", "NOUVELLE carte de fidélité",
-						"MISE A JOUR d'une carte de fidélité" };
+				choix = new String[] { "", "NOUVELLE carte de fidélité", "MISE A JOUR d'une carte de fidélité" };
 
 				break;
 
@@ -114,44 +111,34 @@ public class GestionCartesDeFidelite extends JFrame {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
 					try {
-						GestionCartesDeFidelite.this.selection = GestionCartesDeFidelite.this.comboBox
-								.getSelectedItem().toString();
+						GestionCartesDeFidelite.this.selection = GestionCartesDeFidelite.this.comboBox.getSelectedItem()
+								.toString();
 						if (!selection.isEmpty()) {
-							GestionCartesDeFidelite.this.lblValider
-									.setVisible(true);
+							GestionCartesDeFidelite.this.lblValider.setVisible(true);
 
-							GestionCartesDeFidelite.this.lblMerciDeFaire
-									.setVisible(false);
+							GestionCartesDeFidelite.this.lblMerciDeFaire.setVisible(false);
 						} else {
-							GestionCartesDeFidelite.this.lblValider
-							.setVisible(false);
+							GestionCartesDeFidelite.this.lblValider.setVisible(false);
 
-					GestionCartesDeFidelite.this.lblMerciDeFaire
-							.setVisible(true);
+							GestionCartesDeFidelite.this.lblMerciDeFaire.setVisible(true);
 						}
 					} catch (final Exception e1) {
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						final AlerteSelection fenetre = new AlerteSelection(
-								GestionCartesDeFidelite.this.interfaceActuelle
-									,message);
+								GestionCartesDeFidelite.this.interfaceActuelle, message);
 						fenetre.setVisible(true);
-						GestionCartesDeFidelite.this.interfaceActuelle
-								.setEnabled(false);
-						GestionCartesDeFidelite.this.interfaceActuelle
-								.setVisible(false);
-						GestionCartesDeFidelite.this.lblValider
-								.setVisible(false);
+						GestionCartesDeFidelite.this.interfaceActuelle.setEnabled(false);
+						GestionCartesDeFidelite.this.interfaceActuelle.setVisible(false);
+						GestionCartesDeFidelite.this.lblValider.setVisible(false);
 
-						GestionCartesDeFidelite.this.lblMerciDeFaire
-								.setVisible(true);
+						GestionCartesDeFidelite.this.lblMerciDeFaire.setVisible(true);
 					}
 				}
 			});
 			this.comboBox.setBackground(Color.WHITE);
 			this.comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.comboBox.setForeground(Color.GRAY);
-			this.comboBox.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.comboBox.setBorder(null);
 			this.comboBox.setBounds(459, 658, 412, 22);
 			this.comboBox.setFocusable(true);
@@ -175,8 +162,8 @@ public class GestionCartesDeFidelite extends JFrame {
 
 			case "utilisateur":
 
-				this.fond.setIcon(new ImageIcon(GestionCartesDeFidelite.class
-						.getResource("/Images/menus-grises-fidelite.png")));
+				this.fond.setIcon(
+						new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
 				this.label.setEnabled(false);
 				this.label.setVisible(false);
 				this.label_2.setEnabled(false);
@@ -185,8 +172,8 @@ public class GestionCartesDeFidelite extends JFrame {
 				break;
 
 			case "invite":
-				this.fond.setIcon(new ImageIcon(GestionCartesDeFidelite.class
-						.getResource("/Images/menus-grises-fidelite.png")));
+				this.fond.setIcon(
+						new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
 				this.label.setEnabled(false);
 				this.label.setVisible(false);
 				this.label_2.setEnabled(false);
@@ -195,8 +182,8 @@ public class GestionCartesDeFidelite extends JFrame {
 				break;
 
 			case "administrateur":
-				this.fond.setIcon(new ImageIcon(GestionCartesDeFidelite.class
-						.getResource("/Images/menus_fidelite.png")));
+				this.fond.setIcon(
+						new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/menus_fidelite.png")));
 
 				break;
 
@@ -210,8 +197,7 @@ public class GestionCartesDeFidelite extends JFrame {
 	private JLabel getLabel() {
 		if (this.label == null) {
 			this.label = new JLabel("");
-			this.label
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
@@ -228,8 +214,7 @@ public class GestionCartesDeFidelite extends JFrame {
 	private JLabel getLabel_1() {
 		if (this.label_1 == null) {
 			this.label_1 = new JLabel("");
-			this.label_1.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
@@ -246,8 +231,7 @@ public class GestionCartesDeFidelite extends JFrame {
 	private JLabel getLabel_2() {
 		if (this.label_2 == null) {
 			this.label_2 = new JLabel("");
-			this.label_2.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
@@ -264,8 +248,7 @@ public class GestionCartesDeFidelite extends JFrame {
 	private JLabel getLabel_3() {
 		if (this.label_3 == null) {
 			this.label_3 = new JLabel("");
-			this.label_3.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_3.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
@@ -282,6 +265,7 @@ public class GestionCartesDeFidelite extends JFrame {
 	private JLayeredPane getLayeredPane_1() {
 		if (this.layeredPane == null) {
 			this.layeredPane = new JLayeredPane();
+			this.layeredPane.add(this.getLoading());
 			this.layeredPane.add(this.getLblMenu());
 			this.layeredPane.add(this.getLblFermer());
 			this.layeredPane.add(this.getLblMerciDeFaire());
@@ -304,19 +288,27 @@ public class GestionCartesDeFidelite extends JFrame {
 		return this.layeredPane;
 	}
 
+	private Loading getLoading() {
+		if (this.lblLoading == null) {
+			this.lblLoading = new Loading();
+		}
+		this.lblLoading.setVisible(false);
+		return this.lblLoading;
+	}
+
 	private JLabel getLabel_NewCarteFid() {
 		if (this.label_NewCarteFid == null) {
 			this.label_NewCarteFid = new JLabel("");
-			this.label_NewCarteFid.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/menubutons/bouton-fidelite-nouvelle-carte.png")));
-			this.label_NewCarteFid
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_NewCarteFid.setIcon(new ImageIcon(GestionCartesDeFidelite.class
+					.getResource("/Images/menubutons/bouton-fidelite-nouvelle-carte.png")));
+			this.label_NewCarteFid.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_NewCarteFid.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_NewCarteFid.setForeground(Color.GRAY);
 			this.label_NewCarteFid.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					GestionCartesDeFidelite.this.selection="NOUVELLE carte de fidélité";
+					GestionCartesDeFidelite.this.selection = "NOUVELLE carte de fidélité";
 					validateAction();
 				}
 			});
@@ -329,16 +321,16 @@ public class GestionCartesDeFidelite extends JFrame {
 	private JLabel getLabel_SearchCarteFid() {
 		if (this.label_SearchCarteFid == null) {
 			this.label_SearchCarteFid = new JLabel("");
-			this.label_SearchCarteFid.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/menubutons/bouton-fidelite-recherche.png")));
-			this.label_SearchCarteFid
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_SearchCarteFid.setIcon(new ImageIcon(
+					GestionCartesDeFidelite.class.getResource("/Images/menubutons/bouton-fidelite-recherche.png")));
+			this.label_SearchCarteFid.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_SearchCarteFid.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_SearchCarteFid.setForeground(Color.GRAY);
 			this.label_SearchCarteFid.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					GestionCartesDeFidelite.this.selection="RECHERCHER une carte de fidelité";
+					GestionCartesDeFidelite.this.selection = "RECHERCHER une carte de fidelité";
 					validateAction();
 				}
 			});
@@ -351,16 +343,16 @@ public class GestionCartesDeFidelite extends JFrame {
 	private JLabel getLabel_ModCarteFid() {
 		if (this.label_ModCarteFid == null) {
 			this.label_ModCarteFid = new JLabel("");
-			this.label_ModCarteFid.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/menubutons/bouton-fidelite-mise-jour.png")));
-			this.label_ModCarteFid
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_ModCarteFid.setIcon(new ImageIcon(
+					GestionCartesDeFidelite.class.getResource("/Images/menubutons/bouton-fidelite-mise-jour.png")));
+			this.label_ModCarteFid.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_ModCarteFid.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_ModCarteFid.setForeground(Color.GRAY);
 			this.label_ModCarteFid.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					GestionCartesDeFidelite.this.selection="MISE A JOUR d'une carte de fidélité";
+					GestionCartesDeFidelite.this.selection = "MISE A JOUR d'une carte de fidélité";
 					validateAction();
 				}
 			});
@@ -373,16 +365,16 @@ public class GestionCartesDeFidelite extends JFrame {
 	private JLabel getLabel_DeleteCarteFid() {
 		if (this.label_DeleteCarteFid == null) {
 			this.label_DeleteCarteFid = new JLabel("");
-			this.label_DeleteCarteFid.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/menubutons/bouton-fidelite-supression.png")));
-			this.label_DeleteCarteFid
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_DeleteCarteFid.setIcon(new ImageIcon(
+					GestionCartesDeFidelite.class.getResource("/Images/menubutons/bouton-fidelite-supression.png")));
+			this.label_DeleteCarteFid.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_DeleteCarteFid.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_DeleteCarteFid.setForeground(Color.GRAY);
 			this.label_DeleteCarteFid.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					GestionCartesDeFidelite.this.selection="SUPPRESSION d'une carte de fidélité";
+					GestionCartesDeFidelite.this.selection = "SUPPRESSION d'une carte de fidélité";
 					validateAction();
 				}
 			});
@@ -395,16 +387,16 @@ public class GestionCartesDeFidelite extends JFrame {
 	private JLabel getLabel_UnsubscribeCarteFid() {
 		if (this.label_UnsubscribeCarteFid == null) {
 			this.label_UnsubscribeCarteFid = new JLabel("");
-			this.label_UnsubscribeCarteFid.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/menubutons/bouton-fidelite-desinscription.png")));
-			this.label_UnsubscribeCarteFid
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_UnsubscribeCarteFid.setIcon(new ImageIcon(GestionCartesDeFidelite.class
+					.getResource("/Images/menubutons/bouton-fidelite-desinscription.png")));
+			this.label_UnsubscribeCarteFid.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_UnsubscribeCarteFid.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_UnsubscribeCarteFid.setForeground(Color.GRAY);
 			this.label_UnsubscribeCarteFid.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					GestionCartesDeFidelite.this.selection="DESINSCRIPTION Publicité Commerciale";
+					GestionCartesDeFidelite.this.selection = "DESINSCRIPTION Publicité Commerciale";
 					validateAction();
 				}
 			});
@@ -413,8 +405,6 @@ public class GestionCartesDeFidelite extends JFrame {
 		}
 		return this.label_UnsubscribeCarteFid;
 	}
-
-
 
 	private JLabel getLblFermer() {
 		if (this.lblFermer == null) {
@@ -427,8 +417,7 @@ public class GestionCartesDeFidelite extends JFrame {
 					GestionCartesDeFidelite.this.dispose();
 				}
 			});
-			this.lblFermer.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblFermer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblFermer.setForeground(Color.GRAY);
 			this.lblFermer.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblFermer.setBounds(878, 231, 175, 48);
@@ -438,8 +427,7 @@ public class GestionCartesDeFidelite extends JFrame {
 
 	private JLabel getLblMenu() {
 		if (this.lblMenu == null) {
-			this.lblMenu = new JLabel(
-					"Menu > Gestion Cartes de Fid\u00E9lit\u00E9");
+			this.lblMenu = new JLabel("Menu > Gestion Cartes de Fid\u00E9lit\u00E9");
 			this.lblMenu.setVisible(false);
 			this.lblMenu.setForeground(Color.GRAY);
 			this.lblMenu.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -450,8 +438,7 @@ public class GestionCartesDeFidelite extends JFrame {
 
 	private JLabel getLblMerciDeFaire() {
 		if (this.lblMerciDeFaire == null) {
-			this.lblMerciDeFaire = new JLabel(
-					"Merci de faire un choix");
+			this.lblMerciDeFaire = new JLabel("Merci de faire un choix");
 			this.lblMerciDeFaire.setForeground(Color.GRAY);
 			this.lblMerciDeFaire.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblMerciDeFaire.setBounds(903, 613, 150, 67);
@@ -462,8 +449,8 @@ public class GestionCartesDeFidelite extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
-			this.lblNewLabel.setIcon(new ImageIcon(GestionCartesDeFidelite.class
-					.getResource("/Images/fond-logiciel.png")));
+			this.lblNewLabel
+					.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -473,8 +460,7 @@ public class GestionCartesDeFidelite extends JFrame {
 		if (this.lblNouvelleFicheClientmise == null) {
 			this.lblNouvelleFicheClientmise = new JLabel(
 					"Nouvelle carte de fidelite, Mise \u00E0 jour carte de fidelité, Suppression carte de fidelité, D\u00E9sinscription Client Newsletter");
-			this.lblNouvelleFicheClientmise.setFont(new Font("Tahoma",
-					Font.BOLD, 11));
+			this.lblNouvelleFicheClientmise.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblNouvelleFicheClientmise.setForeground(Color.GRAY);
 			this.lblNouvelleFicheClientmise.setBounds(240, 287, 797, 14);
 		}
@@ -486,16 +472,14 @@ public class GestionCartesDeFidelite extends JFrame {
 			this.lblValider = new JLabel("");
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
-			this.lblValider.setIcon(new ImageIcon(GestionCartesDeFidelite.class
-					.getResource("/Images/valider.png")));
+			this.lblValider.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 					validateAction();
 				}
 			});
-			this.lblValider.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblValider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblValider.setForeground(Color.GRAY);
 			this.lblValider.setBounds(903, 627, 150, 67);
@@ -506,52 +490,61 @@ public class GestionCartesDeFidelite extends JFrame {
 	}
 
 	private void validateAction() {
+
 		System.out.print(GestionCartesDeFidelite.this.selection);
-		switch (GestionCartesDeFidelite.this.selection) {
-		case "NOUVELLE carte de fidélité":
-			final String choix1 = "Menu > Gestion Carte de Fidélité > Nouvelle Fiche Client";
-			final String numcarte = null;
-			final int numoperation = 0;
-			final int nummagasin = 0;
+		GestionCartesDeFidelite.this.lblLoading.setVisible(true);
+		Thread longThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
 
-			final FideliteNouvelleFicheClient nouvelleFiche = new FideliteNouvelleFicheClient(
-					numcarte, numoperation, nummagasin, choix1,GestionCartesDeFidelite.this.interfaceActuelle);
-			nouvelleFiche.setVisible(true);
-			GestionCartesDeFidelite.this.dispose();
-			break;
+				switch (GestionCartesDeFidelite.this.selection) {
+				case "NOUVELLE carte de fidélité":
+					final String choix1 = "Menu > Gestion Carte de Fidélité > Nouvelle Fiche Client";
+					final String numcarte = null;
+					final int numoperation = 0;
+					final int nummagasin = 0;
 
-		case "DESINSCRIPTION Publicité Commerciale":
-			final String choix = "Menu > Gestion Carte de Fidélité > Désincription Pub";
+					final FideliteNouvelleFicheClient nouvelleFiche = new FideliteNouvelleFicheClient(numcarte,
+							numoperation, nummagasin, choix1, GestionCartesDeFidelite.this.interfaceActuelle);
+					nouvelleFiche.setVisible(true);
 
-			final SelectionNumeroCarteFidelite2 desinscription = new SelectionNumeroCarteFidelite2(
-					GestionCartesDeFidelite.this.interfaceActuelle, choix);
-			desinscription.setVisible(true);
-			GestionCartesDeFidelite.this.dispose();
-			break;
+					break;
 
-		case "SUPPRESSION d'une carte de fidélité":
-			final String choix2 = "Menu > Gestion Carte de Fidélité > Suppression Fiche Client";
-			final SelectionNumeroCarteFidelite2 suppressionFiche = new SelectionNumeroCarteFidelite2(
-					GestionCartesDeFidelite.this.interfaceActuelle, choix2);
-			suppressionFiche.setVisible(true);
-			GestionCartesDeFidelite.this.dispose();
-			break;
+				case "DESINSCRIPTION Publicité Commerciale":
+					final String choix = "Menu > Gestion Carte de Fidélité > Désincription Pub";
 
-		case "MISE A JOUR d'une carte de fidélité":
-			final String choix3 = "Menu > Gestion Carte de Fidélité > Mise à Jour Fiche Client";
-			final SelectionNumeroCarteFidelite2 updateFiche = new SelectionNumeroCarteFidelite2(
-					GestionCartesDeFidelite.this.interfaceActuelle, choix3);
-			updateFiche.setVisible(true);
-			GestionCartesDeFidelite.this.dispose();
-			break;
+					final SelectionNumeroCarteFidelite2 desinscription = new SelectionNumeroCarteFidelite2(
+							GestionCartesDeFidelite.this.interfaceActuelle, choix);
+					desinscription.setVisible(true);
+					break;
 
-		case "RECHERCHER une carte de fidelité":
-			final String choix4 = "Menu > Gestion Carte de Fidélité > Consulter Fiche Client";
-			final SelectionNumeroCarteFidelite2 consultationfiche = new SelectionNumeroCarteFidelite2(
-					GestionCartesDeFidelite.this.interfaceActuelle, choix4);
-			consultationfiche.setVisible(true);
-			GestionCartesDeFidelite.this.dispose();
-			break;
-		}
+				case "SUPPRESSION d'une carte de fidélité":
+					final String choix2 = "Menu > Gestion Carte de Fidélité > Suppression Fiche Client";
+					final SelectionNumeroCarteFidelite2 suppressionFiche = new SelectionNumeroCarteFidelite2(
+							GestionCartesDeFidelite.this.interfaceActuelle, choix2);
+					suppressionFiche.setVisible(true);
+					break;
+
+				case "MISE A JOUR d'une carte de fidélité":
+					final String choix3 = "Menu > Gestion Carte de Fidélité > Mise à Jour Fiche Client";
+					final SelectionNumeroCarteFidelite2 updateFiche = new SelectionNumeroCarteFidelite2(
+							GestionCartesDeFidelite.this.interfaceActuelle, choix3);
+					updateFiche.setVisible(true);
+					break;
+
+				case "RECHERCHER une carte de fidelité":
+					final String choix4 = "Menu > Gestion Carte de Fidélité > Consulter Fiche Client";
+					final SelectionNumeroCarteFidelite2 consultationfiche = new SelectionNumeroCarteFidelite2(
+							GestionCartesDeFidelite.this.interfaceActuelle, choix4);
+					consultationfiche.setVisible(true);
+					break;
+				}
+				GestionCartesDeFidelite.this.lblLoading.setVisible(false);
+				GestionCartesDeFidelite.this.dispose();
+
+			}
+		});
+		longThread.start();
+
 	}
 }
