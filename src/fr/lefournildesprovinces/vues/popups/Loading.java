@@ -41,8 +41,8 @@ public class Loading extends JLabel {
 
 	public Loading() {
 		this.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		this.setBounds(461, 384, 64, 64);
-		this.setIcon(new ImageIcon(Loading.class.getResource("/Images/loading.gif")));
+		this.setBounds(461, 384, 400, 300);
+		this.setIcon(new ImageIcon(Loading.class.getResource("/Images/ajax-loader.gif")));
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 	}
