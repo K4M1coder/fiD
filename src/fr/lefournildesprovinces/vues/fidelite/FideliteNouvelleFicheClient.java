@@ -50,6 +50,8 @@ import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
+import fr.lefournildesprovinces.vues.popups.Loading;
+
 import javax.swing.JCheckBox;
 
 public class FideliteNouvelleFicheClient extends JFrame {
@@ -57,6 +59,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	private static Connection c;
 	private static PreparedStatement preStm;
 	private static ResultSet rs;
+	private Loading lblLoading;
 	/**
 	 *
 	 */
@@ -222,13 +225,14 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		if (this.checkBoxVIP == null) {
 			this.checkBoxVIP = new JCheckBox("VIP");
 			this.checkBoxVIP.setBounds(829, 492, 97, 23);
+			FideliteNouvelleFicheClient.this.vip = false;
 			this.checkBoxVIP.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
 
 					FideliteNouvelleFicheClient.this.vip = FideliteNouvelleFicheClient.this.checkBoxVIP.isSelected();
 
-					System.out.println("vip change to : "+FideliteNouvelleFicheClient.this.vip);
+					System.out.println("vip change to : " + FideliteNouvelleFicheClient.this.vip);
 
 				}
 			});
@@ -618,6 +622,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	private JLayeredPane getLayeredPane_1() {
 		if (this.layeredPane == null) {
 			this.layeredPane = new JLayeredPane();
+			this.layeredPane.add(this.getLoading());
 			this.layeredPane.add(this.getLblMenuGestion());
 			this.layeredPane.add(this.getLblFermer());
 			this.layeredPane.add(this.getLblNCarte());
@@ -664,6 +669,14 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			this.layeredPane.add(this.getLblNewLabel_1());
 		}
 		return this.layeredPane;
+	}
+
+	private Loading getLoading() {
+		if (this.lblLoading == null) {
+			this.lblLoading = new Loading();
+		}
+		this.lblLoading.setVisible(false);
+		return this.lblLoading;
 	}
 
 	private JLabel getLblAdresse() {
@@ -1098,15 +1111,411 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	}
 
 	/**
-	 * Validate form
+	 * this methode will validate filled datas by calling severals methods for each fields<br>
+	 * on error a warning message will be displayed to help the correction
 	 */
 	private void validateAction() {
-		boolean verification = true;
+		this.lblLoading.setVisible(true);
 
-		// Vérification de l'existence du numéro de carte ++
+		Thread longThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+
+				boolean verification = true;
+
+				// Vérification de l'existence du numéro de client ++
+				verification = (FideliteNouvelleFicheClient.this.numCliIsNew() == false) ? false : verification;
+				// Vérification de l'existence du numéro de client --
+
+				// Vérification de la saisie du numéro de client ++
+				verification = (FideliteNouvelleFicheClient.this.numCliIsSet() == false) ? false : verification;
+				// Vérification de la saisie du numéro de client --
+
+				// Vérification de la saisie du magasin ++
+				verification = (FideliteNouvelleFicheClient.this.magasinIsSet() == false) ? false : verification;
+				// Vérification de la saisie du magasin --
+
+				// Vérification de la saisie du magasin ++
+				verification = (FideliteNouvelleFicheClient.this.civiliteIsSet() == false) ? false : verification;
+				// Vérification de la saisie du magasin --
+
+				// Vérification de la saisie du NOM ++
+				verification = (FideliteNouvelleFicheClient.this.nomIsSet() == false) ? false : verification;
+				// Vérification de la saisie du NOM --
+
+				// Vérification de la saisie du PRENOM ++
+				verification = (FideliteNouvelleFicheClient.this.prenomIsSet() == false) ? false : verification;
+				// Vérification de la saisie du PRENOM --
+
+				// Vérification de la saisie du mail ++
+				verification = (FideliteNouvelleFicheClient.this.mailIsValid() == false) ? false : verification;
+				// Vérification de la saisie du mail --
+
+				// Vérification de la saisie du telephone fix ++
+				verification = (FideliteNouvelleFicheClient.this.telFixIsValid() == false) ? false : verification;
+				// Vérification de la saisie du telephone fix --
+
+				// Vérification de la saisie du telephone gsm ++
+				verification = (FideliteNouvelleFicheClient.this.telGSMIsValid() == false) ? false : verification;
+				// Vérification de la saisie du telephone gsm --
+
+				// Vérification de l'age du client ++
+				verification = (FideliteNouvelleFicheClient.this.ageIsValid() == false) ? false : verification;
+				// Vérification de l'age du client --
+
+				// Vérification de l'adresse du client ++
+				verification = (FideliteNouvelleFicheClient.this.adressIsValid() == false) ? false : verification;
+				// Vérification de l'adresse du client --
+
+				// Vérification du code postal du client ++
+				verification = (FideliteNouvelleFicheClient.this.cpIsValid() == false) ? false : verification;
+				// Vérification du code postal du client --
+
+				// Traitement spécifiques à la creation apres participation
+				// operation commerciale ++
+				if (!FideliteNouvelleFicheClient.this.choixmenuprecedent.equals("creationcarteparoperation")) {
+
+					// récuperation de la date à partir des combobox ++
+					if (FideliteNouvelleFicheClient.this.jourdate != null
+							&& FideliteNouvelleFicheClient.this.moisdate != null
+							&& FideliteNouvelleFicheClient.this.annee != null) {
+						FideliteNouvelleFicheClient.this.dateComplete = FideliteNouvelleFicheClient.this.jourdate + "/"
+								+ FideliteNouvelleFicheClient.this.moisdate + "/"
+								+ FideliteNouvelleFicheClient.this.annee;
+						System.out.println("date : " + FideliteNouvelleFicheClient.this.dateComplete);
+					}
+					// récuperation de la date à partir des combobox --
+				}
+				// Traitement spécifiques à la creation apres participation
+				// operation commerciale --
+				FideliteNouvelleFicheClient.this.newsletter = FideliteNouvelleFicheClient.this.valeurCaseNewsletter;
+
+				System.out.println("vérif saisie :::::::::" + verification + ":::::::::");
+				if (verification == true) {
+					try {
+						c = Connexion.getCon();
+						c.setAutoCommit(false);
+
+						final String sql = "SELECT COUNT(IDCLIENT) FROM CLIENT WHERE NOMCLIENT=? AND PRENOMCLIENT=? AND AGECLIENT=? AND CLIENT.IDCLIENT NOT IN (SELECT IDCLIENT FROM CARTE_DE_FIDELITE)";
+						preStm = c.prepareStatement(sql);
+						preStm.setString(1, FideliteNouvelleFicheClient.this.nomClient);
+						preStm.setString(2, FideliteNouvelleFicheClient.this.prenomClient);
+						preStm.setString(3, FideliteNouvelleFicheClient.this.age);
+						rs = preStm.executeQuery();
+
+						while (rs.next()) {
+							FideliteNouvelleFicheClient.this.compteur2 = rs.getInt(1);
+						}
+
+						preStm.close();
+						rs.close();
+						System.out.println("checkNumCliEXIST :::::::::" + FideliteNouvelleFicheClient.this.compteur2
+								+ ":::::::::");
+
+					} catch (final SQLException e10) {
+						e10.getMessage();
+					}
+
+					if (FideliteNouvelleFicheClient.this.compteur2 == 0) {
+						final Vector<infostemporaire> requete = new Vector<infostemporaire>();
+						final ConfirmationInsertionClientFidelite fenetre = new ConfirmationInsertionClientFidelite(
+								FideliteNouvelleFicheClient.this.interfaceActuelle,
+								FideliteNouvelleFicheClient.this.numerocarte, FideliteNouvelleFicheClient.this.magasin,
+								FideliteNouvelleFicheClient.this.idmagasin, FideliteNouvelleFicheClient.this.civilite,
+								FideliteNouvelleFicheClient.this.nomClient,
+								FideliteNouvelleFicheClient.this.prenomClient,
+								FideliteNouvelleFicheClient.this.adresseClient,
+								FideliteNouvelleFicheClient.this.idville, FideliteNouvelleFicheClient.this.villeClient,
+								FideliteNouvelleFicheClient.this.CodePostalClient,
+								FideliteNouvelleFicheClient.this.dateComplete, FideliteNouvelleFicheClient.this.email,
+								FideliteNouvelleFicheClient.this.newsletter,
+								FideliteNouvelleFicheClient.this.telephonefixe,
+								FideliteNouvelleFicheClient.this.telephoneportable,
+								FideliteNouvelleFicheClient.this.age, FideliteNouvelleFicheClient.this.vip,
+								FideliteNouvelleFicheClient.this.idoperationcommercialeparticipation,
+								FideliteNouvelleFicheClient.this.idmagasinparticipation,
+								FideliteNouvelleFicheClient.this.choixmenuprecedent,
+								FideliteNouvelleFicheClient.this.compteur2, requete);
+						fenetre.setVisible(true);
+						FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
+						FideliteNouvelleFicheClient.this.interfaceActuelle.setVisible(false);
+
+					} else {
+
+						final deplacementdatas fenetre1 = new deplacementdatas(
+								FideliteNouvelleFicheClient.this.interfaceActuelle,
+								FideliteNouvelleFicheClient.this.numerocarte, FideliteNouvelleFicheClient.this.magasin,
+								FideliteNouvelleFicheClient.this.idmagasin, FideliteNouvelleFicheClient.this.civilite,
+								FideliteNouvelleFicheClient.this.nomClient,
+								FideliteNouvelleFicheClient.this.prenomClient,
+								FideliteNouvelleFicheClient.this.adresseClient,
+								FideliteNouvelleFicheClient.this.idville, FideliteNouvelleFicheClient.this.villeClient,
+								FideliteNouvelleFicheClient.this.CodePostalClient,
+								FideliteNouvelleFicheClient.this.dateComplete, FideliteNouvelleFicheClient.this.email,
+								FideliteNouvelleFicheClient.this.newsletter,
+								FideliteNouvelleFicheClient.this.telephonefixe,
+								FideliteNouvelleFicheClient.this.telephoneportable,
+								FideliteNouvelleFicheClient.this.age, FideliteNouvelleFicheClient.this.vip,
+								FideliteNouvelleFicheClient.this.idoperationcommercialeparticipation,
+								FideliteNouvelleFicheClient.this.idmagasinparticipation,
+								FideliteNouvelleFicheClient.this.choixmenuprecedent,
+								FideliteNouvelleFicheClient.this.compteur2);
+						fenetre1.setVisible(true);
+						FideliteNouvelleFicheClient.this.dispose();
+
+					}
+
+				} else {
+					System.out.println("impossible");
+
+					final AlerteSelection fenetre = new AlerteSelection(
+							FideliteNouvelleFicheClient.this.interfaceActuelle,
+							FideliteNouvelleFicheClient.this.message);
+					fenetre.setVisible(true);
+					FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
+				}
+
+				FideliteNouvelleFicheClient.this.lblLoading.setVisible(false);
+			}
+
+		});
+		longThread.start();
+	}
+
+	/**
+	 * check the PostCode validity
+	 *
+	 * @return <strong>true</strong> if postcode is valid <br>
+	 *         <Strong>false</strong> if postcode is not valid
+	 */
+	protected boolean cpIsValid() {
+		Boolean verification = true;
+		FideliteNouvelleFicheClient.this.CodePostalClient = FideliteNouvelleFicheClient.this.textField_CodePostal
+				.getText();
+
+		if (!FideliteNouvelleFicheClient.this.CodePostalClient.isEmpty()) {
+			if (FideliteNouvelleFicheClient.this.CodePostalClient.length() != 5) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "Merci de vérifier le code postal renseigné - Ce champ doit comporter 5 chiffres";
+			}
+		}
+		return verification;
+	}
+
+	/**
+	 * check the adrress validity
+	 *
+	 * @return <strong>true</strong> if adress is valid <br>
+	 *         <Strong>false</strong> if adress is not valid
+	 */
+	protected boolean adressIsValid() {
+		Boolean verification = true;
+		// Vérification de l'adresse du client ++
+		FideliteNouvelleFicheClient.this.adresseClient = FideliteNouvelleFicheClient.this.textField_Adresse.getText()
+				.toUpperCase();
+		try {
+			if (FideliteNouvelleFicheClient.this.comboBoxVilles.getSelectedIndex() > 0) {
+				FideliteNouvelleFicheClient.this.villeClient = FideliteNouvelleFicheClient.this.comboBoxVilles
+						.getSelectedItem().toString().toUpperCase();
+				FideliteNouvelleFicheClient.this.idville = ((Ville) FideliteNouvelleFicheClient.this.comboBoxVilles
+						.getSelectedItem()).getIdville();
+			}
+		} catch (final Exception e5) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Merci de selectionner une Ville";
+		}
+		// Vérification de l'addresse --
+		return verification;
+	}
+
+	/**
+	 * check the age validity
+	 *
+	 * @return <strong>true</strong> if age is valid <br>
+	 *         <Strong>false</strong> if age is not valid
+	 */
+	protected boolean ageIsValid() {
+		Boolean verification = true;
+		// Vérification de l'age du client ++
+		FideliteNouvelleFicheClient.this.age = FideliteNouvelleFicheClient.this.textField_Age.getText().toUpperCase()
+				.toString();
+		if (!FideliteNouvelleFicheClient.this.age.isEmpty()) {
+			if (Integer.parseInt(FideliteNouvelleFicheClient.this.age) < 18) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "Merci de vérifier l'àge du client : 18 ans minimum";
+			}
+		}
+		// Vérification de l'age du client --
+		return verification;
+	}
+
+	/**
+	 * check the GSM phone validity
+	 *
+	 * @return <strong>true</strong> if phone number is valid <br>
+	 *         <Strong>false</strong> if phone number is not valid
+	 */
+	protected boolean telGSMIsValid() {
+		Boolean verification = true;
+		// Vérification de la saisie du telephone gsm ++
+		FideliteNouvelleFicheClient.this.telephoneportable = null;
+		if (!FideliteNouvelleFicheClient.this.textField_TelMob.getText().isEmpty()) {
+			FideliteNouvelleFicheClient.this.telephoneportable = FideliteNouvelleFicheClient.this.textField_TelMob
+					.getText();
+
+			if (FideliteNouvelleFicheClient.this.telephoneportable.length() != 10) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "le numero de téléphone doit contenir 10 chiffres";
+			}
+		}
+		// Vérification de la saisie du telephone gsm --
+		return verification;
+	}
+
+	/**
+	 * check the home phone validity
+	 *
+	 * @return <strong>true</strong> if phone number is valid <br>
+	 *         <Strong>false</strong> if phone number is not valid
+	 */
+	protected boolean telFixIsValid() {
+		Boolean verification = true;
+		// Vérification de la saisie du telephone fix ++
+		FideliteNouvelleFicheClient.this.telephonefixe = null;
+		if (!FideliteNouvelleFicheClient.this.textField_TelFix.getText().isEmpty()) {
+			FideliteNouvelleFicheClient.this.telephonefixe = FideliteNouvelleFicheClient.this.textField_TelFix
+					.getText();
+			if (FideliteNouvelleFicheClient.this.telephonefixe.length() != 10) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "le numero de téléphone doit contenir 10 chiffres";
+			}
+		}
+		// Vérification de la saisie du telephone fix --
+		return verification;
+	}
+
+	/**
+	 * check if mail is valid
+	 *
+	 * @return <strong>true</strong> if mail is valid <br>
+	 *         <Strong>false</strong> if mail is not valid
+	 */
+	protected boolean mailIsValid() {
+		Boolean verification = true;
+		// Vérification de la saisie du mail ++
+		FideliteNouvelleFicheClient.this.email = null;
+
+		if (!FideliteNouvelleFicheClient.this.textField_Mail.getText().isEmpty()) {
+			FideliteNouvelleFicheClient.this.email = FideliteNouvelleFicheClient.this.textField_Mail.getText();
+
+			if (!EmailValidator.getInstance().isValid(FideliteNouvelleFicheClient.this.email)) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "Merci de vérifier l'adresse mail saisie";
+
+			}
+		}
+		// Vérification de la saisie du mail --
+		return verification;
+	}
+
+	/**
+	 * check if a lastname is filled
+	 *
+	 * @return <strong>true</strong> if lastname have been filled <br>
+	 *         <Strong>false</strong> if lastname havent been filled
+	 */
+	protected boolean prenomIsSet() {
+		Boolean verification = true;
+		// Vérification de la saisie du PRENOM ++
+		FideliteNouvelleFicheClient.this.prenomClient = FideliteNouvelleFicheClient.this.textField_Prenom.getText()
+				.toUpperCase();
+
+		if (FideliteNouvelleFicheClient.this.prenomClient.isEmpty()) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Merci de vérifier le prénom du client - Ce champ ne peut être vide";
+		}
+		// Vérification de la saisie du PRENOM --
+		return verification;
+	}
+
+	/**
+	 * check if a firstname is filled
+	 *
+	 * @return <strong>true</strong> if firstname have been filled <br>
+	 *         <Strong>false</strong> if firstname havent been filled
+	 */
+	protected boolean nomIsSet() {
+		// Vérification de la saisie du NOM ++
+		Boolean verification = true;
+		FideliteNouvelleFicheClient.this.nomClient = FideliteNouvelleFicheClient.this.textField_Nom.getText()
+				.toUpperCase();
+
+		if (FideliteNouvelleFicheClient.this.nomClient.isEmpty()) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Merci de vérifier le nom du client - Ce champ ne peut être vide";
+		}
+		// Vérification de la saisie du NOM --
+		return verification;
+	}
+
+	/**
+	 * check if a civilite is filled
+	 *
+	 * @return <strong>true</strong> if civilite have been filled <br>
+	 *         <Strong>false</strong> if civilite havent been filled
+	 */
+	protected boolean civiliteIsSet() {
+		// Vérification de la saisie du magasin ++
+		Boolean verification = true;
+		try {
+			FideliteNouvelleFicheClient.this.civilite = FideliteNouvelleFicheClient.this.comboBoxCivilite
+					.getSelectedItem().toString().toUpperCase();
+			if (civilite.isEmpty()) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "Merci de selectionner une civilité";
+			}
+		} catch (final Exception e5) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Merci de selectionner une civilité";
+		}
+		// Vérification de la saisie du magasin --
+		return verification;
+	}
+
+	/**
+	 * check if a mall have been selected
+	 *
+	 * @return <strong>true</strong> if mall have been sellected <br>
+	 *         <Strong>false</strong> if mall havent been selected
+	 */
+	protected boolean magasinIsSet() {
+		// Vérification de la saisie du magasin ++
+		Boolean verification = true;
+		try {
+			FideliteNouvelleFicheClient.this.magasin = FideliteNouvelleFicheClient.this.comboBoxMagasins
+					.getSelectedItem().toString().toUpperCase();
+			FideliteNouvelleFicheClient.this.idmagasin = ((Magasin) FideliteNouvelleFicheClient.this.comboBoxMagasins
+					.getSelectedItem()).getIdMagasin();
+		} catch (final Exception e5) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Merci de selectionner un magasin";
+		}
+		// Vérification de la saisie du magasin --
+		return verification;
+	}
+
+	/**
+	 * check if this is a new customer number
+	 *
+	 * @return <strong>true</strong> if card number is new<br>
+	 *         <Strong>false</strong> if card number is already registered
+	 */
+	protected boolean numCliIsNew() {
+		// Vérification de l'existence du numéro de client ++
 		FideliteNouvelleFicheClient.this.numerocarte = FideliteNouvelleFicheClient.this.formattedTextFieldNumCli
 				.getText();
 
+		Boolean verification = true;
 		int Compteur = 0;
 		try {
 
@@ -1134,217 +1543,26 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			verification = false;
 			FideliteNouvelleFicheClient.this.message = "Ce numéro de carte est deja utilisé";
 		}
-		// Vérification de l'existence du numéro de carte --
+		// Vérification de l'existence du numéro de client --
+		return verification;
+	}
 
+	/**
+	 * check if numCli is filled
+	 *
+	 * @return <strong>true</strong> if numCli is filled <br>
+	 *         <Strong>false</strong> if numCli is not filled
+	 */
+	protected Boolean numCliIsSet() {
 		// Vérification de la saisie du numéro de carte ++
+		Boolean verification = true;
 		if (FideliteNouvelleFicheClient.this.numerocarte.isEmpty()) {
 			verification = false;
 			FideliteNouvelleFicheClient.this.message = "Merci de vérifier votre numéro de client - Ce champ ne peut être vide";
 
 		}
 		// Vérification de la saisie du numéro de carte --
-
-		// Vérification de la saisie du magasin ++
-		try {
-			FideliteNouvelleFicheClient.this.magasin = FideliteNouvelleFicheClient.this.comboBoxMagasins
-					.getSelectedItem().toString().toUpperCase();
-			FideliteNouvelleFicheClient.this.idmagasin = ((Magasin) FideliteNouvelleFicheClient.this.comboBoxMagasins
-					.getSelectedItem()).getIdMagasin();
-		} catch (final Exception e5) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Merci de selectionner un magasin";
-		}
-		// Vérification de la saisie du magasin --
-
-		try {
-			FideliteNouvelleFicheClient.this.civilite = FideliteNouvelleFicheClient.this.comboBoxCivilite
-					.getSelectedItem().toString().toUpperCase();
-			if (civilite.isEmpty()) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "Merci de selectionner une civilité";
-			}
-		} catch (final Exception e5) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Merci de selectionner une civilité";
-		}
-
-		FideliteNouvelleFicheClient.this.nomClient = FideliteNouvelleFicheClient.this.textField_Nom.getText()
-				.toUpperCase();
-
-		if (FideliteNouvelleFicheClient.this.nomClient.isEmpty()) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Merci de vérifier le nom du client - Ce champ ne peut être vide";
-		}
-
-		FideliteNouvelleFicheClient.this.prenomClient = FideliteNouvelleFicheClient.this.textField_Prenom.getText()
-				.toUpperCase();
-
-		if (FideliteNouvelleFicheClient.this.prenomClient.isEmpty()) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Merci de vérifier le prénom du client - Ce champ ne peut être vide";
-		}
-
-		FideliteNouvelleFicheClient.this.email = null;
-
-		if (!FideliteNouvelleFicheClient.this.textField_Mail.getText().isEmpty()) {
-			FideliteNouvelleFicheClient.this.email = FideliteNouvelleFicheClient.this.textField_Mail.getText();
-
-			if (!EmailValidator.getInstance().isValid(FideliteNouvelleFicheClient.this.email)) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "Merci de vérifier l'adresse mail saisie";
-
-			}
-		}
-
-		FideliteNouvelleFicheClient.this.telephonefixe = null;
-		FideliteNouvelleFicheClient.this.telephoneportable = null;
-		if (!FideliteNouvelleFicheClient.this.textField_TelFix.getText().isEmpty()) {
-			FideliteNouvelleFicheClient.this.telephonefixe = FideliteNouvelleFicheClient.this.textField_TelFix
-					.getText();
-
-			if (FideliteNouvelleFicheClient.this.telephonefixe.length() != 10) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "le numero de téléphone doit contenir 10 chiffres";
-			}
-		}
-
-		if (!FideliteNouvelleFicheClient.this.textField_TelMob.getText().isEmpty()) {
-			FideliteNouvelleFicheClient.this.telephoneportable = FideliteNouvelleFicheClient.this.textField_TelMob
-					.getText();
-
-			if (FideliteNouvelleFicheClient.this.telephoneportable.length() != 10) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "le numero de téléphone doit contenir 10 chiffres";
-			}
-		}
-
-		// TODO
-
-		FideliteNouvelleFicheClient.this.age = FideliteNouvelleFicheClient.this.textField_Age.getText().toUpperCase()
-				.toString();
-		if (!FideliteNouvelleFicheClient.this.age.isEmpty()) {
-			if (Integer.parseInt(FideliteNouvelleFicheClient.this.age) < 18) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "Merci de vérifier l'àge du client- 18 ans minimum";
-			}
-		}
-
-		FideliteNouvelleFicheClient.this.adresseClient = FideliteNouvelleFicheClient.this.textField_Adresse.getText()
-				.toUpperCase();
-
-		try {
-			if (FideliteNouvelleFicheClient.this.comboBoxVilles.getSelectedIndex() > 0) {
-				FideliteNouvelleFicheClient.this.villeClient = FideliteNouvelleFicheClient.this.comboBoxVilles
-						.getSelectedItem().toString().toUpperCase();
-				FideliteNouvelleFicheClient.this.idville = ((Ville) FideliteNouvelleFicheClient.this.comboBoxVilles
-						.getSelectedItem()).getIdville();
-			}
-		} catch (final Exception e5) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Merci de selectionner une Ville";
-		}
-
-		FideliteNouvelleFicheClient.this.CodePostalClient = FideliteNouvelleFicheClient.this.textField_CodePostal
-				.getText();
-
-		if (!FideliteNouvelleFicheClient.this.CodePostalClient.isEmpty()) {
-			if (FideliteNouvelleFicheClient.this.CodePostalClient.length() != 5) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "Merci de vérifier le code postal renseigné - Ce champ doit comporter 5 chiffres";
-			}
-		}
-
-		if (!FideliteNouvelleFicheClient.this.choixmenuprecedent.equals("creationcarteparoperation")) {
-			if (FideliteNouvelleFicheClient.this.jourdate != null && FideliteNouvelleFicheClient.this.moisdate != null
-					&& FideliteNouvelleFicheClient.this.annee != null) {
-
-				FideliteNouvelleFicheClient.this.dateComplete = FideliteNouvelleFicheClient.this.jourdate + "/"
-						+ FideliteNouvelleFicheClient.this.moisdate + "/" + FideliteNouvelleFicheClient.this.annee;
-				System.out.println("date : " + FideliteNouvelleFicheClient.this.dateComplete);
-			}
-		}
-
-		// TODO
-
-		FideliteNouvelleFicheClient.this.newsletter = FideliteNouvelleFicheClient.this.valeurCaseNewsletter;
-
-		System.out.println("vérif saisie :::::::::" + verification + ":::::::::");
-		if (verification == true) {
-			try {
-				c = Connexion.getCon();
-				c.setAutoCommit(false);
-
-				final String sql = "SELECT COUNT(IDCLIENT) FROM CLIENT WHERE NOMCLIENT=? AND PRENOMCLIENT=? AND AGECLIENT=? AND CLIENT.IDCLIENT NOT IN (SELECT IDCLIENT FROM CARTE_DE_FIDELITE)";
-				preStm = c.prepareStatement(sql);
-				preStm.setString(1, FideliteNouvelleFicheClient.this.nomClient);
-				preStm.setString(2, FideliteNouvelleFicheClient.this.prenomClient);
-				preStm.setString(3, FideliteNouvelleFicheClient.this.age);
-				rs = preStm.executeQuery();
-
-				while (rs.next()) {
-					FideliteNouvelleFicheClient.this.compteur2 = rs.getInt(1);
-				}
-
-				preStm.close();
-				rs.close();
-				System.out.println(
-						"checkNumCliEXIST :::::::::" + FideliteNouvelleFicheClient.this.compteur2 + ":::::::::");
-
-			} catch (final SQLException e10) {
-				e10.getMessage();
-			}
-
-			if (FideliteNouvelleFicheClient.this.compteur2 == 0) {
-				final Vector<infostemporaire> requete = new Vector<infostemporaire>();
-				final ConfirmationInsertionClientFidelite fenetre = new ConfirmationInsertionClientFidelite(
-						FideliteNouvelleFicheClient.this.interfaceActuelle,
-						FideliteNouvelleFicheClient.this.numerocarte, FideliteNouvelleFicheClient.this.magasin,
-						FideliteNouvelleFicheClient.this.idmagasin, FideliteNouvelleFicheClient.this.civilite,
-						FideliteNouvelleFicheClient.this.nomClient, FideliteNouvelleFicheClient.this.prenomClient,
-						FideliteNouvelleFicheClient.this.adresseClient, FideliteNouvelleFicheClient.this.idville,
-						FideliteNouvelleFicheClient.this.villeClient, FideliteNouvelleFicheClient.this.CodePostalClient,
-						FideliteNouvelleFicheClient.this.dateComplete, FideliteNouvelleFicheClient.this.email,
-						FideliteNouvelleFicheClient.this.newsletter, FideliteNouvelleFicheClient.this.telephonefixe,
-						FideliteNouvelleFicheClient.this.telephoneportable, FideliteNouvelleFicheClient.this.age,
-						FideliteNouvelleFicheClient.this.vip,
-						FideliteNouvelleFicheClient.this.idoperationcommercialeparticipation,
-						FideliteNouvelleFicheClient.this.idmagasinparticipation,
-						FideliteNouvelleFicheClient.this.choixmenuprecedent, FideliteNouvelleFicheClient.this.compteur2,
-						requete);
-				fenetre.setVisible(true);
-				FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
-				FideliteNouvelleFicheClient.this.interfaceActuelle.setVisible(false);
-
-			} else {
-
-				final deplacementdatas fenetre1 = new deplacementdatas(
-						FideliteNouvelleFicheClient.this.interfaceActuelle,
-						FideliteNouvelleFicheClient.this.numerocarte, FideliteNouvelleFicheClient.this.magasin,
-						FideliteNouvelleFicheClient.this.idmagasin, FideliteNouvelleFicheClient.this.civilite,
-						FideliteNouvelleFicheClient.this.nomClient, FideliteNouvelleFicheClient.this.prenomClient,
-						FideliteNouvelleFicheClient.this.adresseClient, FideliteNouvelleFicheClient.this.idville,
-						FideliteNouvelleFicheClient.this.villeClient, FideliteNouvelleFicheClient.this.CodePostalClient,
-						FideliteNouvelleFicheClient.this.dateComplete, FideliteNouvelleFicheClient.this.email,
-						FideliteNouvelleFicheClient.this.newsletter, FideliteNouvelleFicheClient.this.telephonefixe,
-						FideliteNouvelleFicheClient.this.telephoneportable, FideliteNouvelleFicheClient.this.age,
-						FideliteNouvelleFicheClient.this.vip,
-						FideliteNouvelleFicheClient.this.idoperationcommercialeparticipation,
-						FideliteNouvelleFicheClient.this.idmagasinparticipation,
-						FideliteNouvelleFicheClient.this.choixmenuprecedent,
-						FideliteNouvelleFicheClient.this.compteur2);
-				fenetre1.setVisible(true);
-				FideliteNouvelleFicheClient.this.dispose();
-
-			}
-
-		} else {
-			System.out.println("impossible");
-
-			final AlerteSelection fenetre = new AlerteSelection(FideliteNouvelleFicheClient.this.interfaceActuelle,
-					FideliteNouvelleFicheClient.this.message);
-			fenetre.setVisible(true);
-			FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
-		}
+		return verification;
 
 	}
 }
