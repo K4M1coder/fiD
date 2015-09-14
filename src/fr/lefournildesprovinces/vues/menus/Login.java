@@ -162,13 +162,13 @@ public class Login extends JFrame {
 			this.fieldPassword.setForeground(Color.GRAY);
 			this.fieldPassword.setBorder(null);
 			this.fieldPassword.setBounds(756, 447, 136, 20);
-			this.fieldPassword.addKeyListener(new KeyAdapter() {
+		this.fieldPassword.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyTyped(final KeyEvent e) {
 					super.keyTyped(e);
 					if ('\n' == e.getKeyChar()) {
 						connect();
-					}
+						}
 				}
 			});
 		}

@@ -6,6 +6,8 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -24,6 +26,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -32,6 +35,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.text.MaskFormatter;
 
@@ -46,25 +50,43 @@ import fr.lefournildesprovinces.ressources.util.AutoCompletion;
 import fr.lefournildesprovinces.vues.deplacementdatas;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.Loading;
 
-import javax.swing.JCheckBox;
-
 public class FideliteNouvelleFicheClient extends JFrame {
+
+	private class TextField extends JTextField {
+
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = -2729405542981121442L;
+
+		public TextField() {
+			this.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					super.keyTyped(e);
+					if ('\n' == e.getKeyChar()) {
+						validateAction();
+					}
+				}
+			});
+		}
+	}
 
 	private static Connection c;
 	private static PreparedStatement preStm;
 	private static ResultSet rs;
-	private Loading lblLoading;
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = -7191493576702107874L;
 
+	private Loading lblLoading;
 	ButtonGroup group = new ButtonGroup();
 	private ComboBoxModel<Object> listeVille;
 	private ComboBoxModel<Object> listemagasins;
@@ -130,8 +152,8 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	private TextField textField_Mail;
 	private TextField textField_Nom;
 	private TextField textField_Prenom;
-	private TextField textField_TelFix;
-	private TextField textField_TelMob;
+	private JFormattedTextField textField_TelFix;
+	private JFormattedTextField textField_TelMob;
 	private final JFrame interfaceActuelle;
 	private final JFrame interfacePrecedente;
 	private final JPanel contentPane;
@@ -141,27 +163,8 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	private int compteur2 = 0;
 	private int idmagasin;
 	private int idville;
+
 	private JCheckBox checkBoxVIP;
-
-	private class TextField extends JTextField {
-
-		/**
-		 *
-		 */
-		private static final long serialVersionUID = -2729405542981121442L;
-
-		public TextField() {
-			this.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyTyped(KeyEvent e) {
-					super.keyTyped(e);
-					if ('\n' == e.getKeyChar()) {
-						validateAction();
-					}
-				}
-			});
-		}
-	}
 
 	private String valeurCaseNewsletter;
 
@@ -169,11 +172,14 @@ public class FideliteNouvelleFicheClient extends JFrame {
 
 	public FideliteNouvelleFicheClient(final String numcarte, final int numoperation, final int nummagasin,
 			final String choix, final JFrame interfacePrecedente) {
+		System.out.println(choix);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent arg0) {
 
 				System.out.println(" last choice was " + FideliteNouvelleFicheClient.this.choixmenuprecedent);
+				FideliteNouvelleFicheClient.this.lblValider.setFocusable(true);
+				FideliteNouvelleFicheClient.this.lblValider.setEnabled(true);
 				if (FideliteNouvelleFicheClient.this.choixmenuprecedent.equals("creationcarteparoperation")) {
 					FideliteNouvelleFicheClient.this.textField_Age.setEditable(true);
 					FideliteNouvelleFicheClient.this.textField_Age.setEnabled(true);
@@ -221,6 +227,289 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		});
 	}
 
+	/**
+	 * check the home phone validity
+	 *
+	 * @return <strong>true</strong> if phone number is valid <br>
+	 *         <Strong>false</strong> if phone number is not valid
+	 */
+	protected boolean chcekTelFixIsValid() {
+		Boolean verification = true;
+		// Vérification de la saisie du telephone fix ++
+		FideliteNouvelleFicheClient.this.telephonefixe = null;
+		if (!FideliteNouvelleFicheClient.this.textField_TelFix.getText().isEmpty()) {
+			FideliteNouvelleFicheClient.this.telephonefixe = FideliteNouvelleFicheClient.this.textField_TelFix
+					.getText();
+			if (FideliteNouvelleFicheClient.this.telephonefixe.length() != 10) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "le numero de téléphone doit contenir 10 chiffres";
+			}
+		}
+		// Vérification de la saisie du telephone fix --
+		return verification;
+	}
+
+	/**
+	 * check the adrress validity
+	 *
+	 * @return <strong>true</strong> if adress is valid <br>
+	 *         <Strong>false</strong> if adress is not valid
+	 */
+	protected boolean checkAdressIsValid() {
+		Boolean verification = true;
+		// Vérification de l'adresse du client ++
+		FideliteNouvelleFicheClient.this.adresseClient = FideliteNouvelleFicheClient.this.textField_Adresse.getText()
+				.toUpperCase();
+		try {
+			if (FideliteNouvelleFicheClient.this.comboBoxVilles.getSelectedIndex() > 0) {
+				FideliteNouvelleFicheClient.this.villeClient = FideliteNouvelleFicheClient.this.comboBoxVilles
+						.getSelectedItem().toString().toUpperCase();
+				FideliteNouvelleFicheClient.this.idville = ((Ville) FideliteNouvelleFicheClient.this.comboBoxVilles
+						.getSelectedItem()).getIdville();
+			}
+		} catch (final Exception e5) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Merci de selectionner une Ville";
+		}
+		// Vérification de l'addresse --
+		return verification;
+	}
+
+	/**
+	 * check the age validity
+	 *
+	 * @return <strong>true</strong> if age is valid <br>
+	 *         <Strong>false</strong> if age is not valid
+	 */
+	protected boolean checkAgeIsValid() {
+		Boolean verification = true;
+		// Vérification de l'age du client ++
+		FideliteNouvelleFicheClient.this.age = FideliteNouvelleFicheClient.this.textField_Age.getText().toUpperCase()
+				.toString();
+		if (!FideliteNouvelleFicheClient.this.age.isEmpty()) {
+			if (Integer.parseInt(FideliteNouvelleFicheClient.this.age) < 18) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "Merci de vérifier l'àge du client : 18 ans minimum";
+			}
+		}
+		// Vérification de l'age du client --
+		return verification;
+	}
+
+	/**
+	 * check if a civilite is filled
+	 *
+	 * @return <strong>true</strong> if civilite have been filled <br>
+	 *         <Strong>false</strong> if civilite havent been filled
+	 */
+	protected boolean checkCiviliteIsSet() {
+		// Vérification de la saisie du magasin ++
+		Boolean verification = true;
+		try {
+			FideliteNouvelleFicheClient.this.civilite = FideliteNouvelleFicheClient.this.comboBoxCivilite
+					.getSelectedItem().toString().toUpperCase();
+			if (civilite.isEmpty()) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "Merci de selectionner une civilité";
+			}
+		} catch (final Exception e5) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Merci de selectionner une civilité";
+		}
+		// Vérification de la saisie du magasin --
+		return verification;
+	}
+
+	/**
+	 * check if a mall have been selected
+	 *
+	 * @return <strong>true</strong> if mall have been sellected <br>
+	 *         <Strong>false</strong> if mall havent been selected
+	 */
+	protected boolean checkMagasinIsSet() {
+		// Vérification de la saisie du magasin ++
+		Boolean verification = true;
+		try {
+			FideliteNouvelleFicheClient.this.magasin = FideliteNouvelleFicheClient.this.comboBoxMagasins
+					.getSelectedItem().toString().toUpperCase();
+			FideliteNouvelleFicheClient.this.idmagasin = ((Magasin) FideliteNouvelleFicheClient.this.comboBoxMagasins
+					.getSelectedItem()).getIdMagasin();
+		} catch (final Exception e5) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Merci de selectionner un magasin";
+		}
+		// Vérification de la saisie du magasin --
+		return verification;
+	}
+
+	/**
+	 * check if mail is valid
+	 *
+	 * @return <strong>true</strong> if mail is valid <br>
+	 *         <Strong>false</strong> if mail is not valid
+	 */
+	protected boolean checkMailIsValid() {
+		Boolean verification = true;
+		// Vérification de la saisie du mail ++
+		FideliteNouvelleFicheClient.this.email = null;
+		if (!FideliteNouvelleFicheClient.this.textField_Mail.getText().isEmpty()) {
+			FideliteNouvelleFicheClient.this.email = FideliteNouvelleFicheClient.this.textField_Mail.getText();
+
+			if (!EmailValidator.getInstance().isValid(FideliteNouvelleFicheClient.this.email)) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "Merci de vérifier l'adresse mail saisie";
+
+			}
+		}
+		// Vérification de la saisie du mail --
+		return verification;
+	}
+
+	/**
+	 * check if a firstname is filled
+	 *
+	 * @return <strong>true</strong> if firstname have been filled <br>
+	 *         <Strong>false</strong> if firstname havent been filled
+	 */
+	protected boolean checkNomIsSet() {
+		// Vérification de la saisie du NOM ++
+		Boolean verification = true;
+		FideliteNouvelleFicheClient.this.nomClient = FideliteNouvelleFicheClient.this.textField_Nom.getText()
+				.toUpperCase();
+
+		if (FideliteNouvelleFicheClient.this.nomClient.isEmpty()) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Merci de vérifier le nom du client - Ce champ ne peut être vide";
+		}
+		// Vérification de la saisie du NOM --
+		return verification;
+	}
+
+	/**
+	 * check if this is a new customer number
+	 *
+	 * @return <strong>true</strong> if card number is new<br>
+	 *         <Strong>false</strong> if card number is already registered
+	 */
+	protected boolean checkNumCliIsNew() {
+		// Vérification de l'existence du numéro de client ++
+		FideliteNouvelleFicheClient.this.numerocarte = FideliteNouvelleFicheClient.this.formattedTextFieldNumCli
+				.getText();
+
+		Boolean verification = true;
+		int Compteur = 0;
+		try {
+
+			c = Connexion.getCon();
+
+			final String SQL = "SELECT COUNT(NUMEROCARTEDEFIDELITE) FROM CARTE_DE_FIDELITE WHERE NUMEROCARTEDEFIDELITE=?";
+			preStm = c.prepareStatement(SQL);
+			preStm.setString(1, FideliteNouvelleFicheClient.this.numerocarte);
+			rs = preStm.executeQuery();
+		} catch (final Exception e8) {
+			System.out.println("erreur " + e8.getMessage());
+		}
+
+		try {
+			while (rs.next()) {
+				Compteur = (rs.getInt(1));
+			}
+			rs.close();
+			preStm.close();
+		} catch (final Exception e5) {
+			System.out.println("erreur " + e5.getMessage());
+		}
+
+		if (Compteur != 0) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Ce numéro de carte est deja utilisé";
+		}
+		// Vérification de l'existence du numéro de client --
+		return verification;
+	}
+
+	/**
+	 * check if numCli is filled
+	 *
+	 * @return <strong>true</strong> if numCli is filled <br>
+	 *         <Strong>false</strong> if numCli is not filled
+	 */
+	protected Boolean checkNumCliIsSet() {
+		// Vérification de la saisie du numéro de carte ++
+		Boolean verification = true;
+		if (FideliteNouvelleFicheClient.this.numerocarte.isEmpty()) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Merci de vérifier votre numéro de client - Ce champ ne peut être vide";
+
+		}
+		// Vérification de la saisie du numéro de carte --
+		return verification;
+
+	}
+
+	/**
+	 * check if a lastname is filled
+	 *
+	 * @return <strong>true</strong> if lastname have been filled <br>
+	 *         <Strong>false</strong> if lastname havent been filled
+	 */
+	protected boolean checkPrenomIsSet() {
+		Boolean verification = true;
+		// Vérification de la saisie du PRENOM ++
+		FideliteNouvelleFicheClient.this.prenomClient = FideliteNouvelleFicheClient.this.textField_Prenom.getText()
+				.toUpperCase();
+
+		if (FideliteNouvelleFicheClient.this.prenomClient.isEmpty()) {
+			verification = false;
+			FideliteNouvelleFicheClient.this.message = "Merci de vérifier le prénom du client - Ce champ ne peut être vide";
+		}
+		// Vérification de la saisie du PRENOM --
+		return verification;
+	}
+
+	/**
+	 * check the GSM phone validity
+	 *
+	 * @return <strong>true</strong> if phone number is valid <br>
+	 *         <Strong>false</strong> if phone number is not valid
+	 */
+	protected boolean checkTelGSMIsValid() {
+		Boolean verification = true;
+		// Vérification de la saisie du telephone gsm ++
+		FideliteNouvelleFicheClient.this.telephoneportable = null;
+		if (!FideliteNouvelleFicheClient.this.textField_TelMob.getText().isEmpty()) {
+			FideliteNouvelleFicheClient.this.telephoneportable = FideliteNouvelleFicheClient.this.textField_TelMob
+					.getText();
+
+			if (FideliteNouvelleFicheClient.this.telephoneportable.length() != 10) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "le numero de téléphone doit contenir 10 chiffres";
+			}
+		}
+		// Vérification de la saisie du telephone gsm --
+		return verification;
+	}
+
+	/**
+	 * check ZIP Code validity
+	 *
+	 * @return <strong>true</strong> if ZIP code is valid <br>
+	 *         <Strong>false</strong> if ZIP code is not valid
+	 */
+	protected boolean checkZIPIsValid() {
+		Boolean verification = true;
+		FideliteNouvelleFicheClient.this.CodePostalClient = FideliteNouvelleFicheClient.this.textField_CodePostal
+				.getText();
+
+		if (!FideliteNouvelleFicheClient.this.CodePostalClient.isEmpty()) {
+			if (FideliteNouvelleFicheClient.this.CodePostalClient.length() != 5) {
+				verification = false;
+				FideliteNouvelleFicheClient.this.message = "Merci de vérifier le code postal renseigné - Ce champ doit comporter 5 chiffres";
+			}
+		}
+		return verification;
+	}
+
 	private JCheckBox getCheckVip() {
 		if (this.checkBoxVIP == null) {
 			this.checkBoxVIP = new JCheckBox("VIP");
@@ -239,71 +528,6 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		}
 		return this.checkBoxVIP;
 
-	}
-
-	private JComboBox<Object> getComboBoxMagasins() {
-		if (this.comboBoxMagasins == null) {
-			this.comboBoxMagasins = new JComboBox<Object>();
-			this.comboBoxMagasins.setForeground(Color.GRAY);
-			this.comboBoxMagasins.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(final ActionEvent arg0) {
-					try {
-						FideliteNouvelleFicheClient.this.magasin = FideliteNouvelleFicheClient.this.comboBoxMagasins
-								.getSelectedItem().toString();
-						FideliteNouvelleFicheClient.this.comboBoxCivilite.setEnabled(true);
-					} catch (final Exception e) {
-						final String message = "Choix Impossible - Merci de vérifier votre sélection";
-						final AlerteSelection fenetre = new AlerteSelection(
-								FideliteNouvelleFicheClient.this.interfaceActuelle, message);
-						fenetre.setVisible(true);
-						FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
-
-					}
-				}
-			});
-			this.comboBoxMagasins.setBackground(Color.WHITE);
-			this.comboBoxMagasins.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.comboBoxMagasins.setBorder(null);
-			this.comboBoxMagasins.setBounds(668, 333, 364, 22);
-			this.listemagasins = new DefaultComboBoxModel<Object>(Select.listemagasins());
-			this.comboBoxMagasins.setModel(this.listemagasins);
-
-		}
-		return this.comboBoxMagasins;
-	}
-
-	private JComboBox<Object> getComboBoxCivilite() {
-		if (this.comboBoxCivilite == null) {
-			final String[] civiliteclient = { "", "Mr", "Mme", "NR" };
-			this.comboBoxCivilite = new JComboBox<Object>(civiliteclient);
-
-			this.comboBoxCivilite.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(final ActionEvent e) {
-					try {
-						FideliteNouvelleFicheClient.this.civilite = FideliteNouvelleFicheClient.this.comboBoxCivilite
-								.getSelectedItem().toString();
-						System.out.println("civ :" + FideliteNouvelleFicheClient.this.civilite);
-						FideliteNouvelleFicheClient.this.textField_Nom.setEnabled(true);
-					} catch (final Exception e1) {
-						final String message = "Choix Civilité Impossible - Merci de vérifier votre sélection";
-						final AlerteSelection fenetre = new AlerteSelection(
-								FideliteNouvelleFicheClient.this.interfaceActuelle, message);
-						fenetre.setVisible(true);
-						FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
-
-					}
-				}
-			});
-			this.comboBoxCivilite.setBackground(Color.WHITE);
-			this.comboBoxCivilite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			this.comboBoxCivilite.setBorder(null);
-			this.comboBoxCivilite.setForeground(Color.GRAY);
-			this.comboBoxCivilite.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.comboBoxCivilite.setBounds(310, 366, 93, 22);
-		}
-		return this.comboBoxCivilite;
 	}
 
 	private JComboBox<Object> getComboBoxAnnee() {
@@ -358,6 +582,39 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		return this.comboBoxAnnee;
 	}
 
+	private JComboBox<Object> getComboBoxCivilite() {
+		if (this.comboBoxCivilite == null) {
+			final String[] civiliteclient = { "", "Mr", "Mme", "NR" };
+			this.comboBoxCivilite = new JComboBox<Object>(civiliteclient);
+
+			this.comboBoxCivilite.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(final ActionEvent e) {
+					try {
+						FideliteNouvelleFicheClient.this.civilite = FideliteNouvelleFicheClient.this.comboBoxCivilite
+								.getSelectedItem().toString();
+						System.out.println("civ :" + FideliteNouvelleFicheClient.this.civilite);
+						FideliteNouvelleFicheClient.this.textField_Nom.setEnabled(true);
+					} catch (final Exception e1) {
+						final String message = "Choix Civilité Impossible - Merci de vérifier votre sélection";
+						final AlerteSelection fenetre = new AlerteSelection(
+								FideliteNouvelleFicheClient.this.interfaceActuelle, message);
+						fenetre.setVisible(true);
+						FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
+
+					}
+				}
+			});
+			this.comboBoxCivilite.setBackground(Color.WHITE);
+			this.comboBoxCivilite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.comboBoxCivilite.setBorder(null);
+			this.comboBoxCivilite.setForeground(Color.GRAY);
+			this.comboBoxCivilite.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.comboBoxCivilite.setBounds(310, 366, 93, 22);
+		}
+		return this.comboBoxCivilite;
+	}
+
 	private JComboBox<Object> getComboBoxJour() {
 		if (this.comboBoxJour == null) {
 			final String[] jour = { " --Jour--", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
@@ -392,6 +649,38 @@ public class FideliteNouvelleFicheClient extends JFrame {
 
 		}
 		return this.comboBoxJour;
+	}
+
+	private JComboBox<Object> getComboBoxMagasins() {
+		if (this.comboBoxMagasins == null) {
+			this.comboBoxMagasins = new JComboBox<Object>();
+			this.comboBoxMagasins.setForeground(Color.GRAY);
+			this.comboBoxMagasins.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(final ActionEvent arg0) {
+					try {
+						FideliteNouvelleFicheClient.this.magasin = FideliteNouvelleFicheClient.this.comboBoxMagasins
+								.getSelectedItem().toString();
+						FideliteNouvelleFicheClient.this.comboBoxCivilite.setEnabled(true);
+					} catch (final Exception e) {
+						final String message = "Choix Impossible - Merci de vérifier votre sélection";
+						final AlerteSelection fenetre = new AlerteSelection(
+								FideliteNouvelleFicheClient.this.interfaceActuelle, message);
+						fenetre.setVisible(true);
+						FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
+
+					}
+				}
+			});
+			this.comboBoxMagasins.setBackground(Color.WHITE);
+			this.comboBoxMagasins.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.comboBoxMagasins.setBorder(null);
+			this.comboBoxMagasins.setBounds(668, 333, 364, 22);
+			this.listemagasins = new DefaultComboBoxModel<Object>(Select.listemagasins());
+			this.comboBoxMagasins.setModel(this.listemagasins);
+
+		}
+		return this.comboBoxMagasins;
 	}
 
 	private JComboBox<Object> getComboBoxMois() {
@@ -473,6 +762,115 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		return this.comboBoxMois;
 	}
 
+	private JComboBox<Object> getComboxBoxVilles() {
+		if (this.comboBoxVilles == null) {
+			this.comboBoxVilles = new JComboBox<Object>();
+			this.comboBoxVilles.setEditable(true);
+			this.comboBoxVilles.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(final ActionEvent arg0) {
+
+					try {
+						FideliteNouvelleFicheClient.this.villeClient = FideliteNouvelleFicheClient.this.comboBoxVilles
+								.getSelectedItem().toString().toUpperCase();
+						FideliteNouvelleFicheClient.this.idville = ((Ville) FideliteNouvelleFicheClient.this.comboBoxVilles
+								.getSelectedItem()).getIdville();
+						final String CP = ((Ville) FideliteNouvelleFicheClient.this.comboBoxVilles.getSelectedItem())
+								.getCodePostalVille();
+						FideliteNouvelleFicheClient.this.textField_CodePostal.setText(CP);
+						FideliteNouvelleFicheClient.this.textField_CodePostal.setEnabled(true);
+
+					} catch (final Exception e5) {
+						final String message = "Choix Impossible - Merci de vérifier votre sélection";
+						final AlerteSelection fenetre = new AlerteSelection(
+								FideliteNouvelleFicheClient.this.interfaceActuelle, message);
+						fenetre.setVisible(true);
+						FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
+					}
+
+				}
+			});
+			this.comboBoxVilles.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.comboBoxVilles.setForeground(Color.GRAY);
+			this.comboBoxVilles.setBorder(null);
+			this.comboBoxVilles.setBounds(310, 428, 179, 22);
+			this.listeVille = new DefaultComboBoxModel<Object>(Select.listeVille());
+			this.comboBoxVilles.setModel(this.listeVille);
+			AutoCompletion.enable(this.comboBoxVilles);
+
+		}
+		return this.comboBoxVilles;
+	}
+
+	protected boolean getfields(boolean verification) {
+		// Vérification de l'existence du numéro de client ++
+		verification = (FideliteNouvelleFicheClient.this.checkNumCliIsNew() == false) ? false : verification;
+		// Vérification de l'existence du numéro de client --
+
+		// Vérification de la saisie du numéro de client ++
+		verification = (FideliteNouvelleFicheClient.this.checkNumCliIsSet() == false) ? false : verification;
+		// Vérification de la saisie du numéro de client --
+
+		// Vérification de la saisie du magasin ++
+		verification = (FideliteNouvelleFicheClient.this.checkMagasinIsSet() == false) ? false : verification;
+		// Vérification de la saisie du magasin --
+
+		// Vérification de la saisie du magasin ++
+		verification = (FideliteNouvelleFicheClient.this.checkCiviliteIsSet() == false) ? false : verification;
+		// Vérification de la saisie du magasin --
+
+		// Vérification de la saisie du NOM ++
+		verification = (FideliteNouvelleFicheClient.this.checkNomIsSet() == false) ? false : verification;
+		// Vérification de la saisie du NOM --
+
+		// Vérification de la saisie du PRENOM ++
+		verification = (FideliteNouvelleFicheClient.this.checkPrenomIsSet() == false) ? false : verification;
+		// Vérification de la saisie du PRENOM --
+
+		// Vérification de la saisie du mail ++
+		verification = (FideliteNouvelleFicheClient.this.checkMailIsValid() == false) ? false : verification;
+		// Vérification de la saisie du mail --
+
+		// Vérification de la saisie du telephone fix ++
+		verification = (FideliteNouvelleFicheClient.this.chcekTelFixIsValid() == false) ? false : verification;
+		// Vérification de la saisie du telephone fix --
+
+		// Vérification de la saisie du telephone gsm ++
+		verification = (FideliteNouvelleFicheClient.this.checkTelGSMIsValid() == false) ? false : verification;
+		// Vérification de la saisie du telephone gsm --
+
+		// Vérification de l'age du client ++
+		verification = (FideliteNouvelleFicheClient.this.checkAgeIsValid() == false) ? false : verification;
+		// Vérification de l'age du client --
+
+		// Vérification de l'adresse du client ++
+		verification = (FideliteNouvelleFicheClient.this.checkAdressIsValid() == false) ? false : verification;
+		// Vérification de l'adresse du client --
+
+		// Vérification du code postal du client ++
+		verification = (FideliteNouvelleFicheClient.this.checkZIPIsValid() == false) ? false : verification;
+		// Vérification du code postal du client --
+
+		FideliteNouvelleFicheClient.this.newsletter = FideliteNouvelleFicheClient.this.valeurCaseNewsletter;
+
+		// Traitement spécifiques à la creation apres participation
+		// operation commerciale ++
+		if (!FideliteNouvelleFicheClient.this.choixmenuprecedent.equals("creationcarteparoperation")) {
+
+			// récuperation de la date à partir des combobox ++
+			if (FideliteNouvelleFicheClient.this.jourdate != null && FideliteNouvelleFicheClient.this.moisdate != null
+					&& FideliteNouvelleFicheClient.this.annee != null) {
+				FideliteNouvelleFicheClient.this.dateComplete = FideliteNouvelleFicheClient.this.jourdate + "/"
+						+ FideliteNouvelleFicheClient.this.moisdate + "/" + FideliteNouvelleFicheClient.this.annee;
+				System.out.println("date : " + FideliteNouvelleFicheClient.this.dateComplete);
+			}
+			// récuperation de la date à partir des combobox --
+		}
+		// Traitement spécifiques à la creation apres participation
+		// operation commerciale --
+		return verification;
+	}
+
 	private JLabel getFond() {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
@@ -514,7 +912,14 @@ public class FideliteNouvelleFicheClient extends JFrame {
 
 	private TextField getFormattedTextField() {
 		if (this.formattedTextFieldNumCli == null) {
-
+//			try {
+//				this.mask = new MaskFormatter("##########");
+//			} catch (final ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			this.mask.setValidCharacters("0123456789");
+//			this.formattedTextFieldNumCli = new JFormattedTextField(this.mask);
 			this.formattedTextFieldNumCli = new TextField();
 			this.formattedTextFieldNumCli.setForeground(Color.GRAY);
 			this.formattedTextFieldNumCli.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -528,26 +933,6 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			this.formattedTextFieldNumCli.setBounds(310, 334, 188, 20);
 		}
 		return this.formattedTextFieldNumCli;
-	}
-
-	private JLabel getLabelTelephone() {
-		if (this.labelTelephone == null) {
-			this.labelTelephone = new JLabel("Tél. Mobile");
-			this.labelTelephone.setForeground(Color.GRAY);
-			this.labelTelephone.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.labelTelephone.setBounds(232, 463, 71, 14);
-		}
-		return this.labelTelephone;
-	}
-
-	private JLabel getLabelMobile() {
-		if (this.labelMobile == null) {
-			this.labelMobile = new JLabel("Tél. fixe");
-			this.labelMobile.setForeground(Color.GRAY);
-			this.labelMobile.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.labelMobile.setBounds(254, 496, 49, 14);
-		}
-		return this.labelMobile;
 	}
 
 	private JLabel getLabel_2() {
@@ -619,6 +1004,26 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		return this.label_5;
 	}
 
+	private JLabel getLabelMobile() {
+		if (this.labelMobile == null) {
+			this.labelMobile = new JLabel("Tél. fixe");
+			this.labelMobile.setForeground(Color.GRAY);
+			this.labelMobile.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.labelMobile.setBounds(254, 496, 49, 14);
+		}
+		return this.labelMobile;
+	}
+
+	private JLabel getLabelTelephone() {
+		if (this.labelTelephone == null) {
+			this.labelTelephone = new JLabel("Tél. Mobile");
+			this.labelTelephone.setForeground(Color.GRAY);
+			this.labelTelephone.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.labelTelephone.setBounds(232, 463, 71, 14);
+		}
+		return this.labelTelephone;
+	}
+
 	private JLayeredPane getLayeredPane_1() {
 		if (this.layeredPane == null) {
 			this.layeredPane = new JLayeredPane();
@@ -635,7 +1040,6 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			this.layeredPane.add(this.getLblEmail());
 			this.layeredPane.add(this.getLblDateDeNaissance());
 			this.layeredPane.add(this.getLblNewslettert());
-			this.layeredPane.add(this.getLblValider());
 			this.layeredPane.add(this.getFormattedTextField());
 			this.layeredPane.add(this.getComboBoxMagasins());
 			this.layeredPane.add(this.getTextField());
@@ -665,18 +1069,11 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			this.layeredPane.add(this.getLblAge());
 			this.layeredPane.add(this.getTextField_8());
 			this.layeredPane.add(this.getCheckVip());
+			this.layeredPane.add(this.getLblValider());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel_1());
 		}
 		return this.layeredPane;
-	}
-
-	private Loading getLoading() {
-		if (this.lblLoading == null) {
-			this.lblLoading = new Loading();
-		}
-		this.lblLoading.setVisible(false);
-		return this.lblLoading;
 	}
 
 	private JLabel getLblAdresse() {
@@ -721,20 +1118,22 @@ public class FideliteNouvelleFicheClient extends JFrame {
 
 	private JLabel getLblCodePostal() {
 		if (this.lblCodePostal == null) {
-			this.lblCodePostal = new JLabel("Code Postal");
+			this.lblCodePostal = new JLabel("CP");
+			lblCodePostal.setHorizontalAlignment(SwingConstants.RIGHT);
 			this.lblCodePostal.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblCodePostal.setForeground(Color.GRAY);
-			this.lblCodePostal.setBounds(406, 432, 92, 14);
+			this.lblCodePostal.setBounds(487, 432, 24, 14);
 		}
 		return this.lblCodePostal;
 	}
 
 	private JLabel getLblDateDeNaissance() {
 		if (this.lblDateDeNaissance == null) {
-			this.lblDateDeNaissance = new JLabel("Date de Naissance *");
+			this.lblDateDeNaissance = new JLabel("Date Naissance *");
+			lblDateDeNaissance.setHorizontalAlignment(SwingConstants.RIGHT);
 			this.lblDateDeNaissance.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblDateDeNaissance.setForeground(Color.GRAY);
-			this.lblDateDeNaissance.setBounds(563, 432, 119, 14);
+			this.lblDateDeNaissance.setBounds(563, 432, 114, 14);
 		}
 		return this.lblDateDeNaissance;
 	}
@@ -853,6 +1252,9 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	}
 
 	private JLabel getLblValider() {
+		final ImageIcon baseIcon = new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/valider.png"));
+		final ImageIcon focusedIcon = new ImageIcon(
+				FideliteNouvelleFicheClient.class.getResource("/Images/validerFocus.png"));
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
 			this.lblValider
@@ -863,9 +1265,38 @@ public class FideliteNouvelleFicheClient extends JFrame {
 					validateAction();
 				}
 			});
+			this.lblValider.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(final KeyEvent e) {
+					super.keyTyped(e);
+					if ('\n' == e.getKeyChar()) {
+						validateAction();
+					}
+				}
+			});
 			this.lblValider.setForeground(Color.GRAY);
 			this.lblValider.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblValider.setBounds(933, 492, 99, 23);
+			this.lblValider.addFocusListener(new FocusListener() {
+
+				@Override
+				public void focusLost(FocusEvent e) {
+					// System.out.println("the " +
+					// e.getComponent().getClass()+"\n"+ e.getComponent() + "
+					// lost focus");
+					JLabel labelUnfocused = (JLabel) e.getComponent();
+					labelUnfocused.setIcon(baseIcon);
+				}
+
+				@Override
+				public void focusGained(FocusEvent e) {
+					// System.out.println("the " +
+					// e.getComponent().getClass()+"\n"+ e.getComponent() + "
+					// gain focus");
+					JLabel labelFocused = (JLabel) e.getComponent();
+					labelFocused.setIcon(focusedIcon);
+				}
+			});
 		}
 		return this.lblValider;
 	}
@@ -878,6 +1309,14 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			this.lblVille.setBounds(258, 432, 45, 14);
 		}
 		return this.lblVille;
+	}
+
+	private Loading getLoading() {
+		if (this.lblLoading == null) {
+			this.lblLoading = new Loading();
+		}
+		this.lblLoading.setVisible(false);
+		return this.lblLoading;
 	}
 
 	private JRadioButton getRdbtnDesinscrit() {
@@ -999,46 +1438,6 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		return this.textField_Adresse;
 	}
 
-	private JComboBox<Object> getComboxBoxVilles() {
-		if (this.comboBoxVilles == null) {
-			this.comboBoxVilles = new JComboBox<Object>();
-			this.comboBoxVilles.setEditable(true);
-			this.comboBoxVilles.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(final ActionEvent arg0) {
-
-					try {
-						FideliteNouvelleFicheClient.this.villeClient = FideliteNouvelleFicheClient.this.comboBoxVilles
-								.getSelectedItem().toString().toUpperCase();
-						FideliteNouvelleFicheClient.this.idville = ((Ville) FideliteNouvelleFicheClient.this.comboBoxVilles
-								.getSelectedItem()).getIdville();
-						final String CP = ((Ville) FideliteNouvelleFicheClient.this.comboBoxVilles.getSelectedItem())
-								.getCodePostalVille();
-						FideliteNouvelleFicheClient.this.textField_CodePostal.setText(CP);
-						FideliteNouvelleFicheClient.this.textField_CodePostal.setEnabled(true);
-
-					} catch (final Exception e5) {
-						final String message = "Choix Impossible - Merci de vérifier votre sélection";
-						final AlerteSelection fenetre = new AlerteSelection(
-								FideliteNouvelleFicheClient.this.interfaceActuelle, message);
-						fenetre.setVisible(true);
-						FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
-					}
-
-				}
-			});
-			this.comboBoxVilles.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.comboBoxVilles.setForeground(Color.GRAY);
-			this.comboBoxVilles.setBorder(null);
-			this.comboBoxVilles.setBounds(310, 428, 86, 22);
-			this.listeVille = new DefaultComboBoxModel<Object>(Select.listeVille());
-			this.comboBoxVilles.setModel(this.listeVille);
-			AutoCompletion.enable(this.comboBoxVilles);
-
-		}
-		return this.comboBoxVilles;
-	}
-
 	private JFormattedTextField getTextField_4() {
 		if (this.textField_CodePostal == null) {
 			try {
@@ -1054,7 +1453,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			this.textField_CodePostal.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.textField_CodePostal.setEnabled(false);
 			this.textField_CodePostal.setBorder(new LineBorder(new Color(171, 173, 179)));
-			this.textField_CodePostal.setBounds(489, 429, 64, 20);
+			this.textField_CodePostal.setBounds(513, 429, 64, 20);
 			this.textField_CodePostal.setColumns(10);
 		}
 		return this.textField_CodePostal;
@@ -1072,9 +1471,17 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		return this.textField_Mail;
 	}
 
-	private TextField getTextField_6() {
+	private JFormattedTextField getTextField_6() {
+
 		if (this.textField_TelFix == null) {
-			this.textField_TelFix = new TextField();
+			try {
+				this.mask = new MaskFormatter("##########");
+			} catch (final ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.mask.setValidCharacters("0123456789");
+			this.textField_TelFix = new JFormattedTextField(this.mask);
 			this.textField_TelFix.setForeground(Color.GRAY);
 			this.textField_TelFix.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.textField_TelFix.setColumns(10);
@@ -1084,9 +1491,16 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		return this.textField_TelFix;
 	}
 
-	private TextField getTextField_7() {
+	private JFormattedTextField getTextField_7() {
 		if (this.textField_TelMob == null) {
-			this.textField_TelMob = new TextField();
+			try {
+				this.mask = new MaskFormatter("##########");
+			} catch (final ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.mask.setValidCharacters("0123456789");
+			this.textField_TelMob = new JFormattedTextField(this.mask);
 			this.textField_TelMob.setForeground(Color.GRAY);
 			this.textField_TelMob.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.textField_TelMob.setColumns(10);
@@ -1111,7 +1525,8 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	}
 
 	/**
-	 * this methode will validate filled datas by calling severals methods for each fields<br>
+	 * this methode will validate filled datas by calling severals methods for
+	 * each fields<br>
 	 * on error a warning message will be displayed to help the correction
 	 */
 	private void validateAction() {
@@ -1123,98 +1538,13 @@ public class FideliteNouvelleFicheClient extends JFrame {
 
 				boolean verification = true;
 
-				// Vérification de l'existence du numéro de client ++
-				verification = (FideliteNouvelleFicheClient.this.numCliIsNew() == false) ? false : verification;
-				// Vérification de l'existence du numéro de client --
-
-				// Vérification de la saisie du numéro de client ++
-				verification = (FideliteNouvelleFicheClient.this.numCliIsSet() == false) ? false : verification;
-				// Vérification de la saisie du numéro de client --
-
-				// Vérification de la saisie du magasin ++
-				verification = (FideliteNouvelleFicheClient.this.magasinIsSet() == false) ? false : verification;
-				// Vérification de la saisie du magasin --
-
-				// Vérification de la saisie du magasin ++
-				verification = (FideliteNouvelleFicheClient.this.civiliteIsSet() == false) ? false : verification;
-				// Vérification de la saisie du magasin --
-
-				// Vérification de la saisie du NOM ++
-				verification = (FideliteNouvelleFicheClient.this.nomIsSet() == false) ? false : verification;
-				// Vérification de la saisie du NOM --
-
-				// Vérification de la saisie du PRENOM ++
-				verification = (FideliteNouvelleFicheClient.this.prenomIsSet() == false) ? false : verification;
-				// Vérification de la saisie du PRENOM --
-
-				// Vérification de la saisie du mail ++
-				verification = (FideliteNouvelleFicheClient.this.mailIsValid() == false) ? false : verification;
-				// Vérification de la saisie du mail --
-
-				// Vérification de la saisie du telephone fix ++
-				verification = (FideliteNouvelleFicheClient.this.telFixIsValid() == false) ? false : verification;
-				// Vérification de la saisie du telephone fix --
-
-				// Vérification de la saisie du telephone gsm ++
-				verification = (FideliteNouvelleFicheClient.this.telGSMIsValid() == false) ? false : verification;
-				// Vérification de la saisie du telephone gsm --
-
-				// Vérification de l'age du client ++
-				verification = (FideliteNouvelleFicheClient.this.ageIsValid() == false) ? false : verification;
-				// Vérification de l'age du client --
-
-				// Vérification de l'adresse du client ++
-				verification = (FideliteNouvelleFicheClient.this.adressIsValid() == false) ? false : verification;
-				// Vérification de l'adresse du client --
-
-				// Vérification du code postal du client ++
-				verification = (FideliteNouvelleFicheClient.this.cpIsValid() == false) ? false : verification;
-				// Vérification du code postal du client --
-
-				// Traitement spécifiques à la creation apres participation
-				// operation commerciale ++
-				if (!FideliteNouvelleFicheClient.this.choixmenuprecedent.equals("creationcarteparoperation")) {
-
-					// récuperation de la date à partir des combobox ++
-					if (FideliteNouvelleFicheClient.this.jourdate != null
-							&& FideliteNouvelleFicheClient.this.moisdate != null
-							&& FideliteNouvelleFicheClient.this.annee != null) {
-						FideliteNouvelleFicheClient.this.dateComplete = FideliteNouvelleFicheClient.this.jourdate + "/"
-								+ FideliteNouvelleFicheClient.this.moisdate + "/"
-								+ FideliteNouvelleFicheClient.this.annee;
-						System.out.println("date : " + FideliteNouvelleFicheClient.this.dateComplete);
-					}
-					// récuperation de la date à partir des combobox --
-				}
-				// Traitement spécifiques à la creation apres participation
-				// operation commerciale --
-				FideliteNouvelleFicheClient.this.newsletter = FideliteNouvelleFicheClient.this.valeurCaseNewsletter;
+				verification = getfields(verification);
 
 				System.out.println("vérif saisie :::::::::" + verification + ":::::::::");
+
 				if (verification == true) {
-					try {
-						c = Connexion.getCon();
-						c.setAutoCommit(false);
 
-						final String sql = "SELECT COUNT(IDCLIENT) FROM CLIENT WHERE NOMCLIENT=? AND PRENOMCLIENT=? AND AGECLIENT=? AND CLIENT.IDCLIENT NOT IN (SELECT IDCLIENT FROM CARTE_DE_FIDELITE)";
-						preStm = c.prepareStatement(sql);
-						preStm.setString(1, FideliteNouvelleFicheClient.this.nomClient);
-						preStm.setString(2, FideliteNouvelleFicheClient.this.prenomClient);
-						preStm.setString(3, FideliteNouvelleFicheClient.this.age);
-						rs = preStm.executeQuery();
-
-						while (rs.next()) {
-							FideliteNouvelleFicheClient.this.compteur2 = rs.getInt(1);
-						}
-
-						preStm.close();
-						rs.close();
-						System.out.println("checkNumCliEXIST :::::::::" + FideliteNouvelleFicheClient.this.compteur2
-								+ ":::::::::");
-
-					} catch (final SQLException e10) {
-						e10.getMessage();
-					}
+					checkClientExist();
 
 					if (FideliteNouvelleFicheClient.this.compteur2 == 0) {
 						final Vector<infostemporaire> requete = new Vector<infostemporaire>();
@@ -1278,291 +1608,34 @@ public class FideliteNouvelleFicheClient extends JFrame {
 				FideliteNouvelleFicheClient.this.lblLoading.setVisible(false);
 			}
 
+			private void checkClientExist() {
+				try {
+					c = Connexion.getCon();
+					c.setAutoCommit(false);
+
+					final String sql = "SELECT COUNT(IDCLIENT) FROM CLIENT WHERE NOMCLIENT=? AND PRENOMCLIENT=? AND AGECLIENT=? AND CLIENT.IDCLIENT NOT IN (SELECT IDCLIENT FROM CARTE_DE_FIDELITE)";
+					preStm = c.prepareStatement(sql);
+					preStm.setString(1, FideliteNouvelleFicheClient.this.nomClient);
+					preStm.setString(2, FideliteNouvelleFicheClient.this.prenomClient);
+					preStm.setString(3, FideliteNouvelleFicheClient.this.age);
+					rs = preStm.executeQuery();
+
+					while (rs.next()) {
+						FideliteNouvelleFicheClient.this.compteur2 = rs.getInt(1);
+					}
+
+					preStm.close();
+					rs.close();
+					System.out.println(
+							"checkNumCliEXIST :::::::::" + FideliteNouvelleFicheClient.this.compteur2 + ":::::::::");
+
+				} catch (final SQLException e10) {
+					e10.getMessage();
+				}
+
+			}
+
 		});
 		longThread.start();
-	}
-
-	/**
-	 * check the PostCode validity
-	 *
-	 * @return <strong>true</strong> if postcode is valid <br>
-	 *         <Strong>false</strong> if postcode is not valid
-	 */
-	protected boolean cpIsValid() {
-		Boolean verification = true;
-		FideliteNouvelleFicheClient.this.CodePostalClient = FideliteNouvelleFicheClient.this.textField_CodePostal
-				.getText();
-
-		if (!FideliteNouvelleFicheClient.this.CodePostalClient.isEmpty()) {
-			if (FideliteNouvelleFicheClient.this.CodePostalClient.length() != 5) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "Merci de vérifier le code postal renseigné - Ce champ doit comporter 5 chiffres";
-			}
-		}
-		return verification;
-	}
-
-	/**
-	 * check the adrress validity
-	 *
-	 * @return <strong>true</strong> if adress is valid <br>
-	 *         <Strong>false</strong> if adress is not valid
-	 */
-	protected boolean adressIsValid() {
-		Boolean verification = true;
-		// Vérification de l'adresse du client ++
-		FideliteNouvelleFicheClient.this.adresseClient = FideliteNouvelleFicheClient.this.textField_Adresse.getText()
-				.toUpperCase();
-		try {
-			if (FideliteNouvelleFicheClient.this.comboBoxVilles.getSelectedIndex() > 0) {
-				FideliteNouvelleFicheClient.this.villeClient = FideliteNouvelleFicheClient.this.comboBoxVilles
-						.getSelectedItem().toString().toUpperCase();
-				FideliteNouvelleFicheClient.this.idville = ((Ville) FideliteNouvelleFicheClient.this.comboBoxVilles
-						.getSelectedItem()).getIdville();
-			}
-		} catch (final Exception e5) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Merci de selectionner une Ville";
-		}
-		// Vérification de l'addresse --
-		return verification;
-	}
-
-	/**
-	 * check the age validity
-	 *
-	 * @return <strong>true</strong> if age is valid <br>
-	 *         <Strong>false</strong> if age is not valid
-	 */
-	protected boolean ageIsValid() {
-		Boolean verification = true;
-		// Vérification de l'age du client ++
-		FideliteNouvelleFicheClient.this.age = FideliteNouvelleFicheClient.this.textField_Age.getText().toUpperCase()
-				.toString();
-		if (!FideliteNouvelleFicheClient.this.age.isEmpty()) {
-			if (Integer.parseInt(FideliteNouvelleFicheClient.this.age) < 18) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "Merci de vérifier l'àge du client : 18 ans minimum";
-			}
-		}
-		// Vérification de l'age du client --
-		return verification;
-	}
-
-	/**
-	 * check the GSM phone validity
-	 *
-	 * @return <strong>true</strong> if phone number is valid <br>
-	 *         <Strong>false</strong> if phone number is not valid
-	 */
-	protected boolean telGSMIsValid() {
-		Boolean verification = true;
-		// Vérification de la saisie du telephone gsm ++
-		FideliteNouvelleFicheClient.this.telephoneportable = null;
-		if (!FideliteNouvelleFicheClient.this.textField_TelMob.getText().isEmpty()) {
-			FideliteNouvelleFicheClient.this.telephoneportable = FideliteNouvelleFicheClient.this.textField_TelMob
-					.getText();
-
-			if (FideliteNouvelleFicheClient.this.telephoneportable.length() != 10) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "le numero de téléphone doit contenir 10 chiffres";
-			}
-		}
-		// Vérification de la saisie du telephone gsm --
-		return verification;
-	}
-
-	/**
-	 * check the home phone validity
-	 *
-	 * @return <strong>true</strong> if phone number is valid <br>
-	 *         <Strong>false</strong> if phone number is not valid
-	 */
-	protected boolean telFixIsValid() {
-		Boolean verification = true;
-		// Vérification de la saisie du telephone fix ++
-		FideliteNouvelleFicheClient.this.telephonefixe = null;
-		if (!FideliteNouvelleFicheClient.this.textField_TelFix.getText().isEmpty()) {
-			FideliteNouvelleFicheClient.this.telephonefixe = FideliteNouvelleFicheClient.this.textField_TelFix
-					.getText();
-			if (FideliteNouvelleFicheClient.this.telephonefixe.length() != 10) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "le numero de téléphone doit contenir 10 chiffres";
-			}
-		}
-		// Vérification de la saisie du telephone fix --
-		return verification;
-	}
-
-	/**
-	 * check if mail is valid
-	 *
-	 * @return <strong>true</strong> if mail is valid <br>
-	 *         <Strong>false</strong> if mail is not valid
-	 */
-	protected boolean mailIsValid() {
-		Boolean verification = true;
-		// Vérification de la saisie du mail ++
-		FideliteNouvelleFicheClient.this.email = null;
-
-		if (!FideliteNouvelleFicheClient.this.textField_Mail.getText().isEmpty()) {
-			FideliteNouvelleFicheClient.this.email = FideliteNouvelleFicheClient.this.textField_Mail.getText();
-
-			if (!EmailValidator.getInstance().isValid(FideliteNouvelleFicheClient.this.email)) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "Merci de vérifier l'adresse mail saisie";
-
-			}
-		}
-		// Vérification de la saisie du mail --
-		return verification;
-	}
-
-	/**
-	 * check if a lastname is filled
-	 *
-	 * @return <strong>true</strong> if lastname have been filled <br>
-	 *         <Strong>false</strong> if lastname havent been filled
-	 */
-	protected boolean prenomIsSet() {
-		Boolean verification = true;
-		// Vérification de la saisie du PRENOM ++
-		FideliteNouvelleFicheClient.this.prenomClient = FideliteNouvelleFicheClient.this.textField_Prenom.getText()
-				.toUpperCase();
-
-		if (FideliteNouvelleFicheClient.this.prenomClient.isEmpty()) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Merci de vérifier le prénom du client - Ce champ ne peut être vide";
-		}
-		// Vérification de la saisie du PRENOM --
-		return verification;
-	}
-
-	/**
-	 * check if a firstname is filled
-	 *
-	 * @return <strong>true</strong> if firstname have been filled <br>
-	 *         <Strong>false</strong> if firstname havent been filled
-	 */
-	protected boolean nomIsSet() {
-		// Vérification de la saisie du NOM ++
-		Boolean verification = true;
-		FideliteNouvelleFicheClient.this.nomClient = FideliteNouvelleFicheClient.this.textField_Nom.getText()
-				.toUpperCase();
-
-		if (FideliteNouvelleFicheClient.this.nomClient.isEmpty()) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Merci de vérifier le nom du client - Ce champ ne peut être vide";
-		}
-		// Vérification de la saisie du NOM --
-		return verification;
-	}
-
-	/**
-	 * check if a civilite is filled
-	 *
-	 * @return <strong>true</strong> if civilite have been filled <br>
-	 *         <Strong>false</strong> if civilite havent been filled
-	 */
-	protected boolean civiliteIsSet() {
-		// Vérification de la saisie du magasin ++
-		Boolean verification = true;
-		try {
-			FideliteNouvelleFicheClient.this.civilite = FideliteNouvelleFicheClient.this.comboBoxCivilite
-					.getSelectedItem().toString().toUpperCase();
-			if (civilite.isEmpty()) {
-				verification = false;
-				FideliteNouvelleFicheClient.this.message = "Merci de selectionner une civilité";
-			}
-		} catch (final Exception e5) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Merci de selectionner une civilité";
-		}
-		// Vérification de la saisie du magasin --
-		return verification;
-	}
-
-	/**
-	 * check if a mall have been selected
-	 *
-	 * @return <strong>true</strong> if mall have been sellected <br>
-	 *         <Strong>false</strong> if mall havent been selected
-	 */
-	protected boolean magasinIsSet() {
-		// Vérification de la saisie du magasin ++
-		Boolean verification = true;
-		try {
-			FideliteNouvelleFicheClient.this.magasin = FideliteNouvelleFicheClient.this.comboBoxMagasins
-					.getSelectedItem().toString().toUpperCase();
-			FideliteNouvelleFicheClient.this.idmagasin = ((Magasin) FideliteNouvelleFicheClient.this.comboBoxMagasins
-					.getSelectedItem()).getIdMagasin();
-		} catch (final Exception e5) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Merci de selectionner un magasin";
-		}
-		// Vérification de la saisie du magasin --
-		return verification;
-	}
-
-	/**
-	 * check if this is a new customer number
-	 *
-	 * @return <strong>true</strong> if card number is new<br>
-	 *         <Strong>false</strong> if card number is already registered
-	 */
-	protected boolean numCliIsNew() {
-		// Vérification de l'existence du numéro de client ++
-		FideliteNouvelleFicheClient.this.numerocarte = FideliteNouvelleFicheClient.this.formattedTextFieldNumCli
-				.getText();
-
-		Boolean verification = true;
-		int Compteur = 0;
-		try {
-
-			c = Connexion.getCon();
-
-			final String SQL = "SELECT COUNT(NUMEROCARTEDEFIDELITE) FROM CARTE_DE_FIDELITE WHERE NUMEROCARTEDEFIDELITE=?";
-			preStm = c.prepareStatement(SQL);
-			preStm.setString(1, FideliteNouvelleFicheClient.this.numerocarte);
-			rs = preStm.executeQuery();
-		} catch (final Exception e8) {
-			System.out.println("erreur " + e8.getMessage());
-		}
-
-		try {
-			while (rs.next()) {
-				Compteur = (rs.getInt(1));
-			}
-			rs.close();
-			preStm.close();
-		} catch (final Exception e5) {
-			System.out.println("erreur " + e5.getMessage());
-		}
-
-		if (Compteur != 0) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Ce numéro de carte est deja utilisé";
-		}
-		// Vérification de l'existence du numéro de client --
-		return verification;
-	}
-
-	/**
-	 * check if numCli is filled
-	 *
-	 * @return <strong>true</strong> if numCli is filled <br>
-	 *         <Strong>false</strong> if numCli is not filled
-	 */
-	protected Boolean numCliIsSet() {
-		// Vérification de la saisie du numéro de carte ++
-		Boolean verification = true;
-		if (FideliteNouvelleFicheClient.this.numerocarte.isEmpty()) {
-			verification = false;
-			FideliteNouvelleFicheClient.this.message = "Merci de vérifier votre numéro de client - Ce champ ne peut être vide";
-
-		}
-		// Vérification de la saisie du numéro de carte --
-		return verification;
-
 	}
 }

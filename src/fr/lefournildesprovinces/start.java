@@ -9,24 +9,39 @@ import fr.lefournildesprovinces.controler.Control;
 public class start {
 
 	/**
-	 *  this is the entry point of the application
+	 * this is the entry point of the application
 	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		Boolean checkArgs = true;
+		int countArgs = 0;
+		for (String s : args) {
+			countArgs++;
+			// System.out.println("arg "+countArgs+" is \""+s+"\"");
+			if (s.equals("with-jws-launcher")) {
+				checkArgs = true;
+			} else {
+				checkArgs = false;
+			}
+		}
+		checkArgs = (countArgs == 1) ? checkArgs : false;
+		if (checkArgs == false) {
+			System.out
+					.print("Launching this way is forbiden. try with the web acces\nprogram stoped with exit code : 0");
+			System.exit(0);
+		}
 
 		lookNFeel();
-
 	}
 
-	public static void lookNFeel(){
+	public static void lookNFeel() {
 		/**
-		 *  set look and feel
+		 * set look and feel
 		 **/
 
 		try {
-			UIManager.setLookAndFeel(UIManager
-					.getCrossPlatformLookAndFeelClassName());
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 		} catch (Exception e) {
 		}
 		new start();

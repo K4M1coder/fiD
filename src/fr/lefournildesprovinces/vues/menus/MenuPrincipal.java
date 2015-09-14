@@ -281,20 +281,19 @@ public class MenuPrincipal extends JFrame {
 	private JLabel getLabel_Import() {
 		if (this.label_Import == null) {
 			this.label_Import = new JLabel("");
-			this.label_Import.setIcon(new ImageIcon(MenuPrincipal.class
-					.getResource("/Images/import.png")));
+			this.label_Import.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Images/import-excel.png")));
 			this.label_Import
 					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_Import.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_Import.setForeground(Color.GRAY);
-			this.label_Import.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(final MouseEvent e) {
-					final GestionAdministrativeUttilisateursApplication fenetre = new GestionAdministrativeUttilisateursApplication();
-					fenetre.setVisible(true);
-					MenuPrincipal.this.dispose();
-				}
-			});
+//			this.label_Import.addMouseListener(new MouseAdapter() {
+//				@Override
+//				public void mouseClicked(final MouseEvent e) {
+//					final GestionAdministrativeUttilisateursApplication fenetre = new GestionAdministrativeUttilisateursApplication();
+//					fenetre.setVisible(true);
+//					MenuPrincipal.this.dispose();
+//				}
+//			});
 			this.label_Import.setHorizontalAlignment(SwingConstants.CENTER);
 			this.label_Import.setBounds(863, 728, 127, 44);
 		}

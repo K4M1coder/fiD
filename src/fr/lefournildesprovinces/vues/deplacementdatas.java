@@ -32,39 +32,39 @@ public class deplacementdatas extends JFrame {
 	 *
 	 */
 	private static final long serialVersionUID = 2168098610236879418L;
-	private static PreparedStatement stm;
-	private final String adresseClient;
-	private final String ageClient;
-	private final String choixetprovenance;
-	private final String civiliteClient;
-	private final String codePostalClient;
-	private final int compteur;
-	private final JPanel contentPane;
-	private final String dateNaissanceClient;
-	private final String emailClient;
-	private final int idmagasinClient;
-	private final int idmagasinclientparticipant;
-	private final int idoperationclientparticipant;
-	private final int idvilleClient;
-	private final JFrame InterfacePrecedente;
-	private JLayeredPane layeredPane;
 	private JLabel lblCesDonnesSeront;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNon;
 	private JLabel lblOui;
 	private JLabel lblSouhaitezVousContinuer;
+	private JLayeredPane layeredPane;
+	private Vector<infostemporaire> requete;
+	private final Boolean privilegeClient;
+	private final JFrame InterfacePrecedente;
+	private final JPanel contentPane;
+	private final String adresseClient;
+	private final String ageClient;
+	private final String choixetprovenance;
+	private final String civiliteClient;
+	private final String codePostalClient;
+	private final String dateNaissanceClient;
+	private final String emailClient;
 	private final String magasinClient;
 	private final String newsletterClient;
 	private final String nomClient;
 	private final String numcarte;
-	private int numeroclient;
 	private final String numerofixe;
 	private final String numeroportable;
 	private final String prenomClient;
-	private Vector<infostemporaire> requete;
 	private final String villeClient;
-	private final Boolean privilegeClient;
+	private final int compteur;
+	private final int idmagasinClient;
+	private final int idmagasinclientparticipant;
+	private final int idoperationclientparticipant;
+	private final int idvilleClient;
+	private int numeroclient;
+	private static PreparedStatement stm;
 
 	public deplacementdatas(final JFrame interfaceActuelle,
 			final String numerocarte, final String magasin,
@@ -130,7 +130,7 @@ public class deplacementdatas extends JFrame {
 	private JLabel getLblCesDonnesSeront() {
 		if (this.lblCesDonnesSeront == null) {
 			this.lblCesDonnesSeront = new JLabel(
-					"ces donn\u00E9es seront donc conserv\u00E9es et jointe \u00E0 la nouvelle carte de fidelit\u00E9");
+					"ces données seront donc conservées et jointe à la nouvelle carte de fidelité");
 			this.lblCesDonnesSeront.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblCesDonnesSeront.setForeground(Color.GRAY);
 			this.lblCesDonnesSeront.setBounds(107, 93, 439, 14);
@@ -141,7 +141,7 @@ public class deplacementdatas extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel(
-					"Ce client \u00E0 d\u00E9ja particip\u00E9 \u00E0 des op\u00E9rations commerciales");
+					"Ce client à déja participé à des opérations commerciales");
 			this.lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblNewLabel.setForeground(Color.GRAY);
 			this.lblNewLabel.setBounds(161, 68, 335, 14);
