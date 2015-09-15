@@ -38,9 +38,10 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class FicheClientComplete extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 2754566991054388046L;
+	private JLabel label_Supprimer;
 	private String adresseclientcarte;
 	private String adressemailclientcarte;
 	private String adressemailcontact;
@@ -66,6 +67,7 @@ public class FicheClientComplete extends JFrame {
 	private JLabel label_5;
 	private JLabel label_6;
 	private JLabel label_7;
+	private JLabel label_7_2;
 	private JLabel label_8;
 	private JLabel label_9;
 	private JLayeredPane layeredPane;
@@ -84,6 +86,7 @@ public class FicheClientComplete extends JFrame {
 	private JLabel lblNewLabel_3;
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
+	private JLabel lblVip;
 	private JLabel lblNewsletter;
 	private JLabel lblParticipationOprationCommerciale;
 	private JLabel lblPrint;
@@ -103,6 +106,7 @@ public class FicheClientComplete extends JFrame {
 	private String telephonemobileclientcarte;
 	private JTextArea textArea;
 	private String villeclientcarte;
+	private JLabel label_MAJ;
 
 	public FicheClientComplete(final int idclient) {
 		this.addWindowListener(new WindowAdapter() {
@@ -140,6 +144,8 @@ public class FicheClientComplete extends JFrame {
 							.get(i).getEmail());
 					FicheClientComplete.this.label_7.setText(resultatsfiche
 							.get(i).getNewsletterIndividu());
+					FicheClientComplete.this.label_7_2.setText(resultatsfiche
+							.get(i).getVIP());
 					FicheClientComplete.this.label_11.setText(resultatsfiche
 							.get(i).getDateNaissanceIndividu());
 					FicheClientComplete.this.lblNewLabel_2
@@ -372,6 +378,16 @@ public class FicheClientComplete extends JFrame {
 		return this.label_7;
 	}
 
+	private JLabel getLabel_7_2() {
+		if (this.label_7_2 == null) {
+			this.label_7_2 = new JLabel("");
+			this.label_7_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.label_7_2.setForeground(Color.GRAY);
+			this.label_7_2.setBounds(754, 400, 283, 14);
+		}
+		return this.label_7_2;
+	}
+
 	private JLabel getLabel_8() {
 		if (this.label_8 == null) {
 			this.label_8 = new JLabel("");
@@ -395,12 +411,15 @@ public class FicheClientComplete extends JFrame {
 	private JLayeredPane getLayeredPane_1() {
 		if (this.layeredPane == null) {
 			this.layeredPane = new JLayeredPane();
+			this.layeredPane.add(this.getlabel_Supprimer());
+			this.layeredPane.add(this.getLabel_MAJ());
 			this.layeredPane.add(this.getLblRetour());
 			this.layeredPane.add(this.getLblAdresse());
 			this.layeredPane.add(this.getLblCodePostal());
 			this.layeredPane.add(this.getLblTlphone());
 			this.layeredPane.add(this.getLblMobile());
 			this.layeredPane.add(this.getLblNewsletter());
+			this.layeredPane.add(this.getLblVip());
 			this.layeredPane.add(this.getLblEmail());
 			this.layeredPane.add(this.getLblParticipationOprationCommerciale());
 			this.layeredPane.add(this.getLblFicheClientP());
@@ -413,6 +432,7 @@ public class FicheClientComplete extends JFrame {
 			this.layeredPane.add(this.getLabel_5());
 			this.layeredPane.add(this.getLabel_6());
 			this.layeredPane.add(this.getLabel_7());
+			this.layeredPane.add(this.getLabel_7_2());
 			this.layeredPane.add(this.getLabel_8());
 			this.layeredPane.add(this.getLabel_9());
 			this.layeredPane.add(this.getLabel_10());
@@ -530,6 +550,48 @@ public class FicheClientComplete extends JFrame {
 		return this.lblLuiEcrire;
 	}
 
+	private JLabel getlabel_Supprimer() {
+		if (this.label_Supprimer == null) {
+			this.label_Supprimer = new JLabel("");
+			this.label_Supprimer.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/menubutons/bouton-fidelite-supression.png")));
+			this.label_Supprimer
+					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_Supprimer.setFont(new Font("Tahoma", Font.BOLD, 17));
+			this.label_Supprimer.setForeground(Color.GRAY);
+			this.label_Supprimer.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+// TODO  : action when clicked
+				}
+			});
+			this.label_Supprimer.setHorizontalAlignment(SwingConstants.CENTER);
+			this.label_Supprimer.setBounds(428, 501, 145, 225);
+		}
+		return this.label_Supprimer;
+	}
+
+	private JLabel getLabel_MAJ() {
+		if (this.label_MAJ == null) {
+			this.label_MAJ = new JLabel("");
+			this.label_MAJ.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/menubutons/bouton-fidelite-mise-jour.png")));
+			this.label_MAJ
+					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_MAJ.setFont(new Font("Tahoma", Font.BOLD, 17));
+			this.label_MAJ.setForeground(Color.GRAY);
+			this.label_MAJ.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+
+
+					// TODO  : action when clicked
+				}
+			});
+			this.label_MAJ.setHorizontalAlignment(SwingConstants.CENTER);
+			this.label_MAJ.setBounds(273, 501, 145, 225);
+		}
+		return this.label_MAJ;
+	}
+
 	private JLabel getLblMagasinDeRfrence() {
 		if (this.lblMagasinDeRfrence == null) {
 			this.lblMagasinDeRfrence = new JLabel(
@@ -565,8 +627,9 @@ public class FicheClientComplete extends JFrame {
 	private JLabel getLblNewLabel_1() {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
-			this.lblNewLabel_1.setIcon(new ImageIcon(FicheClientComplete.class
-					.getResource("/Images/carte-fidelite-logiciel2.png")));
+			String cardpath="/Images/carte-vierge-vip2.png";
+//			if (this.)
+			this.lblNewLabel_1.setIcon(new ImageIcon(FicheClientComplete.class.getResource(cardpath)));
 			this.lblNewLabel_1.setBounds(242, 280, 360, 237);
 		}
 		return this.lblNewLabel_1;
@@ -622,6 +685,16 @@ public class FicheClientComplete extends JFrame {
 		return this.lblNewsletter;
 	}
 
+	private JLabel getLblVip() {
+		if (this.lblVip == null) {
+			this.lblVip = new JLabel("privilege :");
+			this.lblVip.setForeground(new Color(139, 69, 19));
+			this.lblVip.setFont(new Font("Tahoma", Font.BOLD, 12));
+			this.lblVip.setBounds(663, 400, 81, 14);
+		}
+		return this.lblVip;
+	}
+
 	private JLabel getLblParticipationOprationCommerciale() {
 		if (this.lblParticipationOprationCommerciale == null) {
 			this.lblParticipationOprationCommerciale = new JLabel(
@@ -650,10 +723,10 @@ public class FicheClientComplete extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					/*
 					 * Properties props = new Properties();
-					 * 
+					 *
 					 * props.put("awt.print.paperSize", "a4");
 					 * props.put("awt.print.destination", "printer");
-					 * 
+					 *
 					 * PrintJob pJob =
 					 * interfacefenetre.getToolkit().getPrintJob(
 					 * interfacefenetre,"Printing_Test", props); if (pJob !=
@@ -798,8 +871,8 @@ public class FicheClientComplete extends JFrame {
 						/*
 						 * Desktop bureau=Desktop.getDesktop();
 						 * bureau.print(file);
-						 * 
-						 * 
+						 *
+						 *
 						 * try { Thread.sleep(6000); } catch
 						 * (InterruptedException e15) { // TODO Auto-generated
 						 * catch block e15.printStackTrace(); }

@@ -29,7 +29,7 @@ public class start {
 		if (checkArgs == false) {
 			System.out
 					.print("Launching this way is forbiden. try with the web acces\nprogram stoped with exit code : 0");
-			System.exit(0);
+//			System.exit(0);
 		}
 
 		lookNFeel();

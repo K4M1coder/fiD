@@ -1,54 +1,32 @@
-<project name="applet-fidelite" default="all">
-
-	<target name="all" depends="clean, signjar" />
-
-	<target name="clean">
-		<delete dir="${basedir}/build" />
-		<delete dir="${basedir}/dist" />
-	</target>
-
-	<target name="prepare">
-		<mkdir dir="${basedir}/build" />
-		<mkdir dir="${basedir}/dist" />
-	</target>
-
-	<target name="compile" depends="prepare, copy-images">
-		<javac srcdir="${basedir}/src" destdir="${basedir}/build">
-			<classpath>
-				<fileset dir="${basedir}/lib">
-					<include name="*.jar" />
-				</fileset>
-			</classpath>
-		</javac>
-	</target>
-
-	<target name="expand-libs" depends="prepare">
-		<unjar dest="${basedir}/build">
-			<fileset dir="${basedir}/lib">
-				<include name="*.jar" />
-			</fileset>
-			<patternset>
-				<include name="**/*.class" />
-				<include name="**/*.properties" />
-			</patternset>
-		</unjar>
-	</target>
-
-	<target name="copy-images" depends="prepare">
-		<copy todir="${basedir}/build/Images">
-			<fileset dir="${basedir}/src/Images">
-				<include name="**/*" />
-			</fileset>
-		</copy>
-	</target>
-
-	<target name="jar" depends="prepare, compile, expand-libs">
-		<jar destfile="${basedir}/dist/lefournildesprovinces.jar" basedir="${basedir}/build" includes="**" />
-	</target>
-
-	<target name="signjar" depends="jar">
-		<input message="Please enter the store pass" addproperty="store.pass" />
-		<signjar jar="${basedir}/dist/lefournildesprovinces.jar" alias="eFyne" storepass="${store.pass}" />
-	</target>
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project applet-fidelite with libraries in sub-folder">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="C:/Users/admin/workspace"/>
+    <property name="dir.jarfile" value="${dir.buildfile}/target"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/lefournildesprovincesfid.jar">
+            <manifest>
+                <attribute name="Main-Class" value="fr.lefournildesprovinces.start"/>
+                <attribute name="Class-Path" value=". lib/Scommons-validator-1.4.1.jar lib/Sglazedlists_java16-1.10-20150612.084821-7.jar lib/Smysql-connector-java-5.1.30-bin.jar lib/log4j-1.2.17.jar lib/poi-3.10-FINAL.jar lib/commons-codec-1.5.jar lib/poi-ooxml-3.10-FINAL.jar lib/poi-ooxml-schemas-3.10-FINAL.jar lib/xmlbeans-2.3.0.jar lib/stax-api-1.0.1.jar lib/dom4j-1.6.1.jar lib/xml-apis-1.0.b2.jar"/>
+            </manifest>
+            <fileset dir="${dir.jarfile}/classes"/>
+        </jar>
+        <delete dir="${dir.jarfile}/lib"/>
+        <mkdir dir="${dir.jarfile}/lib"/>
+        <copy file="${dir.buildfile}/lib/Scommons-validator-1.4.1.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="${dir.buildfile}/lib/Sglazedlists_java16-1.10-20150612.084821-7.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="${dir.buildfile}/lib/Smysql-connector-java-5.1.30-bin.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="C:/Users/admin/.m2/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="C:/Users/admin/.m2/repository/org/apache/poi/poi/3.10-FINAL/poi-3.10-FINAL.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="C:/Users/admin/.m2/repository/commons-codec/commons-codec/1.5/commons-codec-1.5.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="C:/Users/admin/.m2/repository/org/apache/poi/poi-ooxml/3.10-FINAL/poi-ooxml-3.10-FINAL.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="C:/Users/admin/.m2/repository/org/apache/poi/poi-ooxml-schemas/3.10-FINAL/poi-ooxml-schemas-3.10-FINAL.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="C:/Users/admin/.m2/repository/org/apache/xmlbeans/xmlbeans/2.3.0/xmlbeans-2.3.0.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="C:/Users/admin/.m2/repository/stax/stax-api/1.0.1/stax-api-1.0.1.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="C:/Users/admin/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="C:/Users/admin/.m2/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar" todir="${dir.jarfile}/lib"/>
+    </target>
 </project>

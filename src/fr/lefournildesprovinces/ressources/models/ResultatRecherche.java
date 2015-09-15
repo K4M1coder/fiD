@@ -12,6 +12,7 @@ public class ResultatRecherche {
 	String nomIndividu;
 	String Nommagasin;
 	String numerocarte;
+	String vIP;
 	String prenomIndividu;
 	String telephonefixe;
 	String telephonemobile;
@@ -19,6 +20,10 @@ public class ResultatRecherche {
 
 	public String getAdresseIndividu() {
 		return this.adresseIndividu;
+	}
+
+	public String getVIP() {
+		return vIP;
 	}
 
 	public String getAge() {
@@ -129,6 +134,10 @@ public class ResultatRecherche {
 		this.villeIndividu = villeIndividu;
 	}
 
+	public void setVIP(final String vip) {
+		vIP = vip;
+	}
+
 	@Override
 	public String toString() {
 		return "ResultatRecherche [civiliteIndividu=" + this.civiliteIndividu
@@ -142,7 +151,7 @@ public class ResultatRecherche {
 				+ ", numerocarte=" + this.numerocarte + ", Nommagasin="
 				+ this.Nommagasin + ", telephonefixe=" + this.telephonefixe
 				+ ", telephonemobile=" + this.telephonemobile + ", age="
-				+ this.age + "]";
+				+ this.age + ((this.vIP.equals("true"))?"client privilege":"")+"]";
 	}
 
 }
