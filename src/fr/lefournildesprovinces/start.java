@@ -14,6 +14,7 @@ public class start {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		System.out.println("Start launch");
 		Boolean checkArgs = true;
 		int countArgs = 0;
 		for (String s : args) {
@@ -40,6 +41,7 @@ public class start {
 		 * set look and feel
 		 **/
 
+		System.out.println("load IHM");
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 		} catch (Exception e) {

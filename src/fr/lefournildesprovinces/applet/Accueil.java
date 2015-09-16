@@ -30,6 +30,7 @@ public class Accueil extends JApplet {
 	private JLabel lblValidate;
 
 	public Accueil() {
+		System.out.println("Applet launch");
 		this.setForeground(Color.YELLOW);
 		this.setBounds(100, 100, 450, 143);
 		this.contentPane = new JPanel();

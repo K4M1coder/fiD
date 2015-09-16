@@ -112,7 +112,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 			final String numpor, final String age, final Boolean vip, final int idoperationcommercialeparticipation,
 			final int idmagasinparticipation, final String choixmenuprecedent, final int compteur2,
 			final Vector<infostemporaire> requete) {
-		System.out.println("VIP is "+vip);
+		System.out.println("VIP is " + vip);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent e) {
@@ -142,10 +142,8 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 			}
 		});
 
-
-
 		this.vip = vip;
-		System.out.println("now VIP is "+this.vip);
+		System.out.println("now VIP is " + this.vip);
 		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1280, 800);
@@ -615,216 +613,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 			this.lblOui.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					boolean etat = true;
-
-					if (ConfirmationInsertionClientFidelite.this.dateNaissanceClient != null) {
-						final String[] tab = ConfirmationInsertionClientFidelite.this.dateNaissanceClient.split("/");
-						final String day = tab[0];
-						final String month = tab[1];
-						final String year = tab[2];
-						ConfirmationInsertionClientFidelite.this.dateNaissanceClientfinale = year + "/" + month + "/"
-								+ day;
-					}
-
-					try {
-						c = Connexion.getCon();
-						c.setAutoCommit(false);
-
-						final String sql = "INSERT INTO CLIENT (CIVILITECLIENT,NOMCLIENT,PRENOMCLIENT,ADRESSECLIENT,IDVILLE,DATENAISSANCECLIENT,MAILCLIENT,ABONNEMENTNEWSLETTERCLIENT,TELEPHONEFIXECLIENT,TELEPHONEPORTABLECLIENT,AGECLIENT) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-						stm = c.prepareStatement(sql);
-
-						stm.setString(1, ConfirmationInsertionClientFidelite.this.civiliteClient);
-						stm.setString(2, ConfirmationInsertionClientFidelite.this.nomClient);
-						stm.setString(3, ConfirmationInsertionClientFidelite.this.prenomClient);
-						stm.setString(4, ConfirmationInsertionClientFidelite.this.adresseClient);
-						if (idvilleClient == 0) {
-							stm.setNull(5, Types.INTEGER);
-						} else {
-							stm.setInt(5, idvilleClient);
-						}
-						stm.setString(6, ConfirmationInsertionClientFidelite.this.dateNaissanceClientfinale);
-						stm.setString(7, ConfirmationInsertionClientFidelite.this.emailClient);
-						stm.setString(8, ConfirmationInsertionClientFidelite.this.newsletterClient);
-						stm.setString(9, ConfirmationInsertionClientFidelite.this.numerofixe);
-						stm.setString(10, ConfirmationInsertionClientFidelite.this.numeroportable);
-						stm.setString(11, ConfirmationInsertionClientFidelite.this.ageClient);
-
-						stm.executeUpdate();
-
-						stm.close();
-
-						final String dernierincrementclient = "SELECT MAX( LAST_INSERT_ID(IDCLIENT)) FROM CLIENT";
-						stm = c.prepareStatement(dernierincrementclient);
-						rs = stm.executeQuery();
-						int lastidclient = 0;
-						while (rs.next()) {
-							lastidclient = rs.getInt(1);
-						}
-
-						rs.close();
-						stm.close();
-
-						if (idmagasinClient != 0) {
-							final String table_frequenter = "INSERT INTO FREQUENTER (IDCLIENT, IDMAGASIN) VALUES (?,?)";
-							stm = c.prepareStatement(table_frequenter);
-
-							stm.setInt(1, lastidclient);
-							stm.setInt(2, ConfirmationInsertionClientFidelite.this.idmagasinClient);
-
-							stm.executeUpdate();
-							stm.close();
-						}
-
-						final String table_carte_de_fidelite = "INSERT INTO CARTE_DE_FIDELITE (IDCLIENT,NUMEROCARTEDEFIDELITE) VALUES (?,?)";
-						stm = c.prepareStatement(table_carte_de_fidelite);
-
-						stm.setInt(1, lastidclient);
-						stm.setString(2, ConfirmationInsertionClientFidelite.this.numcarte);
-
-						stm.executeUpdate();
-						stm.close();
-
-						final String dernierincrementcartefidelite = "SELECT MAX( LAST_INSERT_ID(IDCARTEDEFIDELITE)) FROM CARTE_DE_FIDELITE";
-						stm = c.prepareStatement(dernierincrementcartefidelite);
-						rs = stm.executeQuery();
-						int lastidcarte = 0;
-						while (rs.next())
-
-						{
-							lastidcarte = rs.getInt(1);
-						}
-
-						rs.close();
-						stm.close();
-
-						if (idmagasinClient != 0) {
-							final String table_delivrer = "INSERT INTO DELIVRER (IDCARTEDEFIDELITE, IDMAGASIN) VALUES (?,?)";
-							stm = c.prepareStatement(table_delivrer);
-
-							stm.setInt(1, lastidcarte);
-							stm.setInt(2, ConfirmationInsertionClientFidelite.this.idmagasinClient);
-
-							stm.executeUpdate();
-							stm.close();
-						}
-						if (ConfirmationInsertionClientFidelite.this.compteurprecedent == 1) {
-
-							for (int i = 0; i < ConfirmationInsertionClientFidelite.this.requeteprecedente
-									.size(); i++) {
-
-								final String majcopyparticiper = "INSERT INTO PARTICIPER (IDOPERATIONCOMMERCIALE,IDCLIENT,IDMAGASIN) VALUES (?,?,?)";
-								stm = c.prepareStatement(majcopyparticiper);
-
-								stm.setInt(1, ConfirmationInsertionClientFidelite.this.requeteprecedente.get(i)
-										.getIdoperationTemporaire());
-								stm.setInt(2, lastidclient);
-								stm.setInt(3, ConfirmationInsertionClientFidelite.this.requeteprecedente.get(i)
-										.getIdMagasinTemporaire());
-
-								stm.executeUpdate();
-
-								stm.close();
-
-							}
-						}
-
-						if (ConfirmationInsertionClientFidelite.this.choixetprovenance
-								.equals("creationcarteparoperation"))
-
-						{
-
-							final String majcopyparticiper = "INSERT INTO PARTICIPER(IDOPERATIONCOMMERCIALE,IDCLIENT,IDMAGASIN) VALUES (?,?,?)";
-							stm = c.prepareStatement(majcopyparticiper);
-
-							stm.setInt(1, ConfirmationInsertionClientFidelite.this.idoperationclientparticipant);
-							stm.setInt(2, lastidclient);
-							stm.setInt(3, ConfirmationInsertionClientFidelite.this.idmagasinclientparticipant);
-
-							stm.executeUpdate();
-
-							stm.close();
-
-						}
-
-						c.commit();
-						c.setAutoCommit(true);
-
-						final SuccesInsertionClientFidelite fenetre = new SuccesInsertionClientFidelite(
-								ConfirmationInsertionClientFidelite.this.civiliteClient,
-								ConfirmationInsertionClientFidelite.this.nomClient,
-								ConfirmationInsertionClientFidelite.this.prenomClient,
-								ConfirmationInsertionClientFidelite.this.dateNaissanceClient,
-								ConfirmationInsertionClientFidelite.this.numcarte,
-								ConfirmationInsertionClientFidelite.this.ageClient,
-								ConfirmationInsertionClientFidelite.this.choixetprovenance,
-								ConfirmationInsertionClientFidelite.this.idoperationclientparticipant,
-								ConfirmationInsertionClientFidelite.this.idmagasinclientparticipant);
-						fenetre.setVisible(true);
-						ConfirmationInsertionClientFidelite.this.InterfacePrecedente.dispose();
-						ConfirmationInsertionClientFidelite.this.dispose();
-
-					} catch (final Exception e1)
-
-					{
-						System.out.print("erreur" + e1.getMessage());
-						try {
-							c.rollback();
-							final String erreur = e1.getMessage();
-							/*
-							 * String [] tab =dateNaissanceClient.split("/");
-							 * String day=tab[0]; String month=tab[1]; String
-							 * year=tab[2];
-							 */
-							final String erreurtype = "Duplicate entry '"
-									+ ConfirmationInsertionClientFidelite.this.nomClient + "-"
-									+ ConfirmationInsertionClientFidelite.this.prenomClient + "-"
-									+ ConfirmationInsertionClientFidelite.this.ageClient + "-"
-									+ ConfirmationInsertionClientFidelite.this.idvilleClient + "' for key 'NOMCLIENT'";
-
-							if (erreur.equals(erreurtype)) {
-								ConfirmationInsertionClientFidelite.this.messageInsertion = "le Client "
-										+ ConfirmationInsertionClientFidelite.this.civiliteClient + " "
-										+ ConfirmationInsertionClientFidelite.this.nomClient + " "
-										+ ConfirmationInsertionClientFidelite.this.prenomClient
-										+ " possède deja une carte";
-
-							} else {
-								ConfirmationInsertionClientFidelite.this.messageInsertion = "Impossible d'insérer le Client "
-										+ ConfirmationInsertionClientFidelite.this.civiliteClient + " "
-										+ ConfirmationInsertionClientFidelite.this.nomClient + " "
-										+ ConfirmationInsertionClientFidelite.this.prenomClient + "";
-							}
-							System.out.print(ConfirmationInsertionClientFidelite.this.messageInsertion);
-							etat = false;
-							ConfirmationInsertionClientFidelite.this.text = "Nouvelle Fiche Client";
-							Message.setMessageaffichagefond(ConfirmationInsertionClientFidelite.this.text);
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
-									ConfirmationInsertionClientFidelite.this.messageInsertion, etat,
-									ConfirmationInsertionClientFidelite.this.text,
-									ConfirmationInsertionClientFidelite.this.messageinsertion2,
-									ConfirmationInsertionClientFidelite.this.choixetprovenance,
-									ConfirmationInsertionClientFidelite.this.idoperationclientparticipant,
-									ConfirmationInsertionClientFidelite.this.idmagasinclientparticipant);
-							fenetre.setVisible(true);
-
-							fenetre.setAlwaysOnTop(true);
-							ConfirmationInsertionClientFidelite.this.dispose();
-
-						} catch (final SQLException e2) {
-
-							e2.printStackTrace();
-						}
-					}
-					try {
-
-						if (stm != null) {
-							stm.close();
-						}
-
-					} catch (final Exception e3) {
-						e3.printStackTrace();
-					}
-
+					createFiche();
 				}
 			});
 			this.lblOui.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -833,6 +622,251 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 			this.lblOui.setBounds(878, 520, 99, 23);
 		}
 		return this.lblOui;
+	}
+
+	protected void createFiche() {
+
+		boolean etat = true;
+
+		System.out.print("\ncreate fiche :\n");
+		if (ConfirmationInsertionClientFidelite.this.dateNaissanceClient != null) {
+			final String[] tab = ConfirmationInsertionClientFidelite.this.dateNaissanceClient.split("/");
+			final String day = tab[0];
+			final String month = tab[1];
+			final String year = tab[2];
+			ConfirmationInsertionClientFidelite.this.dateNaissanceClientfinale = year + "/" + month + "/" + day;
+
+		}
+
+		try {
+			c = Connexion.getCon();
+			c.setAutoCommit(false);
+
+			final String sql = "INSERT INTO CLIENT ("
+					+ "CIVILITECLIENT,"
+					+ "NOMCLIENT,"
+					+ "PRENOMCLIENT,"
+					+ "ADRESSECLIENT,"
+					+ "IDVILLE,"
+					+ "DATENAISSANCECLIENT,"
+					+ "MAILCLIENT,"
+					+ "ABONNEMENTNEWSLETTERCLIENT,"
+					+ "TELEPHONEFIXECLIENT,"
+					+ "TELEPHONEPORTABLECLIENT,"
+					+ "AGECLIENT,"
+					+ "VIP) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+			stm = c.prepareStatement(sql);
+
+			System.out.print("civlite : ");
+			stm.setString(1, ConfirmationInsertionClientFidelite.this.civiliteClient);
+			System.out.print(ConfirmationInsertionClientFidelite.this.civiliteClient+"\nnom :");
+			stm.setString(2, ConfirmationInsertionClientFidelite.this.nomClient);
+			System.out.print(ConfirmationInsertionClientFidelite.this.nomClient+"\nprenomc : ");
+			stm.setString(3, ConfirmationInsertionClientFidelite.this.prenomClient);
+			System.out.print(ConfirmationInsertionClientFidelite.this.prenomClient+"\nadresse : ");
+			stm.setString(4, ConfirmationInsertionClientFidelite.this.adresseClient);
+			System.out.print(ConfirmationInsertionClientFidelite.this.adresseClient+"\nidville : ");
+			if (idvilleClient == 0) {
+				stm.setNull(5, Types.INTEGER);
+				System.out.print(Types.INTEGER);
+			} else {
+				stm.setInt(5, idvilleClient);
+				System.out.print(idvilleClient);
+			}
+			System.out.print("\ndatee de naissance : ");
+			stm.setString(6, ConfirmationInsertionClientFidelite.this.dateNaissanceClientfinale);
+			System.out.print(ConfirmationInsertionClientFidelite.this.dateNaissanceClientfinale+"\nemail : ");
+			stm.setString(7, ConfirmationInsertionClientFidelite.this.emailClient);
+			System.out.print(ConfirmationInsertionClientFidelite.this.emailClient+"\nnewsletter : ");
+			stm.setString(8, ConfirmationInsertionClientFidelite.this.newsletterClient);
+			System.out.print(ConfirmationInsertionClientFidelite.this.newsletterClient+"\ntelFixe : ");
+			stm.setString(9, ConfirmationInsertionClientFidelite.this.numerofixe);
+			System.out.print(ConfirmationInsertionClientFidelite.this.numerofixe+"\ntelGSM : ");
+			stm.setString(10, ConfirmationInsertionClientFidelite.this.numeroportable);
+			System.out.print(ConfirmationInsertionClientFidelite.this.numeroportable+"\nage : ");
+			stm.setString(11, ConfirmationInsertionClientFidelite.this.ageClient);
+			System.out.print(ConfirmationInsertionClientFidelite.this.ageClient+"\ncarte privilege : ");
+			stm.setBoolean(12, ConfirmationInsertionClientFidelite.this.vip);
+			System.out.print(ConfirmationInsertionClientFidelite.this.vip+"\n\n execute update : ");
+
+			stm.executeUpdate();
+			System.out.print("ok\n");
+
+			stm.close();
+
+			final String dernierincrementclient = "SELECT MAX( LAST_INSERT_ID(IDCLIENT)) FROM CLIENT";
+			stm = c.prepareStatement(dernierincrementclient);
+			rs = stm.executeQuery();
+			int lastidclient = 0;
+			while (rs.next()) {
+				lastidclient = rs.getInt(1);
+			}
+			System.out.print("inserted idclient is : "+lastidclient);
+			rs.close();
+			stm.close();
+
+			if (idmagasinClient != 0) {
+				final String table_frequenter = "INSERT INTO FREQUENTER (IDCLIENT, IDMAGASIN) VALUES (?,?)";
+				stm = c.prepareStatement(table_frequenter);
+
+				stm.setInt(1, lastidclient);
+				System.out.print(" link to magasin : ");
+				stm.setInt(2, ConfirmationInsertionClientFidelite.this.idmagasinClient);
+				System.out.print(ConfirmationInsertionClientFidelite.this.idmagasinClient+"\n execute update : ");
+
+				stm.executeUpdate();
+				System.out.print("ok\n");
+				stm.close();
+			}
+
+			System.out.print("link to fidelity card N°");
+			final String table_carte_de_fidelite = "INSERT INTO CARTE_DE_FIDELITE (IDCLIENT,NUMEROCARTEDEFIDELITE) VALUES (?,?)";
+			stm = c.prepareStatement(table_carte_de_fidelite);
+
+			stm.setInt(1, lastidclient);
+			stm.setString(2, ConfirmationInsertionClientFidelite.this.numcarte);
+			System.out.print(ConfirmationInsertionClientFidelite.this.numcarte+": ");
+
+			stm.executeUpdate();
+			System.out.print("OK\n");
+			stm.close();
+
+			final String dernierincrementcartefidelite = "SELECT MAX( LAST_INSERT_ID(IDCARTEDEFIDELITE)) FROM CARTE_DE_FIDELITE";
+			stm = c.prepareStatement(dernierincrementcartefidelite);
+			rs = stm.executeQuery();
+			int lastidcarte = 0;
+			while (rs.next())
+
+			{
+				lastidcarte = rs.getInt(1);
+			}
+
+			rs.close();
+			stm.close();
+
+			if (idmagasinClient != 0) {
+				final String table_delivrer = "INSERT INTO DELIVRER (IDCARTEDEFIDELITE, IDMAGASIN) VALUES (?,?)";
+				stm = c.prepareStatement(table_delivrer);
+
+				stm.setInt(1, lastidcarte);
+				stm.setInt(2, ConfirmationInsertionClientFidelite.this.idmagasinClient);
+
+				stm.executeUpdate();
+				stm.close();
+			}
+			if (ConfirmationInsertionClientFidelite.this.compteurprecedent == 1) {
+
+				for (int i = 0; i < ConfirmationInsertionClientFidelite.this.requeteprecedente.size(); i++) {
+
+					final String majcopyparticiper = "INSERT INTO PARTICIPER (IDOPERATIONCOMMERCIALE,IDCLIENT,IDMAGASIN) VALUES (?,?,?)";
+					stm = c.prepareStatement(majcopyparticiper);
+
+					stm.setInt(1, ConfirmationInsertionClientFidelite.this.requeteprecedente.get(i)
+							.getIdoperationTemporaire());
+					stm.setInt(2, lastidclient);
+					stm.setInt(3,
+							ConfirmationInsertionClientFidelite.this.requeteprecedente.get(i).getIdMagasinTemporaire());
+
+					stm.executeUpdate();
+
+					stm.close();
+
+				}
+			}
+
+			if (ConfirmationInsertionClientFidelite.this.choixetprovenance.equals("creationcarteparoperation"))
+
+			{
+
+				final String majcopyparticiper = "INSERT INTO PARTICIPER(IDOPERATIONCOMMERCIALE,IDCLIENT,IDMAGASIN) VALUES (?,?,?)";
+				stm = c.prepareStatement(majcopyparticiper);
+
+				stm.setInt(1, ConfirmationInsertionClientFidelite.this.idoperationclientparticipant);
+				stm.setInt(2, lastidclient);
+				stm.setInt(3, ConfirmationInsertionClientFidelite.this.idmagasinclientparticipant);
+
+				stm.executeUpdate();
+
+				stm.close();
+
+			}
+
+			c.commit();
+			c.setAutoCommit(true);
+
+			final SuccesInsertionClientFidelite fenetre = new SuccesInsertionClientFidelite(
+					ConfirmationInsertionClientFidelite.this.civiliteClient,
+					ConfirmationInsertionClientFidelite.this.nomClient,
+					ConfirmationInsertionClientFidelite.this.prenomClient,
+					ConfirmationInsertionClientFidelite.this.dateNaissanceClient,
+					ConfirmationInsertionClientFidelite.this.numcarte,
+					ConfirmationInsertionClientFidelite.this.ageClient,
+					ConfirmationInsertionClientFidelite.this.choixetprovenance,
+					ConfirmationInsertionClientFidelite.this.idoperationclientparticipant,
+					ConfirmationInsertionClientFidelite.this.idmagasinclientparticipant);
+			fenetre.setVisible(true);
+			ConfirmationInsertionClientFidelite.this.InterfacePrecedente.dispose();
+			ConfirmationInsertionClientFidelite.this.dispose();
+
+		} catch (final Exception e1)
+
+		{
+			System.out.print("erreur\n" + e1.getMessage() + "\n");
+			try {
+				c.rollback();
+				final String erreur = e1.getMessage();
+				/*
+				 * String [] tab =dateNaissanceClient.split("/"); String
+				 * day=tab[0]; String month=tab[1]; String year=tab[2];
+				 */
+				final String erreurtype = "Duplicate entry '" + ConfirmationInsertionClientFidelite.this.nomClient + "-"
+						+ ConfirmationInsertionClientFidelite.this.prenomClient + "-"
+						+ ConfirmationInsertionClientFidelite.this.ageClient + "-"
+						+ ConfirmationInsertionClientFidelite.this.idvilleClient + "' for key 'NOMCLIENT'";
+
+				if (erreur.equals(erreurtype)) {
+					ConfirmationInsertionClientFidelite.this.messageInsertion = "le Client "
+							+ ConfirmationInsertionClientFidelite.this.civiliteClient + " "
+							+ ConfirmationInsertionClientFidelite.this.nomClient + " "
+							+ ConfirmationInsertionClientFidelite.this.prenomClient + " possède deja une carte";
+
+				} else {
+					ConfirmationInsertionClientFidelite.this.messageInsertion = "Impossible d'insérer le Client "
+							+ ConfirmationInsertionClientFidelite.this.civiliteClient + " "
+							+ ConfirmationInsertionClientFidelite.this.nomClient + " "
+							+ ConfirmationInsertionClientFidelite.this.prenomClient + "";
+				}
+				System.out.print(ConfirmationInsertionClientFidelite.this.messageInsertion+"\n");
+				etat = false;
+				ConfirmationInsertionClientFidelite.this.text = "Nouvelle Fiche Client";
+				Message.setMessageaffichagefond(ConfirmationInsertionClientFidelite.this.text);
+				final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+						ConfirmationInsertionClientFidelite.this.messageInsertion, etat,
+						ConfirmationInsertionClientFidelite.this.text,
+						ConfirmationInsertionClientFidelite.this.messageinsertion2,
+						ConfirmationInsertionClientFidelite.this.choixetprovenance,
+						ConfirmationInsertionClientFidelite.this.idoperationclientparticipant,
+						ConfirmationInsertionClientFidelite.this.idmagasinclientparticipant);
+				fenetre.setVisible(true);
+
+				fenetre.setAlwaysOnTop(true);
+				ConfirmationInsertionClientFidelite.this.dispose();
+
+			} catch (final SQLException e2) {
+
+				e2.printStackTrace();
+			}
+		}
+		try {
+
+			if (stm != null) {
+				stm.close();
+			}
+
+		} catch (final Exception e3) {
+			e3.printStackTrace();
+		}
+
 	}
 
 	private JLabel getLblville() {

@@ -155,6 +155,11 @@ public class FicheClientComplete extends JFrame {
 					if (FicheClientComplete.this.adressemailcontact != null) {
 						FicheClientComplete.this.lblLuiEcrire.setVisible(true);
 					}
+					if (FicheClientComplete.this.label_7_2.getText().equals("0")){
+						FicheClientComplete.this.lblNewLabel_1.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/carte-vierge.png")));
+					} else {
+						FicheClientComplete.this.lblNewLabel_1.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/carte-vierge-vip2.png")));
+					}
 				}
 
 				final Vector<infosparticipation> resultatsficheparticipation = new Vector<infosparticipation>(
@@ -627,9 +632,12 @@ public class FicheClientComplete extends JFrame {
 	private JLabel getLblNewLabel_1() {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
-			String cardpath="/Images/carte-vierge-vip2.png";
-//			if (this.)
-			this.lblNewLabel_1.setIcon(new ImageIcon(FicheClientComplete.class.getResource(cardpath)));
+//			String cardpath="/Images/carte-vierge-vip2.png";
+//			System.out.println("client vip : "+FicheClientComplete.this.label_7_2.getText());
+//			if (FicheClientComplete.this.label_7_2.getText().equals("0")){
+//				cardpath="/Images/carte-vierge.png";
+//			}
+//			this.lblNewLabel_1.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/carte-vierge.png")));
 			this.lblNewLabel_1.setBounds(242, 280, 360, 237);
 		}
 		return this.lblNewLabel_1;

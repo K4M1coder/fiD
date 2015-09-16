@@ -55,6 +55,7 @@ public class Login extends JFrame {
 	private String utilisateur = null;
 
 	public Login() {
+		System.out.println("invoke login");
 		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1280, 800);

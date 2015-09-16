@@ -152,8 +152,8 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	private TextField textField_Mail;
 	private TextField textField_Nom;
 	private TextField textField_Prenom;
-	private JFormattedTextField textField_TelFix;
-	private JFormattedTextField textField_TelMob;
+	private TextField textField_TelFix;
+	private TextField textField_TelMob;
 	private final JFrame interfaceActuelle;
 	private final JFrame interfacePrecedente;
 	private final JPanel contentPane;
@@ -1471,17 +1471,9 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		return this.textField_Mail;
 	}
 
-	private JFormattedTextField getTextField_6() {
-
+	private TextField getTextField_6() {
 		if (this.textField_TelFix == null) {
-			try {
-				this.mask = new MaskFormatter("##########");
-			} catch (final ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.mask.setValidCharacters("0123456789");
-			this.textField_TelFix = new JFormattedTextField(this.mask);
+			this.textField_TelFix = new TextField();
 			this.textField_TelFix.setForeground(Color.GRAY);
 			this.textField_TelFix.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.textField_TelFix.setColumns(10);
@@ -1491,16 +1483,9 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		return this.textField_TelFix;
 	}
 
-	private JFormattedTextField getTextField_7() {
+	private TextField getTextField_7() {
 		if (this.textField_TelMob == null) {
-			try {
-				this.mask = new MaskFormatter("##########");
-			} catch (final ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.mask.setValidCharacters("0123456789");
-			this.textField_TelMob = new JFormattedTextField(this.mask);
+			this.textField_TelMob = new TextField();
 			this.textField_TelMob.setForeground(Color.GRAY);
 			this.textField_TelMob.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.textField_TelMob.setColumns(10);
