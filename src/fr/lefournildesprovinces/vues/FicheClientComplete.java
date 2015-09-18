@@ -34,6 +34,7 @@ import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
+import fr.lefournildesprovinces.vues.popups.ConfirmationOperationCarteFidelite;
 
 public class FicheClientComplete extends JFrame {
 
@@ -107,6 +108,7 @@ public class FicheClientComplete extends JFrame {
 	private JTextArea textArea;
 	private String villeclientcarte;
 	private JLabel label_MAJ;
+	protected String numCli;
 
 	public FicheClientComplete(final int idclient) {
 		this.addWindowListener(new WindowAdapter() {
@@ -117,48 +119,32 @@ public class FicheClientComplete extends JFrame {
 						Select.fichecompleteporteurcarte(FicheClientComplete.this.indentifiantclient));
 
 				for (int i = 0; i < resultatsfiche.size(); i++) {
-
-					FicheClientComplete.this.lblNewLabel
-							.setText("N° de client : "
-									+ resultatsfiche.get(i).getNumerocarte());
-					FicheClientComplete.this.label_10.setText(resultatsfiche
-							.get(i).getNommagasin());
-
-					FicheClientComplete.this.label_2.setText(resultatsfiche
-							.get(i).getCiviliteIndividu());
-					FicheClientComplete.this.lblNewLabel_3
-							.setText(resultatsfiche.get(i).getPrenomIndividu());
-					FicheClientComplete.this.lblNewLabel_4
-							.setText(resultatsfiche.get(i).getNomIndividu());
-					FicheClientComplete.this.label_3.setText(resultatsfiche
-							.get(i).getAdresseIndividu());
-					FicheClientComplete.this.label_4.setText(resultatsfiche
-							.get(i).getVilleIndividu());
-					FicheClientComplete.this.label_8.setText(resultatsfiche
-							.get(i).getCodePostalIndividu());
-					FicheClientComplete.this.label_5.setText(resultatsfiche
-							.get(i).getTelephonefixe());
-					FicheClientComplete.this.label_9.setText(resultatsfiche
-							.get(i).getTelephonemobile());
-					FicheClientComplete.this.label_6.setText(resultatsfiche
-							.get(i).getEmail());
-					FicheClientComplete.this.label_7.setText(resultatsfiche
-							.get(i).getNewsletterIndividu());
-					FicheClientComplete.this.label_7_2.setText(resultatsfiche
-							.get(i).getVIP());
-					FicheClientComplete.this.label_11.setText(resultatsfiche
-							.get(i).getDateNaissanceIndividu());
-					FicheClientComplete.this.lblNewLabel_2
-							.setText(resultatsfiche.get(i).getAge() + " ans");
-					FicheClientComplete.this.adressemailcontact = resultatsfiche
-							.get(i).getEmail();
+					FicheClientComplete.this.numCli = resultatsfiche.get(i).getNumerocarte();
+					FicheClientComplete.this.lblNewLabel.setText("N° de client : " + numCli);
+					FicheClientComplete.this.label_10.setText(resultatsfiche.get(i).getNommagasin());
+					FicheClientComplete.this.label_2.setText(resultatsfiche.get(i).getCiviliteIndividu());
+					FicheClientComplete.this.lblNewLabel_3.setText(resultatsfiche.get(i).getPrenomIndividu());
+					FicheClientComplete.this.lblNewLabel_4.setText(resultatsfiche.get(i).getNomIndividu());
+					FicheClientComplete.this.label_3.setText(resultatsfiche.get(i).getAdresseIndividu());
+					FicheClientComplete.this.label_4.setText(resultatsfiche.get(i).getVilleIndividu());
+					FicheClientComplete.this.label_8.setText(resultatsfiche.get(i).getCodePostalIndividu());
+					FicheClientComplete.this.label_5.setText(resultatsfiche.get(i).getTelephonefixe());
+					FicheClientComplete.this.label_9.setText(resultatsfiche.get(i).getTelephonemobile());
+					FicheClientComplete.this.label_6.setText(resultatsfiche.get(i).getEmail());
+					FicheClientComplete.this.label_7.setText(resultatsfiche.get(i).getNewsletterIndividu());
+					FicheClientComplete.this.label_7_2.setText(resultatsfiche.get(i).getVIP());
+					FicheClientComplete.this.label_11.setText(resultatsfiche.get(i).getDateNaissanceIndividu());
+					FicheClientComplete.this.lblNewLabel_2.setText(resultatsfiche.get(i).getAge() + " ans");
+					FicheClientComplete.this.adressemailcontact = resultatsfiche.get(i).getEmail();
 					if (FicheClientComplete.this.adressemailcontact != null) {
 						FicheClientComplete.this.lblLuiEcrire.setVisible(true);
 					}
-					if (FicheClientComplete.this.label_7_2.getText().equals("0")){
-						FicheClientComplete.this.lblNewLabel_1.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/carte-vierge.png")));
+					if (FicheClientComplete.this.label_7_2.getText().equals("0")) {
+						FicheClientComplete.this.lblNewLabel_1.setIcon(
+								new ImageIcon(FicheClientComplete.class.getResource("/Images/carte-vierge.png")));
 					} else {
-						FicheClientComplete.this.lblNewLabel_1.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/carte-vierge-vip2.png")));
+						FicheClientComplete.this.lblNewLabel_1.setIcon(
+								new ImageIcon(FicheClientComplete.class.getResource("/Images/carte-vierge-vip2.png")));
 					}
 				}
 
@@ -168,12 +154,9 @@ public class FicheClientComplete extends JFrame {
 				for (int i = 0; i < resultatsficheparticipation.size(); i++) {
 
 					FicheClientComplete.this.textArea
-							.append(resultatsficheparticipation.get(i)
-									.getLibelleoperationcommerciale());
+							.append(resultatsficheparticipation.get(i).getLibelleoperationcommerciale());
 					FicheClientComplete.this.textArea.append("\t");
-					FicheClientComplete.this.textArea
-							.append(resultatsficheparticipation.get(i)
-									.getNommagasin());
+					FicheClientComplete.this.textArea.append(resultatsficheparticipation.get(i).getNommagasin());
 					FicheClientComplete.this.textArea.append("\n");
 				}
 
@@ -203,25 +186,20 @@ public class FicheClientComplete extends JFrame {
 			case "utilisateur":
 				this.label_14.setVisible(false);
 				this.label_14.setEnabled(false);
-				this.fond
-						.setIcon(new ImageIcon(
-								MenuPrincipal.class
-										.getResource("/Images/menus-extraction-long-extraction.png")));
+				this.fond.setIcon(
+						new ImageIcon(MenuPrincipal.class.getResource("/Images/menus-extraction-long-extraction.png")));
 
 				break;
 
 			case "invite":
 				this.label_14.setVisible(false);
 				this.label_14.setEnabled(false);
-				this.fond
-						.setIcon(new ImageIcon(
-								MenuPrincipal.class
-										.getResource("/Images/menus-extraction-long-extraction.png")));
+				this.fond.setIcon(
+						new ImageIcon(MenuPrincipal.class.getResource("/Images/menus-extraction-long-extraction.png")));
 				break;
 
 			case "administrateur":
-				this.fond.setIcon(new ImageIcon(MenuPrincipal.class
-						.getResource("/Images/menus-extraction-long.png")));
+				this.fond.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Images/menus-extraction-long.png")));
 				break;
 			}
 			this.fond.setBounds(216, 55, 850, 690);
@@ -260,8 +238,7 @@ public class FicheClientComplete extends JFrame {
 					FicheClientComplete.this.dispose();
 				}
 			});
-			this.label_12.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_12.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_12.setBounds(238, 55, 114, 44);
 		}
 		return this.label_12;
@@ -278,8 +255,7 @@ public class FicheClientComplete extends JFrame {
 					FicheClientComplete.this.dispose();
 				}
 			});
-			this.label_13.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_13.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_13.setBounds(347, 55, 114, 44);
 		}
 		return this.label_13;
@@ -296,8 +272,7 @@ public class FicheClientComplete extends JFrame {
 					FicheClientComplete.this.dispose();
 				}
 			});
-			this.label_14.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_14.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_14.setBounds(459, 55, 114, 44);
 		}
 		return this.label_14;
@@ -314,8 +289,7 @@ public class FicheClientComplete extends JFrame {
 					FicheClientComplete.this.dispose();
 				}
 			});
-			this.label_15.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_15.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_15.setBounds(573, 55, 114, 44);
 		}
 		return this.label_15;
@@ -514,8 +488,7 @@ public class FicheClientComplete extends JFrame {
 
 	private JLabel getLblFicheClientP() {
 		if (this.lblFicheClientP == null) {
-			this.lblFicheClientP = new JLabel(
-					"Fiche Client titulaire d'une carte de fid\u00E9lit\u00E9");
+			this.lblFicheClientP = new JLabel("Fiche Client titulaire d'une carte de fid\u00E9lit\u00E9");
 			this.lblFicheClientP.setForeground(Color.GRAY);
 			this.lblFicheClientP.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblFicheClientP.setBounds(242, 110, 269, 14);
@@ -526,11 +499,9 @@ public class FicheClientComplete extends JFrame {
 	private JLabel getLblLuiEcrire() {
 		if (this.lblLuiEcrire == null) {
 			this.lblLuiEcrire = new JLabel("");
-			this.lblLuiEcrire.setIcon(new ImageIcon(FicheClientComplete.class
-					.getResource("/Images/ecrire.png")));
+			this.lblLuiEcrire.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/ecrire.png")));
 			this.lblLuiEcrire.setVisible(false);
-			this.lblLuiEcrire.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblLuiEcrire.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblLuiEcrire.setForeground(Color.RED);
 			this.lblLuiEcrire.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblLuiEcrire.addMouseListener(new MouseAdapter() {
@@ -538,8 +509,7 @@ public class FicheClientComplete extends JFrame {
 				public void mouseClicked(final MouseEvent arg0) {
 
 					final Desktop desktop = Desktop.getDesktop();
-					final String message = "mailto:"
-							+ FicheClientComplete.this.adressemailcontact
+					final String message = "mailto:" + FicheClientComplete.this.adressemailcontact
 							+ "?subject=Le%20Fournil%20des%20Provinces";
 					final URI uri = URI.create(message);
 					try {
@@ -558,15 +528,15 @@ public class FicheClientComplete extends JFrame {
 	private JLabel getlabel_Supprimer() {
 		if (this.label_Supprimer == null) {
 			this.label_Supprimer = new JLabel("");
-			this.label_Supprimer.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/menubutons/bouton-fidelite-supression.png")));
-			this.label_Supprimer
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_Supprimer.setIcon(new ImageIcon(
+					FicheClientComplete.class.getResource("/Images/menubutons/bouton-fidelite-supression.png")));
+			this.label_Supprimer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_Supprimer.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_Supprimer.setForeground(Color.GRAY);
 			this.label_Supprimer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-// TODO  : action when clicked
+					// TODO : action when clicked
 				}
 			});
 			this.label_Supprimer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -578,17 +548,20 @@ public class FicheClientComplete extends JFrame {
 	private JLabel getLabel_MAJ() {
 		if (this.label_MAJ == null) {
 			this.label_MAJ = new JLabel("");
-			this.label_MAJ.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/menubutons/bouton-fidelite-mise-jour.png")));
-			this.label_MAJ
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_MAJ.setIcon(new ImageIcon(
+					FicheClientComplete.class.getResource("/Images/menubutons/bouton-fidelite-mise-jour.png")));
+			this.label_MAJ.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_MAJ.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_MAJ.setForeground(Color.GRAY);
 			this.label_MAJ.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-
-
-					// TODO  : action when clicked
+					final ConfirmationOperationCarteFidelite fenetre3 = new ConfirmationOperationCarteFidelite(
+							FicheClientComplete.this.interfaceActuelle, FicheClientComplete.this.numCli,
+							"Menu > Gestion Carte de Fidélité > Mise à Jour Fiche Client", "Mise à Jour Fiche Client");
+					fenetre3.setVisible(true);
+//					FicheClientComplete.this.interfacePrecedente.dispose();
+					FicheClientComplete.this.dispose();
 				}
 			});
 			this.label_MAJ.setHorizontalAlignment(SwingConstants.CENTER);
@@ -599,8 +572,7 @@ public class FicheClientComplete extends JFrame {
 
 	private JLabel getLblMagasinDeRfrence() {
 		if (this.lblMagasinDeRfrence == null) {
-			this.lblMagasinDeRfrence = new JLabel(
-					"Magasin de r\u00E9f\u00E9rence  :");
+			this.lblMagasinDeRfrence = new JLabel("Magasin de r\u00E9f\u00E9rence  :");
 			this.lblMagasinDeRfrence.setBounds(663, 174, 160, 14);
 			this.lblMagasinDeRfrence.setForeground(new Color(139, 69, 19));
 			this.lblMagasinDeRfrence.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -632,12 +604,14 @@ public class FicheClientComplete extends JFrame {
 	private JLabel getLblNewLabel_1() {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
-//			String cardpath="/Images/carte-vierge-vip2.png";
-//			System.out.println("client vip : "+FicheClientComplete.this.label_7_2.getText());
-//			if (FicheClientComplete.this.label_7_2.getText().equals("0")){
-//				cardpath="/Images/carte-vierge.png";
-//			}
-//			this.lblNewLabel_1.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/carte-vierge.png")));
+			// String cardpath="/Images/carte-vierge-vip2.png";
+			// System.out.println("client vip :
+			// "+FicheClientComplete.this.label_7_2.getText());
+			// if (FicheClientComplete.this.label_7_2.getText().equals("0")){
+			// cardpath="/Images/carte-vierge.png";
+			// }
+			// this.lblNewLabel_1.setIcon(new
+			// ImageIcon(FicheClientComplete.class.getResource("/Images/carte-vierge.png")));
 			this.lblNewLabel_1.setBounds(242, 280, 360, 237);
 		}
 		return this.lblNewLabel_1;
@@ -676,8 +650,8 @@ public class FicheClientComplete extends JFrame {
 	private JLabel getLblNewLabel_5() {
 		if (this.lblNewLabel_5 == null) {
 			this.lblNewLabel_5 = new JLabel("");
-			this.lblNewLabel_5.setIcon(new ImageIcon(FicheClientComplete.class
-					.getResource("/Images/fond-logiciel.png")));
+			this.lblNewLabel_5
+					.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/fond-logiciel.png")));
 			this.lblNewLabel_5.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_5;
@@ -705,14 +679,10 @@ public class FicheClientComplete extends JFrame {
 
 	private JLabel getLblParticipationOprationCommerciale() {
 		if (this.lblParticipationOprationCommerciale == null) {
-			this.lblParticipationOprationCommerciale = new JLabel(
-					"Participation op\u00E9rations Commerciales :");
-			this.lblParticipationOprationCommerciale.setForeground(new Color(
-					139, 69, 19));
-			this.lblParticipationOprationCommerciale.setFont(new Font("Tahoma",
-					Font.BOLD, 12));
-			this.lblParticipationOprationCommerciale.setBounds(663, 443, 256,
-					14);
+			this.lblParticipationOprationCommerciale = new JLabel("Participation op\u00E9rations Commerciales :");
+			this.lblParticipationOprationCommerciale.setForeground(new Color(139, 69, 19));
+			this.lblParticipationOprationCommerciale.setFont(new Font("Tahoma", Font.BOLD, 12));
+			this.lblParticipationOprationCommerciale.setBounds(663, 443, 256, 14);
 		}
 		return this.lblParticipationOprationCommerciale;
 	}
@@ -720,12 +690,10 @@ public class FicheClientComplete extends JFrame {
 	private JLabel getLblPrint() {
 		if (this.lblPrint == null) {
 			this.lblPrint = new JLabel("");
-			this.lblPrint.setIcon(new ImageIcon(FicheClientComplete.class
-					.getResource("/Images/export-imp.png")));
+			this.lblPrint.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/export-imp.png")));
 			this.lblPrint.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblPrint.setForeground(Color.GRAY);
-			this.lblPrint.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblPrint.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblPrint.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -745,59 +713,43 @@ public class FicheClientComplete extends JFrame {
 
 					try {
 
-						FicheClientComplete.this.desktopPath = System
-								.getProperty("user.home") + "/Desktop";
-						final String os = System.getProperty("os.name")
-								.toLowerCase();
+						FicheClientComplete.this.desktopPath = System.getProperty("user.home") + "/Desktop";
+						final String os = System.getProperty("os.name").toLowerCase();
 						;
 						if (os.contains("mac")) {
-							FicheClientComplete.this.desktopPath = System
-									.getProperty("user.home") + "/Desktop";
+							FicheClientComplete.this.desktopPath = System.getProperty("user.home") + "/Desktop";
 						} else {
-							FicheClientComplete.this.desktopPath = System
-									.getProperty("user.home") + "/Desktop";
+							FicheClientComplete.this.desktopPath = System.getProperty("user.home") + "/Desktop";
 
 						}
-						final File dir = new File(
-								FicheClientComplete.this.desktopPath
-										+ "/Base Marketing Client/");
+						final File dir = new File(FicheClientComplete.this.desktopPath + "/Base Marketing Client/");
 						dir.mkdirs();
-						final File file = new File(dir,
-								"Fiche client (titulaire carte).doc");
+						final File file = new File(dir, "Fiche client (titulaire carte).doc");
 
 						final FileWriter writer = new FileWriter(file);
 						final Vector<ResultatRecherche> resultatsfiche = new Vector<ResultatRecherche>(
 								Select.fichecompleteporteurcarte(FicheClientComplete.this.indentifiantclient));
 						for (int i = 0; i < resultatsfiche.size(); i++) {
 
-							FicheClientComplete.this.nomclientcarte = resultatsfiche
-									.get(i).getCiviliteIndividu()
-									+ " "
-									+ resultatsfiche.get(i).getNomIndividu()
-									+ " "
+							FicheClientComplete.this.nomclientcarte = resultatsfiche.get(i).getCiviliteIndividu() + " "
+									+ resultatsfiche.get(i).getNomIndividu() + " "
 									+ resultatsfiche.get(i).getPrenomIndividu();
-							FicheClientComplete.this.numerocarteclientfidelite = resultatsfiche
-									.get(i).getNumerocarte();
-							FicheClientComplete.this.magasinreferenceclientcarte = resultatsfiche
-									.get(i).getNommagasin();
-							FicheClientComplete.this.adresseclientcarte = resultatsfiche
-									.get(i).getAdresseIndividu();
-							FicheClientComplete.this.villeclientcarte = resultatsfiche
-									.get(i).getVilleIndividu();
-							FicheClientComplete.this.codepostalclientcarte = resultatsfiche
-									.get(i).getCodePostalIndividu();
-							FicheClientComplete.this.telephoneclientcarte = resultatsfiche
-									.get(i).getTelephonefixe();
-							FicheClientComplete.this.telephonemobileclientcarte = resultatsfiche
-									.get(i).getTelephonemobile();
-							FicheClientComplete.this.adressemailclientcarte = resultatsfiche
-									.get(i).getEmail();
-							FicheClientComplete.this.newsletterclientcarte = resultatsfiche
-									.get(i).getNewsletterIndividu();
-							FicheClientComplete.this.datenaisanceclient = resultatsfiche
-									.get(i).getDateNaissanceIndividu();
-							FicheClientComplete.this.ageclientcarte = resultatsfiche
-									.get(i).getAge() + " ans";
+							FicheClientComplete.this.numerocarteclientfidelite = resultatsfiche.get(i).getNumerocarte();
+							FicheClientComplete.this.magasinreferenceclientcarte = resultatsfiche.get(i)
+									.getNommagasin();
+							FicheClientComplete.this.adresseclientcarte = resultatsfiche.get(i).getAdresseIndividu();
+							FicheClientComplete.this.villeclientcarte = resultatsfiche.get(i).getVilleIndividu();
+							FicheClientComplete.this.codepostalclientcarte = resultatsfiche.get(i)
+									.getCodePostalIndividu();
+							FicheClientComplete.this.telephoneclientcarte = resultatsfiche.get(i).getTelephonefixe();
+							FicheClientComplete.this.telephonemobileclientcarte = resultatsfiche.get(i)
+									.getTelephonemobile();
+							FicheClientComplete.this.adressemailclientcarte = resultatsfiche.get(i).getEmail();
+							FicheClientComplete.this.newsletterclientcarte = resultatsfiche.get(i)
+									.getNewsletterIndividu();
+							FicheClientComplete.this.datenaisanceclient = resultatsfiche.get(i)
+									.getDateNaissanceIndividu();
+							FicheClientComplete.this.ageclientcarte = resultatsfiche.get(i).getAge() + " ans";
 						}
 						writer.append("Client : ");
 						writer.append(FicheClientComplete.this.nomclientcarte);
@@ -867,11 +819,9 @@ public class FicheClientComplete extends JFrame {
 
 						for (int i = 0; i < resultatsficheparticipation.size(); i++) {
 							writer.append("\t\t\t");
-							writer.append(resultatsficheparticipation.get(i)
-									.getLibelleoperationcommerciale());
+							writer.append(resultatsficheparticipation.get(i).getLibelleoperationcommerciale());
 							writer.append("\t");
-							writer.append(resultatsficheparticipation.get(i)
-									.getNommagasin());
+							writer.append(resultatsficheparticipation.get(i).getNommagasin());
 							writer.append("\n");
 
 						}
@@ -889,14 +839,11 @@ public class FicheClientComplete extends JFrame {
 						FicheClientComplete.this.Message = "Exportation du fichier Fiche client (titulaire carte).rtf réalisée avec succès";
 						FicheClientComplete.this.etat = true;
 						FicheClientComplete.this.choixformat = "DOC";
-						final MessageExport fenetre = new MessageExport(
-								FicheClientComplete.this.Message,
-								FicheClientComplete.this.interfaceActuelle,
-								FicheClientComplete.this.etat,
+						final MessageExport fenetre = new MessageExport(FicheClientComplete.this.Message,
+								FicheClientComplete.this.interfaceActuelle, FicheClientComplete.this.etat,
 								FicheClientComplete.this.choixformat);
 						fenetre.setVisible(true);
-						FicheClientComplete.this.interfaceActuelle
-								.setEnabled(false);
+						FicheClientComplete.this.interfaceActuelle.setEnabled(false);
 
 						writer.flush();
 						writer.close();
@@ -906,12 +853,10 @@ public class FicheClientComplete extends JFrame {
 						FicheClientComplete.this.Message = "Impossible d'imprimer la fiche client";
 						FicheClientComplete.this.etat = false;
 						FicheClientComplete.this.choixformat = "DOC";
-						final AlerteSelection fenetre = new AlerteSelection(
-								FicheClientComplete.this.interfaceActuelle,
+						final AlerteSelection fenetre = new AlerteSelection(FicheClientComplete.this.interfaceActuelle,
 								FicheClientComplete.this.Message);
 						fenetre.setVisible(true);
-						FicheClientComplete.this.interfaceActuelle
-								.setEnabled(false);
+						FicheClientComplete.this.interfaceActuelle.setEnabled(false);
 
 					}
 

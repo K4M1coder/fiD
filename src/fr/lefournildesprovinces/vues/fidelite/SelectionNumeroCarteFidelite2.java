@@ -46,7 +46,9 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.ConfirmationOperationCarteFidelite;
 
 /**
- * @author <strong><br>k4m1coder</strong> @2015<br><strong>lefournildesprovinces</strong> @2012
+ * @author <strong><br>
+ *         k4m1coder</strong> @2015<br>
+ *         <strong>lefournildesprovinces</strong> @2012
  * @see #SelectionNumeroCarteFidelite2
  *
  */
@@ -100,18 +102,29 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 	private static ResultSet rs;
 
 	/**
-	 * <center><strong>SelectionNumeroCarteFidelite2</strong> : cette vue permet de rechercher une fiche client</center>
+	 * <center><strong>SelectionNumeroCarteFidelite2</strong> : cette vue permet
+	 * de rechercher une fiche client</center>
 	 *
-	 * @param interfaceActuelle : est une JFrame.<p>ceci est l'interface qui appelle la nouvelle, en général this.interfaceActuelle</p>
-	 * @param choix : est une String.<p>permet de savoir dans quel but cette fenettre à été appellée via 4 valeures possible<br>
-	 * "Menu > Gestion Carte de Fidélité > Désincription Pub" <br>
-	 * "Menu > Gestion Carte de Fidélité > Suppression Fiche Client"<br>
-	 * "Menu > Gestion Carte de Fidélité > Mise à  Jour Fiche Client"<br>
-	 * "Menu > Gestion Carte de Fidélité > Consulter Fiche Client"
+	 * @param interfaceActuelle
+	 *            : est une JFrame.
+	 *            <p>
+	 *            ceci est l'interface qui appelle la nouvelle, en général
+	 *            this.interfaceActuelle
+	 *            </p>
+	 * @param choix
+	 *            : est une String.
+	 *            <p>
+	 *            permet de savoir dans quel but cette fenettre à été appellée
+	 *            via 4 valeures possible<br>
+	 *            "Menu > Gestion Carte de Fidélité > Désincription Pub" <br>
+	 *            "Menu > Gestion Carte de Fidélité > Suppression Fiche Client"
+	 *            <br>
+	 *            "Menu > Gestion Carte de Fidélité > Mise à  Jour Fiche Client"
+	 *            <br>
+	 *            "Menu > Gestion Carte de Fidélité > Consulter Fiche Client"
 	 *
 	 */
-	public SelectionNumeroCarteFidelite2(final JFrame interfaceActuelle,
-			final String choix) {
+	public SelectionNumeroCarteFidelite2(final JFrame interfaceActuelle, final String choix) {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent arg0) {
@@ -122,20 +135,16 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 				switch (SelectionNumeroCarteFidelite2.this.choixmenuprecedent) {
 
 				case "Menu > Gestion Carte de Fidélité > Désincription Pub":
-					SelectionNumeroCarteFidelite2.this.label_7
-							.setText("Désincription Pub");
+					SelectionNumeroCarteFidelite2.this.label_7.setText("Désincription Pub");
 					break;
 				case "Menu > Gestion Carte de Fidélité > Suppression Fiche Client":
-					SelectionNumeroCarteFidelite2.this.label_7
-							.setText("Suppression d'une carte de fidélite");
+					SelectionNumeroCarteFidelite2.this.label_7.setText("Suppression d'une carte de fidélite");
 					break;
 				case "Menu > Gestion Carte de Fidélité > Mise à  Jour Fiche Client":
-					SelectionNumeroCarteFidelite2.this.label_7
-							.setText("Mise à  Jour d'une carte de fidélité");
+					SelectionNumeroCarteFidelite2.this.label_7.setText("Mise à  Jour d'une carte de fidélité");
 					break;
 				case "Menu > Gestion Carte de Fidélité > Consulter Fiche Client":
-					SelectionNumeroCarteFidelite2.this.label_7
-							.setText("Consulter Fiche Client");
+					SelectionNumeroCarteFidelite2.this.label_7.setText("Consulter Fiche Client");
 
 				}
 
@@ -171,25 +180,18 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 								.getSelectedItem().toString();
 						SelectionNumeroCarteFidelite2.this.mod2 = new DefaultComboBoxModel<Object>(
 								Select.listePrenomclientfidelite(SelectionNumeroCarteFidelite2.this.name));
-						SelectionNumeroCarteFidelite2.this.comboBox_1
-								.setModel(SelectionNumeroCarteFidelite2.this.mod2);
-						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner
-								.setVisible(false);
+						SelectionNumeroCarteFidelite2.this.comboBox_1.setModel(SelectionNumeroCarteFidelite2.this.mod2);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner.setVisible(false);
 					} catch (final Exception e1) {
-
 
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						System.out.print("Nom " + message);
 						final AlerteSelection fenetre = new AlerteSelection(
-								SelectionNumeroCarteFidelite2.this.interfaceActuelle,
-								message);
+								SelectionNumeroCarteFidelite2.this.interfaceActuelle, message);
 						fenetre.setVisible(true);
-						SelectionNumeroCarteFidelite2.this.interfaceActuelle
-								.setEnabled(false);
-						SelectionNumeroCarteFidelite2.this.lblValider
-								.setVisible(false);
-						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner
-								.setVisible(true);
+						SelectionNumeroCarteFidelite2.this.interfaceActuelle.setEnabled(false);
+						SelectionNumeroCarteFidelite2.this.lblValider.setVisible(false);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner.setVisible(true);
 					}
 
 				}
@@ -202,8 +204,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 			this.comboBox.setBackground(Color.WHITE);
 			this.comboBox.setBounds(528, 426, 278, 22);
 
-			this.mod = new DefaultComboBoxModel<Object>(
-					Select.listenomclientfidelite());
+			this.mod = new DefaultComboBoxModel<Object>(Select.listenomclientfidelite());
 			this.comboBox.setModel(this.mod);
 			AutoCompletion.enable(this.comboBox);
 
@@ -221,29 +222,22 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 						SelectionNumeroCarteFidelite2.this.forname = SelectionNumeroCarteFidelite2.this.comboBox_1
 								.getSelectedItem().toString();
 						SelectionNumeroCarteFidelite2.this.mod3 = new DefaultComboBoxModel<Object>(
-								Select.listeClientFideliteHomonymes(
-										SelectionNumeroCarteFidelite2.this.name,
+								Select.listeClientFideliteHomonymes(SelectionNumeroCarteFidelite2.this.name,
 										SelectionNumeroCarteFidelite2.this.forname));
 
-						SelectionNumeroCarteFidelite2.this.comboBox_2
-								.setModel(SelectionNumeroCarteFidelite2.this.mod3);
-						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_2
-								.setVisible(false);
+						SelectionNumeroCarteFidelite2.this.comboBox_2.setModel(SelectionNumeroCarteFidelite2.this.mod3);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_2.setVisible(false);
 
 					} catch (final Exception e2) {
 
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						System.out.println("Prénom" + message);
 						final AlerteSelection fenetre = new AlerteSelection(
-								SelectionNumeroCarteFidelite2.this.interfaceActuelle,
-								message);
+								SelectionNumeroCarteFidelite2.this.interfaceActuelle, message);
 						fenetre.setVisible(true);
-						SelectionNumeroCarteFidelite2.this.interfaceActuelle
-								.setEnabled(false);
-						SelectionNumeroCarteFidelite2.this.lblValider
-								.setVisible(false);
-						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_2
-								.setVisible(true);
+						SelectionNumeroCarteFidelite2.this.interfaceActuelle.setEnabled(false);
+						SelectionNumeroCarteFidelite2.this.lblValider.setVisible(false);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_2.setVisible(true);
 					}
 				}
 			});
@@ -266,27 +260,21 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 			this.comboBox_2.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
-					SelectionNumeroCarteFidelite2.this.lblValider
-							.setVisible(true);
+					SelectionNumeroCarteFidelite2.this.lblValider.setVisible(true);
 					try {
 						SelectionNumeroCarteFidelite2.this.birth = SelectionNumeroCarteFidelite2.this.comboBox_2
 								.getSelectedItem().toString();
-						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_1
-								.setVisible(false);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_1.setVisible(false);
 					} catch (final Exception e3) {
 
 						System.out.print("Choix impossible");
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						final AlerteSelection fenetre = new AlerteSelection(
-								SelectionNumeroCarteFidelite2.this.interfaceActuelle,
-								message);
+								SelectionNumeroCarteFidelite2.this.interfaceActuelle, message);
 						fenetre.setVisible(true);
-						SelectionNumeroCarteFidelite2.this.interfaceActuelle
-								.setEnabled(false);
-						SelectionNumeroCarteFidelite2.this.lblValider
-								.setVisible(false);
-						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_1
-								.setVisible(true);
+						SelectionNumeroCarteFidelite2.this.interfaceActuelle.setEnabled(false);
+						SelectionNumeroCarteFidelite2.this.lblValider.setVisible(false);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_1.setVisible(true);
 					}
 
 				}
@@ -313,10 +301,8 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 
 			case "utilisateur":
 
-				this.fond
-						.setIcon(new ImageIcon(
-								SelectionNumeroCarteFidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+				this.fond.setIcon(new ImageIcon(
+						SelectionNumeroCarteFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
 				this.label_1.setEnabled(false);
 				this.label_1.setVisible(false);
 				this.label_2.setEnabled(false);
@@ -330,16 +316,13 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 
-				this.fond
-						.setIcon(new ImageIcon(
-								SelectionNumeroCarteFidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+				this.fond.setIcon(new ImageIcon(
+						SelectionNumeroCarteFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
-				this.fond.setIcon(new ImageIcon(
-						SelectionNumeroCarteFidelite.class
-								.getResource("/Images/menus_fidelite.png")));
+				this.fond.setIcon(
+						new ImageIcon(SelectionNumeroCarteFidelite.class.getResource("/Images/menus_fidelite.png")));
 				break;
 
 			}
@@ -357,17 +340,14 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 			this.formattedTextField.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyTyped(final KeyEvent arg0) {
-					SelectionNumeroCarteFidelite2.this.lblValider
-							.setVisible(true);
-					SelectionNumeroCarteFidelite2.this.lblNclient
-							.setVisible(false);
+					SelectionNumeroCarteFidelite2.this.lblValider.setVisible(true);
+					SelectionNumeroCarteFidelite2.this.lblNclient.setVisible(false);
 				}
 			});
 
 			this.formattedTextField.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.formattedTextField.setForeground(Color.GRAY);
-			this.formattedTextField.setBorder(new LineBorder(new Color(171,
-					173, 179)));
+			this.formattedTextField.setBorder(new LineBorder(new Color(171, 173, 179)));
 			this.formattedTextField.setBounds(528, 351, 278, 20);
 
 		}
@@ -377,8 +357,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 	private JLabel getLabel() {
 		if (this.label == null) {
 			this.label = new JLabel("");
-			this.label
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -395,8 +374,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 	private JLabel getLabel_1() {
 		if (this.label_1 == null) {
 			this.label_1 = new JLabel("");
-			this.label_1.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -413,8 +391,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 	private JLabel getLabel_2() {
 		if (this.label_2 == null) {
 			this.label_2 = new JLabel("");
-			this.label_2.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -431,8 +408,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 	private JLabel getLabel_3() {
 		if (this.label_3 == null) {
 			this.label_3 = new JLabel("");
-			this.label_3.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_3.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -503,15 +479,14 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 			this.lblFermer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-//					final MenuPrincipal fenetre = new MenuPrincipal();
-//					fenetre.setVisible(true);
+					// final MenuPrincipal fenetre = new MenuPrincipal();
+					// fenetre.setVisible(true);
 					SelectionNumeroCarteFidelite2.this.interfacePrecedente.setEnabled(true);
 					SelectionNumeroCarteFidelite2.this.interfacePrecedente.setVisible(true);
 					SelectionNumeroCarteFidelite2.this.dispose();
 				}
 			});
-			this.lblFermer.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblFermer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblFermer.setForeground(Color.GRAY);
 			this.lblFermer.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblFermer.setBounds(868, 231, 185, 53);
@@ -543,9 +518,8 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
-			this.lblNewLabel.setIcon(new ImageIcon(
-					SelectionNumeroCarteFidelite2.class
-							.getResource("/Images/fond-logiciel.png")));
+			this.lblNewLabel.setIcon(
+					new ImageIcon(SelectionNumeroCarteFidelite2.class.getResource("/Images/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -563,12 +537,10 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 
 	private JLabel getLblTaperOuSlectionner() {
 		if (this.lblTaperOuSlectionner == null) {
-			this.lblTaperOuSlectionner = new JLabel(
-					" Taper ou Sélectionner  le  nom du client");
+			this.lblTaperOuSlectionner = new JLabel(" Taper ou Sélectionner  le  nom du client");
 			this.lblTaperOuSlectionner.setEnabled(false);
 			this.lblTaperOuSlectionner.setForeground(Color.GRAY);
-			this.lblTaperOuSlectionner
-					.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lblTaperOuSlectionner.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblTaperOuSlectionner.setBounds(543, 430, 245, 14);
 		}
 		return this.lblTaperOuSlectionner;
@@ -576,12 +548,10 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 
 	private JLabel getLblTaperOuSlectionner_1() {
 		if (this.lblTaperOuSlectionner_1 == null) {
-			this.lblTaperOuSlectionner_1 = new JLabel(
-					"Taper ou sélectionner un Client");
+			this.lblTaperOuSlectionner_1 = new JLabel("Taper ou sélectionner un Client");
 			this.lblTaperOuSlectionner_1.setEnabled(false);
 			this.lblTaperOuSlectionner_1.setForeground(Color.GRAY);
-			this.lblTaperOuSlectionner_1.setFont(new Font("Tahoma", Font.BOLD,
-					11));
+			this.lblTaperOuSlectionner_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblTaperOuSlectionner_1.setBounds(576, 492, 197, 14);
 		}
 		return this.lblTaperOuSlectionner_1;
@@ -589,12 +559,10 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 
 	private JLabel getLblTaperOuSlectionner_2() {
 		if (this.lblTaperOuSlectionner_2 == null) {
-			this.lblTaperOuSlectionner_2 = new JLabel(
-					"Taper ou sélectionner son prénom");
+			this.lblTaperOuSlectionner_2 = new JLabel("Taper ou sélectionner son prénom");
 			this.lblTaperOuSlectionner_2.setEnabled(false);
 			this.lblTaperOuSlectionner_2.setForeground(Color.GRAY);
-			this.lblTaperOuSlectionner_2.setFont(new Font("Tahoma", Font.BOLD,
-					11));
+			this.lblTaperOuSlectionner_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblTaperOuSlectionner_2.setBounds(554, 461, 220, 14);
 		}
 		return this.lblTaperOuSlectionner_2;
@@ -606,301 +574,21 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 			this.lblValider.setVisible(false);
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
-			this.lblValider.setIcon(new ImageIcon(
-					SelectionNumeroCarteFidelite2.class
-							.getResource("/Images/valider.png")));
-			this.lblValider.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblValider
+					.setIcon(new ImageIcon(SelectionNumeroCarteFidelite2.class.getResource("/Images/valider.png")));
+			this.lblValider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setForeground(Color.GRAY);
 			this.lblValider.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
 
-					if (SelectionNumeroCarteFidelite2.this.rdbtnSelectionParNumero
-							.isSelected())
-
-					{
-
-						boolean verification = true;
-						SelectionNumeroCarteFidelite2.this.numeroCarteFidelite = SelectionNumeroCarteFidelite2.this.formattedTextField
-								.getText().toString().toUpperCase();
-						System.out
-								.print(SelectionNumeroCarteFidelite2.this.numeroCarteFidelite);
-						SelectionNumeroCarteFidelite2.this.interfaceActuelle
-								.setVisible(false);
-						SelectionNumeroCarteFidelite2.this.interfaceActuelle
-								.setEnabled(false);
-						if (SelectionNumeroCarteFidelite2.this.numeroCarteFidelite
-								.isEmpty()) {
-							verification = false;
-							SelectionNumeroCarteFidelite2.this.message = "Merci de vérifier le numéro de carte renseigné - Ce champ ne peut pas être vide";
-						}
-
-						 if (!numeroCarteFidelite.isEmpty()) {
-
-						 if (numeroCarteFidelite.length() > 13) {
-						 verification = false;
-						 message =
-						 "Merci de vérifier le numéro de carte renseigné - 13 caractères Maximum";
-						 }
-
-						 }
-
-						if (!SelectionNumeroCarteFidelite2.this.numeroCarteFidelite
-								.isEmpty()) {
-							// && (numeroCarteFidelite.length() == 13)) {
-							try {
-								c = Connexion.getCon();
-
-								final String sql = "SELECT IDCLIENT FROM CARTE_DE_FIDELITE WHERE NUMEROCARTEDEFIDELITE=?";
-
-								preStm = c.prepareStatement(sql);
-
-								preStm.setString(
-										1,
-										SelectionNumeroCarteFidelite2.this.numeroCarteFidelite);
-
-								rs = preStm.executeQuery();
-
-								while (rs.next()) {
-									SelectionNumeroCarteFidelite2.this.idclient = rs
-											.getInt(1);
-								}
-
-								System.out
-										.print(SelectionNumeroCarteFidelite2.this.idclient);
-								rs.close();
-								preStm.close();
-
-							} catch (final SQLException e1) {
-								e1.printStackTrace();
-
-							}
-
-							if (SelectionNumeroCarteFidelite2.this.idclient == 0)
-
-							{
-
-								verification = false;
-								SelectionNumeroCarteFidelite2.this.message = "La carte n° "
-										+ SelectionNumeroCarteFidelite2.this.numeroCarteFidelite
-										+ " n'existe pas";
-
-							}
-
-						}
-
-						if (verification == true) {
-
-							switch (SelectionNumeroCarteFidelite2.this.choixmenuprecedent) {
-
-							case "Menu > Gestion Carte de Fidélité > Désincription Pub":
-								SelectionNumeroCarteFidelite2.this.text = "Désincription Pub";
-								final ConfirmationOperationCarteFidelite fenetre = new ConfirmationOperationCarteFidelite(
-										SelectionNumeroCarteFidelite2.this.interfaceActuelle,
-										SelectionNumeroCarteFidelite2.this.numeroCarteFidelite,
-										SelectionNumeroCarteFidelite2.this.choixmenuprecedent,
-										SelectionNumeroCarteFidelite2.this.text);
-								fenetre.setVisible(true);
-								interfacePrecedente.dispose();
-								SelectionNumeroCarteFidelite2.this.dispose();
-
-								break;
-
-							case "Menu > Gestion Carte de Fidélité > Suppression Fiche Client":
-								SelectionNumeroCarteFidelite2.this.text = "Suppression Fiche Client";
-								final ConfirmationOperationCarteFidelite fenetre2 = new ConfirmationOperationCarteFidelite(
-										SelectionNumeroCarteFidelite2.this.interfaceActuelle,
-										SelectionNumeroCarteFidelite2.this.numeroCarteFidelite,
-										SelectionNumeroCarteFidelite2.this.choixmenuprecedent,
-										SelectionNumeroCarteFidelite2.this.text);
-								fenetre2.setVisible(true);
-								interfacePrecedente.dispose();
-								SelectionNumeroCarteFidelite2.this.dispose();
-								break;
-
-							case "Menu > Gestion Carte de Fidélité > Mise à Jour Fiche Client":
-								SelectionNumeroCarteFidelite2.this.text = "Mise à Jour Fiche Client";
-								final ConfirmationOperationCarteFidelite fenetre3 = new ConfirmationOperationCarteFidelite(
-										SelectionNumeroCarteFidelite2.this.interfaceActuelle,
-										SelectionNumeroCarteFidelite2.this.numeroCarteFidelite,
-										SelectionNumeroCarteFidelite2.this.choixmenuprecedent,
-										SelectionNumeroCarteFidelite2.this.text);
-								fenetre3.setVisible(true);
-								interfacePrecedente.dispose();
-								SelectionNumeroCarteFidelite2.this.dispose();
-								break;
-
-							case "Menu > Gestion Carte de Fidélité > Consulter Fiche Client":
-								final FicheClientComplete consultationfiche = new FicheClientComplete(
-										SelectionNumeroCarteFidelite2.this.idclient);
-								consultationfiche.setVisible(true);
-								interfacePrecedente.dispose();
-								SelectionNumeroCarteFidelite2.this.dispose();
-								break;
-							}
-						} else {
-							System.out.print("impossible");
-
-							final AlerteSelection fenetre = new AlerteSelection(
-									SelectionNumeroCarteFidelite2.this.interfaceActuelle,
-									SelectionNumeroCarteFidelite2.this.message);
-							fenetre.setVisible(true);
-							SelectionNumeroCarteFidelite2.this.interfaceActuelle
-									.setEnabled(false);
-							SelectionNumeroCarteFidelite2.this.lblValider
-									.setVisible(false);
-						}
+					if (SelectionNumeroCarteFidelite2.this.rdbtnSelectionParNumero.isSelected()) {
+						searshByNumCli();
 					}
 
-					if (SelectionNumeroCarteFidelite2.this.rdbtnSelectionParNom
-							.isSelected()) {
-						SelectionNumeroCarteFidelite2.this.name = SelectionNumeroCarteFidelite2
-								.this.comboBox.getSelectedItem().toString();
-						SelectionNumeroCarteFidelite2.this.forname = SelectionNumeroCarteFidelite2
-								.this.comboBox_1.getSelectedItem().toString();
-						SelectionNumeroCarteFidelite2.this.birth = SelectionNumeroCarteFidelite2
-								.this.comboBox_2.getSelectedItem().toString();
-						System.out.println("selected : "+SelectionNumeroCarteFidelite2.this.birth);
-						SelectionNumeroCarteFidelite2.this.birth= SelectionNumeroCarteFidelite2
-								.this.birth.substring(0, SelectionNumeroCarteFidelite2.this.birth.indexOf(" "));
-						System.out.println("birth value : "+SelectionNumeroCarteFidelite2.this.birth);
-
-
-
-
-/*	desactivated		 String eclatementDate[] = birth.split(" "); String
-						 day = eclatementDate[0]; System.out.print(day+"\n");
-						 String month = eclatementDate[1];
-						 System.out.print(month+"\n"); String year =
-						 eclatementDate[2]; System.out.print(year+"\n");
-
-						 switch (month)
-
-						 {
-
-						 case "janvier": month="01"; break; case "février":
-						 month="02"; break; case "mars":month="03"; break;
-						 case "avril":month="04"; break; case
-						 "mai":month="05"; break; case "juin":month="06";
-						 break; case "juillet":month="07"; break; case
-						 "Août":month="08"; break; case
-						 "septembre":month="09"; break; case
-						 "octobre":month="10"; break; case
-						 "novembre":month="11"; break; case
-						 "décembre":month="12"; break;
-
-						 }
-
-						 String birthdate=year+"/"+month+"/"+day;			*/
-
-
-						try {
-							c = Connexion.getCon();
-
-							final String sql = "SELECT NUMEROCARTEDEFIDELITE FROM CARTE_DE_FIDELITE INNER JOIN CLIENT ON CLIENT.IDCLIENT=CARTE_DE_FIDELITE.IDCLIENT WHERE NOMCLIENT=? AND PRENOMCLIENT=? AND AGECLIENT=?";
-
-							preStm = c.prepareStatement(sql);
-
-							preStm.setString(1,
-									SelectionNumeroCarteFidelite2.this.name);
-							preStm.setString(2,
-									SelectionNumeroCarteFidelite2.this.forname);
-							preStm.setString(3,
-									SelectionNumeroCarteFidelite2.this.birth);
-
-							rs = preStm.executeQuery();
-
-							while (rs.next()) {
-								SelectionNumeroCarteFidelite2.this.numcarteliste = rs
-										.getString(1);
-							}
-
-							System.out.println(SelectionNumeroCarteFidelite2.this.name+" "+SelectionNumeroCarteFidelite2.this.forname+" "+SelectionNumeroCarteFidelite2.this.birth+"; corespond to card N° : "+SelectionNumeroCarteFidelite2.this.numcarteliste);
-							rs.close();
-							preStm.close();
-
-						} catch (final SQLException e1) {
-							e1.printStackTrace();
-
-						}
-						try {
-							c = Connexion.getCon();
-
-							final String sql = "SELECT CLIENT.IDCLIENT FROM CARTE_DE_FIDELITE INNER JOIN CLIENT ON CLIENT.IDCLIENT=CARTE_DE_FIDELITE.IDCLIENT WHERE NOMCLIENT=? AND PRENOMCLIENT=? AND AGECLIENT=?";
-
-							preStm = c.prepareStatement(sql);
-
-							preStm.setString(1,
-									SelectionNumeroCarteFidelite2.this.name);
-							preStm.setString(2,
-									SelectionNumeroCarteFidelite2.this.forname);
-							preStm.setString(3,
-									SelectionNumeroCarteFidelite2.this.birth);
-
-							rs = preStm.executeQuery();
-
-							while (rs.next()) {
-								SelectionNumeroCarteFidelite2.this.idclientconsulatation = rs
-										.getInt(1);
-							}
-
-							System.out.println("idclient is : "+SelectionNumeroCarteFidelite2.this.idclientconsulatation);
-							rs.close();
-							preStm.close();
-
-						} catch (final SQLException e1) {
-							e1.printStackTrace();
-
-						}
-
-						switch (SelectionNumeroCarteFidelite2.this.choixmenuprecedent) {
-
-						case "Menu > Gestion Carte de Fidélité > Désincription Pub":
-							SelectionNumeroCarteFidelite2.this.text = "Désincription Pub";
-							final ConfirmationOperationCarteFidelite fenetre = new ConfirmationOperationCarteFidelite(
-									SelectionNumeroCarteFidelite2.this.interfaceActuelle,
-									SelectionNumeroCarteFidelite2.this.numcarteliste,
-									SelectionNumeroCarteFidelite2.this.choixmenuprecedent,
-									SelectionNumeroCarteFidelite2.this.text);
-							fenetre.setVisible(true);
-							interfacePrecedente.dispose();
-							SelectionNumeroCarteFidelite2.this.dispose();
-							break;
-
-						case "Menu > Gestion Carte de Fidélité > Suppression Fiche Client":
-							SelectionNumeroCarteFidelite2.this.text = "Suppression Fiche Client";
-							final ConfirmationOperationCarteFidelite fenetre2 = new ConfirmationOperationCarteFidelite(
-									SelectionNumeroCarteFidelite2.this.interfaceActuelle,
-									SelectionNumeroCarteFidelite2.this.numcarteliste,
-									SelectionNumeroCarteFidelite2.this.choixmenuprecedent,
-									SelectionNumeroCarteFidelite2.this.text);
-							fenetre2.setVisible(true);
-							SelectionNumeroCarteFidelite2.this.dispose();
-							interfacePrecedente.dispose();
-							break;
-
-						case "Menu > Gestion Carte de Fidélité > Mise à Jour Fiche Client":
-							SelectionNumeroCarteFidelite2.this.text = "Mise à Jour Fiche Client";
-							final ConfirmationOperationCarteFidelite fenetre3 = new ConfirmationOperationCarteFidelite(
-									SelectionNumeroCarteFidelite2.this.interfaceActuelle,
-									SelectionNumeroCarteFidelite2.this.numcarteliste,
-									SelectionNumeroCarteFidelite2.this.choixmenuprecedent,
-									SelectionNumeroCarteFidelite2.this.text);
-							fenetre3.setVisible(true);
-							interfacePrecedente.dispose();
-							SelectionNumeroCarteFidelite2.this.dispose();
-							break;
-
-						case "Menu > Gestion Carte de Fidélité > Consulter Fiche Client":
-							final FicheClientComplete consultationfiche = new FicheClientComplete(
-									SelectionNumeroCarteFidelite2.this.idclientconsulatation);
-							consultationfiche.setVisible(true);
-							interfacePrecedente.dispose();
-							SelectionNumeroCarteFidelite2.this.dispose();
-							break;
-						}
+					if (SelectionNumeroCarteFidelite2.this.rdbtnSelectionParNom.isSelected()) {
+						searchByNameCli();
 					}
 				}
 
@@ -910,43 +598,282 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 		return this.lblValider;
 	}
 
+	protected void searchByNameCli() {
+
+		SelectionNumeroCarteFidelite2.this.name = SelectionNumeroCarteFidelite2.this.comboBox.getSelectedItem()
+				.toString();
+		SelectionNumeroCarteFidelite2.this.forname = SelectionNumeroCarteFidelite2.this.comboBox_1.getSelectedItem()
+				.toString();
+		SelectionNumeroCarteFidelite2.this.birth = SelectionNumeroCarteFidelite2.this.comboBox_2.getSelectedItem()
+				.toString();
+		System.out.println("selected : " + SelectionNumeroCarteFidelite2.this.birth);
+		SelectionNumeroCarteFidelite2.this.birth = SelectionNumeroCarteFidelite2.this.birth.substring(0,
+				SelectionNumeroCarteFidelite2.this.birth.indexOf(" "));
+		System.out.println("birth value : " + SelectionNumeroCarteFidelite2.this.birth);
+
+		/*
+		 * desactivated String eclatementDate[] = birth.split(" "); String day =
+		 * eclatementDate[0]; System.out.print(day+"\n"); String month =
+		 * eclatementDate[1]; System.out.print(month+"\n"); String year =
+		 * eclatementDate[2]; System.out.print(year+"\n");
+		 *
+		 * switch (month)
+		 *
+		 * {
+		 *
+		 * case "janvier": month="01"; break; case "février": month="02"; break;
+		 * case "mars":month="03"; break; case "avril":month="04"; break; case
+		 * "mai":month="05"; break; case "juin":month="06"; break; case
+		 * "juillet":month="07"; break; case "Août":month="08"; break; case
+		 * "septembre":month="09"; break; case "octobre":month="10"; break; case
+		 * "novembre":month="11"; break; case "décembre":month="12"; break;
+		 *
+		 * }
+		 *
+		 * String birthdate=year+"/"+month+"/"+day;
+		 */
+
+		try {
+			c = Connexion.getCon();
+
+			final String sql = "SELECT NUMEROCARTEDEFIDELITE FROM CARTE_DE_FIDELITE INNER JOIN CLIENT ON CLIENT.IDCLIENT=CARTE_DE_FIDELITE.IDCLIENT WHERE NOMCLIENT=? AND PRENOMCLIENT=? AND AGECLIENT=?";
+
+			preStm = c.prepareStatement(sql);
+
+			preStm.setString(1, SelectionNumeroCarteFidelite2.this.name);
+			preStm.setString(2, SelectionNumeroCarteFidelite2.this.forname);
+			preStm.setString(3, SelectionNumeroCarteFidelite2.this.birth);
+
+			rs = preStm.executeQuery();
+
+			while (rs.next()) {
+				SelectionNumeroCarteFidelite2.this.numcarteliste = rs.getString(1);
+			}
+
+			System.out.println(SelectionNumeroCarteFidelite2.this.name + " "
+					+ SelectionNumeroCarteFidelite2.this.forname + " " + SelectionNumeroCarteFidelite2.this.birth
+					+ "; corespond to card N° : " + SelectionNumeroCarteFidelite2.this.numcarteliste);
+			rs.close();
+			preStm.close();
+
+		} catch (final SQLException e1) {
+			e1.printStackTrace();
+
+		}
+		try {
+			c = Connexion.getCon();
+
+			final String sql = "SELECT CLIENT.IDCLIENT FROM CARTE_DE_FIDELITE INNER JOIN CLIENT ON CLIENT.IDCLIENT=CARTE_DE_FIDELITE.IDCLIENT WHERE NOMCLIENT=? AND PRENOMCLIENT=? AND AGECLIENT=?";
+
+			preStm = c.prepareStatement(sql);
+
+			preStm.setString(1, SelectionNumeroCarteFidelite2.this.name);
+			preStm.setString(2, SelectionNumeroCarteFidelite2.this.forname);
+			preStm.setString(3, SelectionNumeroCarteFidelite2.this.birth);
+
+			rs = preStm.executeQuery();
+
+			while (rs.next()) {
+				SelectionNumeroCarteFidelite2.this.idclientconsulatation = rs.getInt(1);
+			}
+
+			System.out.println("idclient is : " + SelectionNumeroCarteFidelite2.this.idclientconsulatation);
+			rs.close();
+			preStm.close();
+
+		} catch (final SQLException e1) {
+			e1.printStackTrace();
+
+		}
+
+		switch (SelectionNumeroCarteFidelite2.this.choixmenuprecedent) {
+
+		case "Menu > Gestion Carte de Fidélité > Désincription Pub":
+			SelectionNumeroCarteFidelite2.this.text = "Désincription Pub";
+			final ConfirmationOperationCarteFidelite fenetre = new ConfirmationOperationCarteFidelite(
+					SelectionNumeroCarteFidelite2.this.interfaceActuelle,
+					SelectionNumeroCarteFidelite2.this.numcarteliste,
+					SelectionNumeroCarteFidelite2.this.choixmenuprecedent, SelectionNumeroCarteFidelite2.this.text);
+			fenetre.setVisible(true);
+			interfacePrecedente.dispose();
+			SelectionNumeroCarteFidelite2.this.dispose();
+			break;
+
+		case "Menu > Gestion Carte de Fidélité > Suppression Fiche Client":
+			SelectionNumeroCarteFidelite2.this.text = "Suppression Fiche Client";
+			final ConfirmationOperationCarteFidelite fenetre2 = new ConfirmationOperationCarteFidelite(
+					SelectionNumeroCarteFidelite2.this.interfaceActuelle,
+					SelectionNumeroCarteFidelite2.this.numcarteliste,
+					SelectionNumeroCarteFidelite2.this.choixmenuprecedent, SelectionNumeroCarteFidelite2.this.text);
+			fenetre2.setVisible(true);
+			SelectionNumeroCarteFidelite2.this.dispose();
+			interfacePrecedente.dispose();
+			break;
+
+		case "Menu > Gestion Carte de Fidélité > Mise à Jour Fiche Client":
+			SelectionNumeroCarteFidelite2.this.text = "Mise à Jour Fiche Client";
+			final ConfirmationOperationCarteFidelite fenetre3 = new ConfirmationOperationCarteFidelite(
+					SelectionNumeroCarteFidelite2.this.interfaceActuelle,
+					SelectionNumeroCarteFidelite2.this.numcarteliste,
+					SelectionNumeroCarteFidelite2.this.choixmenuprecedent, SelectionNumeroCarteFidelite2.this.text);
+			fenetre3.setVisible(true);
+			interfacePrecedente.dispose();
+			SelectionNumeroCarteFidelite2.this.dispose();
+			break;
+
+		case "Menu > Gestion Carte de Fidélité > Consulter Fiche Client":
+			final FicheClientComplete consultationfiche = new FicheClientComplete(
+					SelectionNumeroCarteFidelite2.this.idclientconsulatation);
+			consultationfiche.setVisible(true);
+			interfacePrecedente.dispose();
+			SelectionNumeroCarteFidelite2.this.dispose();
+			break;
+		}
+
+	}
+
+	protected void searshByNumCli() {
+
+		boolean verification = true;
+		SelectionNumeroCarteFidelite2.this.numeroCarteFidelite = SelectionNumeroCarteFidelite2.this.formattedTextField
+				.getText().toString().toUpperCase();
+		System.out.print(SelectionNumeroCarteFidelite2.this.numeroCarteFidelite);
+		SelectionNumeroCarteFidelite2.this.interfaceActuelle.setVisible(false);
+		SelectionNumeroCarteFidelite2.this.interfaceActuelle.setEnabled(false);
+		if (SelectionNumeroCarteFidelite2.this.numeroCarteFidelite.isEmpty()) {
+			verification = false;
+			SelectionNumeroCarteFidelite2.this.message = "Merci de vérifier le numéro de carte renseigné - Ce champ ne peut pas être vide";
+		}
+
+		if (!numeroCarteFidelite.isEmpty()) {
+
+			if (numeroCarteFidelite.length() > 13) {
+				verification = false;
+				message = "Merci de vérifier le numéro de carte renseigné - 13 caractères Maximum";
+			}
+
+		}
+
+		if (!SelectionNumeroCarteFidelite2.this.numeroCarteFidelite.isEmpty()) {
+			// && (numeroCarteFidelite.length() == 13)) {
+			try {
+				c = Connexion.getCon();
+
+				final String sql = "SELECT IDCLIENT FROM CARTE_DE_FIDELITE WHERE NUMEROCARTEDEFIDELITE=?";
+
+				preStm = c.prepareStatement(sql);
+
+				preStm.setString(1, SelectionNumeroCarteFidelite2.this.numeroCarteFidelite);
+
+				rs = preStm.executeQuery();
+
+				while (rs.next()) {
+					SelectionNumeroCarteFidelite2.this.idclient = rs.getInt(1);
+				}
+
+				System.out.print(SelectionNumeroCarteFidelite2.this.idclient);
+				rs.close();
+				preStm.close();
+
+			} catch (final SQLException e1) {
+				e1.printStackTrace();
+
+			}
+
+			if (SelectionNumeroCarteFidelite2.this.idclient == 0)
+
+			{
+
+				verification = false;
+				SelectionNumeroCarteFidelite2.this.message = "La carte n° "
+						+ SelectionNumeroCarteFidelite2.this.numeroCarteFidelite + " n'existe pas";
+
+			}
+
+		}
+
+		if (verification == true) {
+
+			switch (SelectionNumeroCarteFidelite2.this.choixmenuprecedent) {
+
+			case "Menu > Gestion Carte de Fidélité > Désincription Pub":
+				SelectionNumeroCarteFidelite2.this.text = "Désincription Pub";
+				final ConfirmationOperationCarteFidelite fenetre = new ConfirmationOperationCarteFidelite(
+						SelectionNumeroCarteFidelite2.this.interfaceActuelle,
+						SelectionNumeroCarteFidelite2.this.numeroCarteFidelite,
+						SelectionNumeroCarteFidelite2.this.choixmenuprecedent, SelectionNumeroCarteFidelite2.this.text);
+				fenetre.setVisible(true);
+				interfacePrecedente.dispose();
+				SelectionNumeroCarteFidelite2.this.dispose();
+
+				break;
+
+			case "Menu > Gestion Carte de Fidélité > Suppression Fiche Client":
+				SelectionNumeroCarteFidelite2.this.text = "Suppression Fiche Client";
+				final ConfirmationOperationCarteFidelite fenetre2 = new ConfirmationOperationCarteFidelite(
+						SelectionNumeroCarteFidelite2.this.interfaceActuelle,
+						SelectionNumeroCarteFidelite2.this.numeroCarteFidelite,
+						SelectionNumeroCarteFidelite2.this.choixmenuprecedent, SelectionNumeroCarteFidelite2.this.text);
+				fenetre2.setVisible(true);
+				interfacePrecedente.dispose();
+				SelectionNumeroCarteFidelite2.this.dispose();
+				break;
+
+			case "Menu > Gestion Carte de Fidélité > Mise à Jour Fiche Client":
+				SelectionNumeroCarteFidelite2.this.text = "Mise à Jour Fiche Client";
+				final ConfirmationOperationCarteFidelite fenetre3 = new ConfirmationOperationCarteFidelite(
+						SelectionNumeroCarteFidelite2.this.interfaceActuelle,
+						SelectionNumeroCarteFidelite2.this.numeroCarteFidelite,
+						SelectionNumeroCarteFidelite2.this.choixmenuprecedent, SelectionNumeroCarteFidelite2.this.text);
+				fenetre3.setVisible(true);
+				interfacePrecedente.dispose();
+				SelectionNumeroCarteFidelite2.this.dispose();
+				break;
+
+			case "Menu > Gestion Carte de Fidélité > Consulter Fiche Client":
+				final FicheClientComplete consultationfiche = new FicheClientComplete(
+						SelectionNumeroCarteFidelite2.this.idclient);
+				consultationfiche.setVisible(true);
+				interfacePrecedente.dispose();
+				SelectionNumeroCarteFidelite2.this.dispose();
+				break;
+			}
+		} else {
+			System.out.print("impossible");
+
+			final AlerteSelection fenetre = new AlerteSelection(SelectionNumeroCarteFidelite2.this.interfaceActuelle,
+					SelectionNumeroCarteFidelite2.this.message);
+			fenetre.setVisible(true);
+			SelectionNumeroCarteFidelite2.this.interfaceActuelle.setEnabled(false);
+			SelectionNumeroCarteFidelite2.this.lblValider.setVisible(false);
+		}
+
+	}
+
 	private JRadioButton getRdbtnSelectionParNom() {
 		if (this.rdbtnSelectionParNom == null) {
-			this.rdbtnSelectionParNom = new JRadioButton(
-					"Selection par NOM CLIENT");
+			this.rdbtnSelectionParNom = new JRadioButton("Selection par NOM CLIENT");
 			this.rdbtnSelectionParNom.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent arg0) {
 
-					if (SelectionNumeroCarteFidelite2.this.rdbtnSelectionParNom
-							.isSelected()) {
-						SelectionNumeroCarteFidelite2.this.comboBox
-								.setEnabled(true);
-						SelectionNumeroCarteFidelite2.this.comboBox_1
-								.setEnabled(true);
-						SelectionNumeroCarteFidelite2.this.comboBox_2
-								.setEnabled(true);
-						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_1
-								.setEnabled(true);
-						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_2
-								.setEnabled(true);
-						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner
-								.setEnabled(true);
-						SelectionNumeroCarteFidelite2.this.lblNclient
-								.setEnabled(false);
-						SelectionNumeroCarteFidelite2.this.formattedTextField
-								.setEnabled(false);
-						SelectionNumeroCarteFidelite2.this.formattedTextField
-								.setText(null);
-						SelectionNumeroCarteFidelite2.this.lblValider
-								.setVisible(false);
+					if (SelectionNumeroCarteFidelite2.this.rdbtnSelectionParNom.isSelected()) {
+						SelectionNumeroCarteFidelite2.this.comboBox.setEnabled(true);
+						SelectionNumeroCarteFidelite2.this.comboBox_1.setEnabled(true);
+						SelectionNumeroCarteFidelite2.this.comboBox_2.setEnabled(true);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_1.setEnabled(true);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_2.setEnabled(true);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner.setEnabled(true);
+						SelectionNumeroCarteFidelite2.this.lblNclient.setEnabled(false);
+						SelectionNumeroCarteFidelite2.this.formattedTextField.setEnabled(false);
+						SelectionNumeroCarteFidelite2.this.formattedTextField.setText(null);
+						SelectionNumeroCarteFidelite2.this.lblValider.setVisible(false);
 
 					}
 
 				}
 			});
-			this.rdbtnSelectionParNom
-					.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.rdbtnSelectionParNom.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.rdbtnSelectionParNom.setForeground(Color.GRAY);
 			this.rdbtnSelectionParNom.setBounds(285, 427, 197, 23);
 			this.group.add(this.rdbtnSelectionParNom);
@@ -956,38 +883,26 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 
 	private JRadioButton getRdbtnSelectionParNumero() {
 		if (this.rdbtnSelectionParNumero == null) {
-			this.rdbtnSelectionParNumero = new JRadioButton(
-					"Selection par N\u00B0 de CLIENT");
-			this.rdbtnSelectionParNumero
-					.addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(final ActionEvent e) {
-							if (SelectionNumeroCarteFidelite2.this.rdbtnSelectionParNumero
-									.isSelected()) {
+			this.rdbtnSelectionParNumero = new JRadioButton("Selection par N\u00B0 de CLIENT");
+			this.rdbtnSelectionParNumero.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(final ActionEvent e) {
+					if (SelectionNumeroCarteFidelite2.this.rdbtnSelectionParNumero.isSelected()) {
 
-								SelectionNumeroCarteFidelite2.this.comboBox
-										.setEnabled(false);
-								SelectionNumeroCarteFidelite2.this.comboBox_1
-										.setEnabled(false);
-								SelectionNumeroCarteFidelite2.this.comboBox_2
-										.setEnabled(false);
-								SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_1
-										.setEnabled(false);
-								SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_2
-										.setEnabled(false);
-								SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner
-										.setEnabled(false);
-								SelectionNumeroCarteFidelite2.this.lblNclient
-										.setEnabled(true);
-								SelectionNumeroCarteFidelite2.this.formattedTextField
-										.setEnabled(true);
+						SelectionNumeroCarteFidelite2.this.comboBox.setEnabled(false);
+						SelectionNumeroCarteFidelite2.this.comboBox_1.setEnabled(false);
+						SelectionNumeroCarteFidelite2.this.comboBox_2.setEnabled(false);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_1.setEnabled(false);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner_2.setEnabled(false);
+						SelectionNumeroCarteFidelite2.this.lblTaperOuSlectionner.setEnabled(false);
+						SelectionNumeroCarteFidelite2.this.lblNclient.setEnabled(true);
+						SelectionNumeroCarteFidelite2.this.formattedTextField.setEnabled(true);
 
-							}
-						}
-					});
+					}
+				}
+			});
 			this.rdbtnSelectionParNumero.setForeground(Color.GRAY);
-			this.rdbtnSelectionParNumero.setFont(new Font("Tahoma", Font.BOLD,
-					11));
+			this.rdbtnSelectionParNumero.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.rdbtnSelectionParNumero.setBounds(285, 350, 197, 23);
 			this.rdbtnSelectionParNumero.setSelected(true);
 			this.group.add(this.rdbtnSelectionParNumero);

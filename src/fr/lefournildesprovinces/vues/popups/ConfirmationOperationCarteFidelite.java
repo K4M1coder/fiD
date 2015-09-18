@@ -25,8 +25,8 @@ import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Clientcartedefidelite;
 import fr.lefournildesprovinces.ressources.models.Message;
-import fr.lefournildesprovinces.vues.MajFicheClientCarteFidelite;
 import fr.lefournildesprovinces.vues.PassworddeleteClientfidelite;
+import fr.lefournildesprovinces.vues.fidelite.MajFicheClientCarteFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
@@ -68,9 +68,8 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 	private final String provenance = "test";
 	private String text = null;
 
-	public ConfirmationOperationCarteFidelite(final JFrame interfaceActuelle,
-			final String numeroCarteFidelite, final String choix,
-			final String text) {
+	public ConfirmationOperationCarteFidelite(final JFrame interfaceActuelle, final String numeroCarteFidelite,
+			final String choix, final String text) {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent arg0) {
@@ -87,27 +86,19 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 
 				switch (ConfirmationOperationCarteFidelite.this.choixmenuprecedent) {
 				case "DMenu > Gestion Carte de Fidélité > Désincription Pub":
-					ConfirmationOperationCarteFidelite.this.lblMessage
-							.setText("Souhaitez-vous désinscrire " + civ + " "
-									+ NomCli + " " + PrenomCli
-									+ " de la newsletter ?");
-					ConfirmationOperationCarteFidelite.this.lblNewLabel
-							.setText(text);
+					ConfirmationOperationCarteFidelite.this.lblMessage.setText("Souhaitez-vous désinscrire " + civ + " "
+							+ NomCli + " " + PrenomCli + " de la newsletter ?");
+					ConfirmationOperationCarteFidelite.this.lblNewLabel.setText(text);
 					break;
 				case "Menu > Gestion Carte de Fidélité > Suppression Fiche Client":
 					ConfirmationOperationCarteFidelite.this.lblMessage
-							.setText("Souhaitez-vous supprimer la fiche " + civ
-									+ " " + NomCli + " " + PrenomCli + "?");
-					ConfirmationOperationCarteFidelite.this.lblNewLabel
-							.setText(text);
+							.setText("Souhaitez-vous supprimer la fiche " + civ + " " + NomCli + " " + PrenomCli + "?");
+					ConfirmationOperationCarteFidelite.this.lblNewLabel.setText(text);
 					break;
 				case "Menu > Gestion Carte de Fidélité > Mise à Jour Fiche Client":
-					ConfirmationOperationCarteFidelite.this.lblMessage
-							.setText("Souhaitez-vous mettre a jour la fiche "
-									+ civ + " " + NomCli + " " + PrenomCli
-									+ "?");
-					ConfirmationOperationCarteFidelite.this.lblNewLabel
-							.setText(text);
+					ConfirmationOperationCarteFidelite.this.lblMessage.setText(
+							"Souhaitez-vous mettre a jour la fiche " + civ + " " + NomCli + " " + PrenomCli + "?");
+					ConfirmationOperationCarteFidelite.this.lblNewLabel.setText(text);
 					break;
 				}
 
@@ -142,10 +133,8 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 
 			case "utilisateur":
 
-				this.fond
-						.setIcon(new ImageIcon(
-								ConfirmationOperationCarteFidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+				this.fond.setIcon(new ImageIcon(
+						ConfirmationOperationCarteFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
 				this.label_1.setEnabled(false);
 				this.label_1.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -157,16 +146,13 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 				this.label_1.setVisible(false);
 				this.label_3.setEnabled(false);
 				this.label_3.setVisible(false);
-				this.fond
-						.setIcon(new ImageIcon(
-								ConfirmationOperationCarteFidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+				this.fond.setIcon(new ImageIcon(
+						ConfirmationOperationCarteFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
-						ConfirmationOperationCarteFidelite.class
-								.getResource("/Images/menus_fidelite.png")));
+						ConfirmationOperationCarteFidelite.class.getResource("/Images/menus_fidelite.png")));
 				break;
 
 			}
@@ -186,8 +172,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 					ConfirmationOperationCarteFidelite.this.dispose();
 				}
 			});
-			this.label
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label.setBounds(239, 231, 114, 44);
 		}
 		return this.label;
@@ -204,8 +189,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 					ConfirmationOperationCarteFidelite.this.dispose();
 				}
 			});
-			this.label_1.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_1.setBounds(476, 231, 114, 44);
 		}
 		return this.label_1;
@@ -222,8 +206,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 					ConfirmationOperationCarteFidelite.this.dispose();
 				}
 			});
-			this.label_2.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_2.setBounds(593, 231, 114, 44);
 		}
 		return this.label_2;
@@ -240,8 +223,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 					ConfirmationOperationCarteFidelite.this.dispose();
 				}
 			});
-			this.label_3.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_3.setBounds(707, 231, 114, 44);
 		}
 		return this.label_3;
@@ -258,8 +240,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 					ConfirmationOperationCarteFidelite.this.dispose();
 				}
 			});
-			this.label_4.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_4.setBounds(875, 232, 170, 44);
 		}
 		return this.label_4;
@@ -308,9 +289,8 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 	private JLabel getLblNewLabel_1() {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
-			this.lblNewLabel_1.setIcon(new ImageIcon(
-					ConfirmationOperationCarteFidelite.class
-							.getResource("/Images/fond-logiciel.png")));
+			this.lblNewLabel_1.setIcon(
+					new ImageIcon(ConfirmationOperationCarteFidelite.class.getResource("/Images/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -320,10 +300,8 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 		if (this.lblNewMessagenumeroClient == null) {
 			this.lblNewMessagenumeroClient = new JLabel("");
 			this.lblNewMessagenumeroClient.setForeground(Color.GRAY);
-			this.lblNewMessagenumeroClient
-					.setHorizontalAlignment(SwingConstants.CENTER);
-			this.lblNewMessagenumeroClient.setFont(new Font("Tahoma",
-					Font.BOLD, 11));
+			this.lblNewMessagenumeroClient.setHorizontalAlignment(SwingConstants.CENTER);
+			this.lblNewMessagenumeroClient.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblNewMessagenumeroClient.setBounds(364, 396, 553, 14);
 		}
 		return this.lblNewMessagenumeroClient;
@@ -332,22 +310,18 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 	private JLabel getLblNon() {
 		if (this.lblNon == null) {
 			this.lblNon = new JLabel("");
-			this.lblNon.setIcon(new ImageIcon(
-					ConfirmationOperationCarteFidelite.class
-							.getResource("/Images/annuler.png")));
+			this.lblNon.setIcon(
+					new ImageIcon(ConfirmationOperationCarteFidelite.class.getResource("/Images/annuler.png")));
 			this.lblNon.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					ConfirmationOperationCarteFidelite.this.interfacePrecedente
-							.setVisible(true);
-					ConfirmationOperationCarteFidelite.this.interfacePrecedente
-							.setEnabled(true);
+					ConfirmationOperationCarteFidelite.this.interfacePrecedente.setVisible(true);
+					ConfirmationOperationCarteFidelite.this.interfacePrecedente.setEnabled(true);
 					ConfirmationOperationCarteFidelite.this.dispose();
 				}
 			});
 			this.lblNon.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lblNon.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblNon.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblNon.setForeground(Color.RED);
 			this.lblNon.setBounds(534, 440, 99, 76);
 		}
@@ -357,14 +331,12 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 	private JLabel getLblOui() {
 		if (this.lblOui == null) {
 			this.lblOui = new JLabel("");
-			this.lblOui.setIcon(new ImageIcon(
-					ConfirmationOperationCarteFidelite.class
-							.getResource("/Images/valider.png")));
+			this.lblOui.setIcon(
+					new ImageIcon(ConfirmationOperationCarteFidelite.class.getResource("/Images/valider.png")));
 			this.lblOui.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					ConfirmationOperationCarteFidelite.this.interfacePrecedente
-							.dispose();
+					ConfirmationOperationCarteFidelite.this.interfacePrecedente.dispose();
 					boolean etat = true;
 					String message = null;
 					int idcarte = 0;
@@ -374,41 +346,25 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 						ConfirmationOperationCarteFidelite.this.text = "Désincription Pub";
 						try {
 							c = Connexion.getCon();
-
 							final String sql = "SELECT IDCARTEDEFIDELITE FROM CARTE_DE_FIDELITE WHERE NUMEROCARTEDEFIDELITE=?";
-
 							preStm = c.prepareStatement(sql);
-
-							preStm.setString(
-									1,
-									ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient);
-
+							preStm.setString(1, ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient);
 							rs = preStm.executeQuery();
-
 							while (rs.next()) {
 								idcarte = rs.getInt(1);
 							}
-
 							System.out.print(idcarte);
 							rs.close();
 							preStm.close();
-
 						} catch (final SQLException e1) {
 							e1.printStackTrace();
-
 						}
-						if (idcarte == 0)
-
-						{
-
+						if (idcarte == 0) {
 							etat = false;
-							message = "La carte n° "
-									+ ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient
+							message = "La carte n° " + ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient
 									+ " n'existe pas";
 							Message.setMessageaffichagefond(ConfirmationOperationCarteFidelite.this.text);
-							final SuccesMagasinOperation fenetre1 = new SuccesMagasinOperation(
-									message,
-									etat,
+							final SuccesMagasinOperation fenetre1 = new SuccesMagasinOperation(message, etat,
 									ConfirmationOperationCarteFidelite.this.text,
 									ConfirmationOperationCarteFidelite.this.messageinsertion2,
 									ConfirmationOperationCarteFidelite.this.provenance,
@@ -416,27 +372,16 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 									ConfirmationOperationCarteFidelite.this.idmagasin);
 							fenetre1.setVisible(true);
 							ConfirmationOperationCarteFidelite.this.dispose();
-						}
-
-						else {
-
+						} else {
 							try {
 								c = Connexion.getCon();
-
 								final String deletetabledelivrer = "UPDATE CLIENT INNER JOIN CARTE_DE_FIDELITE ON CARTE_DE_FIDELITE.IDCLIENT=CLIENT.IDCLIENT SET ABONNEMENTNEWSLETTERCLIENT='DéSINSCRIT' WHERE IDCARTEDEFIDELITE=?";
-
-								preStm = c
-										.prepareStatement(deletetabledelivrer);
-
+								preStm = c.prepareStatement(deletetabledelivrer);
 								preStm.setInt(1, idcarte);
-
 								preStm.executeUpdate();
-
 							} catch (final SQLException e1) {
 								e1.printStackTrace();
-
 							}
-
 							final SuccesOperationClientCarteFidelite fenetre2 = new SuccesOperationClientCarteFidelite(
 									ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient,
 									ConfirmationOperationCarteFidelite.this.choixmenuprecedent,
@@ -444,84 +389,52 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 							fenetre2.setVisible(true);
 						}
 						break;
-
 					case "Menu > Gestion Carte de Fidélité > Suppression Fiche Client":
-
 						ConfirmationOperationCarteFidelite.this.text = "Suppression Fiche Client";
 						try {
 							c = Connexion.getCon();
-
 							final String sql = "SELECT IDCARTEDEFIDELITE FROM CARTE_DE_FIDELITE WHERE NUMEROCARTEDEFIDELITE=?";
-
 							preStm = c.prepareStatement(sql);
-
-							preStm.setString(
-									1,
-									ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient);
-
+							preStm.setString(1, ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient);
 							rs = preStm.executeQuery();
-
 							while (rs.next()) {
 								idcarte = rs.getInt(1);
 							}
-
 							System.out.print(idcarte);
 							rs.close();
 							preStm.close();
-
 						} catch (final SQLException e1) {
 							e1.printStackTrace();
-
 						}
-
-						final PassworddeleteClientfidelite fenetre2 = new PassworddeleteClientfidelite(
-								idcarte,
+						final PassworddeleteClientfidelite fenetre2 = new PassworddeleteClientfidelite(idcarte,
 								ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient,
 								ConfirmationOperationCarteFidelite.this.text);
 						fenetre2.setVisible(true);
 						ConfirmationOperationCarteFidelite.this.dispose();
-
 						break;
-
 					case "Menu > Gestion Carte de Fidélité > Mise à Jour Fiche Client":
-
 						ConfirmationOperationCarteFidelite.this.text = "Mise à Jour Fiche Client";
 						try {
 							c = Connexion.getCon();
-
 							final String sql = "SELECT IDCARTEDEFIDELITE FROM CARTE_DE_FIDELITE WHERE NUMEROCARTEDEFIDELITE=?";
-
 							preStm = c.prepareStatement(sql);
-
-							preStm.setString(
-									1,
-									ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient);
-
+							preStm.setString(1, ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient);
 							rs = preStm.executeQuery();
-
 							while (rs.next()) {
 								idcarte = rs.getInt(1);
 							}
-
 							System.out.print(idcarte);
 							rs.close();
 							preStm.close();
-
 						} catch (final SQLException e1) {
 							e1.printStackTrace();
-
 						}
-						if (idcarte == 0)
-
-						{
+						if (idcarte == 0) {
 
 							etat = false;
-							message = "La carte n° "
-									+ ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient
+							message = "La carte n° " + ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient
 									+ " n'existe pas";
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
-									message,
-									etat,
+							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(message, etat,
 									ConfirmationOperationCarteFidelite.this.text,
 									ConfirmationOperationCarteFidelite.this.messageinsertion2,
 									ConfirmationOperationCarteFidelite.this.provenance,
@@ -536,8 +449,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 							final int idmag = 0;
 							final MajFicheClientCarteFidelite fenetre3 = new MajFicheClientCarteFidelite(
 									ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient,
-									ConfirmationOperationCarteFidelite.this.choixmenuprecedent,
-									idop, idmag);
+									ConfirmationOperationCarteFidelite.this.choixmenuprecedent, idop, idmag);
 							fenetre3.setVisible(true);
 						}
 						break;
@@ -546,8 +458,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 				}
 			});
 			this.lblOui.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lblOui.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblOui.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblOui.setForeground(Color.RED);
 			this.lblOui.setBounds(668, 440, 99, 76);
 		}

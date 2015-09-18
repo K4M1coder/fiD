@@ -180,48 +180,60 @@ public class MenuPrincipal extends JFrame {
 			this.fond = new JLabel("");
 			fond.setBackground(Color.WHITE);
 			this.privilege = Login.getPrivilege();
-
-			switch (this.privilege) {
-
-			case "utilisateur":
-
-				this.fond.setIcon(new ImageIcon(MenuPrincipal.class
-						.getResource("/Images/menus-grises-acceuil-1.png")));
-				this.lienmagasin.setEnabled(false);
-				this.lienmagasin.setVisible(false);
-				this.lienextraction.setEnabled(false);
-				this.lienextraction.setVisible(false);
-				this.label_ADM.setEnabled(false);
-				this.label_ADM.setVisible(false);
-				this.label_Import.setEnabled(false);
-				this.label_Import.setVisible(false);
-
-				break;
-
-			case "invite":
-				this.lienmagasin.setEnabled(false);
-				this.lienmagasin.setVisible(false);
-				this.lienextraction.setEnabled(false);
-				this.lienextraction.setVisible(false);
-				this.label_ADM.setEnabled(false);
-				this.label_ADM.setVisible(false);
-				this.label_Import.setEnabled(false);
-				this.label_Import.setVisible(false);
-
-				this.fond.setIcon(new ImageIcon(MenuPrincipal.class
-						.getResource("/Images/menus-grises-acceuil-1.png")));
-				break;
-
-			case "administrateur":
-				this.fond.setIcon(new ImageIcon(MenuPrincipal.class
-						.getResource("/Images/menus_accueil.png")));
-				break;
-
-			}
+			setUIPrivilege();
 			this.fond.setHorizontalAlignment(SwingConstants.CENTER);
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
+	}
+
+	private void setUIPrivilege() {
+		switch (this.privilege) {
+
+		case "utilisateur":
+
+			this.fond.setIcon(new ImageIcon(MenuPrincipal.class
+					.getResource("/Images/menus-grises-acceuil-1.png")));
+			this.lienmagasin.setEnabled(false);
+			this.lienmagasin.setVisible(false);
+			this.lienextraction.setEnabled(false);
+			this.lienextraction.setVisible(false);
+			this.label_ADM.setEnabled(false);
+			this.label_ADM.setVisible(false);
+			this.label_Import.setEnabled(false);
+			this.label_Import.setVisible(false);
+			this.label_Extraction.setEnabled(false);
+			this.label_Extraction.setVisible(false);
+			this.label_Magasins.setEnabled(false);
+			this.label_Magasins.setVisible(false);
+
+			break;
+
+		case "invite":
+			this.lienmagasin.setEnabled(false);
+			this.lienmagasin.setVisible(false);
+			this.lienextraction.setEnabled(false);
+			this.lienextraction.setVisible(false);
+			this.label_ADM.setEnabled(false);
+			this.label_ADM.setVisible(false);
+			this.label_Import.setEnabled(false);
+			this.label_Import.setVisible(false);
+			this.label_Extraction.setEnabled(false);
+			this.label_Extraction.setVisible(false);
+			this.label_Magasins.setEnabled(false);
+			this.label_Magasins.setVisible(false);
+
+			this.fond.setIcon(new ImageIcon(MenuPrincipal.class
+					.getResource("/Images/menus-grises-acceuil-1.png")));
+			break;
+
+		case "administrateur":
+			this.fond.setIcon(new ImageIcon(MenuPrincipal.class
+					.getResource("/Images/menus_accueil.png")));
+			break;
+
+		}
+
 	}
 
 	private JLayeredPane getLayeredPane_1() {
@@ -246,6 +258,7 @@ public class MenuPrincipal extends JFrame {
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getCadre());
 		}
+
 		return this.layeredPane;
 	}
 
@@ -341,7 +354,7 @@ public class MenuPrincipal extends JFrame {
 				}
 			});
 			this.label_OpCom.setHorizontalAlignment(SwingConstants.CENTER);
-			this.label_OpCom.setBounds(566, 318, 145, 225);
+			this.label_OpCom.setBounds(411, 318, 145, 225);
 		}
 		return this.label_OpCom;
 	}
@@ -365,7 +378,7 @@ public class MenuPrincipal extends JFrame {
 				}
 			});
 			this.label_Magasins.setHorizontalAlignment(SwingConstants.CENTER);
-			this.label_Magasins.setBounds(411, 318, 145, 225);
+			this.label_Magasins.setBounds(571, 318, 145, 225);
 		}
 		return this.label_Magasins;
 	}
