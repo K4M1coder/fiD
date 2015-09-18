@@ -1593,34 +1593,34 @@ public class FideliteNouvelleFicheClient extends JFrame {
 				FideliteNouvelleFicheClient.this.lblLoading.setVisible(false);
 			}
 
-			private void checkClientExist() {
-				try {
-					c = Connexion.getCon();
-					c.setAutoCommit(false);
-
-					final String sql = "SELECT COUNT(IDCLIENT) FROM CLIENT WHERE NOMCLIENT=? AND PRENOMCLIENT=? AND AGECLIENT=? AND CLIENT.IDCLIENT NOT IN (SELECT IDCLIENT FROM CARTE_DE_FIDELITE)";
-					preStm = c.prepareStatement(sql);
-					preStm.setString(1, FideliteNouvelleFicheClient.this.nomClient);
-					preStm.setString(2, FideliteNouvelleFicheClient.this.prenomClient);
-					preStm.setString(3, FideliteNouvelleFicheClient.this.age);
-					rs = preStm.executeQuery();
-
-					while (rs.next()) {
-						FideliteNouvelleFicheClient.this.compteur2 = rs.getInt(1);
-					}
-
-					preStm.close();
-					rs.close();
-					System.out.println(
-							"checkNumCliEXIST :::::::::" + FideliteNouvelleFicheClient.this.compteur2 + ":::::::::");
-
-				} catch (final SQLException e10) {
-					e10.getMessage();
-				}
-
-			}
-
 		});
 		longThread.start();
+	}
+
+	private void checkClientExist() {
+		try {
+			c = Connexion.getCon();
+			c.setAutoCommit(false);
+
+			final String sql = "SELECT COUNT(IDCLIENT) FROM CLIENT WHERE NOMCLIENT=? AND PRENOMCLIENT=? AND AGECLIENT=? AND CLIENT.IDCLIENT NOT IN (SELECT IDCLIENT FROM CARTE_DE_FIDELITE)";
+			preStm = c.prepareStatement(sql);
+			preStm.setString(1, FideliteNouvelleFicheClient.this.nomClient);
+			preStm.setString(2, FideliteNouvelleFicheClient.this.prenomClient);
+			preStm.setString(3, FideliteNouvelleFicheClient.this.age);
+			rs = preStm.executeQuery();
+
+			while (rs.next()) {
+				FideliteNouvelleFicheClient.this.compteur2 = rs.getInt(1);
+			}
+
+			preStm.close();
+			rs.close();
+			System.out.println(
+					"checkNumCliEXIST :::::::::" + FideliteNouvelleFicheClient.this.compteur2 + ":::::::::");
+
+		} catch (final SQLException e10) {
+			e10.getMessage();
+		}
+
 	}
 }
