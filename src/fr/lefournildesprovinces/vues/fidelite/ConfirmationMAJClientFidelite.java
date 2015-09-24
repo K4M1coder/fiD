@@ -22,7 +22,6 @@ import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.ressources.models.Message;
-import fr.lefournildesprovinces.vues.SuccesMajClientFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;

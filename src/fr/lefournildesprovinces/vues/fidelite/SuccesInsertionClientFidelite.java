@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues;
+package fr.lefournildesprovinces.vues.fidelite;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,8 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.dao.Connexion;
-import fr.lefournildesprovinces.vues.fidelite.FideliteNouvelleFicheClient;
-import fr.lefournildesprovinces.vues.fidelite.MajFicheClientCarteFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;

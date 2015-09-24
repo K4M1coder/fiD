@@ -24,7 +24,6 @@ import javax.swing.SwingConstants;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.OperationCommerciale;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
-import fr.lefournildesprovinces.vues.Warning2;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
