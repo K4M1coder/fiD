@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues;
+package fr.lefournildesprovinces.vues.fidelite;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -35,6 +35,7 @@ import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.ConfirmationOperationCarteFidelite;
+import fr.lefournildesprovinces.vues.popups.MessageExport;
 
 public class FicheClientComplete extends JFrame {
 

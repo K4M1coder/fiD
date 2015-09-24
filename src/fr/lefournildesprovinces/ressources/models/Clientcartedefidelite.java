@@ -140,7 +140,7 @@ public class Clientcartedefidelite {
 	}
 
 	public Boolean getVip() {
-		return vip;
+		return this.vip;
 	}
 
 	public void setVip(Boolean vip) {

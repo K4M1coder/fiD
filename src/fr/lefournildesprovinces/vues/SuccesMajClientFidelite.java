@@ -20,6 +20,7 @@ import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
+import fr.lefournildesprovinces.vues.opcom.InterrogationClientPorteurdeCarte;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class SuccesMajClientFidelite extends JFrame {

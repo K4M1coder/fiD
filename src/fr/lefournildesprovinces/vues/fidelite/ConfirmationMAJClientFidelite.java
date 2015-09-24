@@ -35,25 +35,31 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 	private static Connection c;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -4091233874806025741L;
-	private static PreparedStatement stm;
-	private final String adresseClient;
-	private final String ageClient;
-	private final String civiliteClient;
-	private final String codePostalClient;
-	private final JPanel contentPane;
-	private final String dateNaissanceClient;
-	private String dateNaissanceClientfinale = null;
-	private final String emailClient;
-	private JLabel fond;
 	private final int idclientcarte;
 	private final int idmagasinClient;
 	private final int Idmagasinoperation;
 	private final int IdOperationCommerciale;
 	private final int idvilleClient;
 	private final JFrame InterfacePrecedente;
+	private final JPanel contentPane;
+	private final String adresseClient;
+	private final String ageClient;
+	private final String civiliteClient;
+	private final String codePostalClient;
+	private final String dateNaissanceClient;
+	private final String emailClient;
+	private final String newsletterClient;
+	private final String nomClient;
+	private final String numcarte;
+	private final String numerofixe;
+	private final String numeroportable;
+	private final String operationprecedente;
+	private final String prenomClient;
+	private final String villeClient;
+	private JLabel fond;
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
@@ -63,14 +69,13 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 	private JLabel label_6;
 	private JLabel label_7;
 	private JLabel label_8;
-	private JLayeredPane layeredPane;
 	private JLabel lblAdresse;
 	private JLabel lbladresseClient;
 	private JLabel lblAge;
 	private JLabel lblCivilite;
 	private JLabel lblCiviliteNomPrenom;
-	private JLabel lblcodePostal;
 	private JLabel lblCodePostal;
+	private JLabel lblcodePostal;
 	private JLabel lblConfirmezVousLinsertion;
 	private JLabel lblDateDeNaissance;
 	private JLabel lbldateNaissance;
@@ -84,61 +89,50 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 	private JLabel lblnewsletter;
 	private JLabel lblNon;
 	private JLabel lblOui;
-	private JLabel lblville;
 	private JLabel lblVille;
+	private JLabel lblville;
+	private JLayeredPane layeredPane;
+	private static PreparedStatement stm;
+	private String dateNaissanceClientfinale = null;
 	private String messageinsertion2 = null;
-	private final String newsletterClient;
-	private final String nomClient;
-	private final String numcarte;
-	private final String numerofixe;
-	private final String numeroportable;
-	private final String operationprecedente;
-	private final String prenomClient;
 	private String privilege;
 	private String text;
-	private final String villeClient;
+	private JLabel label_CartesFid;
+	private Boolean vip;
 
-	public ConfirmationMAJClientFidelite(final JFrame interfaceActuelle,
-			final String numerocarte, final String magasin,
-			final int idmagasin, final String civilite, final String nom,
-			final String prenom, final String adresse, final int idville,
-			final String ville, final String CodePostal,
-			final String dateComplete, final String email,
-			final String newsletter, final int idclient,
-			final String provenance, final int idoperation,
-			final String numfixe, final String numpor, final String age,
-			final int magasinoperation) {
+	public ConfirmationMAJClientFidelite(final JFrame interfaceActuelle, final String numerocarte, final String magasin,
+			final int idmagasin, final String civilite, final String nom, final String prenom, final String adresse,
+			final int idville, final String ville, final String CodePostal, final String dateComplete,
+			final String email, final String newsletter, final int idclient, final String provenance,
+			final int idoperation, final String numfixe, final String numpor, final String age,
+			final int magasinoperation, final Boolean vip) {
+		System.out.println("VIP is " + vip);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent e) {
 				ConfirmationMAJClientFidelite.this.lblCiviliteNomPrenom
-						.setText(ConfirmationMAJClientFidelite.this.civiliteClient
-								+ " "
-								+ ConfirmationMAJClientFidelite.this.nomClient
-								+ " "
+						.setText(ConfirmationMAJClientFidelite.this.civiliteClient + " "
+								+ ConfirmationMAJClientFidelite.this.nomClient + " "
 								+ ConfirmationMAJClientFidelite.this.prenomClient);
 				ConfirmationMAJClientFidelite.this.lbladresseClient
 						.setText(ConfirmationMAJClientFidelite.this.adresseClient);
-				ConfirmationMAJClientFidelite.this.lblville
-						.setText(ConfirmationMAJClientFidelite.this.villeClient);
+				ConfirmationMAJClientFidelite.this.lblville.setText(ConfirmationMAJClientFidelite.this.villeClient);
 				ConfirmationMAJClientFidelite.this.lblnewsletter
 						.setText(ConfirmationMAJClientFidelite.this.newsletterClient);
 				ConfirmationMAJClientFidelite.this.lbldateNaissance
 						.setText(ConfirmationMAJClientFidelite.this.dateNaissanceClient);
 				ConfirmationMAJClientFidelite.this.lblcodePostal
 						.setText(ConfirmationMAJClientFidelite.this.codePostalClient);
-				ConfirmationMAJClientFidelite.this.label_1
-						.setText(ConfirmationMAJClientFidelite.this.numerofixe);
-				ConfirmationMAJClientFidelite.this.label_3
-						.setText(ConfirmationMAJClientFidelite.this.numeroportable);
-				ConfirmationMAJClientFidelite.this.lblNewLabel_1
-						.setText(ConfirmationMAJClientFidelite.this.ageClient);
+				ConfirmationMAJClientFidelite.this.label_1.setText(ConfirmationMAJClientFidelite.this.numerofixe);
+				ConfirmationMAJClientFidelite.this.label_3.setText(ConfirmationMAJClientFidelite.this.numeroportable);
+				ConfirmationMAJClientFidelite.this.lblNewLabel_1.setText(ConfirmationMAJClientFidelite.this.ageClient);
 				ConfirmationMAJClientFidelite.this.lblNewLabel_2
 						.setText(ConfirmationMAJClientFidelite.this.emailClient);
 
 			}
 		});
 
+		this.vip = vip;
 		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1280, 800);
@@ -162,7 +156,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 		this.villeClient = ville;
 		this.codePostalClient = CodePostal;
 		this.dateNaissanceClient = dateComplete;
-		System.out.print(this.dateNaissanceClient);
+		System.out.println(" | birthdate : " + this.dateNaissanceClient);
 		this.emailClient = email;
 		this.newsletterClient = newsletter;
 		this.idclientcarte = idclient;
@@ -183,10 +177,8 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 
 			case "utilisateur":
 
-				this.fond
-						.setIcon(new ImageIcon(
-								ConfirmationMAJClientFidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+				this.fond.setIcon(new ImageIcon(
+						ConfirmationMAJClientFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
 				this.label_5.setEnabled(false);
 				this.label_5.setVisible(false);
 				this.label_7.setEnabled(false);
@@ -198,16 +190,13 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 				this.label_5.setVisible(false);
 				this.label_7.setEnabled(false);
 				this.label_7.setVisible(false);
-				this.fond
-						.setIcon(new ImageIcon(
-								ConfirmationMAJClientFidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+				this.fond.setIcon(new ImageIcon(
+						ConfirmationMAJClientFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
-				this.fond.setIcon(new ImageIcon(
-						ConfirmationMAJClientFidelite.class
-								.getResource("/Images/menus_fidelite.png")));
+				this.fond.setIcon(
+						new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/menus_fidelite.png")));
 				break;
 
 			}
@@ -267,8 +256,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 					ConfirmationMAJClientFidelite.this.dispose();
 				}
 			});
-			this.label_4.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_4.setBounds(235, 231, 114, 44);
 		}
 		return this.label_4;
@@ -285,8 +273,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 					ConfirmationMAJClientFidelite.this.dispose();
 				}
 			});
-			this.label_5.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_5.setBounds(472, 231, 114, 44);
 		}
 		return this.label_5;
@@ -303,8 +290,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 					ConfirmationMAJClientFidelite.this.dispose();
 				}
 			});
-			this.label_6.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_6.setBounds(589, 231, 114, 44);
 		}
 		return this.label_6;
@@ -321,8 +307,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 					ConfirmationMAJClientFidelite.this.dispose();
 				}
 			});
-			this.label_7.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_7.setBounds(703, 231, 114, 44);
 		}
 		return this.label_7;
@@ -339,8 +324,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 					ConfirmationMAJClientFidelite.this.dispose();
 				}
 			});
-			this.label_8.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_8.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_8.setForeground(Color.GRAY);
 			this.label_8.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.label_8.setBounds(878, 231, 175, 48);
@@ -381,10 +365,32 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 			this.layeredPane.add(this.getLblNewLabel_1());
 			this.layeredPane.add(this.getLblMail());
 			this.layeredPane.add(this.getLblNewLabel_2());
+			this.layeredPane.add(this.getLabel_CartesFid());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel_3());
 		}
 		return this.layeredPane;
+	}
+
+	private JLabel getLabel_CartesFid() {
+		System.out.print(ConfirmationMAJClientFidelite.this.vip);
+		if (this.label_CartesFid == null) {
+			this.label_CartesFid = new JLabel("");
+			this.label_CartesFid.setIcon(new ImageIcon(
+					ConfirmationInsertionClientFidelite.class.getResource("/Images/carte-fidelite-3d.png")));
+			if (!ConfirmationMAJClientFidelite.this.vip.equals(null)) {
+				if (ConfirmationMAJClientFidelite.this.vip) {
+					this.label_CartesFid.setIcon(new ImageIcon(
+							ConfirmationMAJClientFidelite.class.getResource("/Images/carte-privilege-3d.png")));
+				}
+			}
+			this.label_CartesFid.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_CartesFid.setFont(new Font("Tahoma", Font.BOLD, 17));
+			this.label_CartesFid.setForeground(Color.GRAY);
+			this.label_CartesFid.setHorizontalAlignment(SwingConstants.CENTER);
+			this.label_CartesFid.setBounds(820, 340, 225, 145);
+		}
+		return this.label_CartesFid;
 	}
 
 	private JLabel getLblAdresse() {
@@ -430,8 +436,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 	private JLabel getLblCiviliteNomPrenom() {
 		if (this.lblCiviliteNomPrenom == null) {
 			this.lblCiviliteNomPrenom = new JLabel("");
-			this.lblCiviliteNomPrenom
-					.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lblCiviliteNomPrenom.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblCiviliteNomPrenom.setForeground(Color.GRAY);
 			this.lblCiviliteNomPrenom.setBounds(469, 356, 348, 14);
 		}
@@ -460,11 +465,9 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 
 	private JLabel getLblConfirmezVousLinsertion() {
 		if (this.lblConfirmezVousLinsertion == null) {
-			this.lblConfirmezVousLinsertion = new JLabel(
-					"Confirmez vous la mise \u00E0 jour de cette Fiche Client ?");
+			this.lblConfirmezVousLinsertion = new JLabel("Confirmez vous la mise \u00E0 jour de cette Fiche Client ?");
 			this.lblConfirmezVousLinsertion.setForeground(Color.GRAY);
-			this.lblConfirmezVousLinsertion.setFont(new Font("Tahoma",
-					Font.BOLD, 11));
+			this.lblConfirmezVousLinsertion.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblConfirmezVousLinsertion.setBounds(380, 524, 323, 14);
 		}
 		return this.lblConfirmezVousLinsertion;
@@ -493,8 +496,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 	private JLabel getLblInscriptionNewsletter() {
 		if (this.lblInscriptionNewsletter == null) {
 			this.lblInscriptionNewsletter = new JLabel("Newsletter :");
-			this.lblInscriptionNewsletter.setFont(new Font("Tahoma", Font.BOLD,
-					11));
+			this.lblInscriptionNewsletter.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblInscriptionNewsletter.setForeground(Color.GRAY);
 			this.lblInscriptionNewsletter.setBounds(395, 484, 81, 14);
 		}
@@ -513,8 +515,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 
 	private JLabel getLblMerciDeVerifier() {
 		if (this.lblMerciDeVerifier == null) {
-			this.lblMerciDeVerifier = new JLabel(
-					"Merci de v\u00E9rifier votre saisie avant de confirmer :");
+			this.lblMerciDeVerifier = new JLabel("Merci de v\u00E9rifier votre saisie avant de confirmer :");
 			this.lblMerciDeVerifier.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblMerciDeVerifier.setForeground(Color.GRAY);
 			this.lblMerciDeVerifier.setBounds(501, 321, 295, 14);
@@ -555,9 +556,8 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 	private JLabel getLblNewLabel_3() {
 		if (this.lblNewLabel_3 == null) {
 			this.lblNewLabel_3 = new JLabel("");
-			this.lblNewLabel_3.setIcon(new ImageIcon(
-					ConfirmationMAJClientFidelite.class
-							.getResource("/Images/fond-logiciel.png")));
+			this.lblNewLabel_3.setIcon(
+					new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/fond-logiciel.png")));
 			this.lblNewLabel_3.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_3;
@@ -577,21 +577,16 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 		if (this.lblNon == null) {
 			this.lblNon = new JLabel("");
 			this.lblNon.setHorizontalAlignment(SwingConstants.CENTER);
-			this.lblNon.setIcon(new ImageIcon(
-					ConfirmationMAJClientFidelite.class
-							.getResource("/Images/annuler.png")));
+			this.lblNon.setIcon(new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/annuler.png")));
 			this.lblNon.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 					ConfirmationMAJClientFidelite.this.dispose();
-					ConfirmationMAJClientFidelite.this.InterfacePrecedente
-							.setVisible(true);
-					ConfirmationMAJClientFidelite.this.InterfacePrecedente
-							.setEnabled(true);
+					ConfirmationMAJClientFidelite.this.InterfacePrecedente.setVisible(true);
+					ConfirmationMAJClientFidelite.this.InterfacePrecedente.setEnabled(true);
 				}
 			});
-			this.lblNon.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblNon.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblNon.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblNon.setForeground(Color.RED);
 			this.lblNon.setBounds(736, 520, 99, 23);
@@ -602,280 +597,242 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 	private JLabel getLblOui() {
 		if (this.lblOui == null) {
 			this.lblOui = new JLabel("");
-			this.lblOui.setIcon(new ImageIcon(
-					ConfirmationMAJClientFidelite.class
-							.getResource("/Images/valider.png")));
+			this.lblOui.setIcon(new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/valider.png")));
 			this.lblOui.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblOui.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					boolean etat = true;
-					if (ConfirmationMAJClientFidelite.this.dateNaissanceClient != null) {
-						final String[] tab = ConfirmationMAJClientFidelite.this.dateNaissanceClient
-								.split("/");
-						final String day = tab[0];
-						final String month = tab[1];
-						final String year = tab[2];
-						ConfirmationMAJClientFidelite.this.dateNaissanceClientfinale = year
-								+ "/" + month + "/" + day;
-					}
-
-					try {
-						c = Connexion.getCon();
-						c.setAutoCommit(false);
-
-						if (ConfirmationMAJClientFidelite.this.dateNaissanceClient != null) {
-							final String sql = "UPDATE CLIENT SET CIVILITECLIENT=?, NOMCLIENT=?,PRENOMCLIENT=?,ADRESSECLIENT=?,IDVILLE=?,DATENAISSANCECLIENT=?,MAILCLIENT=?,ABONNEMENTNEWSLETTERCLIENT=?,TELEPHONEFIXECLIENT=?,TELEPHONEPORTABLECLIENT=?,AGECLIENT=? WHERE IDCLIENT=?";
-							stm = c.prepareStatement(sql);
-
-							stm.setString(
-									1,
-									ConfirmationMAJClientFidelite.this.civiliteClient);
-							stm.setString(
-									2,
-									ConfirmationMAJClientFidelite.this.nomClient);
-							stm.setString(
-									3,
-									ConfirmationMAJClientFidelite.this.prenomClient);
-							stm.setString(
-									4,
-									ConfirmationMAJClientFidelite.this.adresseClient);
-							stm.setInt(
-									5,
-									ConfirmationMAJClientFidelite.this.idvilleClient);
-							stm.setString(
-									6,
-									ConfirmationMAJClientFidelite.this.dateNaissanceClientfinale);
-							stm.setString(
-									7,
-									ConfirmationMAJClientFidelite.this.emailClient);
-							stm.setString(
-									8,
-									ConfirmationMAJClientFidelite.this.newsletterClient);
-							stm.setString(
-									9,
-									ConfirmationMAJClientFidelite.this.numerofixe);
-							stm.setString(
-									10,
-									ConfirmationMAJClientFidelite.this.numeroportable);
-							stm.setString(
-									11,
-									ConfirmationMAJClientFidelite.this.ageClient);
-							stm.setInt(
-									12,
-									ConfirmationMAJClientFidelite.this.idclientcarte);
-						}
-
-						else {
-							final String sql = "UPDATE CLIENT SET CIVILITECLIENT=?, NOMCLIENT=?,PRENOMCLIENT=?,ADRESSECLIENT=?,IDVILLE=?,MAILCLIENT=?,ABONNEMENTNEWSLETTERCLIENT=?,TELEPHONEFIXECLIENT=?,TELEPHONEPORTABLECLIENT=?,AGECLIENT=? WHERE IDCLIENT=?";
-							stm = c.prepareStatement(sql);
-
-							stm.setString(
-									1,
-									ConfirmationMAJClientFidelite.this.civiliteClient);
-							stm.setString(
-									2,
-									ConfirmationMAJClientFidelite.this.nomClient);
-							stm.setString(
-									3,
-									ConfirmationMAJClientFidelite.this.prenomClient);
-							stm.setString(
-									4,
-									ConfirmationMAJClientFidelite.this.adresseClient);
-							stm.setInt(
-									5,
-									ConfirmationMAJClientFidelite.this.idvilleClient);
-
-							stm.setString(
-									6,
-									ConfirmationMAJClientFidelite.this.emailClient);
-							stm.setString(
-									7,
-									ConfirmationMAJClientFidelite.this.newsletterClient);
-							stm.setString(
-									8,
-									ConfirmationMAJClientFidelite.this.numerofixe);
-							stm.setString(
-									9,
-									ConfirmationMAJClientFidelite.this.numeroportable);
-							stm.setString(
-									10,
-									ConfirmationMAJClientFidelite.this.ageClient);
-							stm.setInt(
-									11,
-									ConfirmationMAJClientFidelite.this.idclientcarte);
-						}
-
-						stm.executeUpdate();
-
-						stm.close();
-
-						final String table_frequenter = "UPDATE FREQUENTER SET IDMAGASIN=? WHERE IDCLIENT=?";
-						stm = c.prepareStatement(table_frequenter);
-
-						stm.setInt(
-								1,
-								ConfirmationMAJClientFidelite.this.idmagasinClient);
-						stm.setInt(
-								2,
-								ConfirmationMAJClientFidelite.this.idclientcarte);
-
-						stm.executeUpdate();
-						stm.close();
-
-						final String table_carte_de_fidelite = "UPDATE CARTE_DE_FIDELITE SET NUMEROCARTEDEFIDELITE=? WHERE IDCLIENT=?";
-						stm = c.prepareStatement(table_carte_de_fidelite);
-
-						stm.setString(1,
-								ConfirmationMAJClientFidelite.this.numcarte);
-						stm.setInt(
-								2,
-								ConfirmationMAJClientFidelite.this.idclientcarte);
-
-						stm.executeUpdate();
-						stm.close();
-
-						final String dernierincrementcartefidelite = "SELECT IDCARTEDEFIDELITE FROM CARTE_DE_FIDELITE WHERE IDCLIENT=?";
-						stm = c.prepareStatement(dernierincrementcartefidelite);
-						stm.setInt(
-								1,
-								ConfirmationMAJClientFidelite.this.idclientcarte);
-						rs = stm.executeQuery();
-						int lastidcartemisajour = 0;
-						while (rs.next())
-
-						{
-							lastidcartemisajour = rs.getInt(1);
-						}
-
-						rs.close();
-						stm.close();
-
-						final String table_delivrer = "UPDATE DELIVRER SET IDMAGASIN=? WHERE IDCARTEDEFIDELITE=?";
-						stm = c.prepareStatement(table_delivrer);
-
-						stm.setInt(
-								1,
-								ConfirmationMAJClientFidelite.this.idmagasinClient);
-						stm.setInt(2, lastidcartemisajour);
-
-						stm.executeUpdate();
-						stm.close();
-
-						c.commit();
-						c.setAutoCommit(true);
-
-						final SuccesMajClientFidelite fenetre = new SuccesMajClientFidelite(
-								ConfirmationMAJClientFidelite.this.civiliteClient,
-								ConfirmationMAJClientFidelite.this.nomClient,
-								ConfirmationMAJClientFidelite.this.prenomClient,
-								ConfirmationMAJClientFidelite.this.dateNaissanceClient,
-								ConfirmationMAJClientFidelite.this.ageClient,
-								ConfirmationMAJClientFidelite.this.operationprecedente,
-								ConfirmationMAJClientFidelite.this.IdOperationCommerciale,
-								ConfirmationMAJClientFidelite.this.Idmagasinoperation);
-						fenetre.setVisible(true);
-						ConfirmationMAJClientFidelite.this.InterfacePrecedente
-								.dispose();
-						ConfirmationMAJClientFidelite.this.dispose();
-
-					} catch (final Exception e1)
-
-					{
-						final String erreur = e1.getMessage();
-						System.out.print("\n&&&&" + erreur + "&&&&&&&");
-						try {
-							c.rollback();
-							String messageInsertion = null;
-							final String erreurtype = "Duplicate entry '"
-									+ ConfirmationMAJClientFidelite.this.IdOperationCommerciale
-									+ "-"
-									+ ConfirmationMAJClientFidelite.this.idclientcarte
-									+ "-"
-									+ ConfirmationMAJClientFidelite.this.idmagasinClient
-									+ "' for key 'PRIMARY'";
-							final String erreurtype2 = "Duplicate entry '"
-									+ ConfirmationMAJClientFidelite.this.nomClient
-									+ "-"
-									+ ConfirmationMAJClientFidelite.this.prenomClient
-									+ "-"
-									+ ConfirmationMAJClientFidelite.this.ageClient
-									+ "-"
-									+ ConfirmationMAJClientFidelite.this.idvilleClient
-									+ "' for key 'NOMCLIENT'";
-							System.out.print("\n" + erreurtype);
-							if (erreur != null) {
-								if (erreur.equals(erreurtype2)) {
-									messageInsertion = ConfirmationMAJClientFidelite.this.civiliteClient
-											+ " "
-											+ ConfirmationMAJClientFidelite.this.nomClient
-											+ " "
-											+ ConfirmationMAJClientFidelite.this.prenomClient
-											+ " existe déjà dans la base";
-								}
-
-								if (erreur.equals(erreurtype)) {
-									messageInsertion = ConfirmationMAJClientFidelite.this.civiliteClient
-											+ " "
-											+ ConfirmationMAJClientFidelite.this.nomClient
-											+ " "
-											+ ConfirmationMAJClientFidelite.this.prenomClient
-											+ " participe déjà à cette opération dans ce magasin";
-									ConfirmationMAJClientFidelite.this.messageinsertion2 = "Une seule participation par personne et par magasin autorisée";
-								}
-
-							} else {
-								messageInsertion = "Impossible de mettre à jour le Client "
-										+ ConfirmationMAJClientFidelite.this.civiliteClient
-										+ " "
-										+ ConfirmationMAJClientFidelite.this.nomClient
-										+ " "
-										+ ConfirmationMAJClientFidelite.this.prenomClient;
-
-							}
-
-							System.out.print(messageInsertion);
-							etat = false;
-							ConfirmationMAJClientFidelite.this.text = "Mise à jour Fiche Client";
-							Message.setMessageaffichagefond(ConfirmationMAJClientFidelite.this.text);
-
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
-									messageInsertion,
-									etat,
-									ConfirmationMAJClientFidelite.this.text,
-									ConfirmationMAJClientFidelite.this.messageinsertion2,
-									ConfirmationMAJClientFidelite.this.operationprecedente,
-									ConfirmationMAJClientFidelite.this.IdOperationCommerciale,
-									ConfirmationMAJClientFidelite.this.Idmagasinoperation);
-							fenetre.setVisible(true);
-
-							fenetre.setAlwaysOnTop(true);
-							ConfirmationMAJClientFidelite.this.dispose();
-
-						} catch (final SQLException e2) {
-
-							e2.printStackTrace();
-						}
-					}
-					try {
-
-						if (stm != null) {
-							stm.close();
-						}
-
-					} catch (final Exception e3) {
-						e3.printStackTrace();
-					}
-
+					majFiche();
 				}
 			});
-			this.lblOui.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblOui.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblOui.setForeground(Color.RED);
 			this.lblOui.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblOui.setBounds(878, 520, 99, 23);
 		}
 		return this.lblOui;
+	}
+
+	protected void majFiche() {
+
+		boolean etat = true;
+		if (ConfirmationMAJClientFidelite.this.dateNaissanceClient != null) {
+			final String[] tab = ConfirmationMAJClientFidelite.this.dateNaissanceClient.split("/");
+			final String day = tab[0];
+			final String month = tab[1];
+			final String year = tab[2];
+			ConfirmationMAJClientFidelite.this.dateNaissanceClientfinale = year + "/" + month + "/" + day;
+		}
+
+		try {
+			c = Connexion.getCon();
+			c.setAutoCommit(false);
+
+			if (ConfirmationMAJClientFidelite.this.dateNaissanceClient != null) {
+				System.out.println("\nupdate customer with birthdate");
+				final String sql = "UPDATE CLIENT SET CIVILITECLIENT=?,"
+						+ " NOMCLIENT=?,"
+						+ " PRENOMCLIENT=?,"
+						+ " ADRESSECLIENT=?,"
+						+ " IDVILLE=?,"
+						+ " DATENAISSANCECLIENT=?,"
+						+ " MAILCLIENT=?,"
+						+ " ABONNEMENTNEWSLETTERCLIENT=?,"
+						+ " TELEPHONEFIXECLIENT=?,"
+						+ " TELEPHONEPORTABLECLIENT=?,"
+						+ " AGECLIENT=?,"
+						+ " VIP=?"
+						+ " WHERE IDCLIENT=?";
+				stm = c.prepareStatement(sql);
+
+				stm.setString(1, ConfirmationMAJClientFidelite.this.civiliteClient);
+				stm.setString(2, ConfirmationMAJClientFidelite.this.nomClient);
+				stm.setString(3, ConfirmationMAJClientFidelite.this.prenomClient);
+				stm.setString(4, ConfirmationMAJClientFidelite.this.adresseClient);
+				stm.setInt(5, ConfirmationMAJClientFidelite.this.idvilleClient);
+				stm.setString(6, ConfirmationMAJClientFidelite.this.dateNaissanceClientfinale);
+				stm.setString(7, ConfirmationMAJClientFidelite.this.emailClient);
+				stm.setString(8, ConfirmationMAJClientFidelite.this.newsletterClient);
+				stm.setString(9, ConfirmationMAJClientFidelite.this.numerofixe);
+				stm.setString(10, ConfirmationMAJClientFidelite.this.numeroportable);
+				stm.setString(11, ConfirmationMAJClientFidelite.this.ageClient);
+				stm.setBoolean(12, ConfirmationMAJClientFidelite.this.vip);
+				stm.setInt(13, ConfirmationMAJClientFidelite.this.idclientcarte);
+			}
+
+			else {
+				System.out.println("\nupdate customer without birthdate");
+				final String sql = "UPDATE CLIENT SET CIVILITECLIENT=?,"
+						+ " NOMCLIENT=?,"
+						+ " PRENOMCLIENT=?,"
+						+ " ADRESSECLIENT=?,"
+						+ " IDVILLE=?,"
+						+ " MAILCLIENT=?,"
+						+ " ABONNEMENTNEWSLETTERCLIENT=?,"
+						+ " TELEPHONEFIXECLIENT=?,"
+						+ " TELEPHONEPORTABLECLIENT=?,"
+						+ " AGECLIENT=?,"
+						+ " VIP=?"
+						+ " WHERE IDCLIENT=?";
+
+				stm = c.prepareStatement(sql);
+
+				stm.setString(1, ConfirmationMAJClientFidelite.this.civiliteClient);
+				stm.setString(2, ConfirmationMAJClientFidelite.this.nomClient);
+				stm.setString(3, ConfirmationMAJClientFidelite.this.prenomClient);
+				stm.setString(4, ConfirmationMAJClientFidelite.this.adresseClient);
+				stm.setInt(5, ConfirmationMAJClientFidelite.this.idvilleClient);
+				stm.setString(6, ConfirmationMAJClientFidelite.this.emailClient);
+				stm.setString(7, ConfirmationMAJClientFidelite.this.newsletterClient);
+				stm.setString(8, ConfirmationMAJClientFidelite.this.numerofixe);
+				stm.setString(9, ConfirmationMAJClientFidelite.this.numeroportable);
+				stm.setString(10, ConfirmationMAJClientFidelite.this.ageClient);
+				stm.setBoolean(11, ConfirmationMAJClientFidelite.this.vip);
+				stm.setInt(12, ConfirmationMAJClientFidelite.this.idclientcarte);
+			}
+
+			stm.executeUpdate();
+
+			stm.close();
+
+			System.out.println("update magasin affiliation");
+			final String table_frequenter = "UPDATE FREQUENTER SET IDMAGASIN=? WHERE IDCLIENT=?";
+			stm = c.prepareStatement(table_frequenter);
+
+			stm.setInt(1, ConfirmationMAJClientFidelite.this.idmagasinClient);
+			stm.setInt(2, ConfirmationMAJClientFidelite.this.idclientcarte);
+
+			stm.executeUpdate();
+			stm.close();
+
+			System.out.println("uptdate card affiliation");
+			final String table_carte_de_fidelite = "UPDATE CARTE_DE_FIDELITE SET NUMEROCARTEDEFIDELITE=? WHERE IDCLIENT=?";
+			stm = c.prepareStatement(table_carte_de_fidelite);
+
+			stm.setString(1, ConfirmationMAJClientFidelite.this.numcarte);
+			stm.setInt(2, ConfirmationMAJClientFidelite.this.idclientcarte);
+
+			stm.executeUpdate();
+			stm.close();
+
+			System.out.print("find card increment for idclient " + ConfirmationMAJClientFidelite.this.idclientcarte);
+			String dernierincrementcartefidelite = "SELECT IDCARTEDEFIDELITE FROM CARTE_DE_FIDELITE WHERE IDCLIENT=?";
+			stm = c.prepareStatement(dernierincrementcartefidelite);
+			stm.setInt(1, ConfirmationMAJClientFidelite.this.idclientcarte);
+			rs = stm.executeQuery();
+			int lastidcartemisajour = 0;
+			while (rs.next())
+
+			{
+				lastidcartemisajour = rs.getInt(1);
+				System.out.println(" : " + lastidcartemisajour);
+			}
+
+			rs.close();
+			stm.close();
+
+			System.out.println("update affiliation of this card with idmagasin "
+					+ ConfirmationMAJClientFidelite.this.idmagasinClient);
+			final String table_delivrer = "UPDATE DELIVRER SET IDMAGASIN=? WHERE IDCARTEDEFIDELITE=?";
+			stm = c.prepareStatement(table_delivrer);
+
+			stm.setInt(1, ConfirmationMAJClientFidelite.this.idmagasinClient);
+			stm.setInt(2, lastidcartemisajour);
+
+			stm.executeUpdate();
+			stm.close();
+
+			c.commit();
+			c.setAutoCommit(true);
+
+			System.out.println("update succesfull for this customer");
+			final SuccesMajClientFidelite fenetre = new SuccesMajClientFidelite(
+					ConfirmationMAJClientFidelite.this.civiliteClient, ConfirmationMAJClientFidelite.this.nomClient,
+					ConfirmationMAJClientFidelite.this.prenomClient,
+					ConfirmationMAJClientFidelite.this.dateNaissanceClient,
+					ConfirmationMAJClientFidelite.this.ageClient,
+					ConfirmationMAJClientFidelite.this.operationprecedente,
+					ConfirmationMAJClientFidelite.this.IdOperationCommerciale,
+					ConfirmationMAJClientFidelite.this.Idmagasinoperation);
+			fenetre.setVisible(true);
+			ConfirmationMAJClientFidelite.this.InterfacePrecedente.dispose();
+			ConfirmationMAJClientFidelite.this.dispose();
+
+		} catch (final Exception e1)
+
+		{
+			final String erreur = e1.getMessage();
+			System.out.println("\n&&&& " + erreur + " &&&&&&&");
+			try {
+				System.out.println("rollback...");
+				c.rollback();
+				String messageInsertion = "";
+				final String erreurtype = "Duplicate entry ' : idopcom_"
+						+ ConfirmationMAJClientFidelite.this.IdOperationCommerciale + " - idcli_"
+						+ ConfirmationMAJClientFidelite.this.idclientcarte + " - idmag_"
+						+ ConfirmationMAJClientFidelite.this.idmagasinClient + "' for key 'PRIMARY'";
+				final String erreurtype2 = "Duplicate entry '" + ConfirmationMAJClientFidelite.this.nomClient + "-"
+						+ ConfirmationMAJClientFidelite.this.prenomClient + "-"
+						+ ConfirmationMAJClientFidelite.this.ageClient + "-"
+						+ ConfirmationMAJClientFidelite.this.idvilleClient + "' for key 'NOMCLIENT'";
+				System.out.print("\ncheck for errortype : ");
+				if (erreur != null) {
+					if (erreur.equals(erreurtype2)) {
+						messageInsertion = ConfirmationMAJClientFidelite.this.civiliteClient + " "
+								+ ConfirmationMAJClientFidelite.this.nomClient + " "
+								+ ConfirmationMAJClientFidelite.this.prenomClient + " existe déjà dans la base";
+					}
+
+					if (erreur.equals(erreurtype)) {
+						messageInsertion = ConfirmationMAJClientFidelite.this.civiliteClient + " "
+								+ ConfirmationMAJClientFidelite.this.nomClient + " "
+								+ ConfirmationMAJClientFidelite.this.prenomClient
+								+ " participe déjà à cette opération dans ce magasin";
+						ConfirmationMAJClientFidelite.this.messageinsertion2 = "Une seule participation par personne et par magasin autorisée";
+					}
+
+				} else {
+					messageInsertion = "Impossible de mettre à jour le Client "
+							+ ConfirmationMAJClientFidelite.this.civiliteClient + " "
+							+ ConfirmationMAJClientFidelite.this.nomClient + " "
+							+ ConfirmationMAJClientFidelite.this.prenomClient;
+
+				}
+
+				if (!messageInsertion.equals("")) {
+					System.out.print(" " + messageInsertion);
+				} else {
+					System.out.print("Unpredictable");
+				}
+				etat = false;
+				ConfirmationMAJClientFidelite.this.text = "Mise à jour Fiche Client";
+				Message.setMessageaffichagefond(ConfirmationMAJClientFidelite.this.text);
+
+				final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(messageInsertion, etat,
+						ConfirmationMAJClientFidelite.this.text, ConfirmationMAJClientFidelite.this.messageinsertion2,
+						ConfirmationMAJClientFidelite.this.operationprecedente,
+						ConfirmationMAJClientFidelite.this.IdOperationCommerciale,
+						ConfirmationMAJClientFidelite.this.Idmagasinoperation);
+				fenetre.setVisible(true);
+
+				fenetre.setAlwaysOnTop(true);
+				ConfirmationMAJClientFidelite.this.dispose();
+
+			} catch (final SQLException e2) {
+
+				e2.printStackTrace();
+			}
+		}
+		try {
+
+			if (stm != null) {
+				stm.close();
+			}
+
+		} catch (final Exception e3) {
+			e3.printStackTrace();
+		}
+
 	}
 
 	private JLabel getLblville() {

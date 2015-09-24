@@ -6,6 +6,10 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -18,6 +22,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -36,11 +41,11 @@ import fr.lefournildesprovinces.ressources.models.Clientcartedefidelite;
 import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.Ville;
 import fr.lefournildesprovinces.ressources.util.AutoCompletion;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
-import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.Loading;
 
@@ -51,7 +56,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 	 */
 	private static final long serialVersionUID = -4892689214654247739L;
 
-	private Loading lblLoading;
+	// private Loading lblLoading;
 	ButtonGroup group = new ButtonGroup();
 	private ComboBoxModel<Object> listeVille;
 	private ComboBoxModel<Object> listemagasins;
@@ -59,13 +64,14 @@ public class MajFicheClientCarteFidelite extends JFrame {
 	private JComboBox<Object> comboBoxAnnee;
 	private JComboBox<Object> comboBoxJour;
 	private JComboBox<Object> comboBoxMois;
-	private JComboBox<Object> comboBox_1;
+	private JComboBox<Object> comboBox_civilite;
 	private JComboBox<Object> textField_3;
 	private JFormattedTextField textField_CodePostal;
 	private JLabel fond;
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
+	private Loading lblLoading;
 	private JLabel label_3;
 	private JLabel label_4;
 	private JLabel label_5;
@@ -132,6 +138,8 @@ public class MajFicheClientCarteFidelite extends JFrame {
 	private int identifiantclient;
 	private int idmagasin;
 	private int idville;
+	private JCheckBox checkBoxVIP;
+	private Boolean vip;
 
 	public MajFicheClientCarteFidelite(final String numerocarteclient, final String provenance,
 			final int IdOperationCommerciale, final int magasin) {
@@ -159,6 +167,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 							.setText(listeinfoscartefidelite.get(i).getTelfixe());
 					MajFicheClientCarteFidelite.this.textField_TelGSM
 							.setText(listeinfoscartefidelite.get(i).getMobile());
+					MajFicheClientCarteFidelite.this.checkBoxVIP.setSelected(listeinfoscartefidelite.get(i).getVip());
 
 					final String boutonselectionne = listeinfoscartefidelite.get(i).getNewsletterIndividu().toString();
 					switch (boutonselectionne) {
@@ -172,14 +181,14 @@ public class MajFicheClientCarteFidelite extends JFrame {
 						MajFicheClientCarteFidelite.this.rdbtnDesinscrit.setSelected(true);
 						break;
 					}
-					for (int j = 1; j < MajFicheClientCarteFidelite.this.comboBox_1.getModel().getSize(); j++) {
+					for (int j = 1; j < MajFicheClientCarteFidelite.this.comboBox_civilite.getModel().getSize(); j++) {
 
-						final String s1 = MajFicheClientCarteFidelite.this.comboBox_1.getItemAt(j).toString()
+						final String s1 = MajFicheClientCarteFidelite.this.comboBox_civilite.getItemAt(j).toString()
 								.toUpperCase();
 						final String civiliteclient = listeinfoscartefidelite.get(i).getCiviliteIndividu();
 
 						if (s1.equals(civiliteclient)) {
-							MajFicheClientCarteFidelite.this.comboBox_1.setSelectedIndex(j);
+							MajFicheClientCarteFidelite.this.comboBox_civilite.setSelectedIndex(j);
 							break;
 						}
 					}
@@ -293,6 +302,9 @@ public class MajFicheClientCarteFidelite extends JFrame {
 					}
 
 				}
+				MajFicheClientCarteFidelite.this.lblValider.setFocusable(true);
+				MajFicheClientCarteFidelite.this.lblValider.setEnabled(true);
+				MajFicheClientCarteFidelite.this.textField_NumCli.requestFocus();
 
 			}
 		});
@@ -313,6 +325,281 @@ public class MajFicheClientCarteFidelite extends JFrame {
 		this.operationprecedente = provenance;
 		this.numeroidcommerciale = IdOperationCommerciale;
 		this.magasinoperation = magasin;
+	}
+
+	private boolean checkAdresseIsSet() {
+		Boolean verification = true;
+		MajFicheClientCarteFidelite.this.adresseClient = MajFicheClientCarteFidelite.this.textField_Adresse.getText()
+				.toUpperCase();
+
+		if (MajFicheClientCarteFidelite.this.adresseClient.isEmpty()) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de vérifier l'adresse renseignée - Ce champ ne peut être vide";
+		}
+		return verification;
+	}
+
+	private boolean checkAgeIsSet() {
+		Boolean verification = true;
+		MajFicheClientCarteFidelite.this.age = MajFicheClientCarteFidelite.this.textField_Age.getText().toUpperCase()
+				.toString();
+		if (MajFicheClientCarteFidelite.this.age.isEmpty()) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de vérifier l'ége du client - Ce champ ne peut être vide";
+		}
+		return verification;
+	}
+
+	private boolean checkAgeIsValid() {
+		Boolean verification = true;
+		MajFicheClientCarteFidelite.this.age = MajFicheClientCarteFidelite.this.textField_Age.getText().toUpperCase()
+				.toString();
+		if (!MajFicheClientCarteFidelite.this.age.isEmpty()) {
+			if (Integer.parseInt(MajFicheClientCarteFidelite.this.age) < 18) {
+				verification = false;
+				MajFicheClientCarteFidelite.this.message = "Merci de vérifier l'ége du client- 18 ans minimum";
+			}
+		}
+		return verification;
+	}
+
+	private boolean checkCiviliteIsSet() {
+		Boolean verification = true;
+		try {
+			MajFicheClientCarteFidelite.this.civilite = MajFicheClientCarteFidelite.this.comboBox_civilite
+					.getSelectedItem().toString().toUpperCase();
+		} catch (final Exception e5) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de selectionner une civilité";
+		}
+		return verification;
+	}
+
+	private boolean checkCodePostalIsSet() {
+		Boolean verification = true;
+		MajFicheClientCarteFidelite.this.CodePostalClient = MajFicheClientCarteFidelite.this.textField_CodePostal
+				.getText();
+
+		if (MajFicheClientCarteFidelite.this.CodePostalClient.isEmpty()) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de vérifier le code postal renseigné - Ce champ ne peut être vide";
+		}
+		return verification;
+	}
+
+	private boolean checkCodePostalIsValid() {
+		Boolean verification = true;
+		MajFicheClientCarteFidelite.this.CodePostalClient = MajFicheClientCarteFidelite.this.textField_CodePostal
+				.getText();
+		if (!MajFicheClientCarteFidelite.this.CodePostalClient.isEmpty()) {
+			if (MajFicheClientCarteFidelite.this.CodePostalClient.length() != 5) {
+				verification = false;
+				MajFicheClientCarteFidelite.this.message = "Merci de vérifier le code postal renseigné - Ce champ doit comporter 5 chiffres";
+			}
+		}
+		return verification;
+	}
+
+	private boolean checkDateFieldsIsValid() {
+		Boolean verification = true;
+		verification = (MajFicheClientCarteFidelite.this.checkDayIsValid() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkMonthIsValid() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkYearIsValid() == false) ? false : verification;
+		return verification;
+	}
+
+	private boolean checkDayIsValid() {
+		Boolean verification = true;
+		if (MajFicheClientCarteFidelite.this.jourdate == null) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de vérifier le jour renseigné - Ce champ ne peut être vide";
+		}
+		return verification;
+	}
+
+	private boolean checkemailIsValid() {
+		Boolean verification = true;
+		if (!MajFicheClientCarteFidelite.this.textField_Mail.getText().isEmpty()) {
+			MajFicheClientCarteFidelite.this.email = MajFicheClientCarteFidelite.this.textField_Mail.getText();
+
+			if (!EmailValidator.getInstance().isValid(MajFicheClientCarteFidelite.this.email)) {
+				verification = false;
+				MajFicheClientCarteFidelite.this.message = "Merci de vérifier l'adresse mail saisie";
+
+			}
+		}
+		return verification;
+
+	}
+
+	protected boolean checkfields() {
+		Boolean verification = true;
+		System.out.print("8888888" + MajFicheClientCarteFidelite.this.operationprecedente + "88888888");
+		verification = (MajFicheClientCarteFidelite.this.checkNumCliIsSet() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkMagasinIsSet() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkCiviliteIsSet() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkNomIsSet() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkPrenomIsSet() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkAgeIsSet() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkAgeIsValid() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkAdresseIsSet() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkVilleIsSet() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkCodePostalIsSet() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkCodePostalIsValid() == false) ? false : verification;
+		if (MajFicheClientCarteFidelite.this.operationprecedente != null) {
+			if (!MajFicheClientCarteFidelite.this.operationprecedente.equals("operation_commerciale")) {
+				verification = (MajFicheClientCarteFidelite.this.checkDateFieldsIsValid() == false) ? false
+						: verification;
+				if (verification == true) {
+					MajFicheClientCarteFidelite.this.setDateComplete();
+				}
+			}
+		}
+		verification = (MajFicheClientCarteFidelite.this.checkemailIsValid() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkTelFixIsValid() == false) ? false : verification;
+		verification = (MajFicheClientCarteFidelite.this.checkTelGSMIsValid() == false) ? false : verification;
+		return verification;
+	}
+
+	private boolean checkMagasinIsSet() {
+		Boolean verification = true;
+		try {
+			MajFicheClientCarteFidelite.this.magasin = MajFicheClientCarteFidelite.this.comboBox.getSelectedItem()
+					.toString().toUpperCase();
+			MajFicheClientCarteFidelite.this.idmagasin = ((Magasin) MajFicheClientCarteFidelite.this.comboBox
+					.getSelectedItem()).getIdMagasin();
+		} catch (final Exception e5) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de selectionner un magasin";
+		}
+		return verification;
+	}
+
+	private boolean checkMonthIsValid() {
+		Boolean verification = true;
+		if (MajFicheClientCarteFidelite.this.moisdate == null) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de vérifier le mois renseigné - Ce champ ne peut être vide";
+		}
+		return verification;
+	}
+
+	private boolean checkNomIsSet() {
+		Boolean verification = true;
+		MajFicheClientCarteFidelite.this.nomClient = MajFicheClientCarteFidelite.this.textField_Nom.getText()
+				.toUpperCase();
+
+		if (MajFicheClientCarteFidelite.this.nomClient.isEmpty()) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de vérifier le nom du client - Ce champ ne peut être vide";
+		}
+		return verification;
+	}
+
+	protected boolean checkNumCliIsSet() {
+
+		// if (!numerocarte.isEmpty()) {
+		// if (numerocarte.length() != 13) {
+		// verification = false;
+		// message =
+		// "Merci de vérifier votre numéro de client - 13 caractéres
+		// obligatoires";
+		// }
+		// }
+
+		MajFicheClientCarteFidelite.this.numerocarte = MajFicheClientCarteFidelite.this.textField_NumCli.getText();
+
+		Boolean verification = true;
+		if (MajFicheClientCarteFidelite.this.numerocarte.isEmpty()) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de vérifier votre numéro de client - Ce champ ne peut être vide";
+
+		}
+		return verification;
+	}
+
+	private boolean checkPrenomIsSet() {
+		Boolean verification = true;
+		MajFicheClientCarteFidelite.this.prenomClient = MajFicheClientCarteFidelite.this.textField_Prenom.getText()
+				.toUpperCase();
+
+		if (MajFicheClientCarteFidelite.this.prenomClient.isEmpty()) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de vérifier le prénom du client - Ce champ ne peut être vide";
+		}
+		return verification;
+	}
+
+	private boolean checkTelFixIsValid() {
+		Boolean verification = true;
+		MajFicheClientCarteFidelite.this.telephonefixe = null;
+		if (!MajFicheClientCarteFidelite.this.textField_TelFix.getText().isEmpty()) {
+			MajFicheClientCarteFidelite.this.telephonefixe = MajFicheClientCarteFidelite.this.textField_TelFix
+					.getText();
+
+			if (MajFicheClientCarteFidelite.this.telephonefixe.length() != 10) {
+				verification = false;
+				MajFicheClientCarteFidelite.this.message = "le numero de téléphone doit contenir 10 chiffres";
+			}
+		}
+		return verification;
+	}
+
+	private boolean checkTelGSMIsValid() {
+		Boolean verification = true;
+		MajFicheClientCarteFidelite.this.telephoneportable = null;
+		if (!MajFicheClientCarteFidelite.this.textField_TelGSM.getText().isEmpty()) {
+			MajFicheClientCarteFidelite.this.telephoneportable = MajFicheClientCarteFidelite.this.textField_TelGSM
+					.getText();
+
+			if (MajFicheClientCarteFidelite.this.telephoneportable.length() != 10) {
+				verification = false;
+				MajFicheClientCarteFidelite.this.message = "le numero de téléphone doit contenir 10 chiffres";
+			}
+		}
+		return verification;
+	}
+
+	private boolean checkVilleIsSet() {
+		Boolean verification = true;
+		try {
+			MajFicheClientCarteFidelite.this.villeClient = MajFicheClientCarteFidelite.this.textField_3
+					.getSelectedItem().toString().toUpperCase();
+			MajFicheClientCarteFidelite.this.idville = ((Ville) MajFicheClientCarteFidelite.this.textField_3
+					.getSelectedItem()).getIdville();
+		} catch (final Exception e5) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de selectionner une ville";
+		}
+		return verification;
+	}
+
+	private boolean checkYearIsValid() {
+		Boolean verification = true;
+		if (MajFicheClientCarteFidelite.this.annee == null) {
+			verification = false;
+			MajFicheClientCarteFidelite.this.message = "Merci de vérifier l'année renseignée - Ce champ ne peut être vide";
+		}
+		return verification;
+	}
+
+	private JCheckBox getCheckVip() {
+		if (this.checkBoxVIP == null) {
+			this.checkBoxVIP = new JCheckBox("VIP");
+			this.checkBoxVIP.setBounds(829, 492, 97, 23);
+			MajFicheClientCarteFidelite.this.vip = false;
+			this.checkBoxVIP.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(final ActionEvent e) {
+
+					MajFicheClientCarteFidelite.this.vip = MajFicheClientCarteFidelite.this.checkBoxVIP.isSelected();
+
+					System.out.println("vip change to : " + MajFicheClientCarteFidelite.this.vip);
+
+				}
+			});
+		}
+		return this.checkBoxVIP;
 	}
 
 	private JComboBox<Object> getComboBox() {
@@ -348,14 +635,14 @@ public class MajFicheClientCarteFidelite extends JFrame {
 	}
 
 	private JComboBox<Object> getComboBox_1() {
-		if (this.comboBox_1 == null) {
+		if (this.comboBox_civilite == null) {
 			final String[] civiliteclient = { null, "Mr", "Mme", "NR" };
-			this.comboBox_1 = new JComboBox<Object>(civiliteclient);
-			this.comboBox_1.addActionListener(new ActionListener() {
+			this.comboBox_civilite = new JComboBox<Object>(civiliteclient);
+			this.comboBox_civilite.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
 					try {
-						MajFicheClientCarteFidelite.this.civilite = MajFicheClientCarteFidelite.this.comboBox_1
+						MajFicheClientCarteFidelite.this.civilite = MajFicheClientCarteFidelite.this.comboBox_civilite
 								.getSelectedItem().toString();
 
 					} catch (final Exception e1) {
@@ -368,14 +655,14 @@ public class MajFicheClientCarteFidelite extends JFrame {
 					}
 				}
 			});
-			this.comboBox_1.setBackground(Color.WHITE);
-			this.comboBox_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			this.comboBox_1.setBorder(null);
-			this.comboBox_1.setForeground(Color.GRAY);
-			this.comboBox_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.comboBox_1.setBounds(310, 366, 86, 22);
+			this.comboBox_civilite.setBackground(Color.WHITE);
+			this.comboBox_civilite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.comboBox_civilite.setBorder(null);
+			this.comboBox_civilite.setForeground(Color.GRAY);
+			this.comboBox_civilite.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.comboBox_civilite.setBounds(310, 366, 86, 22);
 		}
-		return this.comboBox_1;
+		return this.comboBox_civilite;
 	}
 
 	private JComboBox<Object> getComboBoxAnnee() {
@@ -697,6 +984,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 	private JLayeredPane getLayeredPane_1() {
 		if (this.layeredPane == null) {
 			this.layeredPane = new JLayeredPane();
+			this.layeredPane.add(this.getLoading());
 			this.layeredPane.add(this.getLblMenuGestion());
 			this.layeredPane.add(this.getLblFermer());
 			this.layeredPane.add(this.getLblNCarte());
@@ -740,6 +1028,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			this.layeredPane.add(this.getLabel_5());
 			this.layeredPane.add(this.getLblNewLabel());
 			this.layeredPane.add(this.getTextField_8());
+			this.layeredPane.add(this.getCheckVip());
 			this.layeredPane.add(this.getLabel_6());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel_1());
@@ -879,7 +1168,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 
 	private JLabel getLblNCarte() {
 		if (this.lblNCarte == null) {
-			this.lblNCarte = new JLabel("N\u00B0 Client *");
+			this.lblNCarte = new JLabel("N° Client *");
 			this.lblNCarte.setForeground(Color.GRAY);
 			this.lblNCarte.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblNCarte.setBounds(234, 337, 78, 14);
@@ -938,6 +1227,9 @@ public class MajFicheClientCarteFidelite extends JFrame {
 	}
 
 	private JLabel getLblValider() {
+		final ImageIcon baseIcon = new ImageIcon(MajFicheClientCarteFidelite.class.getResource("/Images/valider.png"));
+		final ImageIcon focusedIcon = new ImageIcon(
+				MajFicheClientCarteFidelite.class.getResource("/Images/validerFocus.png"));
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
 			this.lblValider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -946,203 +1238,42 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					boolean verification = true;
-
-					MajFicheClientCarteFidelite.this.numerocarte = MajFicheClientCarteFidelite.this.textField_NumCli
-							.getText();
-
-					if (MajFicheClientCarteFidelite.this.numerocarte.isEmpty()) {
-						verification = false;
-						MajFicheClientCarteFidelite.this.message = "Merci de vérifier votre numéro de client - Ce champ ne peut être vide";
-
+					validateAction();
+				}
+			});
+			this.lblValider.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(final KeyEvent e) {
+					super.keyTyped(e);
+					if ('\n' == e.getKeyChar()) {
+						validateAction();
 					}
-					// if (!numerocarte.isEmpty()) {
-					// if (numerocarte.length() != 13) {
-					// verification = false;
-					// message =
-					// "Merci de vérifier votre numéro de client - 13 caractéres
-					// obligatoires";
-					// }
-					// }
-
-					try {
-						MajFicheClientCarteFidelite.this.magasin = MajFicheClientCarteFidelite.this.comboBox
-								.getSelectedItem().toString().toUpperCase();
-						MajFicheClientCarteFidelite.this.idmagasin = ((Magasin) MajFicheClientCarteFidelite.this.comboBox
-								.getSelectedItem()).getIdMagasin();
-					} catch (final Exception e5) {
-						verification = false;
-						MajFicheClientCarteFidelite.this.message = "Merci de selectionner un magasin";
-					}
-
-					try {
-						MajFicheClientCarteFidelite.this.civilite = MajFicheClientCarteFidelite.this.comboBox_1
-								.getSelectedItem().toString().toUpperCase();
-					} catch (final Exception e5) {
-						verification = false;
-						MajFicheClientCarteFidelite.this.message = "Merci de selectionner une civilité";
-					}
-
-					MajFicheClientCarteFidelite.this.nomClient = MajFicheClientCarteFidelite.this.textField_Nom
-							.getText().toUpperCase();
-
-					if (MajFicheClientCarteFidelite.this.nomClient.isEmpty()) {
-						verification = false;
-						MajFicheClientCarteFidelite.this.message = "Merci de vérifier le nom du client - Ce champ ne peut être vide";
-					}
-
-					MajFicheClientCarteFidelite.this.prenomClient = MajFicheClientCarteFidelite.this.textField_Prenom
-							.getText().toUpperCase();
-
-					if (MajFicheClientCarteFidelite.this.prenomClient.isEmpty()) {
-						verification = false;
-						MajFicheClientCarteFidelite.this.message = "Merci de vérifier le prénom du client - Ce champ ne peut être vide";
-					}
-
-					MajFicheClientCarteFidelite.this.age = MajFicheClientCarteFidelite.this.textField_Age.getText()
-							.toUpperCase().toString();
-					if (MajFicheClientCarteFidelite.this.age.isEmpty()) {
-						verification = false;
-						MajFicheClientCarteFidelite.this.message = "Merci de vérifier l'ége du client - Ce champ ne peut être vide";
-					}
-					if (!MajFicheClientCarteFidelite.this.age.isEmpty()) {
-						if (Integer.parseInt(MajFicheClientCarteFidelite.this.age) < 18) {
-							verification = false;
-							MajFicheClientCarteFidelite.this.message = "Merci de vérifier l'ége du client- 18 ans minimum - Ce champ ne peut être vide";
-						}
-					}
-
-					MajFicheClientCarteFidelite.this.adresseClient = MajFicheClientCarteFidelite.this.textField_Adresse
-							.getText().toUpperCase();
-
-					if (MajFicheClientCarteFidelite.this.adresseClient.isEmpty()) {
-						verification = false;
-						MajFicheClientCarteFidelite.this.message = "Merci de vérifier l'adresse renseignée - Ce champ ne peut être vide";
-					}
-
-					try {
-						MajFicheClientCarteFidelite.this.villeClient = MajFicheClientCarteFidelite.this.textField_3
-								.getSelectedItem().toString().toUpperCase();
-						MajFicheClientCarteFidelite.this.idville = ((Ville) MajFicheClientCarteFidelite.this.textField_3
-								.getSelectedItem()).getIdville();
-					} catch (final Exception e5) {
-						verification = false;
-						MajFicheClientCarteFidelite.this.message = "Merci de selectionner une ville";
-					}
-
-					MajFicheClientCarteFidelite.this.CodePostalClient = MajFicheClientCarteFidelite.this.textField_CodePostal
-							.getText();
-
-					if (MajFicheClientCarteFidelite.this.CodePostalClient.isEmpty()) {
-						verification = false;
-						MajFicheClientCarteFidelite.this.message = "Merci de vérifier le code postal renseigné - Ce champ ne peut être vide";
-					}
-
-					if (!MajFicheClientCarteFidelite.this.CodePostalClient.isEmpty()) {
-						if (MajFicheClientCarteFidelite.this.CodePostalClient.length() != 5) {
-							verification = false;
-							MajFicheClientCarteFidelite.this.message = "Merci de vérifier le code postal renseigné - Ce champ doit comporter 5 chiffres";
-						}
-					}
-
-					System.out.print("8888888" + MajFicheClientCarteFidelite.this.operationprecedente + "88888888");
-
-					if (MajFicheClientCarteFidelite.this.operationprecedente != null) {
-						if (!MajFicheClientCarteFidelite.this.operationprecedente.equals("operation_commerciale")) {
-							if (MajFicheClientCarteFidelite.this.jourdate == null) {
-								verification = false;
-								MajFicheClientCarteFidelite.this.message = "Merci de vérifier le jour renseigné - Ce champ ne peut être vide";
-							}
-
-							if (MajFicheClientCarteFidelite.this.moisdate == null) {
-								verification = false;
-								MajFicheClientCarteFidelite.this.message = "Merci de vérifier le mois renseigné - Ce champ ne peut être vide";
-							}
-
-							if (MajFicheClientCarteFidelite.this.annee == null) {
-								verification = false;
-								MajFicheClientCarteFidelite.this.message = "Merci de vérifier l'année renseignée - Ce champ ne peut être vide";
-							}
-							MajFicheClientCarteFidelite.this.dateComplete = MajFicheClientCarteFidelite.this.jourdate
-									+ "/" + MajFicheClientCarteFidelite.this.moisdate + "/"
-									+ MajFicheClientCarteFidelite.this.annee;
-							System.out.print(MajFicheClientCarteFidelite.this.dateComplete);
-						}
-
-					}
-
-					if (!MajFicheClientCarteFidelite.this.textField_Mail.getText().isEmpty()) {
-						MajFicheClientCarteFidelite.this.email = MajFicheClientCarteFidelite.this.textField_Mail
-								.getText();
-
-						if (!EmailValidator.getInstance().isValid(MajFicheClientCarteFidelite.this.email)) {
-							verification = false;
-							MajFicheClientCarteFidelite.this.message = "Merci de vérifier l'adresse mail saisie";
-
-						}
-					}
-
-					MajFicheClientCarteFidelite.this.telephonefixe = null;
-					MajFicheClientCarteFidelite.this.telephoneportable = null;
-					if (!MajFicheClientCarteFidelite.this.textField_TelFix.getText().isEmpty()) {
-						MajFicheClientCarteFidelite.this.telephonefixe = MajFicheClientCarteFidelite.this.textField_TelFix
-								.getText();
-
-						if (MajFicheClientCarteFidelite.this.telephonefixe.length() != 10) {
-							verification = false;
-							MajFicheClientCarteFidelite.this.message = "le numero de téléphone doit contenir 10 chiffres";
-						}
-					}
-
-					if (!MajFicheClientCarteFidelite.this.textField_TelGSM.getText().isEmpty()) {
-						MajFicheClientCarteFidelite.this.telephoneportable = MajFicheClientCarteFidelite.this.textField_TelGSM
-								.getText();
-
-						if (MajFicheClientCarteFidelite.this.telephoneportable.length() != 10) {
-							verification = false;
-							MajFicheClientCarteFidelite.this.message = "le numero de téléphone doit contenir 10 chiffres";
-						}
-					}
-
-					MajFicheClientCarteFidelite.this.newsletter = MajFicheClientCarteFidelite.this.valeurCaseNewsletter;
-
-					if (verification == true) {
-						final ConfirmationMAJClientFidelite fenetre = new ConfirmationMAJClientFidelite(
-								MajFicheClientCarteFidelite.this.interfaceActuelle,
-								MajFicheClientCarteFidelite.this.numerocarte, MajFicheClientCarteFidelite.this.magasin,
-								MajFicheClientCarteFidelite.this.idmagasin, MajFicheClientCarteFidelite.this.civilite,
-								MajFicheClientCarteFidelite.this.nomClient,
-								MajFicheClientCarteFidelite.this.prenomClient,
-								MajFicheClientCarteFidelite.this.adresseClient,
-								MajFicheClientCarteFidelite.this.idville, MajFicheClientCarteFidelite.this.villeClient,
-								MajFicheClientCarteFidelite.this.CodePostalClient,
-								MajFicheClientCarteFidelite.this.dateComplete, MajFicheClientCarteFidelite.this.email,
-								MajFicheClientCarteFidelite.this.newsletter,
-								MajFicheClientCarteFidelite.this.identifiantclient,
-								MajFicheClientCarteFidelite.this.operationprecedente,
-								MajFicheClientCarteFidelite.this.numeroidcommerciale,
-								MajFicheClientCarteFidelite.this.telephonefixe,
-								MajFicheClientCarteFidelite.this.telephoneportable,
-								MajFicheClientCarteFidelite.this.age,
-								MajFicheClientCarteFidelite.this.magasinoperation);
-						fenetre.setVisible(true);
-						MajFicheClientCarteFidelite.this.interfaceActuelle.setEnabled(false);
-						MajFicheClientCarteFidelite.this.interfaceActuelle.setVisible(false);
-					} else {
-						System.out.print("impossible");
-
-						final AlerteSelection fenetre = new AlerteSelection(
-								MajFicheClientCarteFidelite.this.interfaceActuelle,
-								MajFicheClientCarteFidelite.this.message);
-						fenetre.setVisible(true);
-						MajFicheClientCarteFidelite.this.interfaceActuelle.setEnabled(false);
-					}
-
 				}
 			});
 			this.lblValider.setForeground(Color.GRAY);
 			this.lblValider.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblValider.setBounds(933, 492, 99, 23);
+			this.lblValider.addFocusListener(new FocusListener() {
+
+				@Override
+				public void focusGained(FocusEvent e) {
+					// System.out.println("the " +
+					// e.getComponent().getClass()+"\n"+ e.getComponent() + "
+					// gain focus");
+					JLabel labelFocused = (JLabel) e.getComponent();
+					labelFocused.setIcon(focusedIcon);
+				}
+
+				@Override
+				public void focusLost(FocusEvent e) {
+					// System.out.println("the " +
+					// e.getComponent().getClass()+"\n"+ e.getComponent() + "
+					// lost focus");
+					JLabel labelUnfocused = (JLabel) e.getComponent();
+					labelUnfocused.setIcon(baseIcon);
+					MajFicheClientCarteFidelite.this.textField_NumCli.requestFocus();
+				}
+			});
 		}
 		return this.lblValider;
 	}
@@ -1155,6 +1286,14 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			this.lblVille.setBounds(258, 432, 54, 14);
 		}
 		return this.lblVille;
+	}
+
+	private Loading getLoading() {
+		if (this.lblLoading == null) {
+			this.lblLoading = new Loading();
+		}
+		this.lblLoading.setVisible(false);
+		return this.lblLoading;
 	}
 
 	private JRadioButton getRdbtnDesinscrit() {
@@ -1172,7 +1311,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			});
 			this.rdbtnDesinscrit.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.rdbtnDesinscrit.setForeground(Color.GRAY);
-			this.rdbtnDesinscrit.setBounds(746, 492, 91, 23);
+			this.rdbtnDesinscrit.setBounds(738, 492, 91, 23);
 			this.group.add(this.rdbtnDesinscrit);
 		}
 		return this.rdbtnDesinscrit;
@@ -1302,7 +1441,6 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			try {
 				this.mask = new MaskFormatter("#####");
 			} catch (final ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			this.mask.setValidCharacters("0123456789");
@@ -1365,5 +1503,69 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			this.textField_Age.setBounds(974, 460, 57, 20);
 		}
 		return this.textField_Age;
+	}
+
+	private void setDateComplete() {
+		MajFicheClientCarteFidelite.this.dateComplete = MajFicheClientCarteFidelite.this.jourdate + "/"
+				+ MajFicheClientCarteFidelite.this.moisdate + "/" + MajFicheClientCarteFidelite.this.annee;
+		System.out.print(MajFicheClientCarteFidelite.this.dateComplete);
+
+	}
+
+	/**
+	 * this methode will validate filled datas by calling severals methods for
+	 * each fields<br>
+	 * on error a warning message will be displayed to help the correction
+	 */
+	protected void validateAction() {
+		this.lblLoading.setVisible(true);
+		Thread longThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				MajFicheClientCarteFidelite.this.newsletter = MajFicheClientCarteFidelite.this.valeurCaseNewsletter;
+				if (checkfields()) {
+					confirmation();
+				} else {
+					alerte();
+				}
+			}
+		});
+		longThread.start();
+	}
+
+	protected void alerte() {
+		System.out.print("impossible");
+		final AlerteSelection fenetre = new AlerteSelection(
+				MajFicheClientCarteFidelite.this.interfaceActuelle,
+				MajFicheClientCarteFidelite.this.message);
+		fenetre.setVisible(true);
+		MajFicheClientCarteFidelite.this.lblLoading.setVisible(false);
+		MajFicheClientCarteFidelite.this.interfaceActuelle.setEnabled(false);
+
+	}
+
+	protected void confirmation() {
+		final ConfirmationMAJClientFidelite fenetre = new ConfirmationMAJClientFidelite(
+				MajFicheClientCarteFidelite.this.interfaceActuelle,
+				MajFicheClientCarteFidelite.this.numerocarte, MajFicheClientCarteFidelite.this.magasin,
+				MajFicheClientCarteFidelite.this.idmagasin, MajFicheClientCarteFidelite.this.civilite,
+				MajFicheClientCarteFidelite.this.nomClient, MajFicheClientCarteFidelite.this.prenomClient,
+				MajFicheClientCarteFidelite.this.adresseClient, MajFicheClientCarteFidelite.this.idville,
+				MajFicheClientCarteFidelite.this.villeClient,
+				MajFicheClientCarteFidelite.this.CodePostalClient,
+				MajFicheClientCarteFidelite.this.dateComplete, MajFicheClientCarteFidelite.this.email,
+				MajFicheClientCarteFidelite.this.newsletter,
+				MajFicheClientCarteFidelite.this.identifiantclient,
+				MajFicheClientCarteFidelite.this.operationprecedente,
+				MajFicheClientCarteFidelite.this.numeroidcommerciale,
+				MajFicheClientCarteFidelite.this.telephonefixe,
+				MajFicheClientCarteFidelite.this.telephoneportable, MajFicheClientCarteFidelite.this.age,
+				MajFicheClientCarteFidelite.this.magasinoperation,
+				MajFicheClientCarteFidelite.this.vip);
+		fenetre.setVisible(true);
+		MajFicheClientCarteFidelite.this.lblLoading.setVisible(false);
+		MajFicheClientCarteFidelite.this.interfaceActuelle.setEnabled(false);
+		MajFicheClientCarteFidelite.this.interfaceActuelle.setVisible(false);
+
 	}
 }

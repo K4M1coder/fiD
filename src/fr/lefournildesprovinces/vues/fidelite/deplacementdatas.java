@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues;
+package fr.lefournildesprovinces.vues.fidelite;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,7 +21,6 @@ import javax.swing.border.LineBorder;
 
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.ressources.models.infostemporaire;
-import fr.lefournildesprovinces.vues.fidelite.ConfirmationInsertionClientFidelite;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 
 public class deplacementdatas extends JFrame {

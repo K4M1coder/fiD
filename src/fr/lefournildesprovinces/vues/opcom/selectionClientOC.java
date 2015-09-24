@@ -25,7 +25,6 @@ import javax.swing.SwingConstants;
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.util.AutoCompletion;
-import fr.lefournildesprovinces.vues.FicheClientCompleteSansCarte;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;

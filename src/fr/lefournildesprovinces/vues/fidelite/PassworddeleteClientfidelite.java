@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues;
+package fr.lefournildesprovinces.vues.fidelite;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -30,6 +30,7 @@ import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.opcom.GestionOperationCommerciale;
 import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
+import fr.lefournildesprovinces.vues.popups.ErrorPassword;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class PassworddeleteClientfidelite extends JFrame {

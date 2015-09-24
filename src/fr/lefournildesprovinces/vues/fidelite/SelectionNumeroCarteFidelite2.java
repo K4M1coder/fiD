@@ -35,7 +35,6 @@ import javax.swing.border.LineBorder;
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.util.AutoCompletion;
-import fr.lefournildesprovinces.vues.FicheClientComplete;
 import fr.lefournildesprovinces.vues.SelectionNumeroCarteFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;

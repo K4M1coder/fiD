@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues;
+package fr.lefournildesprovinces.vues.magasins;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -27,6 +27,7 @@ import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
+import fr.lefournildesprovinces.vues.popups.ErrorPassword;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class Password extends JFrame {

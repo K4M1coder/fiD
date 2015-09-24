@@ -33,9 +33,11 @@ import javax.swing.border.LineBorder;
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.util.AutoCompletion;
+import fr.lefournildesprovinces.vues.fidelite.FicheClientComplete;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
+import fr.lefournildesprovinces.vues.opcom.FicheClientCompleteSansCarte;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 

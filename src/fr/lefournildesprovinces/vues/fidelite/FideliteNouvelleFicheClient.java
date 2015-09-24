@@ -47,7 +47,6 @@ import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.Ville;
 import fr.lefournildesprovinces.ressources.models.infostemporaire;
 import fr.lefournildesprovinces.ressources.util.AutoCompletion;
-import fr.lefournildesprovinces.vues.deplacementdatas;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
@@ -802,7 +801,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		return this.comboBoxVilles;
 	}
 
-	protected boolean getfields(boolean verification) {
+	protected boolean checkfields(boolean verification) {
 		// Vérification de l'existence du numéro de client ++
 		verification = (FideliteNouvelleFicheClient.this.checkNumCliIsNew() == false) ? false : verification;
 		// Vérification de l'existence du numéro de client --
@@ -912,14 +911,15 @@ public class FideliteNouvelleFicheClient extends JFrame {
 
 	private TextField getFormattedTextField() {
 		if (this.formattedTextFieldNumCli == null) {
-//			try {
-//				this.mask = new MaskFormatter("##########");
-//			} catch (final ParseException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			this.mask.setValidCharacters("0123456789");
-//			this.formattedTextFieldNumCli = new JFormattedTextField(this.mask);
+			// try {
+			// this.mask = new MaskFormatter("##########");
+			// } catch (final ParseException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
+			// this.mask.setValidCharacters("0123456789");
+			// this.formattedTextFieldNumCli = new
+			// JFormattedTextField(this.mask);
 			this.formattedTextFieldNumCli = new TextField();
 			this.formattedTextFieldNumCli.setForeground(Color.GRAY);
 			this.formattedTextFieldNumCli.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -1028,6 +1028,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		if (this.layeredPane == null) {
 			this.layeredPane = new JLayeredPane();
 			this.layeredPane.add(this.getLoading());
+			this.layeredPane.add(this.getLblValider());
 			this.layeredPane.add(this.getLblMenuGestion());
 			this.layeredPane.add(this.getLblFermer());
 			this.layeredPane.add(this.getLblNCarte());
@@ -1069,7 +1070,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			this.layeredPane.add(this.getLblAge());
 			this.layeredPane.add(this.getTextField_8());
 			this.layeredPane.add(this.getCheckVip());
-			this.layeredPane.add(this.getLblValider());
+
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel_1());
 		}
@@ -1286,6 +1287,8 @@ public class FideliteNouvelleFicheClient extends JFrame {
 					// lost focus");
 					JLabel labelUnfocused = (JLabel) e.getComponent();
 					labelUnfocused.setIcon(baseIcon);
+					FideliteNouvelleFicheClient.this.formattedTextFieldNumCli.requestFocus();
+
 				}
 
 				@Override
@@ -1523,7 +1526,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 
 				boolean verification = true;
 
-				verification = getfields(verification);
+				verification = checkfields(verification);
 
 				System.out.println("vérif saisie :::::::::" + verification + ":::::::::");
 
@@ -1615,8 +1618,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 
 			preStm.close();
 			rs.close();
-			System.out.println(
-					"checkNumCliEXIST :::::::::" + FideliteNouvelleFicheClient.this.compteur2 + ":::::::::");
+			System.out.println("checkNumCliEXIST :::::::::" + FideliteNouvelleFicheClient.this.compteur2 + ":::::::::");
 
 		} catch (final SQLException e10) {
 			e10.getMessage();

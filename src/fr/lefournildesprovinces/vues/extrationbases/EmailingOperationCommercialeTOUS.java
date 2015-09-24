@@ -32,12 +32,12 @@ import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.OperationCommerciale;
 import fr.lefournildesprovinces.ressources.models.ResultatRecherche;
 import fr.lefournildesprovinces.ressources.util.ExcelExporter;
-import fr.lefournildesprovinces.vues.MessageExport;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
+import fr.lefournildesprovinces.vues.popups.MessageExport;
 
 public class EmailingOperationCommercialeTOUS extends JFrame {
 

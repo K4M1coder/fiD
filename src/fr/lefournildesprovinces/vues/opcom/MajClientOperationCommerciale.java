@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues;
+package fr.lefournildesprovinces.vues.opcom;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -39,7 +39,6 @@ import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.opcom.ConfirmationMAJClientOC;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class MajClientOperationCommerciale extends JFrame {
