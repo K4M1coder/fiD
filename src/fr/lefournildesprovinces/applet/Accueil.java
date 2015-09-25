@@ -89,7 +89,7 @@ public class Accueil extends JApplet {
 				}
 			});
 			this.lblValidate.setIcon(new ImageIcon(Accueil.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValidate.setBounds(175, 85, 99, 23);
 		}
 		return this.lblValidate;
