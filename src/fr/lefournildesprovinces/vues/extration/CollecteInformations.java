@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues.extrationbases;
+package fr.lefournildesprovinces.vues.extration;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,16 +20,16 @@ import javax.swing.SwingConstants;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.opcom.selectionClientOC;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
-public class CollecteInformationsSansCarte extends JFrame {
+public class CollecteInformations extends JFrame {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8991791660553355526L;
+	private static final long serialVersionUID = -2345353952449980336L;
+	private final String choixprecedent;
 	private JComboBox<Object> comboBox;
 	private final JPanel contentPane;
 	private JLabel fond;
@@ -47,7 +47,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 	private JLabel lblValider;
 	private String selection;
 
-	public CollecteInformationsSansCarte(final String choix) {
+	public CollecteInformations(final String choix) {
 		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1280, 800);
@@ -60,20 +60,21 @@ public class CollecteInformationsSansCarte extends JFrame {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.interfaceActuelle = this;
+		this.choixprecedent = choix;
 	}
 
 	private JComboBox<Object> getComboBox() {
 		if (this.comboBox == null) {
-			final String[] choix = { null, " TOUS les participants",
-					" RECHERCHER un participant", " Tranche d'AGE",
-					" Participant d'un MAGASIN",
+			final String[] choix = { null, " TOUTES les cartes de fidélité",
+					" RECHERCHER un titulaire", " Tranche d'AGE",
+					" Date ANNIVERSAIRE", " Client fidélité d'un MAGASIN",
 					" Participants OPERATION commerciale",
-					" VILLE de résidence" };
+					" VILLE de résidence", };
 			this.comboBox = new JComboBox<Object>(choix);
+			this.comboBox.setBorder(null);
 			this.comboBox.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.comboBox.setBackground(Color.WHITE);
-			this.comboBox.setBorder(null);
 			this.comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.comboBox.setForeground(Color.GRAY);
 			this.comboBox.setFocusable(false);
@@ -83,26 +84,24 @@ public class CollecteInformationsSansCarte extends JFrame {
 				public void actionPerformed(final ActionEvent arg0) {
 
 					try {
-						CollecteInformationsSansCarte.this.lblMerciDeSelectionner
+						CollecteInformations.this.lblMerciDeSelectionner
 								.setVisible(false);
-						CollecteInformationsSansCarte.this.selection = CollecteInformationsSansCarte.this.comboBox
+						CollecteInformations.this.selection = CollecteInformations.this.comboBox
 								.getSelectedItem().toString().substring(1);
-						CollecteInformationsSansCarte.this.lblValider
-								.setVisible(true);
+						CollecteInformations.this.lblValider.setVisible(true);
 
 					} catch (final Exception e) {
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						final AlerteSelection fenetre = new AlerteSelection(
-								CollecteInformationsSansCarte.this.interfaceActuelle,
+								CollecteInformations.this.interfaceActuelle,
 								message);
 						fenetre.setVisible(true);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setEnabled(false);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setVisible(false);
-						CollecteInformationsSansCarte.this.lblValider
-								.setVisible(false);
-						CollecteInformationsSansCarte.this.lblMerciDeSelectionner
+						CollecteInformations.this.lblValider.setVisible(false);
+						CollecteInformations.this.lblMerciDeSelectionner
 								.setVisible(true);
 					}
 
@@ -117,7 +116,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 	private JLabel getFond() {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
-			this.fond.setIcon(new ImageIcon(CollecteInformationsSansCarte.class
+			this.fond.setIcon(new ImageIcon(CollecteInformations.class
 					.getResource("/Images/menus_extraction.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
@@ -132,7 +131,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final MenuPrincipal fenetre = new MenuPrincipal();
 					fenetre.setVisible(true);
-					CollecteInformationsSansCarte.this.dispose();
+					CollecteInformations.this.dispose();
 				}
 			});
 			this.label
@@ -150,7 +149,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 					gestionclientcarte.setVisible(true);
-					CollecteInformationsSansCarte.this.dispose();
+					CollecteInformations.this.dispose();
 				}
 			});
 			this.label_1.setCursor(Cursor
@@ -168,7 +167,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
-					CollecteInformationsSansCarte.this.dispose();
+					CollecteInformations.this.dispose();
 				}
 			});
 			this.label_2.setCursor(Cursor
@@ -186,7 +185,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 					operation.setVisible(true);
-					CollecteInformationsSansCarte.this.dispose();
+					CollecteInformations.this.dispose();
 				}
 			});
 			this.label_3.setCursor(Cursor
@@ -223,7 +222,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 			this.lblCollecteDonformations.setForeground(Color.GRAY);
 			this.lblCollecteDonformations.setFont(new Font("Tahoma", Font.BOLD,
 					11));
-			this.lblCollecteDonformations.setBounds(245, 343, 216, 14);
+			this.lblCollecteDonformations.setBounds(246, 324, 227, 14);
 		}
 		return this.lblCollecteDonformations;
 	}
@@ -231,11 +230,11 @@ public class CollecteInformationsSansCarte extends JFrame {
 	private JLabel getLblExtractionDesInformations() {
 		if (this.lblExtractionDesInformations == null) {
 			this.lblExtractionDesInformations = new JLabel(
-					"Extraction des informations Client non titulaire d'une carte de fid\u00E9lit\u00E9");
+					"Extraction des informations Client titulaire d'une carte de fid\u00E9lit\u00E9");
 			this.lblExtractionDesInformations.setForeground(Color.GRAY);
 			this.lblExtractionDesInformations.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
-			this.lblExtractionDesInformations.setBounds(238, 286, 426, 14);
+			this.lblExtractionDesInformations.setBounds(238, 286, 414, 14);
 		}
 		return this.lblExtractionDesInformations;
 	}
@@ -243,11 +242,11 @@ public class CollecteInformationsSansCarte extends JFrame {
 	private JLabel getLblMerciDeSelectionner() {
 		if (this.lblMerciDeSelectionner == null) {
 			this.lblMerciDeSelectionner = new JLabel(
-					"Merci de choisir le mode de TRI");
+					"Merci choisir le mode TRI");
 			this.lblMerciDeSelectionner.setFont(new Font("Tahoma", Font.BOLD,
 					11));
 			this.lblMerciDeSelectionner.setForeground(Color.GRAY);
-			this.lblMerciDeSelectionner.setBounds(491, 418, 299, 14);
+			this.lblMerciDeSelectionner.setBounds(534, 418, 251, 14);
 		}
 		return this.lblMerciDeSelectionner;
 	}
@@ -255,9 +254,8 @@ public class CollecteInformationsSansCarte extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
-			this.lblNewLabel.setIcon(new ImageIcon(
-					CollecteInformationsSansCarte.class
-							.getResource("/Images/fond-logiciel.png")));
+			this.lblNewLabel.setIcon(new ImageIcon(CollecteInformations.class
+					.getResource("/Images/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -266,6 +264,8 @@ public class CollecteInformationsSansCarte extends JFrame {
 	private JLabel getLblRetour() {
 		if (this.lblRetour == null) {
 			this.lblRetour = new JLabel("");
+			this.lblRetour.setCursor(Cursor
+					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblRetour.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblRetour.setForeground(Color.GRAY);
 			this.lblRetour.addMouseListener(new MouseAdapter() {
@@ -273,10 +273,10 @@ public class CollecteInformationsSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent arg0) {
 					final MenuPrincipal fenetre = new MenuPrincipal();
 					fenetre.setVisible(true);
-					CollecteInformationsSansCarte.this.dispose();
+					CollecteInformations.this.dispose();
 				}
 			});
-			this.lblRetour.setBounds(876, 231, 167, 46);
+			this.lblRetour.setBounds(874, 231, 179, 45);
 		}
 		return this.lblRetour;
 	}
@@ -284,86 +284,86 @@ public class CollecteInformationsSansCarte extends JFrame {
 	private JLabel getLblValider() {
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
-			this.lblValider.setIcon(new ImageIcon(
-					CollecteInformationsSansCarte.class
-							.getResource("/Images/valider.png")));
-			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
-			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
+			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
+			this.lblValider.setIcon(new ImageIcon(CollecteInformations.class
+					.getResource("/Images/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					switch (CollecteInformationsSansCarte.this.selection) {
+					System.out.print(CollecteInformations.this.selection);
+					switch (CollecteInformations.this.selection) {
 					case "Tranche d'AGE":
-						final EmailingAgeSansCarte age = new EmailingAgeSansCarte(
-								CollecteInformationsSansCarte.this.interfaceActuelle);
+						final EmailingAge age = new EmailingAge(
+								CollecteInformations.this.interfaceActuelle);
 						age.setVisible(true);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setVisible(false);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setEnabled(false);
-
 						break;
 
-					case "Tri par date anniversaire":
-						final EmailingAnniversaireSansCarte anniversaire = new EmailingAnniversaireSansCarte(
-								CollecteInformationsSansCarte.this.interfaceActuelle);
+					case "Date ANNIVERSAIRE":
+						final EmailingAnniversaire anniversaire = new EmailingAnniversaire(
+								CollecteInformations.this.interfaceActuelle);
 						anniversaire.setVisible(true);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setVisible(false);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setEnabled(false);
 						break;
 
-					case "Client d'un MAGASIN":
-						final EmailingMagasinSansCarte triparmagasin = new EmailingMagasinSansCarte(
-								CollecteInformationsSansCarte.this.interfaceActuelle);
+					case "Client fidélité d'un MAGASIN":
+						final EmailingMagasin triparmagasin = new EmailingMagasin(
+								CollecteInformations.this.interfaceActuelle);
 						triparmagasin.setVisible(true);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setVisible(false);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setEnabled(false);
 						break;
 
 					case "Participants OPERATION commerciale":
-						final EmailingOperationCommercialeSansCarte trioperation = new EmailingOperationCommercialeSansCarte(
-								CollecteInformationsSansCarte.this.interfaceActuelle);
+						final EmailingOperationCommerciale trioperation = new EmailingOperationCommerciale(
+								CollecteInformations.this.interfaceActuelle);
 						trioperation.setVisible(true);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setVisible(false);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setEnabled(false);
 						break;
 
 					case "VILLE de résidence":
-						final EmailingVilleSansCarte triville = new EmailingVilleSansCarte(
-								CollecteInformationsSansCarte.this.interfaceActuelle);
+						final EmailingVille triville = new EmailingVille(
+								CollecteInformations.this.interfaceActuelle);
 						triville.setVisible(true);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setVisible(false);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setEnabled(false);
 						break;
 
-					case "TOUTES les participants":
-						final EnsembleSansCarte tous = new EnsembleSansCarte(
-								CollecteInformationsSansCarte.this.interfaceActuelle);
+					case "TOUTES les cartes de fidélité":
+						final Ensembleporteurcarte tous = new Ensembleporteurcarte(
+								CollecteInformations.this.interfaceActuelle);
 						tous.setVisible(true);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setVisible(false);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setEnabled(false);
 						break;
 
-					case "RECHERCHER un participant":
-						final selectionClientOC infos = new selectionClientOC(
-								CollecteInformationsSansCarte.this.interfaceActuelle);
+					case "RECHERCHER un titulaire":
+						final SelectionNumeroCarteFidelitePourFiche infos = new SelectionNumeroCarteFidelitePourFiche(
+								CollecteInformations.this.interfaceActuelle,
+								CollecteInformations.this.choixprecedent);
 						infos.setVisible(true);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setVisible(false);
-						CollecteInformationsSansCarte.this.interfaceActuelle
+						CollecteInformations.this.interfaceActuelle
 								.setEnabled(false);
 						break;
 

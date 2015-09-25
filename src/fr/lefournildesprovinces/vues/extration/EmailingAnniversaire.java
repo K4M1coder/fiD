@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues.extrationbases;
+package fr.lefournildesprovinces.vues.extration;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

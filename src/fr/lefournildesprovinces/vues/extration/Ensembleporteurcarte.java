@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues.extrationbases;
+package fr.lefournildesprovinces.vues.extration;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,11 +13,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Vector;
 
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -28,7 +25,6 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import fr.lefournildesprovinces.dao.Select;
-import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.ResultatRecherche;
 import fr.lefournildesprovinces.ressources.util.ExcelExporter;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
@@ -38,15 +34,14 @@ import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.MessageExport;
 
-public class EmailingMagasin extends JFrame {
+public class Ensembleporteurcarte extends JFrame {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 2506007625316389210L;
+	private static final long serialVersionUID = -19159476119965582L;
 	private JCheckBox chckbxAbonnementNewsletter;
 	private JCheckBox chckbxAdresse;
-	private JCheckBox chckbxAge;
 	private JCheckBox chckbxCivilit;
 	private JCheckBox chckbxCodepostal;
 	private JCheckBox chckbxDateDeNaissance;
@@ -61,8 +56,8 @@ public class EmailingMagasin extends JFrame {
 	private JCheckBox chckbxVille;
 	private JCheckBox checkBox;
 	private JCheckBox checkBox_1;
+	private JCheckBox checkBox_2;
 	private String choixformat;
-	private JComboBox<Object> comboBox;
 	private final JPanel contentPane;
 	private String desktopPath;
 	private Object[][] donnees;
@@ -81,19 +76,16 @@ public class EmailingMagasin extends JFrame {
 	private JLabel lblExportCvs;
 	private JLabel lblExportxls;
 	private JLabel lblFermer;
-	private JLabel lblMerciDeSlectionner;
 	private JLabel lblNewLabel;
 	private JLabel lblSelectionnerLesInformations;
 	private JLabel lblValider;
-	private ComboBoxModel<Object> listemagasins;
 	private Vector<ResultatRecherche> membres;
 	private String Message;
 	private DefaultTableModel model;
 	private JScrollPane scrollPane_1;
-	private int selectionIDMagasin;
 	private JTable table_3;
 
-	public EmailingMagasin(final JFrame interfacepre) {
+	public Ensembleporteurcarte(final JFrame interfacepre) {
 		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1280, 800);
@@ -117,16 +109,16 @@ public class EmailingMagasin extends JFrame {
 					.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(final MouseEvent e) {
-							EmailingMagasin.this.chckbxToutDselectionner
+							Ensembleporteurcarte.this.chckbxToutDselectionner
 									.setSelected(false);
-							EmailingMagasin.this.chckbxToutSlectionner
+							Ensembleporteurcarte.this.chckbxToutSlectionner
 									.setSelected(false);
 						}
 					});
 			this.chckbxAbonnementNewsletter.setForeground(Color.GRAY);
 			this.chckbxAbonnementNewsletter.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
-			this.chckbxAbonnementNewsletter.setBounds(863, 265, 185, 23);
+			this.chckbxAbonnementNewsletter.setBounds(854, 197, 191, 23);
 			this.chckbxAbonnementNewsletter.setSelected(true);
 		}
 		return this.chckbxAbonnementNewsletter;
@@ -138,38 +130,18 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxAdresse.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxAdresse.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxAdresse.setForeground(Color.GRAY);
-			this.chckbxAdresse.setBounds(336, 265, 109, 23);
+			this.chckbxAdresse.setBounds(337, 197, 93, 23);
 			this.chckbxAdresse.setSelected(true);
 		}
 		return this.chckbxAdresse;
-	}
-
-	private JCheckBox getChckbxAge() {
-		if (this.chckbxAge == null) {
-			this.chckbxAge = new JCheckBox("Age");
-			this.chckbxAge.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
-							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
-							.setSelected(false);
-				}
-			});
-			this.chckbxAge.setSelected(true);
-			this.chckbxAge.setForeground(Color.GRAY);
-			this.chckbxAge.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxAge.setBounds(447, 293, 150, 23);
-		}
-		return this.chckbxAge;
 	}
 
 	private JCheckBox getChckbxCivilit() {
@@ -178,15 +150,15 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxCivilit.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxCivilit.setForeground(Color.GRAY);
 			this.chckbxCivilit.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxCivilit.setBounds(242, 265, 92, 23);
+			this.chckbxCivilit.setBounds(242, 197, 93, 23);
 			this.chckbxCivilit.setSelected(true);
 
 		}
@@ -199,15 +171,15 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxCodepostal.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxCodepostal.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxCodepostal.setForeground(Color.GRAY);
-			this.chckbxCodepostal.setBounds(336, 319, 109, 23);
+			this.chckbxCodepostal.setBounds(337, 251, 109, 23);
 			this.chckbxCodepostal.setSelected(true);
 		}
 		return this.chckbxCodepostal;
@@ -219,16 +191,16 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxDateDeNaissance.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxDateDeNaissance.setForeground(Color.GRAY);
 			this.chckbxDateDeNaissance
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxDateDeNaissance.setBounds(447, 265, 150, 23);
+			this.chckbxDateDeNaissance.setBounds(431, 197, 150, 23);
 			this.chckbxDateDeNaissance.setSelected(true);
 		}
 		return this.chckbxDateDeNaissance;
@@ -240,15 +212,15 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxEmail.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxEmail.setForeground(Color.GRAY);
 			this.chckbxEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxEmail.setBounds(863, 293, 185, 23);
+			this.chckbxEmail.setBounds(431, 223, 150, 23);
 			this.chckbxEmail.setSelected(true);
 		}
 		return this.chckbxEmail;
@@ -261,16 +233,16 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxMagasinDeReference.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxMagasinDeReference.setFont(new Font("Tahoma", Font.BOLD,
 					11));
 			this.chckbxMagasinDeReference.setForeground(Color.GRAY);
-			this.chckbxMagasinDeReference.setBounds(586, 291, 167, 23);
+			this.chckbxMagasinDeReference.setBounds(854, 223, 191, 23);
 			this.chckbxMagasinDeReference.setSelected(true);
 		}
 		return this.chckbxMagasinDeReference;
@@ -283,15 +255,15 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxNCarteDe.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxNCarteDe.setForeground(Color.GRAY);
 			this.chckbxNCarteDe.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxNCarteDe.setBounds(586, 265, 167, 23);
+			this.chckbxNCarteDe.setBounds(583, 197, 157, 23);
 			this.chckbxNCarteDe.setSelected(true);
 		}
 		return this.chckbxNCarteDe;
@@ -303,15 +275,15 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxNom.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxNom.setForeground(Color.GRAY);
 			this.chckbxNom.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxNom.setBounds(242, 293, 92, 23);
+			this.chckbxNom.setBounds(242, 223, 93, 23);
 			this.chckbxNom.setSelected(true);
 		}
 		return this.chckbxNom;
@@ -323,15 +295,15 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxPrnom.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxPrnom.setForeground(Color.GRAY);
 			this.chckbxPrnom.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxPrnom.setBounds(242, 319, 92, 23);
+			this.chckbxPrnom.setBounds(242, 251, 93, 23);
 			this.chckbxPrnom.setSelected(true);
 
 		}
@@ -348,10 +320,11 @@ public class EmailingMagasin extends JFrame {
 						@Override
 						public void mouseClicked(final MouseEvent e) {
 
-							if (EmailingMagasin.this.chckbxSelectionnerLensembleDes
+							if (Ensembleporteurcarte.this.chckbxSelectionnerLensembleDes
 									.isSelected() == true) {
-								EmailingMagasin.this.table_3.selectAll();
-								EmailingMagasin.this.table_3.setFocusable(true);
+								Ensembleporteurcarte.this.table_3.selectAll();
+								Ensembleporteurcarte.this.table_3
+										.setFocusable(true);
 
 							}
 						}
@@ -359,7 +332,7 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxSelectionnerLensembleDes.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
 			this.chckbxSelectionnerLensembleDes.setForeground(Color.GRAY);
-			this.chckbxSelectionnerLensembleDes.setBounds(242, 658, 281, 23);
+			this.chckbxSelectionnerLensembleDes.setBounds(242, 681, 270, 23);
 		}
 		return this.chckbxSelectionnerLensembleDes;
 	}
@@ -372,24 +345,25 @@ public class EmailingMagasin extends JFrame {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
 
-					EmailingMagasin.this.chckbxNom.setSelected(false);
-					EmailingMagasin.this.chckbxPrnom.setSelected(false);
-					EmailingMagasin.this.chckbxCivilit.setSelected(false);
-					EmailingMagasin.this.chckbxAdresse.setSelected(false);
-					EmailingMagasin.this.chckbxCodepostal.setSelected(false);
-					EmailingMagasin.this.chckbxVille.setSelected(false);
-					EmailingMagasin.this.chckbxEmail.setSelected(false);
-					EmailingMagasin.this.chckbxAge.setSelected(false);
-					EmailingMagasin.this.checkBox.setSelected(false);
-					EmailingMagasin.this.checkBox_1.setSelected(false);
-					EmailingMagasin.this.chckbxAbonnementNewsletter
+					Ensembleporteurcarte.this.chckbxNom.setSelected(false);
+					Ensembleporteurcarte.this.chckbxPrnom.setSelected(false);
+					Ensembleporteurcarte.this.chckbxCivilit.setSelected(false);
+					Ensembleporteurcarte.this.chckbxAdresse.setSelected(false);
+					Ensembleporteurcarte.this.chckbxCodepostal
 							.setSelected(false);
-					EmailingMagasin.this.chckbxNCarteDe.setSelected(false);
-					EmailingMagasin.this.chckbxDateDeNaissance
+					Ensembleporteurcarte.this.chckbxVille.setSelected(false);
+					Ensembleporteurcarte.this.chckbxEmail.setSelected(false);
+					Ensembleporteurcarte.this.checkBox.setSelected(false);
+					Ensembleporteurcarte.this.checkBox_2.setSelected(false);
+					Ensembleporteurcarte.this.checkBox_1.setSelected(false);
+					Ensembleporteurcarte.this.chckbxAbonnementNewsletter
 							.setSelected(false);
-					EmailingMagasin.this.chckbxMagasinDeReference
+					Ensembleporteurcarte.this.chckbxNCarteDe.setSelected(false);
+					Ensembleporteurcarte.this.chckbxDateDeNaissance
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxMagasinDeReference
+							.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 
 				}
@@ -397,7 +371,7 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxToutDselectionner.setFont(new Font("Tahoma", Font.BOLD,
 					11));
 			this.chckbxToutDselectionner.setForeground(Color.GRAY);
-			this.chckbxToutDselectionner.setBounds(242, 366, 150, 23);
+			this.chckbxToutDselectionner.setBounds(242, 334, 176, 23);
 		}
 		return this.chckbxToutDselectionner;
 	}
@@ -408,31 +382,32 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxToutSlectionner.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxNom.setSelected(true);
-					EmailingMagasin.this.chckbxPrnom.setSelected(true);
-					EmailingMagasin.this.chckbxCivilit.setSelected(true);
-					EmailingMagasin.this.chckbxAdresse.setSelected(true);
-					EmailingMagasin.this.chckbxCodepostal.setSelected(true);
-					EmailingMagasin.this.chckbxVille.setSelected(true);
-					EmailingMagasin.this.checkBox.setSelected(true);
-					EmailingMagasin.this.chckbxAge.setSelected(true);
-					EmailingMagasin.this.checkBox_1.setSelected(true);
-					EmailingMagasin.this.chckbxEmail.setSelected(true);
-					EmailingMagasin.this.chckbxAbonnementNewsletter
+					Ensembleporteurcarte.this.chckbxNom.setSelected(true);
+					Ensembleporteurcarte.this.chckbxPrnom.setSelected(true);
+					Ensembleporteurcarte.this.chckbxCivilit.setSelected(true);
+					Ensembleporteurcarte.this.chckbxAdresse.setSelected(true);
+					Ensembleporteurcarte.this.chckbxCodepostal
 							.setSelected(true);
-					EmailingMagasin.this.chckbxNCarteDe.setSelected(true);
-					EmailingMagasin.this.chckbxDateDeNaissance
+					Ensembleporteurcarte.this.chckbxVille.setSelected(true);
+					Ensembleporteurcarte.this.chckbxEmail.setSelected(true);
+					Ensembleporteurcarte.this.checkBox.setSelected(true);
+					Ensembleporteurcarte.this.checkBox_2.setSelected(true);
+					Ensembleporteurcarte.this.checkBox_1.setSelected(true);
+					Ensembleporteurcarte.this.chckbxAbonnementNewsletter
 							.setSelected(true);
-					EmailingMagasin.this.chckbxMagasinDeReference
+					Ensembleporteurcarte.this.chckbxNCarteDe.setSelected(true);
+					Ensembleporteurcarte.this.chckbxDateDeNaissance
 							.setSelected(true);
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxMagasinDeReference
+							.setSelected(true);
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxToutSlectionner
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxToutSlectionner.setForeground(Color.GRAY);
-			this.chckbxToutSlectionner.setBounds(412, 366, 150, 23);
+			this.chckbxToutSlectionner.setBounds(420, 334, 199, 23);
 			this.chckbxToutSlectionner.setSelected(true);
 		}
 		return this.chckbxToutSlectionner;
@@ -444,15 +419,15 @@ public class EmailingMagasin extends JFrame {
 			this.chckbxVille.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxVille.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxVille.setForeground(Color.GRAY);
-			this.chckbxVille.setBounds(336, 291, 109, 23);
+			this.chckbxVille.setBounds(337, 223, 93, 23);
 			this.chckbxVille.setSelected(true);
 		}
 		return this.chckbxVille;
@@ -465,14 +440,14 @@ public class EmailingMagasin extends JFrame {
 			this.checkBox.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.checkBox.setForeground(Color.GRAY);
-			this.checkBox.setBounds(757, 293, 104, 23);
+			this.checkBox.setBounds(742, 197, 110, 23);
 			this.checkBox.setSelected(true);
 		}
 		return this.checkBox;
@@ -485,104 +460,43 @@ public class EmailingMagasin extends JFrame {
 			this.checkBox_1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
-					EmailingMagasin.this.chckbxToutDselectionner
+					Ensembleporteurcarte.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingMagasin.this.chckbxToutSlectionner
+					Ensembleporteurcarte.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.checkBox_1.setForeground(Color.GRAY);
-			this.checkBox_1.setBounds(757, 265, 104, 23);
+			this.checkBox_1.setBounds(742, 223, 110, 23);
 			this.checkBox_1.setSelected(true);
 		}
 		return this.checkBox_1;
 	}
 
-	private JComboBox<Object> getComboBox() {
-		if (this.comboBox == null) {
-			this.comboBox = new JComboBox<Object>();
-			this.comboBox.setBackground(Color.WHITE);
-			this.comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.comboBox.setForeground(Color.GRAY);
-			this.comboBox.setBorder(null);
-			this.comboBox.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
-			this.comboBox.addActionListener(new ActionListener() {
+	private JCheckBox getCheckBox_2() {
+		if (this.checkBox_2 == null) {
+			this.checkBox_2 = new JCheckBox("Age");
+			this.checkBox_2.addMouseListener(new MouseAdapter() {
 				@Override
-				public void actionPerformed(final ActionEvent arg0) {
-					try {
-						EmailingMagasin.this.selectionIDMagasin = ((Magasin) EmailingMagasin.this.comboBox
-								.getSelectedItem()).getIdMagasin();
-						EmailingMagasin.this.lblMerciDeSlectionner
-								.setVisible(false);
-						EmailingMagasin.this.lblValider.setVisible(true);
-					} catch (final Exception e) {
-						final String message = "Choix Impossible - Merci de vérifier votre sélection";
-						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingMagasin.this.interfaceActuelle, message);
-						fenetre.setVisible(true);
-						EmailingMagasin.this.interfaceActuelle
-								.setEnabled(false);
-						EmailingMagasin.this.interfaceActuelle
-								.setVisible(false);
-						EmailingMagasin.this.lblValider.setVisible(false);
-						EmailingMagasin.this.lblValider.setEnabled(false);
-						EmailingMagasin.this.lblMerciDeSlectionner
-								.setVisible(true);
-						EmailingMagasin.this.chckbxNom.setSelected(true);
-						EmailingMagasin.this.chckbxPrnom.setSelected(true);
-						EmailingMagasin.this.chckbxCivilit.setSelected(true);
-						EmailingMagasin.this.chckbxAdresse.setSelected(true);
-						EmailingMagasin.this.checkBox.setSelected(true);
-						EmailingMagasin.this.checkBox_1.setSelected(true);
-						EmailingMagasin.this.chckbxCodepostal.setSelected(true);
-						EmailingMagasin.this.chckbxVille.setSelected(true);
-						EmailingMagasin.this.chckbxEmail.setSelected(true);
-						EmailingMagasin.this.chckbxAge.setSelected(true);
-						EmailingMagasin.this.chckbxAbonnementNewsletter
-								.setSelected(true);
-						EmailingMagasin.this.chckbxNCarteDe.setSelected(true);
-						EmailingMagasin.this.chckbxDateDeNaissance
-								.setSelected(true);
-						EmailingMagasin.this.chckbxMagasinDeReference
-								.setSelected(true);
-						EmailingMagasin.this.chckbxSelectionnerLensembleDes
-								.setSelected(false);
-						EmailingMagasin.this.chckbxToutSlectionner
-								.setSelected(false);
-						EmailingMagasin.this.chckbxToutDselectionner
-								.setSelected(false);
-						EmailingMagasin.this.chckbxSelectionnerLensembleDes
-								.setVisible(false);
-						EmailingMagasin.this.lblExportxls.setVisible(false);
-						EmailingMagasin.this.lblExportCvs.setVisible(false);
-						if ((EmailingMagasin.this.table_3.getRowCount() != 0)
-								&& (EmailingMagasin.this.table_3
-										.getColumnCount() != 0)) {
-							EmailingMagasin.this.model.setColumnCount(0);
-							EmailingMagasin.this.model.setRowCount(0);
-							EmailingMagasin.this.table_3
-									.setModel(EmailingMagasin.this.model);
-							EmailingMagasin.this.table_3.repaint();
-						}
-					}
-
+				public void mouseClicked(final MouseEvent e) {
+					Ensembleporteurcarte.this.chckbxToutDselectionner
+							.setSelected(false);
+					Ensembleporteurcarte.this.chckbxToutSlectionner
+							.setSelected(false);
 				}
 			});
-			this.comboBox.setBounds(242, 187, 792, 22);
-			this.comboBox.setFocusable(false);
-			this.listemagasins = new DefaultComboBoxModel<Object>(
-					Select.listemagasins());
-			this.comboBox.setModel(this.listemagasins);
-
+			this.checkBox_2.setSelected(true);
+			this.checkBox_2.setForeground(Color.GRAY);
+			this.checkBox_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.checkBox_2.setBounds(583, 223, 157, 23);
 		}
-		return this.comboBox;
+		return this.checkBox_2;
 	}
 
 	private JLabel getFond() {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
-			this.fond.setIcon(new ImageIcon(EmailingMagasin.class
+			this.fond.setIcon(new ImageIcon(Ensembleporteurcarte.class
 					.getResource("/Images/menus-extraction-long.png")));
 			this.fond.setBounds(216, 55, 850, 690);
 		}
@@ -597,7 +511,7 @@ public class EmailingMagasin extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final MenuPrincipal fenetre = new MenuPrincipal();
 					fenetre.setVisible(true);
-					EmailingMagasin.this.dispose();
+					Ensembleporteurcarte.this.dispose();
 				}
 			});
 			this.label
@@ -615,7 +529,7 @@ public class EmailingMagasin extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 					gestionclientcarte.setVisible(true);
-					EmailingMagasin.this.dispose();
+					Ensembleporteurcarte.this.dispose();
 				}
 			});
 			this.label_1.setCursor(Cursor
@@ -633,7 +547,7 @@ public class EmailingMagasin extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
-					EmailingMagasin.this.dispose();
+					Ensembleporteurcarte.this.dispose();
 				}
 			});
 			this.label_2.setCursor(Cursor
@@ -651,7 +565,7 @@ public class EmailingMagasin extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 					operation.setVisible(true);
-					EmailingMagasin.this.dispose();
+					Ensembleporteurcarte.this.dispose();
 				}
 			});
 			this.label_3.setCursor(Cursor
@@ -667,7 +581,7 @@ public class EmailingMagasin extends JFrame {
 					"(CTRL+C ou Pomme+C pour copier les donn\u00E9es)");
 			this.label_4.setForeground(Color.GRAY);
 			this.label_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.label_4.setBounds(242, 688, 331, 14);
+			this.label_4.setBounds(242, 706, 298, 14);
 		}
 		return this.label_4;
 	}
@@ -675,10 +589,8 @@ public class EmailingMagasin extends JFrame {
 	private JLayeredPane getLayeredPane_1() {
 		if (this.layeredPane == null) {
 			this.layeredPane = new JLayeredPane();
-			this.layeredPane.add(this.getLblMerciDeSlectionner());
 			this.layeredPane.add(this.getLblEmailingParMagasin());
 			this.layeredPane.add(this.getLblFermer());
-			this.layeredPane.add(this.getComboBox());
 			this.layeredPane.add(this.getLblValider());
 			this.layeredPane.add(this.getLblExportCvs());
 			this.layeredPane.add(this.getChckbxNom());
@@ -704,7 +616,7 @@ public class EmailingMagasin extends JFrame {
 			this.layeredPane.add(this.getLabel_1());
 			this.layeredPane.add(this.getLabel_2());
 			this.layeredPane.add(this.getLabel_3());
-			this.layeredPane.add(this.getChckbxAge());
+			this.layeredPane.add(this.getCheckBox_2());
 			this.layeredPane.add(this.getLabel_4());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel());
@@ -716,11 +628,11 @@ public class EmailingMagasin extends JFrame {
 	private JLabel getLblEmailingParMagasin() {
 		if (this.lblEmailingParMagasin == null) {
 			this.lblEmailingParMagasin = new JLabel(
-					"Tri par magasin (Clients  titulaire d'une carte de fidelit\u00E9)");
+					"Ensemble des client porteur d'une carte de fid\u00E9lit\u00E9");
 			this.lblEmailingParMagasin
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblEmailingParMagasin.setForeground(Color.GRAY);
-			this.lblEmailingParMagasin.setBounds(242, 110, 355, 14);
+			this.lblEmailingParMagasin.setBounds(242, 110, 331, 14);
 		}
 		return this.lblEmailingParMagasin;
 	}
@@ -728,7 +640,7 @@ public class EmailingMagasin extends JFrame {
 	private JLabel getLblExportCvs() {
 		if (this.lblExportCvs == null) {
 			this.lblExportCvs = new JLabel("");
-			this.lblExportCvs.setIcon(new ImageIcon(EmailingMagasin.class
+			this.lblExportCvs.setIcon(new ImageIcon(Ensembleporteurcarte.class
 					.getResource("/Images/export-csv.png")));
 			this.lblExportCvs.setVisible(false);
 			this.lblExportCvs.addMouseListener(new MouseAdapter() {
@@ -736,34 +648,36 @@ public class EmailingMagasin extends JFrame {
 				public void mouseClicked(final MouseEvent arg0) {
 
 					try {
+
 						final String os = System.getProperty("os.name")
 								.toLowerCase();
 						;
 						if (os.contains("mac")) {
-							EmailingMagasin.this.desktopPath = System
+							Ensembleporteurcarte.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 						} else {
-							EmailingMagasin.this.desktopPath = System
+							Ensembleporteurcarte.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 
 						}
 
 						final File dir = new File(
-								EmailingMagasin.this.desktopPath
+								Ensembleporteurcarte.this.desktopPath
 										+ "/Base Marketing Client/");
 						dir.mkdirs();
 						final File file = new File(dir,
-								"Extraction par magasin (titulaire carte).csv");
+								"Extraction par ensemble client (titulaire carte).csv");
 
 						final FileWriter writer = new FileWriter(file);
 
-						for (int j = 0; j < EmailingMagasin.this.membres.size(); j++) {
+						for (int j = 0; j < Ensembleporteurcarte.this.membres
+								.size(); j++) {
 
-							for (int i = 0; i <= (EmailingMagasin.this.entetes.length - 1); i++) {
-								if (EmailingMagasin.this.donnees[j][i] != null) {
-									writer.append(EmailingMagasin.this.donnees[j][i]
+							for (int i = 0; i <= (Ensembleporteurcarte.this.entetes.length - 1); i++) {
+								if (Ensembleporteurcarte.this.donnees[j][i] != null) {
+									writer.append(Ensembleporteurcarte.this.donnees[j][i]
 											.toString());
-									if (i == (EmailingMagasin.this.entetes.length - 1)) {
+									if (i == (Ensembleporteurcarte.this.entetes.length - 1)) {
 										writer.append("\n");
 									} else {
 										writer.append(",");
@@ -778,16 +692,16 @@ public class EmailingMagasin extends JFrame {
 							}
 						}
 
-						EmailingMagasin.this.Message = "Exportation du fichier Extraction par magasin (titulaire carte).csv réalisée avec succès";
-						EmailingMagasin.this.etat = true;
-						EmailingMagasin.this.choixformat = "CSV3";
+						Ensembleporteurcarte.this.Message = "Exportation du fichier Extraction par ensemble client (titulaire carte).csv réalisée avec succès";
+						Ensembleporteurcarte.this.etat = true;
+						Ensembleporteurcarte.this.choixformat = "CSV9";
 						final MessageExport fenetre = new MessageExport(
-								EmailingMagasin.this.Message,
-								EmailingMagasin.this.interfaceActuelle,
-								EmailingMagasin.this.etat,
-								EmailingMagasin.this.choixformat);
+								Ensembleporteurcarte.this.Message,
+								Ensembleporteurcarte.this.interfaceActuelle,
+								Ensembleporteurcarte.this.etat,
+								Ensembleporteurcarte.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingMagasin.this.interfaceActuelle
+						Ensembleporteurcarte.this.interfaceActuelle
 								.setEnabled(false);
 
 						writer.flush();
@@ -795,16 +709,16 @@ public class EmailingMagasin extends JFrame {
 
 					} catch (final IOException e) {
 						e.printStackTrace();
-						EmailingMagasin.this.Message = "Impossible de générer le fichier CSV";
-						EmailingMagasin.this.etat = false;
-						EmailingMagasin.this.choixformat = "CSV";
+						Ensembleporteurcarte.this.Message = "Impossible de générer le fichier CSV";
+						Ensembleporteurcarte.this.etat = false;
+						Ensembleporteurcarte.this.choixformat = "CSV";
 						final MessageExport fenetre = new MessageExport(
-								EmailingMagasin.this.Message,
-								EmailingMagasin.this.interfaceActuelle,
-								EmailingMagasin.this.etat,
-								EmailingMagasin.this.choixformat);
+								Ensembleporteurcarte.this.Message,
+								Ensembleporteurcarte.this.interfaceActuelle,
+								Ensembleporteurcarte.this.etat,
+								Ensembleporteurcarte.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingMagasin.this.interfaceActuelle
+						Ensembleporteurcarte.this.interfaceActuelle
 								.setEnabled(false);
 
 					}
@@ -815,7 +729,7 @@ public class EmailingMagasin extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblExportCvs.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblExportCvs.setForeground(Color.GRAY);
-			this.lblExportCvs.setBounds(894, 673, 133, 34);
+			this.lblExportCvs.setBounds(901, 681, 133, 34);
 		}
 		return this.lblExportCvs;
 	}
@@ -823,7 +737,7 @@ public class EmailingMagasin extends JFrame {
 	private JLabel getLblExportxls() {
 		if (this.lblExportxls == null) {
 			this.lblExportxls = new JLabel("");
-			this.lblExportxls.setIcon(new ImageIcon(EmailingMagasin.class
+			this.lblExportxls.setIcon(new ImageIcon(Ensembleporteurcarte.class
 					.getResource("/Images/export-excel.png")));
 			this.lblExportxls.setVisible(false);
 			this.lblExportxls.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -837,55 +751,55 @@ public class EmailingMagasin extends JFrame {
 								.toLowerCase();
 						;
 						if (os.contains("mac")) {
-							EmailingMagasin.this.desktopPath = System
+							Ensembleporteurcarte.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 						} else {
-							EmailingMagasin.this.desktopPath = System
+							Ensembleporteurcarte.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 
 						}
 
 						final File dir = new File(
-								EmailingMagasin.this.desktopPath
+								Ensembleporteurcarte.this.desktopPath
 										+ "/Base Marketing Client/");
 						dir.mkdirs();
 						final File file = new File(dir,
-								"Extraction par magasin (titulaire carte).xls");
+								"Extraction par ensemble client (titulaire carte).xls");
 
 						final ExcelExporter exp = new ExcelExporter();
-						exp.exportTable(EmailingMagasin.this.table_3, file);
-						EmailingMagasin.this.etat = true;
-						EmailingMagasin.this.Message = "Exportation du fichier Extraction par magasin (titulaire carte).xls réalisée avec succès";
-						EmailingMagasin.this.choixformat = "XLS3";
+						exp.exportTable(Ensembleporteurcarte.this.table_3, file);
+						Ensembleporteurcarte.this.etat = true;
+						Ensembleporteurcarte.this.Message = "Exportation du fichier Extraction par ensemble client (titulaire carte).xls réalisée avec succès";
+						Ensembleporteurcarte.this.choixformat = "XLS9";
 						final MessageExport fenetre = new MessageExport(
-								EmailingMagasin.this.Message,
-								EmailingMagasin.this.interfaceActuelle,
-								EmailingMagasin.this.etat,
-								EmailingMagasin.this.choixformat);
+								Ensembleporteurcarte.this.Message,
+								Ensembleporteurcarte.this.interfaceActuelle,
+								Ensembleporteurcarte.this.etat,
+								Ensembleporteurcarte.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingMagasin.this.interfaceActuelle
+						Ensembleporteurcarte.this.interfaceActuelle
 								.setEnabled(false);
 
 					} catch (final IOException ex) {
 						System.out.println(ex.getMessage());
 						ex.printStackTrace();
-						EmailingMagasin.this.etat = false;
-						EmailingMagasin.this.choixformat = "XLS";
-						EmailingMagasin.this.Message = "Impossible de générer le fichier XLS";
+						Ensembleporteurcarte.this.etat = false;
+						Ensembleporteurcarte.this.choixformat = "XLS";
+						Ensembleporteurcarte.this.Message = "Impossible de générer le fichier XLS";
 						final MessageExport fenetre = new MessageExport(
-								EmailingMagasin.this.Message,
-								EmailingMagasin.this.interfaceActuelle,
-								EmailingMagasin.this.etat,
-								EmailingMagasin.this.choixformat);
+								Ensembleporteurcarte.this.Message,
+								Ensembleporteurcarte.this.interfaceActuelle,
+								Ensembleporteurcarte.this.etat,
+								Ensembleporteurcarte.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingMagasin.this.interfaceActuelle
+						Ensembleporteurcarte.this.interfaceActuelle
 								.setEnabled(false);
 
 					}
 
 				}
 			});
-			this.lblExportxls.setBounds(743, 679, 133, 28);
+			this.lblExportxls.setBounds(744, 687, 133, 28);
 		}
 		return this.lblExportxls;
 	}
@@ -898,34 +812,24 @@ public class EmailingMagasin extends JFrame {
 			this.lblFermer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
-					EmailingMagasin.this.dispose();
-					EmailingMagasin.this.interfacePrecedente.setVisible(true);
-					EmailingMagasin.this.interfacePrecedente.setEnabled(true);
+					Ensembleporteurcarte.this.dispose();
+					Ensembleporteurcarte.this.interfacePrecedente
+							.setVisible(true);
+					Ensembleporteurcarte.this.interfacePrecedente
+							.setEnabled(true);
 				}
 			});
 			this.lblFermer.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblFermer.setForeground(Color.GRAY);
-			this.lblFermer.setBounds(874, 55, 178, 48);
+			this.lblFermer.setBounds(871, 55, 169, 44);
 		}
 		return this.lblFermer;
-	}
-
-	private JLabel getLblMerciDeSlectionner() {
-		if (this.lblMerciDeSlectionner == null) {
-			this.lblMerciDeSlectionner = new JLabel(
-					"Merci de s\u00E9lectionner un magasin");
-			this.lblMerciDeSlectionner
-					.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lblMerciDeSlectionner.setForeground(Color.GRAY);
-			this.lblMerciDeSlectionner.setBounds(544, 191, 237, 14);
-		}
-		return this.lblMerciDeSlectionner;
 	}
 
 	private JLabel getLblNewLabel() {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
-			this.lblNewLabel.setIcon(new ImageIcon(EmailingMagasin.class
+			this.lblNewLabel.setIcon(new ImageIcon(Ensembleporteurcarte.class
 					.getResource("/Images/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
@@ -939,7 +843,7 @@ public class EmailingMagasin extends JFrame {
 			this.lblSelectionnerLesInformations.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
 			this.lblSelectionnerLesInformations.setForeground(Color.GRAY);
-			this.lblSelectionnerLesInformations.setBounds(242, 244, 270, 14);
+			this.lblSelectionnerLesInformations.setBounds(242, 165, 283, 14);
 		}
 		return this.lblSelectionnerLesInformations;
 	}
@@ -947,7 +851,7 @@ public class EmailingMagasin extends JFrame {
 	private JLabel getLblValider() {
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
-			this.lblValider.setIcon(new ImageIcon(EmailingMagasin.class
+			this.lblValider.setIcon(new ImageIcon(Ensembleporteurcarte.class
 					.getResource("/Images/valider.png")));
 			this.lblValider.setHorizontalAlignment(SwingConstants.RIGHT);
 			this.lblValider.setCursor(Cursor
@@ -957,259 +861,265 @@ public class EmailingMagasin extends JFrame {
 				public void mouseClicked(final MouseEvent arg0) {
 
 					int compteur = 0;
-					if (EmailingMagasin.this.checkBox.isSelected() == true) {
+
+					if (Ensembleporteurcarte.this.checkBox.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.checkBox_1.isSelected() == true) {
+					if (Ensembleporteurcarte.this.checkBox_1.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.chckbxCivilit.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxCivilit.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.chckbxNom.isSelected() == true) {
+					if (Ensembleporteurcarte.this.checkBox_2.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.chckbxPrnom.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxNom.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.chckbxAdresse.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxPrnom.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.chckbxVille.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxAdresse.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.chckbxCodepostal.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxVille.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.chckbxDateDeNaissance.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxCodepostal.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.chckbxEmail.isSelected() == true) {
-
-						compteur++;
-					}
-					if (EmailingMagasin.this.chckbxAbonnementNewsletter
+					if (Ensembleporteurcarte.this.chckbxDateDeNaissance
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.chckbxAge.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxEmail.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.chckbxNCarteDe.isSelected() == true) {
+					if (Ensembleporteurcarte.this.chckbxAbonnementNewsletter
+							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingMagasin.this.chckbxMagasinDeReference
+					if (Ensembleporteurcarte.this.chckbxNCarteDe.isSelected() == true) {
+
+						compteur++;
+					}
+					if (Ensembleporteurcarte.this.chckbxMagasinDeReference
 							.isSelected() == true) {
 
 						compteur++;
 					}
 					if (compteur > 4) {
-						EmailingMagasin.this.table_3
+						Ensembleporteurcarte.this.table_3
 								.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 					}
 					System.out.print(compteur);
 
-					EmailingMagasin.this.membres = Select
-							.eMailingmagasin(EmailingMagasin.this.selectionIDMagasin);
+					Ensembleporteurcarte.this.membres = Select
+							.ensembleporteurcarte();
 
-					if (EmailingMagasin.this.membres.size() == 0) {
+					if (Ensembleporteurcarte.this.membres.size() == 0) {
 						final String message = "Aucun Résultat";
 
 						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingMagasin.this.interfaceActuelle, message);
+								Ensembleporteurcarte.this.interfaceActuelle,
+								message);
 						fenetre.setVisible(true);
-						EmailingMagasin.this.interfaceActuelle
+						Ensembleporteurcarte.this.interfaceActuelle
 								.setEnabled(false);
-						EmailingMagasin.this.chckbxSelectionnerLensembleDes
+						Ensembleporteurcarte.this.chckbxSelectionnerLensembleDes
 								.setSelected(false);
-						EmailingMagasin.this.lblValider.setVisible(false);
+						Ensembleporteurcarte.this.lblValider.setVisible(false);
 
-						if ((EmailingMagasin.this.table_3.getRowCount() != 0)
-								|| (EmailingMagasin.this.table_3
+						if ((Ensembleporteurcarte.this.table_3.getRowCount() != 0)
+								|| (Ensembleporteurcarte.this.table_3
 										.getColumnCount() != 0)) {
-							EmailingMagasin.this.model.setColumnCount(0);
-							EmailingMagasin.this.model.setRowCount(0);
-							EmailingMagasin.this.table_3
-									.setModel(EmailingMagasin.this.model);
-							EmailingMagasin.this.table_3.repaint();
+							Ensembleporteurcarte.this.model.setColumnCount(0);
+							Ensembleporteurcarte.this.model.setRowCount(0);
+							Ensembleporteurcarte.this.table_3
+									.setModel(Ensembleporteurcarte.this.model);
+							Ensembleporteurcarte.this.table_3.repaint();
 						}
 					}
 					if (compteur < 2) {
 						final String message = "Deux choix en sortie minimum";
 
 						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingMagasin.this.interfaceActuelle, message);
+								Ensembleporteurcarte.this.interfaceActuelle,
+								message);
 						fenetre.setVisible(true);
-						EmailingMagasin.this.interfaceActuelle
+						Ensembleporteurcarte.this.interfaceActuelle
 								.setEnabled(false);
-						EmailingMagasin.this.interfaceActuelle
+						Ensembleporteurcarte.this.interfaceActuelle
 								.setVisible(false);
-						EmailingMagasin.this.lblValider.setVisible(false);
-
-						EmailingMagasin.this.lblMerciDeSlectionner
-								.setVisible(true);
+						Ensembleporteurcarte.this.lblValider.setVisible(false);
 
 					} else
 
 					{
 
-						EmailingMagasin.this.entetes = new String[compteur];
+						Ensembleporteurcarte.this.entetes = new String[compteur];
 
-						EmailingMagasin.this.donnees = new Object[EmailingMagasin.this.membres
-								.size()][EmailingMagasin.this.entetes.length];
+						Ensembleporteurcarte.this.donnees = new Object[Ensembleporteurcarte.this.membres
+								.size()][Ensembleporteurcarte.this.entetes.length];
 
-						for (int j = 0; j < EmailingMagasin.this.membres.size(); j++) {
+						for (int j = 0; j < Ensembleporteurcarte.this.membres
+								.size(); j++) {
 
-							for (int i = 0; i < (EmailingMagasin.this.entetes.length - 1); i++) {
+							for (int i = 0; i < (Ensembleporteurcarte.this.entetes.length - 1); i++) {
 
-								if (EmailingMagasin.this.chckbxCivilit
+								if (Ensembleporteurcarte.this.chckbxCivilit
 										.isSelected() == true) {
-									EmailingMagasin.this.entetes[i] = "Civilité";
-									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Civilité";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getCiviliteIndividu();
 									i++;
 
 								}
-								if (EmailingMagasin.this.chckbxNom.isSelected() == true) {
-									EmailingMagasin.this.entetes[i] = "Nom";
-									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+								if (Ensembleporteurcarte.this.chckbxNom
+										.isSelected() == true) {
+									Ensembleporteurcarte.this.entetes[i] = "Nom";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getNomIndividu().toUpperCase();
 									i++;
 
 								}
-								if (EmailingMagasin.this.chckbxPrnom
+								if (Ensembleporteurcarte.this.chckbxPrnom
 										.isSelected() == true) {
-									EmailingMagasin.this.entetes[i] = "Prénom";
-									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Prénom";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getPrenomIndividu().toLowerCase();
 									i++;
 
 								}
-								if (EmailingMagasin.this.chckbxAdresse
+								if (Ensembleporteurcarte.this.chckbxAdresse
 										.isSelected() == true) {
-									EmailingMagasin.this.entetes[i] = "Adresse";
-									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Adresse";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getAdresseIndividu();
 									i++;
 								}
-								if (EmailingMagasin.this.chckbxVille
+								if (Ensembleporteurcarte.this.chckbxVille
 										.isSelected() == true) {
-									EmailingMagasin.this.entetes[i] = "Ville";
-									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Ville";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getVilleIndividu();
 									i++;
 								}
-								if (EmailingMagasin.this.chckbxCodepostal
+								if (Ensembleporteurcarte.this.chckbxCodepostal
 										.isSelected() == true) {
-									EmailingMagasin.this.entetes[i] = "Code Postal";
-									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Code Postal";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getCodePostalIndividu();
 									i++;
 								}
-								if (EmailingMagasin.this.chckbxDateDeNaissance
+								if (Ensembleporteurcarte.this.chckbxDateDeNaissance
 										.isSelected() == true) {
-									if (EmailingMagasin.this.membres.get(j)
-											.getDateNaissanceIndividu() != null) {
-										EmailingMagasin.this.entetes[i] = "Date de Naissance";
-										EmailingMagasin.this.donnees[j][i] = ""
-												+ EmailingMagasin.this.membres
+									if (Ensembleporteurcarte.this.membres
+											.get(j).getDateNaissanceIndividu() != null) {
+										Ensembleporteurcarte.this.entetes[i] = "Date de Naissance";
+										Ensembleporteurcarte.this.donnees[j][i] = ""
+												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getDateNaissanceIndividu();
 										i++;
 									} else {
-										EmailingMagasin.this.entetes[i] = "Date de Naissance";
-										EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+										Ensembleporteurcarte.this.entetes[i] = "Date de Naissance";
+										Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 												.get(j)
 												.getDateNaissanceIndividu();
 										i++;
 									}
 								}
-								if (EmailingMagasin.this.chckbxAge.isSelected() == true) {
-									EmailingMagasin.this.entetes[i] = "Age";
+								if (Ensembleporteurcarte.this.checkBox_2
+										.isSelected() == true) {
+									Ensembleporteurcarte.this.entetes[i] = "Age";
 
-									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getAge() + " ans";
 									i++;
 								}
-								if (EmailingMagasin.this.chckbxEmail
+								if (Ensembleporteurcarte.this.chckbxEmail
 										.isSelected() == true) {
-									EmailingMagasin.this.entetes[i] = "Adresse Mail";
-									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Adresse Mail";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getEmail();
 									i++;
 								}
-								if (EmailingMagasin.this.chckbxAbonnementNewsletter
+								if (Ensembleporteurcarte.this.chckbxAbonnementNewsletter
 										.isSelected() == true) {
-									EmailingMagasin.this.entetes[i] = "Newsletter";
-									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Newsletter";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getNewsletterIndividu();
 									i++;
 								}
-								if (EmailingMagasin.this.chckbxNCarteDe
+								if (Ensembleporteurcarte.this.chckbxNCarteDe
 										.isSelected() == true) {
-									if (EmailingMagasin.this.membres.get(j)
-											.getNumerocarte() != null) {
-										EmailingMagasin.this.entetes[i] = "N°Client";
-										EmailingMagasin.this.donnees[j][i] = ""
-												+ EmailingMagasin.this.membres
+									if (Ensembleporteurcarte.this.membres
+											.get(j).getNumerocarte() != null) {
+										Ensembleporteurcarte.this.entetes[i] = "N°Client";
+										Ensembleporteurcarte.this.donnees[j][i] = ""
+												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getNumerocarte();
 										i++;
 									} else {
-										EmailingMagasin.this.entetes[i] = "N°Client";
-										EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+										Ensembleporteurcarte.this.entetes[i] = "N°Client";
+										Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 												.get(j).getNumerocarte();
 										i++;
 									}
 								}
-								if (EmailingMagasin.this.chckbxMagasinDeReference
+								if (Ensembleporteurcarte.this.chckbxMagasinDeReference
 										.isSelected() == true) {
-									EmailingMagasin.this.entetes[i] = "Magasin";
-									EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+									Ensembleporteurcarte.this.entetes[i] = "Magasin";
+									Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 											.get(j).getNommagasin();
 									i++;
 								}
-								if (EmailingMagasin.this.checkBox.isSelected() == true) {
-									if (EmailingMagasin.this.membres.get(j)
-											.getTelephonefixe() != null) {
-										EmailingMagasin.this.entetes[i] = "Téléphone";
-										EmailingMagasin.this.donnees[j][i] = ""
-												+ EmailingMagasin.this.membres
+								if (Ensembleporteurcarte.this.checkBox
+										.isSelected() == true) {
+									if (Ensembleporteurcarte.this.membres
+											.get(j).getTelephonefixe() != null) {
+										Ensembleporteurcarte.this.entetes[i] = "Téléphone";
+										Ensembleporteurcarte.this.donnees[j][i] = ""
+												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getTelephonefixe();
 										i++;
 									} else {
-										EmailingMagasin.this.entetes[i] = "Téléphone";
-										EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+										Ensembleporteurcarte.this.entetes[i] = "Téléphone";
+										Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 												.get(j).getTelephonefixe();
 										i++;
 									}
+
 								}
-								if (EmailingMagasin.this.checkBox_1
+								if (Ensembleporteurcarte.this.checkBox_1
 										.isSelected() == true) {
-									if (EmailingMagasin.this.membres.get(j)
-											.getTelephonemobile() != null) {
-										EmailingMagasin.this.entetes[i] = "Mobile";
-										EmailingMagasin.this.donnees[j][i] = ""
-												+ EmailingMagasin.this.membres
+									if (Ensembleporteurcarte.this.membres
+											.get(j).getTelephonemobile() != null) {
+										Ensembleporteurcarte.this.entetes[i] = "Mobile";
+										Ensembleporteurcarte.this.donnees[j][i] = ""
+												+ Ensembleporteurcarte.this.membres
 														.get(j)
 														.getTelephonemobile();
 										i++;
 									} else {
-										EmailingMagasin.this.entetes[i] = "Mobile";
-										EmailingMagasin.this.donnees[j][i] = EmailingMagasin.this.membres
+										Ensembleporteurcarte.this.entetes[i] = "Mobile";
+										Ensembleporteurcarte.this.donnees[j][i] = Ensembleporteurcarte.this.membres
 												.get(j).getTelephonemobile();
 										i++;
 									}
@@ -1219,30 +1129,29 @@ public class EmailingMagasin extends JFrame {
 
 						}
 
-						if (EmailingMagasin.this.membres.size() != 0) {
+						if (Ensembleporteurcarte.this.membres.size() != 0) {
 
-							EmailingMagasin.this.model = new DefaultTableModel(
-									EmailingMagasin.this.donnees,
-									EmailingMagasin.this.entetes);
+							Ensembleporteurcarte.this.model = new DefaultTableModel(
+									Ensembleporteurcarte.this.donnees,
+									Ensembleporteurcarte.this.entetes);
 
-							EmailingMagasin.this.table_3
-									.setModel(EmailingMagasin.this.model);
+							Ensembleporteurcarte.this.table_3
+									.setModel(Ensembleporteurcarte.this.model);
 
 						}
 
 					}
 
-					EmailingMagasin.this.chckbxSelectionnerLensembleDes
+					Ensembleporteurcarte.this.chckbxSelectionnerLensembleDes
 							.setVisible(true);
-					EmailingMagasin.this.lblExportxls.setVisible(true);
-					EmailingMagasin.this.lblExportCvs.setVisible(true);
+					Ensembleporteurcarte.this.lblExportxls.setVisible(true);
+					Ensembleporteurcarte.this.lblExportCvs.setVisible(true);
 
 				}
 			});
-			this.lblValider.setVisible(false);
-			this.lblValider.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lblValider.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblValider.setForeground(Color.GRAY);
-			this.lblValider.setBounds(935, 366, 99, 23);
+			this.lblValider.setBounds(901, 334, 135, 23);
 		}
 		return this.lblValider;
 	}
@@ -1251,7 +1160,7 @@ public class EmailingMagasin extends JFrame {
 		if (this.scrollPane_1 == null) {
 			this.scrollPane_1 = new JScrollPane();
 			this.scrollPane_1.setBorder(null);
-			this.scrollPane_1.setBounds(242, 400, 788, 251);
+			this.scrollPane_1.setBounds(242, 377, 794, 295);
 			this.scrollPane_1.setViewportView(this.getTable_3());
 		}
 		return this.scrollPane_1;

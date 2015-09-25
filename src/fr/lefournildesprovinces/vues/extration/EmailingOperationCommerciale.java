@@ -1,4 +1,4 @@
-package fr.lefournildesprovinces.vues.extrationbases;
+package fr.lefournildesprovinces.vues.extration;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import fr.lefournildesprovinces.dao.Select;
@@ -39,18 +40,20 @@ import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.MessageExport;
 
-public class EmailingOperationCommercialeSansCarte extends JFrame {
+public class EmailingOperationCommerciale extends JFrame {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = -3712303591581720760L;
+	private static final long serialVersionUID = -4585613773891453209L;
 	private JCheckBox chckbxAbonnementNewsletter;
 	private JCheckBox chckbxAdresse;
 	private JCheckBox chckbxCivilit;
 	private JCheckBox chckbxCodepostal;
+	private JCheckBox chckbxDateDeNaissance;
 	private JCheckBox chckbxEmail;
 	private JCheckBox chckbxMagasinDeReference;
+	private JCheckBox chckbxNCarteDe;
 	private JCheckBox chckbxNom;
 	private JCheckBox chckbxPrnom;
 	private JCheckBox chckbxSelectionnerLensembleDes;
@@ -78,7 +81,6 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 	private JLabel label_2;
 	private JLabel label_3;
 	private JLabel label_4;
-	private JLabel label_5;
 	private JLayeredPane layeredPane;
 	private JLabel lblEmailingParMagasin;
 	private JLabel lblExportCvs;
@@ -87,6 +89,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 	private JLabel lblMerciDeSlectionner;
 	private JLabel lblMerciDeSlectionner_1;
 	private JLabel lblNewLabel;
+	private JLabel lblOu;
 	private JLabel lblSelectionnerLesInformations;
 	private JLabel lblValider;
 	private ComboBoxModel<Object> listemagasins;
@@ -99,7 +102,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 	private int selectionIDOperation;
 	private JTable table_3;
 
-	public EmailingOperationCommercialeSansCarte(final JFrame interfacepre) {
+	public EmailingOperationCommerciale(final JFrame interfacepre) {
 		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1280, 800);
@@ -123,16 +126,16 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 					.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(final MouseEvent e) {
-							EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+							EmailingOperationCommerciale.this.chckbxToutDselectionner
 									.setSelected(false);
-							EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+							EmailingOperationCommerciale.this.chckbxToutSlectionner
 									.setSelected(false);
 						}
 					});
 			this.chckbxAbonnementNewsletter.setForeground(Color.GRAY);
 			this.chckbxAbonnementNewsletter.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
-			this.chckbxAbonnementNewsletter.setBounds(857, 328, 195, 23);
+			this.chckbxAbonnementNewsletter.setBounds(855, 331, 188, 23);
 			this.chckbxAbonnementNewsletter.setSelected(true);
 		}
 		return this.chckbxAbonnementNewsletter;
@@ -144,15 +147,15 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.chckbxAdresse.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxAdresse.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxAdresse.setForeground(Color.GRAY);
-			this.chckbxAdresse.setBounds(475, 328, 98, 23);
+			this.chckbxAdresse.setBounds(344, 331, 97, 23);
 			this.chckbxAdresse.setSelected(true);
 		}
 		return this.chckbxAdresse;
@@ -164,15 +167,15 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.chckbxCivilit.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxCivilit.setForeground(Color.GRAY);
 			this.chckbxCivilit.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxCivilit.setBounds(242, 328, 98, 23);
+			this.chckbxCivilit.setBounds(242, 331, 100, 23);
 			this.chckbxCivilit.setSelected(true);
 
 		}
@@ -185,18 +188,39 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.chckbxCodepostal.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxCodepostal.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxCodepostal.setForeground(Color.GRAY);
-			this.chckbxCodepostal.setBounds(342, 356, 131, 23);
+			this.chckbxCodepostal.setBounds(344, 385, 97, 23);
 			this.chckbxCodepostal.setSelected(true);
 		}
 		return this.chckbxCodepostal;
+	}
+
+	private JCheckBox getChckbxDateDeNaissance() {
+		if (this.chckbxDateDeNaissance == null) {
+			this.chckbxDateDeNaissance = new JCheckBox("Date de Naissance");
+			this.chckbxDateDeNaissance.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
+							.setSelected(false);
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
+							.setSelected(false);
+				}
+			});
+			this.chckbxDateDeNaissance.setForeground(Color.GRAY);
+			this.chckbxDateDeNaissance
+					.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.chckbxDateDeNaissance.setBounds(443, 331, 141, 23);
+			this.chckbxDateDeNaissance.setSelected(true);
+		}
+		return this.chckbxDateDeNaissance;
 	}
 
 	private JCheckBox getChckbxEmail() {
@@ -205,15 +229,15 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.chckbxEmail.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxEmail.setForeground(Color.GRAY);
 			this.chckbxEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxEmail.setBounds(575, 328, 171, 23);
+			this.chckbxEmail.setBounds(443, 357, 141, 23);
 			this.chckbxEmail.setSelected(true);
 		}
 		return this.chckbxEmail;
@@ -226,19 +250,40 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.chckbxMagasinDeReference.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxMagasinDeReference.setFont(new Font("Tahoma", Font.BOLD,
 					11));
 			this.chckbxMagasinDeReference.setForeground(Color.GRAY);
-			this.chckbxMagasinDeReference.setBounds(575, 356, 171, 23);
+			this.chckbxMagasinDeReference.setBounds(855, 357, 188, 23);
 			this.chckbxMagasinDeReference.setSelected(true);
 		}
 		return this.chckbxMagasinDeReference;
+	}
+
+	private JCheckBox getChckbxNCarteDe() {
+		if (this.chckbxNCarteDe == null) {
+			this.chckbxNCarteDe = new JCheckBox(
+					"N\u00B0 Carte de Fid\u00E9lit\u00E9");
+			this.chckbxNCarteDe.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
+							.setSelected(false);
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
+							.setSelected(false);
+				}
+			});
+			this.chckbxNCarteDe.setForeground(Color.GRAY);
+			this.chckbxNCarteDe.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.chckbxNCarteDe.setBounds(586, 331, 157, 23);
+			this.chckbxNCarteDe.setSelected(true);
+		}
+		return this.chckbxNCarteDe;
 	}
 
 	private JCheckBox getChckbxNom() {
@@ -247,15 +292,15 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.chckbxNom.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxNom.setForeground(Color.GRAY);
 			this.chckbxNom.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxNom.setBounds(242, 356, 98, 23);
+			this.chckbxNom.setBounds(242, 357, 100, 23);
 			this.chckbxNom.setSelected(true);
 		}
 		return this.chckbxNom;
@@ -267,15 +312,15 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.chckbxPrnom.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxPrnom.setForeground(Color.GRAY);
 			this.chckbxPrnom.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.chckbxPrnom.setBounds(342, 328, 131, 23);
+			this.chckbxPrnom.setBounds(242, 385, 100, 23);
 			this.chckbxPrnom.setSelected(true);
 
 		}
@@ -292,11 +337,11 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 						@Override
 						public void mouseClicked(final MouseEvent e) {
 
-							if (EmailingOperationCommercialeSansCarte.this.chckbxSelectionnerLensembleDes
+							if (EmailingOperationCommerciale.this.chckbxSelectionnerLensembleDes
 									.isSelected() == true) {
-								EmailingOperationCommercialeSansCarte.this.table_3
+								EmailingOperationCommerciale.this.table_3
 										.selectAll();
-								EmailingOperationCommercialeSansCarte.this.table_3
+								EmailingOperationCommerciale.this.table_3
 										.setFocusable(true);
 
 							}
@@ -305,7 +350,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.chckbxSelectionnerLensembleDes.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
 			this.chckbxSelectionnerLensembleDes.setForeground(Color.GRAY);
-			this.chckbxSelectionnerLensembleDes.setBounds(242, 676, 282, 23);
+			this.chckbxSelectionnerLensembleDes.setBounds(242, 678, 280, 23);
 		}
 		return this.chckbxSelectionnerLensembleDes;
 	}
@@ -319,39 +364,39 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 			this.chckbxSurLensembleDes.setForeground(Color.GRAY);
-			this.chckbxSurLensembleDes.setBounds(242, 233, 204, 23);
+			this.chckbxSurLensembleDes.setBounds(242, 236, 219, 23);
 			this.chckbxSurLensembleDes.setSelected(true);
 			this.chckbxSurLensembleDes.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					if (EmailingOperationCommercialeSansCarte.this.chckbxSurLensembleDes
+					if (EmailingOperationCommerciale.this.chckbxSurLensembleDes
 							.isSelected() != true) {
 
-						EmailingOperationCommercialeSansCarte.this.comboBox_1
+						EmailingOperationCommerciale.this.comboBox_1
 								.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.comboBox_1
+						EmailingOperationCommerciale.this.comboBox_1
 								.setEnabled(true);
-						EmailingOperationCommercialeSansCarte.this.label_4
+						EmailingOperationCommerciale.this.lblOu
 								.setVisible(true);
 						// lblMerciDeSlectionner_1.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.lblValider
+						EmailingOperationCommerciale.this.lblValider
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.etatbouton = false;
+						EmailingOperationCommerciale.this.etatbouton = false;
 					} else
 
 					{
-						EmailingOperationCommercialeSansCarte.this.comboBox_1
+						EmailingOperationCommerciale.this.comboBox_1
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.comboBox_1
+						EmailingOperationCommerciale.this.comboBox_1
 								.setEnabled(false);
-						EmailingOperationCommercialeSansCarte.this.label_4
+						EmailingOperationCommerciale.this.lblOu
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblMerciDeSlectionner_1
+						EmailingOperationCommerciale.this.lblMerciDeSlectionner_1
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblValider
+						EmailingOperationCommerciale.this.lblValider
 								.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.etatbouton = true;
+						EmailingOperationCommerciale.this.etatbouton = true;
 
 					}
 
@@ -370,32 +415,35 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
 
-					EmailingOperationCommercialeSansCarte.this.chckbxNom
+					EmailingOperationCommerciale.this.chckbxNom
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxPrnom
+					EmailingOperationCommerciale.this.chckbxPrnom
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxCivilit
+					EmailingOperationCommerciale.this.chckbxCivilit
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxAdresse
+					EmailingOperationCommerciale.this.chckbxAdresse
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxCodepostal
+					EmailingOperationCommerciale.this.chckbxCodepostal
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxVille
+					EmailingOperationCommerciale.this.chckbxVille
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxEmail
+					EmailingOperationCommerciale.this.chckbxEmail
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.checkBox_2
+					EmailingOperationCommerciale.this.checkBox
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxAbonnementNewsletter
+					EmailingOperationCommerciale.this.checkBox_2
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.checkBox
+					EmailingOperationCommerciale.this.checkBox_1
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.checkBox_1
+					EmailingOperationCommerciale.this.chckbxAbonnementNewsletter
 							.setSelected(false);
-
-					EmailingOperationCommercialeSansCarte.this.chckbxMagasinDeReference
+					EmailingOperationCommerciale.this.chckbxNCarteDe
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxDateDeNaissance
+							.setSelected(false);
+					EmailingOperationCommerciale.this.chckbxMagasinDeReference
+							.setSelected(false);
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 
 				}
@@ -403,7 +451,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.chckbxToutDselectionner.setFont(new Font("Tahoma", Font.BOLD,
 					11));
 			this.chckbxToutDselectionner.setForeground(Color.GRAY);
-			this.chckbxToutDselectionner.setBounds(242, 437, 164, 23);
+			this.chckbxToutDselectionner.setBounds(242, 445, 157, 23);
 		}
 		return this.chckbxToutDselectionner;
 	}
@@ -414,35 +462,42 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.chckbxToutSlectionner.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxNom
+					EmailingOperationCommerciale.this.chckbxNom
 							.setSelected(true);
-					EmailingOperationCommercialeSansCarte.this.chckbxPrnom
+					EmailingOperationCommerciale.this.chckbxPrnom
 							.setSelected(true);
-					EmailingOperationCommercialeSansCarte.this.chckbxCivilit
+					EmailingOperationCommerciale.this.chckbxCivilit
 							.setSelected(true);
-					EmailingOperationCommercialeSansCarte.this.chckbxAdresse
+					EmailingOperationCommerciale.this.chckbxAdresse
 							.setSelected(true);
-					EmailingOperationCommercialeSansCarte.this.chckbxCodepostal
+					EmailingOperationCommerciale.this.chckbxCodepostal
 							.setSelected(true);
-					EmailingOperationCommercialeSansCarte.this.chckbxVille
+					EmailingOperationCommerciale.this.chckbxVille
 							.setSelected(true);
-					EmailingOperationCommercialeSansCarte.this.chckbxEmail
+					EmailingOperationCommerciale.this.checkBox
 							.setSelected(true);
-					EmailingOperationCommercialeSansCarte.this.chckbxAbonnementNewsletter
+					EmailingOperationCommerciale.this.checkBox_1
 							.setSelected(true);
-					EmailingOperationCommercialeSansCarte.this.checkBox_2
+					EmailingOperationCommerciale.this.checkBox_2
 							.setSelected(true);
-
-					EmailingOperationCommercialeSansCarte.this.chckbxMagasinDeReference
+					EmailingOperationCommerciale.this.chckbxEmail
 							.setSelected(true);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxAbonnementNewsletter
+							.setSelected(true);
+					EmailingOperationCommerciale.this.chckbxNCarteDe
+							.setSelected(true);
+					EmailingOperationCommerciale.this.chckbxDateDeNaissance
+							.setSelected(true);
+					EmailingOperationCommerciale.this.chckbxMagasinDeReference
+							.setSelected(true);
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxToutSlectionner
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxToutSlectionner.setForeground(Color.GRAY);
-			this.chckbxToutSlectionner.setBounds(421, 437, 173, 23);
+			this.chckbxToutSlectionner.setBounds(422, 445, 151, 23);
 			this.chckbxToutSlectionner.setSelected(true);
 		}
 		return this.chckbxToutSlectionner;
@@ -454,15 +509,15 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.chckbxVille.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.chckbxVille.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.chckbxVille.setForeground(Color.GRAY);
-			this.chckbxVille.setBounds(475, 354, 98, 23);
+			this.chckbxVille.setBounds(344, 357, 97, 23);
 			this.chckbxVille.setSelected(true);
 		}
 		return this.chckbxVille;
@@ -475,14 +530,14 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.checkBox.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.checkBox.setForeground(Color.GRAY);
-			this.checkBox.setBounds(748, 328, 107, 23);
+			this.checkBox.setBounds(745, 331, 108, 23);
 			this.checkBox.setSelected(true);
 		}
 		return this.checkBox;
@@ -495,14 +550,14 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.checkBox_1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.checkBox_1.setForeground(Color.GRAY);
-			this.checkBox_1.setBounds(748, 356, 107, 23);
+			this.checkBox_1.setBounds(745, 357, 108, 23);
 			this.checkBox_1.setSelected(true);
 		}
 		return this.checkBox_1;
@@ -514,16 +569,16 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.checkBox_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+					EmailingOperationCommerciale.this.chckbxToutDselectionner
 							.setSelected(false);
-					EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+					EmailingOperationCommerciale.this.chckbxToutSlectionner
 							.setSelected(false);
 				}
 			});
 			this.checkBox_2.setSelected(true);
 			this.checkBox_2.setForeground(Color.GRAY);
 			this.checkBox_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.checkBox_2.setBounds(857, 356, 172, 23);
+			this.checkBox_2.setBounds(586, 357, 157, 23);
 		}
 		return this.checkBox_2;
 	}
@@ -542,84 +597,86 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 				public void actionPerformed(final ActionEvent arg0) {
 					try {
 
-						EmailingOperationCommercialeSansCarte.this.selectionIDOperation = ((OperationCommerciale) EmailingOperationCommercialeSansCarte.this.comboBox
+						EmailingOperationCommerciale.this.selectionIDOperation = ((OperationCommerciale) EmailingOperationCommerciale.this.comboBox
 								.getSelectedItem()).getIdOperationCommerciale();
-						EmailingOperationCommercialeSansCarte.this.lblMerciDeSlectionner
+						EmailingOperationCommerciale.this.lblMerciDeSlectionner
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblValider
+						EmailingOperationCommerciale.this.lblValider
 								.setVisible(true);
 
 					} catch (final Exception e) {
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingOperationCommercialeSansCarte.this.interfaceActuelle,
+								EmailingOperationCommerciale.this.interfaceActuelle,
 								message);
 						fenetre.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.interfaceActuelle
+						EmailingOperationCommerciale.this.interfaceActuelle
 								.setEnabled(false);
-						EmailingOperationCommercialeSansCarte.this.interfaceActuelle
+						EmailingOperationCommerciale.this.interfaceActuelle
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblValider
+						EmailingOperationCommerciale.this.lblValider
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblValider
+						EmailingOperationCommerciale.this.lblValider
 								.setEnabled(false);
-						EmailingOperationCommercialeSansCarte.this.lblMerciDeSlectionner
+						EmailingOperationCommerciale.this.lblMerciDeSlectionner
 								.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxNom
+						EmailingOperationCommerciale.this.chckbxNom
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxPrnom
+						EmailingOperationCommerciale.this.chckbxPrnom
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxCivilit
+						EmailingOperationCommerciale.this.chckbxCivilit
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxAdresse
+						EmailingOperationCommerciale.this.chckbxAdresse
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.checkBox_2
+						EmailingOperationCommerciale.this.chckbxCodepostal
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxCodepostal
+						EmailingOperationCommerciale.this.chckbxVille
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxVille
+						EmailingOperationCommerciale.this.chckbxEmail
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxEmail
+						EmailingOperationCommerciale.this.checkBox
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxAbonnementNewsletter
+						EmailingOperationCommerciale.this.checkBox_1
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.checkBox
+						EmailingOperationCommerciale.this.checkBox_2
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.checkBox_1
+						EmailingOperationCommerciale.this.chckbxAbonnementNewsletter
 								.setSelected(true);
-
-						EmailingOperationCommercialeSansCarte.this.chckbxMagasinDeReference
+						EmailingOperationCommerciale.this.chckbxNCarteDe
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxSelectionnerLensembleDes
+						EmailingOperationCommerciale.this.chckbxDateDeNaissance
+								.setSelected(true);
+						EmailingOperationCommerciale.this.chckbxMagasinDeReference
+								.setSelected(true);
+						EmailingOperationCommerciale.this.chckbxSelectionnerLensembleDes
 								.setSelected(false);
-						EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+						EmailingOperationCommerciale.this.chckbxToutSlectionner
 								.setSelected(false);
-						EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+						EmailingOperationCommerciale.this.chckbxToutDselectionner
 								.setSelected(false);
-						EmailingOperationCommercialeSansCarte.this.chckbxSelectionnerLensembleDes
+						EmailingOperationCommerciale.this.chckbxSelectionnerLensembleDes
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblExportxls
+						EmailingOperationCommerciale.this.lblExportxls
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblExportCvs
+						EmailingOperationCommerciale.this.lblExportCvs
 								.setVisible(false);
-						if ((EmailingOperationCommercialeSansCarte.this.table_3
+						if ((EmailingOperationCommerciale.this.table_3
 								.getRowCount() != 0)
-								&& (EmailingOperationCommercialeSansCarte.this.table_3
+								&& (EmailingOperationCommerciale.this.table_3
 										.getColumnCount() != 0)) {
-							EmailingOperationCommercialeSansCarte.this.model
+							EmailingOperationCommerciale.this.model
 									.setColumnCount(0);
-							EmailingOperationCommercialeSansCarte.this.model
+							EmailingOperationCommerciale.this.model
 									.setRowCount(0);
-							EmailingOperationCommercialeSansCarte.this.table_3
-									.setModel(EmailingOperationCommercialeSansCarte.this.model);
-							EmailingOperationCommercialeSansCarte.this.table_3
-									.repaint();
+							EmailingOperationCommerciale.this.table_3
+									.setModel(EmailingOperationCommerciale.this.model);
+							EmailingOperationCommerciale.this.table_3.repaint();
 						}
 					}
 
 				}
 			});
-			this.comboBox.setBounds(242, 166, 787, 22);
+			this.comboBox.setBounds(242, 169, 776, 22);
 			this.comboBox.setFocusable(false);
 			this.listeoperationcommerciale = new DefaultComboBoxModel<Object>(
 					Select.listeOperationCommerciale());
@@ -639,83 +696,85 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 				@Override
 				public void actionPerformed(final ActionEvent arg0) {
 					try {
-						EmailingOperationCommercialeSansCarte.this.selectionIDMagasin = ((Magasin) EmailingOperationCommercialeSansCarte.this.comboBox_1
+						EmailingOperationCommerciale.this.selectionIDMagasin = ((Magasin) EmailingOperationCommerciale.this.comboBox_1
 								.getSelectedItem()).getIdMagasin();
-						EmailingOperationCommercialeSansCarte.this.lblMerciDeSlectionner_1
+						EmailingOperationCommerciale.this.lblMerciDeSlectionner_1
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblValider
+						EmailingOperationCommerciale.this.lblValider
 								.setVisible(true);
 
 					} catch (final Exception e) {
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
 						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingOperationCommercialeSansCarte.this.interfaceActuelle,
+								EmailingOperationCommerciale.this.interfaceActuelle,
 								message);
 						fenetre.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.interfaceActuelle
+						EmailingOperationCommerciale.this.interfaceActuelle
 								.setEnabled(false);
-						EmailingOperationCommercialeSansCarte.this.interfaceActuelle
+						EmailingOperationCommerciale.this.interfaceActuelle
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblValider
+						EmailingOperationCommerciale.this.lblValider
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblValider
+						EmailingOperationCommerciale.this.lblValider
 								.setEnabled(false);
-						EmailingOperationCommercialeSansCarte.this.lblMerciDeSlectionner_1
+						EmailingOperationCommerciale.this.lblMerciDeSlectionner_1
 								.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxNom
+						EmailingOperationCommerciale.this.chckbxNom
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxPrnom
+						EmailingOperationCommerciale.this.chckbxPrnom
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxCivilit
+						EmailingOperationCommerciale.this.chckbxCivilit
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxAdresse
+						EmailingOperationCommerciale.this.chckbxAdresse
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxCodepostal
+						EmailingOperationCommerciale.this.chckbxCodepostal
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxVille
+						EmailingOperationCommerciale.this.chckbxVille
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxEmail
+						EmailingOperationCommerciale.this.chckbxEmail
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxAbonnementNewsletter
+						EmailingOperationCommerciale.this.checkBox
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.checkBox
+						EmailingOperationCommerciale.this.checkBox_1
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.checkBox_1
+						EmailingOperationCommerciale.this.chckbxAbonnementNewsletter
 								.setSelected(true);
-
-						EmailingOperationCommercialeSansCarte.this.chckbxMagasinDeReference
+						EmailingOperationCommerciale.this.chckbxNCarteDe
 								.setSelected(true);
-						EmailingOperationCommercialeSansCarte.this.chckbxSelectionnerLensembleDes
+						EmailingOperationCommerciale.this.chckbxDateDeNaissance
+								.setSelected(true);
+						EmailingOperationCommerciale.this.chckbxMagasinDeReference
+								.setSelected(true);
+						EmailingOperationCommerciale.this.chckbxSelectionnerLensembleDes
 								.setSelected(false);
-						EmailingOperationCommercialeSansCarte.this.chckbxToutSlectionner
+						EmailingOperationCommerciale.this.chckbxToutSlectionner
 								.setSelected(false);
-						EmailingOperationCommercialeSansCarte.this.chckbxToutDselectionner
+						EmailingOperationCommerciale.this.chckbxToutDselectionner
 								.setSelected(false);
-						EmailingOperationCommercialeSansCarte.this.chckbxSelectionnerLensembleDes
+						EmailingOperationCommerciale.this.chckbxSelectionnerLensembleDes
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblExportxls
+						EmailingOperationCommerciale.this.lblExportxls
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblExportCvs
+						EmailingOperationCommerciale.this.lblExportCvs
 								.setVisible(false);
-						if ((EmailingOperationCommercialeSansCarte.this.table_3
+						if ((EmailingOperationCommerciale.this.table_3
 								.getRowCount() != 0)
-								&& (EmailingOperationCommercialeSansCarte.this.table_3
+								&& (EmailingOperationCommerciale.this.table_3
 										.getColumnCount() != 0)) {
-							EmailingOperationCommercialeSansCarte.this.model
+							EmailingOperationCommerciale.this.model
 									.setColumnCount(0);
-							EmailingOperationCommercialeSansCarte.this.model
+							EmailingOperationCommerciale.this.model
 									.setRowCount(0);
-							EmailingOperationCommercialeSansCarte.this.table_3
-									.setModel(EmailingOperationCommercialeSansCarte.this.model);
-							EmailingOperationCommercialeSansCarte.this.table_3
-									.repaint();
+							EmailingOperationCommerciale.this.table_3
+									.setModel(EmailingOperationCommerciale.this.model);
+							EmailingOperationCommerciale.this.table_3.repaint();
 						}
 					}
 
 				}
 			});
 			this.comboBox_1.setBackground(Color.WHITE);
-			this.comboBox_1.setBounds(521, 233, 508, 22);
+			this.comboBox_1.setBounds(532, 236, 486, 22);
 			this.comboBox_1.setEnabled(false);
 			this.listemagasins = new DefaultComboBoxModel<Object>(
 					Select.listemagasins());
@@ -729,9 +788,8 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 	private JLabel getFond() {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
-			this.fond.setIcon(new ImageIcon(
-					EmailingOperationCommercialeSansCarte.class
-							.getResource("/Images/menus-extraction-long.png")));
+			this.fond.setIcon(new ImageIcon(EmailingOperationCommerciale.class
+					.getResource("/Images/menus-extraction-long.png")));
 			this.fond.setBounds(216, 55, 850, 690);
 		}
 		return this.fond;
@@ -745,7 +803,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final MenuPrincipal fenetre = new MenuPrincipal();
 					fenetre.setVisible(true);
-					EmailingOperationCommercialeSansCarte.this.dispose();
+					EmailingOperationCommerciale.this.dispose();
 				}
 			});
 			this.label
@@ -763,7 +821,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
 					gestionclientcarte.setVisible(true);
-					EmailingOperationCommercialeSansCarte.this.dispose();
+					EmailingOperationCommerciale.this.dispose();
 				}
 			});
 			this.label_1.setCursor(Cursor
@@ -781,7 +839,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionMagasins gestionMagasin = new GestionMagasins();
 					gestionMagasin.setVisible(true);
-					EmailingOperationCommercialeSansCarte.this.dispose();
+					EmailingOperationCommerciale.this.dispose();
 				}
 			});
 			this.label_2.setCursor(Cursor
@@ -799,7 +857,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
 					operation.setVisible(true);
-					EmailingOperationCommercialeSansCarte.this.dispose();
+					EmailingOperationCommerciale.this.dispose();
 				}
 			});
 			this.label_3.setCursor(Cursor
@@ -811,23 +869,13 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 
 	private JLabel getLabel_4() {
 		if (this.label_4 == null) {
-			this.label_4 = new JLabel("Ou");
+			this.label_4 = new JLabel(
+					"(CTRL+C ou Pomme+C pour copier les donn\u00E9es)");
 			this.label_4.setForeground(Color.GRAY);
 			this.label_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.label_4.setBounds(464, 237, 34, 14);
+			this.label_4.setBounds(242, 703, 331, 14);
 		}
 		return this.label_4;
-	}
-
-	private JLabel getLabel_5() {
-		if (this.label_5 == null) {
-			this.label_5 = new JLabel(
-					"(CTRL+C ou Pomme+C pour copier les donn\u00E9es)");
-			this.label_5.setForeground(Color.GRAY);
-			this.label_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.label_5.setBounds(242, 706, 310, 14);
-		}
-		return this.label_5;
 	}
 
 	private JLayeredPane getLayeredPane_1() {
@@ -847,6 +895,8 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.layeredPane.add(this.getChckbxVille());
 			this.layeredPane.add(this.getChckbxEmail());
 			this.layeredPane.add(this.getChckbxAbonnementNewsletter());
+			this.layeredPane.add(this.getChckbxNCarteDe());
+			this.layeredPane.add(this.getChckbxDateDeNaissance());
 			this.layeredPane.add(this.getChckbxMagasinDeReference());
 			this.layeredPane.add(this.getScrollPane_1());
 			this.layeredPane.add(this.getLblSelectionnerLesInformations());
@@ -864,8 +914,8 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.layeredPane.add(this.getLabel_2());
 			this.layeredPane.add(this.getLabel_3());
 			this.layeredPane.add(this.getCheckBox_2());
+			this.layeredPane.add(this.getLblOu());
 			this.layeredPane.add(this.getLabel_4());
-			this.layeredPane.add(this.getLabel_5());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel());
 
@@ -876,11 +926,11 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 	private JLabel getLblEmailingParMagasin() {
 		if (this.lblEmailingParMagasin == null) {
 			this.lblEmailingParMagasin = new JLabel(
-					"Tri par Operation Commerciale (Clients non titulaire d'une carte de fidelit\u00E9)");
+					"tri par Operation Commerciale (Clients  titulaire d'une carte de fidelit\u00E9)");
 			this.lblEmailingParMagasin
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblEmailingParMagasin.setForeground(Color.GRAY);
-			this.lblEmailingParMagasin.setBounds(242, 110, 454, 14);
+			this.lblEmailingParMagasin.setBounds(242, 110, 441, 14);
 		}
 		return this.lblEmailingParMagasin;
 	}
@@ -889,7 +939,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 		if (this.lblExportCvs == null) {
 			this.lblExportCvs = new JLabel("");
 			this.lblExportCvs.setIcon(new ImageIcon(
-					EmailingOperationCommercialeSansCarte.class
+					EmailingOperationCommerciale.class
 							.getResource("/Images/export-csv.png")));
 			this.lblExportCvs.setVisible(false);
 			this.lblExportCvs.addMouseListener(new MouseAdapter() {
@@ -902,31 +952,31 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 								.toLowerCase();
 						;
 						if (os.contains("mac")) {
-							EmailingOperationCommercialeSansCarte.this.desktopPath = System
-									.getProperty("user.home") + "/Desktop";
+							EmailingOperationCommerciale.this.desktopPath = System
+									.getProperty("user.home") + "";
 						} else {
-							EmailingOperationCommercialeSansCarte.this.desktopPath = System
+							EmailingOperationCommerciale.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 
 						}
 
 						final File dir = new File(
-								EmailingOperationCommercialeSansCarte.this.desktopPath
+								EmailingOperationCommerciale.this.desktopPath
 										+ "/Base Marketing Client/");
 						dir.mkdirs();
 						final File file = new File(dir,
-								"Extraction par operation commerciale (non titulaire carte).csv");
+								"Extraction par operation commerciale (titulaire carte).csv");
 
 						final FileWriter writer = new FileWriter(file);
 
-						for (int j = 0; j < EmailingOperationCommercialeSansCarte.this.membres
+						for (int j = 0; j < EmailingOperationCommerciale.this.membres
 								.size(); j++) {
 
-							for (int i = 0; i <= (EmailingOperationCommercialeSansCarte.this.entetes.length - 1); i++) {
-								if (EmailingOperationCommercialeSansCarte.this.donnees[j][i] != null) {
-									writer.append(EmailingOperationCommercialeSansCarte.this.donnees[j][i]
+							for (int i = 0; i <= (EmailingOperationCommerciale.this.entetes.length - 1); i++) {
+								if (EmailingOperationCommerciale.this.donnees[j][i] != null) {
+									writer.append(EmailingOperationCommerciale.this.donnees[j][i]
 											.toString());
-									if (i == (EmailingOperationCommercialeSansCarte.this.entetes.length - 1)) {
+									if (i == (EmailingOperationCommerciale.this.entetes.length - 1)) {
 										writer.append("\n");
 									} else {
 										writer.append(",");
@@ -941,16 +991,16 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 							}
 						}
 
-						EmailingOperationCommercialeSansCarte.this.Message = "Exportation du fichier Extraction par opération (non titulaire carte).csv réalisée avec succès";
-						EmailingOperationCommercialeSansCarte.this.etat = true;
-						EmailingOperationCommercialeSansCarte.this.choixformat = "CSV6";
+						EmailingOperationCommerciale.this.Message = "Exportation du fichier Extraction par opération (titulaire carte).csv réalisée avec succès";
+						EmailingOperationCommerciale.this.etat = true;
+						EmailingOperationCommerciale.this.choixformat = "CSV5";
 						final MessageExport fenetre = new MessageExport(
-								EmailingOperationCommercialeSansCarte.this.Message,
-								EmailingOperationCommercialeSansCarte.this.interfaceActuelle,
-								EmailingOperationCommercialeSansCarte.this.etat,
-								EmailingOperationCommercialeSansCarte.this.choixformat);
+								EmailingOperationCommerciale.this.Message,
+								EmailingOperationCommerciale.this.interfaceActuelle,
+								EmailingOperationCommerciale.this.etat,
+								EmailingOperationCommerciale.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.interfaceActuelle
+						EmailingOperationCommerciale.this.interfaceActuelle
 								.setEnabled(false);
 
 						writer.flush();
@@ -958,16 +1008,16 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 
 					} catch (final IOException e) {
 						e.printStackTrace();
-						EmailingOperationCommercialeSansCarte.this.Message = "Impossible de générer le fichier CSV";
-						EmailingOperationCommercialeSansCarte.this.etat = false;
-						EmailingOperationCommercialeSansCarte.this.choixformat = "CSV";
+						EmailingOperationCommerciale.this.Message = "Impossible de générer le fichier CSV";
+						EmailingOperationCommerciale.this.etat = false;
+						EmailingOperationCommerciale.this.choixformat = "CSV";
 						final MessageExport fenetre = new MessageExport(
-								EmailingOperationCommercialeSansCarte.this.Message,
-								EmailingOperationCommercialeSansCarte.this.interfaceActuelle,
-								EmailingOperationCommercialeSansCarte.this.etat,
-								EmailingOperationCommercialeSansCarte.this.choixformat);
+								EmailingOperationCommerciale.this.Message,
+								EmailingOperationCommerciale.this.interfaceActuelle,
+								EmailingOperationCommerciale.this.etat,
+								EmailingOperationCommerciale.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.interfaceActuelle
+						EmailingOperationCommerciale.this.interfaceActuelle
 								.setEnabled(false);
 
 					}
@@ -978,7 +1028,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblExportCvs.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblExportCvs.setForeground(Color.GRAY);
-			this.lblExportCvs.setBounds(896, 681, 133, 34);
+			this.lblExportCvs.setBounds(885, 683, 133, 34);
 		}
 		return this.lblExportCvs;
 	}
@@ -987,7 +1037,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 		if (this.lblExportxls == null) {
 			this.lblExportxls = new JLabel("");
 			this.lblExportxls.setIcon(new ImageIcon(
-					EmailingOperationCommercialeSansCarte.class
+					EmailingOperationCommerciale.class
 							.getResource("/Images/export-excel.png")));
 			this.lblExportxls.setVisible(false);
 			this.lblExportxls.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -1001,57 +1051,56 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 								.toLowerCase();
 						;
 						if (os.contains("mac")) {
-							EmailingOperationCommercialeSansCarte.this.desktopPath = System
-									.getProperty("user.home") + "/Desktop";
+							EmailingOperationCommerciale.this.desktopPath = System
+									.getProperty("user.home") + "";
 						} else {
-							EmailingOperationCommercialeSansCarte.this.desktopPath = System
+							EmailingOperationCommerciale.this.desktopPath = System
 									.getProperty("user.home") + "/Desktop";
 
 						}
 
 						final File dir = new File(
-								EmailingOperationCommercialeSansCarte.this.desktopPath
+								EmailingOperationCommerciale.this.desktopPath
 										+ "/Base Marketing Client/");
 						dir.mkdirs();
 						final File file = new File(dir,
-								"Extraction par operation commerciale (non titulaire carte).xls");
+								"Extraction par operation commerciale (titulaire carte).xls");
 
 						final ExcelExporter exp = new ExcelExporter();
 						exp.exportTable(
-								EmailingOperationCommercialeSansCarte.this.table_3,
-								file);
-						EmailingOperationCommercialeSansCarte.this.etat = true;
-						EmailingOperationCommercialeSansCarte.this.Message = "Exportation du fichier Extraction par opération (non titulaire carte).xls réalisée avec succès";
-						EmailingOperationCommercialeSansCarte.this.choixformat = "XLS";
+								EmailingOperationCommerciale.this.table_3, file);
+						EmailingOperationCommerciale.this.etat = true;
+						EmailingOperationCommerciale.this.Message = "Exportation du fichier Extraction par opération (titulaire carte).xls réalisée avec succès";
+						EmailingOperationCommerciale.this.choixformat = "XLS";
 						final MessageExport fenetre = new MessageExport(
-								EmailingOperationCommercialeSansCarte.this.Message,
-								EmailingOperationCommercialeSansCarte.this.interfaceActuelle,
-								EmailingOperationCommercialeSansCarte.this.etat,
-								EmailingOperationCommercialeSansCarte.this.choixformat);
+								EmailingOperationCommerciale.this.Message,
+								EmailingOperationCommerciale.this.interfaceActuelle,
+								EmailingOperationCommerciale.this.etat,
+								EmailingOperationCommerciale.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.interfaceActuelle
+						EmailingOperationCommerciale.this.interfaceActuelle
 								.setEnabled(false);
 
 					} catch (final IOException ex) {
 						System.out.println(ex.getMessage());
 						ex.printStackTrace();
-						EmailingOperationCommercialeSansCarte.this.etat = false;
-						EmailingOperationCommercialeSansCarte.this.choixformat = "XLS6";
-						EmailingOperationCommercialeSansCarte.this.Message = "Impossible de générer le fichier XLS";
+						EmailingOperationCommerciale.this.etat = false;
+						EmailingOperationCommerciale.this.choixformat = "XLS5";
+						EmailingOperationCommerciale.this.Message = "Impossible de générer le fichier XLS";
 						final MessageExport fenetre = new MessageExport(
-								EmailingOperationCommercialeSansCarte.this.Message,
-								EmailingOperationCommercialeSansCarte.this.interfaceActuelle,
-								EmailingOperationCommercialeSansCarte.this.etat,
-								EmailingOperationCommercialeSansCarte.this.choixformat);
+								EmailingOperationCommerciale.this.Message,
+								EmailingOperationCommerciale.this.interfaceActuelle,
+								EmailingOperationCommerciale.this.etat,
+								EmailingOperationCommerciale.this.choixformat);
 						fenetre.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.interfaceActuelle
+						EmailingOperationCommerciale.this.interfaceActuelle
 								.setEnabled(false);
 
 					}
 
 				}
 			});
-			this.lblExportxls.setBounds(737, 687, 133, 28);
+			this.lblExportxls.setBounds(712, 689, 133, 28);
 		}
 		return this.lblExportxls;
 	}
@@ -1064,16 +1113,16 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.lblFermer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
-					EmailingOperationCommercialeSansCarte.this.dispose();
-					EmailingOperationCommercialeSansCarte.this.interfacePrecedente
+					EmailingOperationCommerciale.this.dispose();
+					EmailingOperationCommerciale.this.interfacePrecedente
 							.setVisible(true);
-					EmailingOperationCommercialeSansCarte.this.interfacePrecedente
+					EmailingOperationCommerciale.this.interfacePrecedente
 							.setEnabled(true);
 				}
 			});
 			this.lblFermer.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblFermer.setForeground(Color.GRAY);
-			this.lblFermer.setBounds(879, 55, 173, 47);
+			this.lblFermer.setBounds(874, 55, 169, 44);
 		}
 		return this.lblFermer;
 	}
@@ -1085,7 +1134,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.lblMerciDeSlectionner
 					.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblMerciDeSlectionner.setForeground(Color.GRAY);
-			this.lblMerciDeSlectionner.setBounds(495, 170, 316, 14);
+			this.lblMerciDeSlectionner.setBounds(496, 173, 312, 14);
 		}
 		return this.lblMerciDeSlectionner;
 	}
@@ -1097,7 +1146,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.lblMerciDeSlectionner_1.setForeground(Color.GRAY);
 			this.lblMerciDeSlectionner_1.setFont(new Font("Tahoma", Font.BOLD,
 					11));
-			this.lblMerciDeSlectionner_1.setBounds(681, 237, 230, 14);
+			this.lblMerciDeSlectionner_1.setBounds(681, 240, 230, 14);
 			this.lblMerciDeSlectionner_1.setEnabled(true);
 
 		}
@@ -1108,11 +1157,21 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(
-					EmailingOperationCommercialeSansCarte.class
+					EmailingOperationCommerciale.class
 							.getResource("/Images/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
+	}
+
+	private JLabel getLblOu() {
+		if (this.lblOu == null) {
+			this.lblOu = new JLabel("Ou");
+			this.lblOu.setForeground(Color.GRAY);
+			this.lblOu.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lblOu.setBounds(469, 240, 41, 14);
+		}
+		return this.lblOu;
 	}
 
 	private JLabel getLblSelectionnerLesInformations() {
@@ -1122,7 +1181,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.lblSelectionnerLesInformations.setFont(new Font("Tahoma",
 					Font.BOLD, 11));
 			this.lblSelectionnerLesInformations.setForeground(Color.GRAY);
-			this.lblSelectionnerLesInformations.setBounds(242, 295, 282, 14);
+			this.lblSelectionnerLesInformations.setBounds(242, 299, 268, 14);
 		}
 		return this.lblSelectionnerLesInformations;
 	}
@@ -1131,7 +1190,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
 			this.lblValider.setIcon(new ImageIcon(
-					EmailingOperationCommercialeSansCarte.class
+					EmailingOperationCommerciale.class
 							.getResource("/Images/valider.png")));
 			this.lblValider.setHorizontalAlignment(SwingConstants.RIGHT);
 			this.lblValider.setCursor(Cursor
@@ -1141,247 +1200,285 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 				public void mouseClicked(final MouseEvent arg0) {
 
 					int compteur = 0;
-					if (EmailingOperationCommercialeSansCarte.this.checkBox
+					if (EmailingOperationCommerciale.this.checkBox.isSelected() == true) {
+
+						compteur++;
+					}
+					if (EmailingOperationCommerciale.this.checkBox_1
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingOperationCommercialeSansCarte.this.checkBox_1
+					if (EmailingOperationCommerciale.this.chckbxCivilit
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingOperationCommercialeSansCarte.this.checkBox_2
+					if (EmailingOperationCommerciale.this.checkBox_2
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingOperationCommercialeSansCarte.this.chckbxCivilit
+					if (EmailingOperationCommerciale.this.chckbxNom
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingOperationCommercialeSansCarte.this.chckbxNom
+					if (EmailingOperationCommerciale.this.chckbxPrnom
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingOperationCommercialeSansCarte.this.chckbxPrnom
+					if (EmailingOperationCommerciale.this.chckbxAdresse
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingOperationCommercialeSansCarte.this.chckbxAdresse
+					if (EmailingOperationCommerciale.this.chckbxVille
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingOperationCommercialeSansCarte.this.chckbxVille
+					if (EmailingOperationCommerciale.this.chckbxCodepostal
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingOperationCommercialeSansCarte.this.chckbxCodepostal
+					if (EmailingOperationCommerciale.this.chckbxDateDeNaissance
 							.isSelected() == true) {
 
 						compteur++;
 					}
-
-					if (EmailingOperationCommercialeSansCarte.this.chckbxEmail
+					if (EmailingOperationCommerciale.this.chckbxEmail
 							.isSelected() == true) {
 
 						compteur++;
 					}
-					if (EmailingOperationCommercialeSansCarte.this.chckbxAbonnementNewsletter
+					if (EmailingOperationCommerciale.this.chckbxAbonnementNewsletter
 							.isSelected() == true) {
 
 						compteur++;
 					}
+					if (EmailingOperationCommerciale.this.chckbxNCarteDe
+							.isSelected() == true) {
 
-					if (EmailingOperationCommercialeSansCarte.this.chckbxMagasinDeReference
+						compteur++;
+					}
+					if (EmailingOperationCommerciale.this.chckbxMagasinDeReference
 							.isSelected() == true) {
 
 						compteur++;
 					}
 					if (compteur > 4) {
-						EmailingOperationCommercialeSansCarte.this.table_3
+						EmailingOperationCommerciale.this.table_3
 								.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 					}
 					System.out.print(compteur);
 
-					EmailingOperationCommercialeSansCarte.this.membres = Select
-							.eMailingoperationcommercialeSansCarte(
-									EmailingOperationCommercialeSansCarte.this.selectionIDOperation,
-									EmailingOperationCommercialeSansCarte.this.selectionIDMagasin,
-									EmailingOperationCommercialeSansCarte.this.etatbouton);
+					EmailingOperationCommerciale.this.membres = Select
+							.eMailingoperationcommerciale(
+									EmailingOperationCommerciale.this.selectionIDOperation,
+									EmailingOperationCommerciale.this.selectionIDMagasin,
+									EmailingOperationCommerciale.this.etatbouton);
 
-					if (EmailingOperationCommercialeSansCarte.this.membres
-							.size() == 0) {
+					if (EmailingOperationCommerciale.this.membres.size() == 0) {
 						final String message = "Aucun Résultat";
 
 						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingOperationCommercialeSansCarte.this.interfaceActuelle,
+								EmailingOperationCommerciale.this.interfaceActuelle,
 								message);
 						fenetre.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.interfaceActuelle
+						EmailingOperationCommerciale.this.interfaceActuelle
 								.setEnabled(false);
-						EmailingOperationCommercialeSansCarte.this.chckbxSelectionnerLensembleDes
+						EmailingOperationCommerciale.this.chckbxSelectionnerLensembleDes
 								.setSelected(false);
-						EmailingOperationCommercialeSansCarte.this.lblValider
+						EmailingOperationCommerciale.this.lblValider
 								.setVisible(false);
 
-						if ((EmailingOperationCommercialeSansCarte.this.table_3
+						if ((EmailingOperationCommerciale.this.table_3
 								.getRowCount() != 0)
-								|| (EmailingOperationCommercialeSansCarte.this.table_3
+								|| (EmailingOperationCommerciale.this.table_3
 										.getColumnCount() != 0)) {
-							EmailingOperationCommercialeSansCarte.this.model
+							EmailingOperationCommerciale.this.model
 									.setColumnCount(0);
-							EmailingOperationCommercialeSansCarte.this.model
+							EmailingOperationCommerciale.this.model
 									.setRowCount(0);
-							EmailingOperationCommercialeSansCarte.this.table_3
-									.setModel(EmailingOperationCommercialeSansCarte.this.model);
-							EmailingOperationCommercialeSansCarte.this.table_3
-									.repaint();
+							EmailingOperationCommerciale.this.table_3
+									.setModel(EmailingOperationCommerciale.this.model);
+							EmailingOperationCommerciale.this.table_3.repaint();
 						}
 					}
 					if (compteur < 2) {
 						final String message = "Deux choix en sortie minimum";
 
 						final AlerteSelection fenetre = new AlerteSelection(
-								EmailingOperationCommercialeSansCarte.this.interfaceActuelle,
+								EmailingOperationCommerciale.this.interfaceActuelle,
 								message);
 						fenetre.setVisible(true);
-						EmailingOperationCommercialeSansCarte.this.interfaceActuelle
+						EmailingOperationCommerciale.this.interfaceActuelle
 								.setEnabled(false);
-						EmailingOperationCommercialeSansCarte.this.interfaceActuelle
+						EmailingOperationCommerciale.this.interfaceActuelle
 								.setVisible(false);
-						EmailingOperationCommercialeSansCarte.this.lblValider
+						EmailingOperationCommerciale.this.lblValider
 								.setVisible(false);
 
-						EmailingOperationCommercialeSansCarte.this.lblMerciDeSlectionner
+						EmailingOperationCommerciale.this.lblMerciDeSlectionner
 								.setVisible(true);
 
 					} else
 
 					{
 
-						EmailingOperationCommercialeSansCarte.this.entetes = new String[compteur];
+						EmailingOperationCommerciale.this.entetes = new String[compteur];
 
-						EmailingOperationCommercialeSansCarte.this.donnees = new Object[EmailingOperationCommercialeSansCarte.this.membres
-								.size()][EmailingOperationCommercialeSansCarte.this.entetes.length];
+						EmailingOperationCommerciale.this.donnees = new Object[EmailingOperationCommerciale.this.membres
+								.size()][EmailingOperationCommerciale.this.entetes.length];
 
-						for (int j = 0; j < EmailingOperationCommercialeSansCarte.this.membres
+						for (int j = 0; j < EmailingOperationCommerciale.this.membres
 								.size(); j++) {
 
-							for (int i = 0; i < (EmailingOperationCommercialeSansCarte.this.entetes.length - 1); i++) {
+							for (int i = 0; i < (EmailingOperationCommerciale.this.entetes.length - 1); i++) {
 
-								if (EmailingOperationCommercialeSansCarte.this.chckbxCivilit
+								if (EmailingOperationCommerciale.this.chckbxCivilit
 										.isSelected() == true) {
-									EmailingOperationCommercialeSansCarte.this.entetes[i] = "Civilité";
-									EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+									EmailingOperationCommerciale.this.entetes[i] = "Civilité";
+									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 											.get(j).getCiviliteIndividu();
 									i++;
 
 								}
-								if (EmailingOperationCommercialeSansCarte.this.chckbxNom
+								if (EmailingOperationCommerciale.this.chckbxNom
 										.isSelected() == true) {
-									EmailingOperationCommercialeSansCarte.this.entetes[i] = "Nom";
-									EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+									EmailingOperationCommerciale.this.entetes[i] = "Nom";
+									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 											.get(j).getNomIndividu().toUpperCase();
 									i++;
 
 								}
-								if (EmailingOperationCommercialeSansCarte.this.chckbxPrnom
+								if (EmailingOperationCommerciale.this.chckbxPrnom
 										.isSelected() == true) {
-									EmailingOperationCommercialeSansCarte.this.entetes[i] = "Prénom";
-									EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+									EmailingOperationCommerciale.this.entetes[i] = "Prénom";
+									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 											.get(j).getPrenomIndividu().toLowerCase();
 									i++;
 
 								}
-								if (EmailingOperationCommercialeSansCarte.this.chckbxAdresse
+								if (EmailingOperationCommerciale.this.chckbxAdresse
 										.isSelected() == true) {
-									EmailingOperationCommercialeSansCarte.this.entetes[i] = "Adresse";
-									EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+									EmailingOperationCommerciale.this.entetes[i] = "Adresse";
+									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 											.get(j).getAdresseIndividu();
 									i++;
 								}
-								if (EmailingOperationCommercialeSansCarte.this.chckbxVille
+								if (EmailingOperationCommerciale.this.chckbxVille
 										.isSelected() == true) {
-									EmailingOperationCommercialeSansCarte.this.entetes[i] = "Ville";
-									EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+									EmailingOperationCommerciale.this.entetes[i] = "Ville";
+									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 											.get(j).getVilleIndividu();
 									i++;
 								}
-								if (EmailingOperationCommercialeSansCarte.this.chckbxCodepostal
+								if (EmailingOperationCommerciale.this.chckbxCodepostal
 										.isSelected() == true) {
-									EmailingOperationCommercialeSansCarte.this.entetes[i] = "Code Postal";
-									EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+									EmailingOperationCommerciale.this.entetes[i] = "Code Postal";
+									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 											.get(j).getCodePostalIndividu();
 									i++;
 								}
-
-								if (EmailingOperationCommercialeSansCarte.this.checkBox_2
+								if (EmailingOperationCommerciale.this.chckbxDateDeNaissance
 										.isSelected() == true) {
-									EmailingOperationCommercialeSansCarte.this.entetes[i] = "Age";
+									if (EmailingOperationCommerciale.this.membres
+											.get(j).getDateNaissanceIndividu() != null) {
+										EmailingOperationCommerciale.this.entetes[i] = "Date de Naissance";
+										EmailingOperationCommerciale.this.donnees[j][i] = ""
+												+ EmailingOperationCommerciale.this.membres
+														.get(j)
+														.getDateNaissanceIndividu();
+										i++;
+									} else {
+										EmailingOperationCommerciale.this.entetes[i] = "Date de Naissance";
+										EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
+												.get(j)
+												.getDateNaissanceIndividu();
+										i++;
+									}
+								}
+								if (EmailingOperationCommerciale.this.checkBox_2
+										.isSelected() == true) {
+									EmailingOperationCommerciale.this.entetes[i] = "Age";
 
-									EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 											.get(j).getAge() + " ans";
 									i++;
 								}
-								if (EmailingOperationCommercialeSansCarte.this.chckbxEmail
+								if (EmailingOperationCommerciale.this.chckbxEmail
 										.isSelected() == true) {
-									EmailingOperationCommercialeSansCarte.this.entetes[i] = "Adresse Mail";
-									EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+									EmailingOperationCommerciale.this.entetes[i] = "Adresse Mail";
+									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 											.get(j).getEmail();
 									i++;
 								}
-								if (EmailingOperationCommercialeSansCarte.this.chckbxAbonnementNewsletter
+								if (EmailingOperationCommerciale.this.chckbxAbonnementNewsletter
 										.isSelected() == true) {
-									EmailingOperationCommercialeSansCarte.this.entetes[i] = "Newsletter";
-									EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+									EmailingOperationCommerciale.this.entetes[i] = "Newsletter";
+									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 											.get(j).getNewsletterIndividu();
 									i++;
 								}
-
-								if (EmailingOperationCommercialeSansCarte.this.chckbxMagasinDeReference
+								if (EmailingOperationCommerciale.this.chckbxNCarteDe
 										.isSelected() == true) {
-									EmailingOperationCommercialeSansCarte.this.entetes[i] = "Magasin";
-									EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+									if (EmailingOperationCommerciale.this.membres
+											.get(j).getNumerocarte() != null) {
+										EmailingOperationCommerciale.this.entetes[i] = "N°Client";
+										EmailingOperationCommerciale.this.donnees[j][i] = ""
+												+ EmailingOperationCommerciale.this.membres
+														.get(j)
+														.getNumerocarte();
+										i++;
+									} else {
+										EmailingOperationCommerciale.this.entetes[i] = "N°Client";
+										EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
+												.get(j).getNumerocarte();
+										i++;
+									}
+								}
+								if (EmailingOperationCommerciale.this.chckbxMagasinDeReference
+										.isSelected() == true) {
+									EmailingOperationCommerciale.this.entetes[i] = "Magasin";
+									EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 											.get(j).getNommagasin();
 									i++;
 								}
-								if (EmailingOperationCommercialeSansCarte.this.checkBox
+								if (EmailingOperationCommerciale.this.checkBox
 										.isSelected() == true) {
-									if (EmailingOperationCommercialeSansCarte.this.membres
+									if (EmailingOperationCommerciale.this.membres
 											.get(j).getTelephonefixe() != null) {
-										EmailingOperationCommercialeSansCarte.this.entetes[i] = "Téléphone";
-										EmailingOperationCommercialeSansCarte.this.donnees[j][i] = ""
-												+ EmailingOperationCommercialeSansCarte.this.membres
+										EmailingOperationCommerciale.this.entetes[i] = "Téléphone";
+										EmailingOperationCommerciale.this.donnees[j][i] = ""
+												+ EmailingOperationCommerciale.this.membres
 														.get(j)
 														.getTelephonefixe();
 										i++;
 									} else {
-										EmailingOperationCommercialeSansCarte.this.entetes[i] = "Téléphone";
-										EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+										EmailingOperationCommerciale.this.entetes[i] = "Téléphone";
+										EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 												.get(j).getTelephonefixe();
 										i++;
 									}
 
 								}
-								if (EmailingOperationCommercialeSansCarte.this.checkBox_1
+								if (EmailingOperationCommerciale.this.checkBox_1
 										.isSelected() == true) {
-									if (EmailingOperationCommercialeSansCarte.this.membres
+									if (EmailingOperationCommerciale.this.membres
 											.get(j).getTelephonemobile() != null) {
-										EmailingOperationCommercialeSansCarte.this.entetes[i] = "Mobile";
-										EmailingOperationCommercialeSansCarte.this.donnees[j][i] = ""
-												+ EmailingOperationCommercialeSansCarte.this.membres
+										EmailingOperationCommerciale.this.entetes[i] = "Mobile";
+										EmailingOperationCommerciale.this.donnees[j][i] = ""
+												+ EmailingOperationCommerciale.this.membres
 														.get(j)
 														.getTelephonemobile();
 										i++;
 									} else {
-										EmailingOperationCommercialeSansCarte.this.entetes[i] = "Mobile";
-										EmailingOperationCommercialeSansCarte.this.donnees[j][i] = EmailingOperationCommercialeSansCarte.this.membres
+										EmailingOperationCommerciale.this.entetes[i] = "Mobile";
+										EmailingOperationCommerciale.this.donnees[j][i] = EmailingOperationCommerciale.this.membres
 												.get(j).getTelephonemobile();
 										i++;
 									}
@@ -1391,33 +1488,32 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 
 						}
 
-						if (EmailingOperationCommercialeSansCarte.this.membres
-								.size() != 0) {
+						if (EmailingOperationCommerciale.this.membres.size() != 0) {
 
-							EmailingOperationCommercialeSansCarte.this.model = new DefaultTableModel(
-									EmailingOperationCommercialeSansCarte.this.donnees,
-									EmailingOperationCommercialeSansCarte.this.entetes);
+							EmailingOperationCommerciale.this.model = new DefaultTableModel(
+									EmailingOperationCommerciale.this.donnees,
+									EmailingOperationCommerciale.this.entetes);
 
-							EmailingOperationCommercialeSansCarte.this.table_3
-									.setModel(EmailingOperationCommercialeSansCarte.this.model);
+							EmailingOperationCommerciale.this.table_3
+									.setModel(EmailingOperationCommerciale.this.model);
 
 						}
 
 					}
 
-					EmailingOperationCommercialeSansCarte.this.chckbxSelectionnerLensembleDes
+					EmailingOperationCommerciale.this.chckbxSelectionnerLensembleDes
 							.setVisible(true);
-					EmailingOperationCommercialeSansCarte.this.lblExportxls
+					EmailingOperationCommerciale.this.lblExportxls
 							.setVisible(true);
-					EmailingOperationCommercialeSansCarte.this.lblExportCvs
+					EmailingOperationCommerciale.this.lblExportCvs
 							.setVisible(true);
 
 				}
 			});
 			this.lblValider.setVisible(false);
-			this.lblValider.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lblValider.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblValider.setForeground(Color.GRAY);
-			this.lblValider.setBounds(930, 437, 99, 23);
+			this.lblValider.setBounds(919, 445, 99, 23);
 		}
 		return this.lblValider;
 	}
@@ -1425,8 +1521,8 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 	private JScrollPane getScrollPane_1() {
 		if (this.scrollPane_1 == null) {
 			this.scrollPane_1 = new JScrollPane();
-			this.scrollPane_1.setBorder(null);
-			this.scrollPane_1.setBounds(242, 471, 787, 198);
+			this.scrollPane_1.setBorder(new LineBorder(Color.GRAY));
+			this.scrollPane_1.setBounds(242, 488, 776, 183);
 			this.scrollPane_1.setViewportView(this.getTable_3());
 		}
 		return this.scrollPane_1;

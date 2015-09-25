@@ -19,9 +19,9 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import fr.lefournildesprovinces.vues.extrationbases.CollecteInformations;
-import fr.lefournildesprovinces.vues.extrationbases.CollecteInformationsSansCarte;
-import fr.lefournildesprovinces.vues.extrationbases.EmailingOperationCommercialeTOUS;
+import fr.lefournildesprovinces.vues.extration.CollecteInformations;
+import fr.lefournildesprovinces.vues.extration.CollecteInformationsSansCarte;
+import fr.lefournildesprovinces.vues.extration.EmailingOperationCommercialeTOUS;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class GestionExtractionBases extends JFrame {
