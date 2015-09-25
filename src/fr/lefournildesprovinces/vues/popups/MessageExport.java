@@ -22,7 +22,7 @@ import javax.swing.SwingConstants;
 public class MessageExport extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -3556001437429006403L;
 	private final String choixFormat;
@@ -103,7 +103,7 @@ public class MessageExport extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(MessageExport.class
-					.getResource("/Images/avertissements.png")));
+					.getResource("/Images/fonds/avertissements.png")));
 			this.lblNewLabel.setBounds(0, 0, 628, 215);
 		}
 		return this.lblNewLabel;
@@ -113,7 +113,7 @@ public class MessageExport extends JFrame {
 		if (this.lblNon == null) {
 			this.lblNon = new JLabel("");
 			this.lblNon.setIcon(new ImageIcon(MessageExport.class
-					.getResource("/Images/non.png")));
+					.getResource("/Images/actionbutons/non.png")));
 			this.lblNon.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblNon.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -135,7 +135,7 @@ public class MessageExport extends JFrame {
 		if (this.lblOui == null) {
 			this.lblOui = new JLabel("");
 			this.lblOui.setIcon(new ImageIcon(MessageExport.class
-					.getResource("/Images/oui.png")));
+					.getResource("/Images/actionbutons/oui.png")));
 			this.lblOui.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblOui.setFont(new Font("Tahoma", Font.BOLD, 11));

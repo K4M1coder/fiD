@@ -25,7 +25,7 @@ import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 public class Warning2 extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -7176693910960518120L;
 	private final JPanel contentPane;
@@ -88,7 +88,7 @@ public class Warning2 extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(Warning2.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -103,12 +103,12 @@ public class Warning2 extends JFrame {
 				this.label_3.setVisible(false);
 
 				this.fond.setIcon(new ImageIcon(Warning2.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(Warning2.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -263,7 +263,7 @@ public class Warning2 extends JFrame {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(Warning2.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -275,7 +275,7 @@ public class Warning2 extends JFrame {
 			this.lblNon.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblNon.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNon.setIcon(new ImageIcon(Warning2.class
-					.getResource("/Images/annuler.png")));
+					.getResource("/Images/actionbutons/annuler.png")));
 			this.lblNon.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblNon.addMouseListener(new MouseAdapter() {
@@ -300,7 +300,7 @@ public class Warning2 extends JFrame {
 			this.lblOui.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblOui.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblOui.setIcon(new ImageIcon(Warning2.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblOui.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblOui.setFont(new Font("Tahoma", Font.BOLD, 11));

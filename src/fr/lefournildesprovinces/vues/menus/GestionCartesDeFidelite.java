@@ -163,7 +163,7 @@ public class GestionCartesDeFidelite extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(
-						new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
+						new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				this.label.setEnabled(false);
 				this.label.setVisible(false);
 				this.label_2.setEnabled(false);
@@ -173,7 +173,7 @@ public class GestionCartesDeFidelite extends JFrame {
 
 			case "invite":
 				this.fond.setIcon(
-						new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
+						new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				this.label.setEnabled(false);
 				this.label.setVisible(false);
 				this.label_2.setEnabled(false);
@@ -183,7 +183,7 @@ public class GestionCartesDeFidelite extends JFrame {
 
 			case "administrateur":
 				this.fond.setIcon(
-						new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/menus_fidelite.png")));
+						new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/fonds/menus_fidelite.png")));
 
 				break;
 
@@ -450,7 +450,7 @@ public class GestionCartesDeFidelite extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel
-					.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/fond-logiciel.png")));
+					.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -472,7 +472,7 @@ public class GestionCartesDeFidelite extends JFrame {
 			this.lblValider = new JLabel("");
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
-			this.lblValider.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/valider.png")));
+			this.lblValider.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

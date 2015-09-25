@@ -33,7 +33,7 @@ public class ConfirmationInsertionClientOC extends JFrame {
 	private static Connection c;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -2522219577130834723L;
 	private static PreparedStatement stm;
@@ -172,7 +172,7 @@ public class ConfirmationInsertionClientOC extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								ConfirmationInsertionClientOC.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -187,13 +187,13 @@ public class ConfirmationInsertionClientOC extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								ConfirmationInsertionClientOC.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
 						ConfirmationInsertionClientOC.class
-								.getResource("/Images/menus_operation.png")));
+								.getResource("/Images/fonds/menus_operation.png")));
 				break;
 			}
 			this.fond.setBounds(216, 231, 850, 338);
@@ -520,7 +520,7 @@ public class ConfirmationInsertionClientOC extends JFrame {
 			this.lblNewLabel_4 = new JLabel("");
 			this.lblNewLabel_4.setIcon(new ImageIcon(
 					ConfirmationInsertionClientOC.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_4.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_4;
@@ -542,7 +542,7 @@ public class ConfirmationInsertionClientOC extends JFrame {
 			this.lblNon.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNon.setIcon(new ImageIcon(
 					ConfirmationInsertionClientOC.class
-							.getResource("/Images/annuler.png")));
+							.getResource("/Images/actionbutons/annuler.png")));
 			this.lblNon.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -567,7 +567,7 @@ public class ConfirmationInsertionClientOC extends JFrame {
 			this.lblOui = new JLabel("");
 			this.lblOui.setIcon(new ImageIcon(
 					ConfirmationInsertionClientOC.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblOui.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblOui.addMouseListener(new MouseAdapter() {
 				@Override

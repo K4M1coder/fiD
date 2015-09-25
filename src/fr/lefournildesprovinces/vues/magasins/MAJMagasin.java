@@ -46,7 +46,7 @@ public class MAJMagasin extends JFrame {
 
 	private static Connection c;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -1725578339466407014L;
 	private static PreparedStatement stm;
@@ -187,7 +187,7 @@ public class MAJMagasin extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(MAJMagasin.class
-					.getResource("/Images/menus_magasin.png")));
+					.getResource("/Images/fonds/menus_magasin.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -402,7 +402,7 @@ public class MAJMagasin extends JFrame {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(MAJMagasin.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -424,7 +424,7 @@ public class MAJMagasin extends JFrame {
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(MAJMagasin.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

@@ -32,7 +32,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class ChoixOperationCommerciale extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -1971424119866122001L;
 
@@ -188,7 +188,7 @@ public class ChoixOperationCommerciale extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(ChoixOperationCommerciale.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -201,12 +201,12 @@ public class ChoixOperationCommerciale extends JFrame {
 				this.label_3.setEnabled(false);
 				this.label_3.setVisible(false);
 				this.fond.setIcon(new ImageIcon(ChoixOperationCommerciale.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(ChoixOperationCommerciale.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -307,7 +307,7 @@ public class ChoixOperationCommerciale extends JFrame {
 
 			final JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setIcon(new ImageIcon(ChoixOperationCommerciale.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNewLabel.setBounds(0, 0, 1281, 800);
@@ -403,7 +403,7 @@ public class ChoixOperationCommerciale extends JFrame {
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(
 					ChoixOperationCommerciale.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

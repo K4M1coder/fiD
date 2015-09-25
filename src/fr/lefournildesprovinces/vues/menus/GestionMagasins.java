@@ -26,7 +26,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class GestionMagasins extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 6128973102053859455L;
 	private JComboBox<Object> comboBox;
@@ -66,7 +66,7 @@ public class GestionMagasins extends JFrame {
 		this.interfaceActuelle = this;
 
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 1.0f));
-		
+
 		GestionMagasins.this.lblMerciDeFaire.setVisible(false);
 		GestionMagasins.this.lblMerciDeFaire.setEnabled(false);
 		GestionMagasins.this.lblValider.setVisible(false);
@@ -140,7 +140,7 @@ public class GestionMagasins extends JFrame {
 				}
 			});
 			this.fond.setIcon(new ImageIcon(GestionMagasins.class
-					.getResource("/Images/menus_magasin.png")));
+					.getResource("/Images/fonds/menus_magasin.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -167,7 +167,7 @@ public class GestionMagasins extends JFrame {
 		}
 		return this.layeredPane;
 	}
-	
+
 	private JLabel getLabel_NewMag() {
 		if (this.label_NewMag == null) {
 			this.label_NewMag = new JLabel("");
@@ -189,7 +189,7 @@ public class GestionMagasins extends JFrame {
 		}
 		return this.label_NewMag;
 	}
-	
+
 	private JLabel getLabel_ModMag() {
 		if (this.label_ModMag == null) {
 			this.label_ModMag = new JLabel("");
@@ -211,7 +211,7 @@ public class GestionMagasins extends JFrame {
 		}
 		return this.label_ModMag;
 	}
-	
+
 	private JLabel getLabel_DelMag() {
 		if (this.label_DelMag == null) {
 			this.label_DelMag = new JLabel("");
@@ -279,7 +279,7 @@ public class GestionMagasins extends JFrame {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(GestionMagasins.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -304,7 +304,7 @@ public class GestionMagasins extends JFrame {
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(GestionMagasins.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setVisible(false);
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override

@@ -25,7 +25,7 @@ import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 public class ConfirmationChoixOperationMagasin extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 7731677423161046162L;
 	private final JPanel contentPane;
@@ -97,7 +97,7 @@ public class ConfirmationChoixOperationMagasin extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								ConfirmationChoixOperationMagasin.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -112,13 +112,13 @@ public class ConfirmationChoixOperationMagasin extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								ConfirmationChoixOperationMagasin.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
 						ConfirmationChoixOperationMagasin.class
-								.getResource("/Images/menus_operation.png")));
+								.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -275,7 +275,7 @@ public class ConfirmationChoixOperationMagasin extends JFrame {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(
 					ConfirmationChoixOperationMagasin.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -288,7 +288,7 @@ public class ConfirmationChoixOperationMagasin extends JFrame {
 			this.lblNon.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNon.setIcon(new ImageIcon(
 					ConfirmationChoixOperationMagasin.class
-							.getResource("/Images/annuler.png")));
+							.getResource("/Images/actionbutons/annuler.png")));
 			this.lblNon.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblNon.addMouseListener(new MouseAdapter() {
@@ -347,7 +347,7 @@ public class ConfirmationChoixOperationMagasin extends JFrame {
 			this.lblOui.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblOui.setIcon(new ImageIcon(
 					ConfirmationChoixOperationMagasin.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblOui.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblOui.addMouseListener(new MouseAdapter() {

@@ -35,7 +35,7 @@ public class PasswordOperationCommerciale extends JFrame {
 
 	private static Connection c;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6457511930818648661L;
 	private static PreparedStatement stm;
@@ -105,7 +105,7 @@ public class PasswordOperationCommerciale extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								PasswordOperationCommerciale.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -122,13 +122,13 @@ public class PasswordOperationCommerciale extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								PasswordOperationCommerciale.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
 						PasswordOperationCommerciale.class
-								.getResource("/Images/menus_operation.png")));
+								.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -256,7 +256,7 @@ public class PasswordOperationCommerciale extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblAnnuler.setIcon(new ImageIcon(
 					PasswordOperationCommerciale.class
-							.getResource("/Images/annuler.png")));
+							.getResource("/Images/actionbutons/annuler.png")));
 			this.lblAnnuler.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -309,7 +309,7 @@ public class PasswordOperationCommerciale extends JFrame {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(
 					PasswordOperationCommerciale.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -324,7 +324,7 @@ public class PasswordOperationCommerciale extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setIcon(new ImageIcon(
 					PasswordOperationCommerciale.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

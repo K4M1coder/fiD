@@ -606,7 +606,7 @@ public class EmailingAge extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(EmailingAge.class
-					.getResource("/Images/menus-extraction-long.png")));
+					.getResource("/Images/fonds/menus-extraction-long.png")));
 			this.fond.setBounds(216, 55, 850, 690);
 		}
 		return this.fond;
@@ -770,7 +770,7 @@ public class EmailingAge extends JFrame {
 		if (this.lblExportCvs == null) {
 			this.lblExportCvs = new JLabel("");
 			this.lblExportCvs.setIcon(new ImageIcon(EmailingAge.class
-					.getResource("/Images/export-csv.png")));
+					.getResource("/Images/actionbutons/export-csv.png")));
 			this.lblExportCvs.setVisible(false);
 			this.lblExportCvs.addMouseListener(new MouseAdapter() {
 				@Override
@@ -869,7 +869,7 @@ public class EmailingAge extends JFrame {
 			this.lblExportxls.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblExportxls.setIcon(new ImageIcon(EmailingAge.class
-					.getResource("/Images/export-excel.png")));
+					.getResource("/Images/actionbutons/export-excel.png")));
 			this.lblExportxls.setVisible(false);
 			this.lblExportxls.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblExportxls.setForeground(Color.GRAY);
@@ -994,7 +994,7 @@ public class EmailingAge extends JFrame {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(EmailingAge.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -1028,7 +1028,7 @@ public class EmailingAge extends JFrame {
 			this.lblValider = new JLabel("");
 			this.lblValider.setHorizontalTextPosition(SwingConstants.RIGHT);
 			this.lblValider.setIcon(new ImageIcon(EmailingAge.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setHorizontalAlignment(SwingConstants.TRAILING);
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));

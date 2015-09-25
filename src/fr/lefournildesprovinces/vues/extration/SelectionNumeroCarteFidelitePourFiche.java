@@ -48,7 +48,7 @@ public class SelectionNumeroCarteFidelitePourFiche extends JFrame {
 	private static PreparedStatement preStm;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -240487199323912227L;
 	private String birth;
@@ -257,7 +257,7 @@ public class SelectionNumeroCarteFidelitePourFiche extends JFrame {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(
 					SelectionNumeroCarteFidelitePourFiche.class
-							.getResource("/Images/menus_extraction.png")));
+							.getResource("/Images/fonds/menus_extraction.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -450,7 +450,7 @@ public class SelectionNumeroCarteFidelitePourFiche extends JFrame {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(
 					SelectionNumeroCarteFidelitePourFiche.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -513,7 +513,7 @@ public class SelectionNumeroCarteFidelitePourFiche extends JFrame {
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(
 					SelectionNumeroCarteFidelitePourFiche.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setForeground(Color.GRAY);
@@ -651,11 +651,11 @@ public class SelectionNumeroCarteFidelitePourFiche extends JFrame {
 						 * String month = eclatementDate[1];
 						 * System.out.print(month+"\n"); String year =
 						 * eclatementDate[2]; System.out.print(year+"\n");
-						 * 
+						 *
 						 * switch (month)
-						 * 
+						 *
 						 * {
-						 * 
+						 *
 						 * case "janvier": month="01"; break; case "février":
 						 * month="02"; break; case "mars":month="03"; break;
 						 * case "avril":month="04"; break; case
@@ -666,9 +666,9 @@ public class SelectionNumeroCarteFidelitePourFiche extends JFrame {
 						 * "octobre":month="10"; break; case
 						 * "novembre":month="11"; break; case
 						 * "décembre":month="12"; break;
-						 * 
+						 *
 						 * }
-						 * 
+						 *
 						 * String birthdate=year+"/"+month+"/"+day;
 						 */
 

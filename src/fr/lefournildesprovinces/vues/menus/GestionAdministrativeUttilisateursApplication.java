@@ -24,7 +24,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class GestionAdministrativeUttilisateursApplication extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -3069321718174673362L;
 	private JComboBox<Object> comboBox;
@@ -61,7 +61,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.interfaceActuelle = this;
-		
+
 		GestionAdministrativeUttilisateursApplication.this.lblMerciDeFaire.setVisible(false);
 		GestionAdministrativeUttilisateursApplication.this.lblMerciDeFaire.setEnabled(false);
 		GestionAdministrativeUttilisateursApplication.this.valider.setVisible(false);
@@ -119,7 +119,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(GestionAdministrativeUttilisateursApplication.class
-					.getResource("/Images/menus_accueil-2.png")));
+					.getResource("/Images/fonds/menus_accueil-2.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -229,7 +229,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 		}
 		return this.layeredPane;
 	}
-	
+
 	private JLabel getLabel_ADMNewProfil() {
 		if (this.label_ADMNewProfil == null) {
 			this.label_ADMNewProfil = new JLabel("");
@@ -251,7 +251,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 		}
 		return this.label_ADMNewProfil;
 	}
-	
+
 	private JLabel getLabel_ADMModPassword() {
 		if (this.label_ADMModPassword == null) {
 			this.label_ADMModPassword = new JLabel("");
@@ -273,7 +273,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 		}
 		return this.label_ADMModPassword;
 	}
-	
+
 	private JLabel getLabel_ADMDelUser() {
 		if (this.label_ADMDelUser == null) {
 			this.label_ADMDelUser = new JLabel("");
@@ -295,7 +295,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 		}
 		return this.label_ADMDelUser;
 	}
-	
+
 	private JLabel getLabel_ADMMajPrivilege() {
 		if (this.label_ADMMajPrivilege == null) {
 			this.label_ADMMajPrivilege = new JLabel("");
@@ -317,7 +317,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 		}
 		return this.label_ADMMajPrivilege;
 	}
-	
+
 	private JLabel getLabel_ADMShowUser() {
 		if (this.label_ADMShowUser == null) {
 			this.label_ADMShowUser = new JLabel("");
@@ -366,7 +366,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(GestionAdministrativeUttilisateursApplication.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -388,7 +388,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 			this.valider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.valider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.valider.setIcon(new ImageIcon(GestionAdministrativeUttilisateursApplication.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.valider.setBounds(891, 493, 150, 67);
 		}
 		return this.valider;

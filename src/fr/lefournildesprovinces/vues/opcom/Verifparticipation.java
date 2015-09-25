@@ -23,7 +23,7 @@ import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 public class Verifparticipation extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -7920034468999901706L;
 	private final JPanel contentPane;
@@ -86,7 +86,7 @@ public class Verifparticipation extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(Verifparticipation.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -101,12 +101,12 @@ public class Verifparticipation extends JFrame {
 				this.label_3.setVisible(false);
 
 				this.fond.setIcon(new ImageIcon(Verifparticipation.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(Verifparticipation.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 			}
 			this.fond.setBounds(216, 231, 850, 338);
@@ -200,7 +200,7 @@ public class Verifparticipation extends JFrame {
 			this.lblCliquerPourContinuer = new JLabel("");
 			this.lblCliquerPourContinuer.setIcon(new ImageIcon(
 					Verifparticipation.class
-							.getResource("/Images/continuer.png")));
+							.getResource("/Images/actionbutons/continuer.png")));
 			this.lblCliquerPourContinuer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -280,7 +280,7 @@ public class Verifparticipation extends JFrame {
 		if (this.lblNewLabel_3 == null) {
 			this.lblNewLabel_3 = new JLabel("");
 			this.lblNewLabel_3.setIcon(new ImageIcon(Verifparticipation.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_3.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_3;

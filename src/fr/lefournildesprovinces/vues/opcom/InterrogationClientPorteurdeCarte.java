@@ -35,7 +35,7 @@ public class InterrogationClientPorteurdeCarte extends JFrame {
 	private static PreparedStatement preStm;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6744392373577270749L;
 	private static PreparedStatement stm1;
@@ -168,7 +168,7 @@ public class InterrogationClientPorteurdeCarte extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								InterrogationClientPorteurdeCarte.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -185,13 +185,13 @@ public class InterrogationClientPorteurdeCarte extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								InterrogationClientPorteurdeCarte.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
 						InterrogationClientPorteurdeCarte.class
-								.getResource("/Images/menus_operation.png")));
+								.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -363,7 +363,7 @@ public class InterrogationClientPorteurdeCarte extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblAnnuler.setIcon(new ImageIcon(
 					InterrogationClientPorteurdeCarte.class
-							.getResource("/Images/annuler.png")));
+							.getResource("/Images/actionbutons/annuler.png")));
 			this.lblAnnuler.setVisible(false);
 			this.lblAnnuler.addMouseListener(new MouseAdapter() {
 				@Override
@@ -411,7 +411,7 @@ public class InterrogationClientPorteurdeCarte extends JFrame {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(
 					InterrogationClientPorteurdeCarte.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -422,7 +422,7 @@ public class InterrogationClientPorteurdeCarte extends JFrame {
 			this.lblNon = new JLabel("");
 			this.lblNon.setIcon(new ImageIcon(
 					InterrogationClientPorteurdeCarte.class
-							.getResource("/Images/non.png")));
+							.getResource("/Images/actionbutons/non.png")));
 			this.lblNon.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblNon.addMouseListener(new MouseAdapter() {
@@ -460,7 +460,7 @@ public class InterrogationClientPorteurdeCarte extends JFrame {
 			this.lblOui = new JLabel("");
 			this.lblOui.setIcon(new ImageIcon(
 					InterrogationClientPorteurdeCarte.class
-							.getResource("/Images/oui.png")));
+							.getResource("/Images/actionbutons/oui.png")));
 			this.lblOui.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblOui.addMouseListener(new MouseAdapter() {
@@ -503,7 +503,7 @@ public class InterrogationClientPorteurdeCarte extends JFrame {
 			this.lblValider = new JLabel("");
 			this.lblValider.setIcon(new ImageIcon(
 					InterrogationClientPorteurdeCarte.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.addMouseListener(new MouseAdapter() {

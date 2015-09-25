@@ -30,7 +30,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class SelectionMagasin extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -4458185263109460967L;
 	private final String choixoperation;
@@ -124,7 +124,7 @@ public class SelectionMagasin extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(SelectionMagasin.class
-					.getResource("/Images/menus_magasin.png")));
+					.getResource("/Images/fonds/menus_magasin.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -267,7 +267,7 @@ public class SelectionMagasin extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(SelectionMagasin.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -293,7 +293,7 @@ public class SelectionMagasin extends JFrame {
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(SelectionMagasin.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

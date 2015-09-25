@@ -34,7 +34,7 @@ public class deleteuser extends JFrame {
 	private static Connection c;
 	private static PreparedStatement preStm;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 8894070255804692453L;
 	private final JPanel contentPane;
@@ -84,7 +84,7 @@ public class deleteuser extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(deleteuser.class
-					.getResource("/Images/menus_accueil-2.png")));
+					.getResource("/Images/fonds/menus_accueil-2.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -250,7 +250,7 @@ public class deleteuser extends JFrame {
 				}
 			});
 			this.label_5.setIcon(new ImageIcon(deleteuser.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.label_5.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.label_5.setHorizontalAlignment(SwingConstants.CENTER);
 			this.label_5.setBounds(641, 413, 150, 67);
@@ -313,7 +313,7 @@ public class deleteuser extends JFrame {
 				}
 			});
 			this.lblNewLabel_1.setIcon(new ImageIcon(deleteuser.class
-					.getResource("/Images/annuler.png")));
+					.getResource("/Images/actionbutons/annuler.png")));
 			this.lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNewLabel_1.setBounds(511, 404, 102, 84);
 		}
@@ -335,7 +335,7 @@ public class deleteuser extends JFrame {
 		if (this.lblNewLabel_3 == null) {
 			this.lblNewLabel_3 = new JLabel("");
 			this.lblNewLabel_3.setIcon(new ImageIcon(deleteuser.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_3.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_3;

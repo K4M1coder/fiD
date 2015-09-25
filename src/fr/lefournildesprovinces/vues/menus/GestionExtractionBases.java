@@ -27,7 +27,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class GestionExtractionBases extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 2630512454896778146L;
 	private JComboBox<Object> comboBox;
@@ -63,7 +63,7 @@ public class GestionExtractionBases extends JFrame {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.interfaceActuelle = this;
-		
+
 		GestionExtractionBases.this.lblMerciDeSelectionner.setVisible(false);
 		GestionExtractionBases.this.lblMerciDeSelectionner.setEnabled(false);
 		GestionExtractionBases.this.lblValider.setVisible(false);
@@ -133,7 +133,7 @@ public class GestionExtractionBases extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(GestionExtractionBases.class
-					.getResource("/Images/menus_extraction.png")));
+					.getResource("/Images/fonds/menus_extraction.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -267,7 +267,7 @@ public class GestionExtractionBases extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(GestionExtractionBases.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
@@ -294,7 +294,7 @@ public class GestionExtractionBases extends JFrame {
 		}
 		return this.lblRetour;
 	}
-	
+
 	private JLabel getLabel_ExtBaseFid() {
 		if (this.label_ExtBaseFid == null) {
 			this.label_ExtBaseFid = new JLabel("");
@@ -316,7 +316,7 @@ public class GestionExtractionBases extends JFrame {
 		}
 		return this.label_ExtBaseFid;
 	}
-	
+
 	private JLabel getLabel_ExtBaseOCNoCard() {
 		if (this.label_ExtBaseOCNoCard == null) {
 			this.label_ExtBaseOCNoCard = new JLabel("");
@@ -338,7 +338,7 @@ public class GestionExtractionBases extends JFrame {
 		}
 		return this.label_ExtBaseOCNoCard;
 	}
-	
+
 	private JLabel getLabel_ExtBaseOCAll() {
 		if (this.label_ExtBaseOCAll == null) {
 			this.label_ExtBaseOCAll = new JLabel("");
@@ -369,7 +369,7 @@ public class GestionExtractionBases extends JFrame {
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(GestionExtractionBases.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -383,7 +383,7 @@ public class GestionExtractionBases extends JFrame {
 		}
 		return this.lblValider;
 	}
-	
+
 	private void validateAction() {
 
 		switch (GestionExtractionBases.this.selection) {

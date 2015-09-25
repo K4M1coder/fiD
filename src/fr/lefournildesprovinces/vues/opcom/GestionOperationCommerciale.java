@@ -31,7 +31,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class GestionOperationCommerciale extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 4171970833583757649L;
 	private JComboBox<Object> comboBox;
@@ -159,7 +159,7 @@ public class GestionOperationCommerciale extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								GestionOperationCommerciale.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -176,13 +176,13 @@ public class GestionOperationCommerciale extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								GestionOperationCommerciale.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
 						GestionOperationCommerciale.class
-								.getResource("/Images/menus_operation.png")));
+								.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -340,7 +340,7 @@ public class GestionOperationCommerciale extends JFrame {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(
 					GestionOperationCommerciale.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -355,7 +355,7 @@ public class GestionOperationCommerciale extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setIcon(new ImageIcon(
 					GestionOperationCommerciale.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {

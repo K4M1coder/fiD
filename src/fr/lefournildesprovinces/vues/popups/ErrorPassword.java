@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class ErrorPassword extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -2418567475278589984L;
 	private final JPanel contentPane;
@@ -76,7 +76,7 @@ public class ErrorPassword extends JFrame {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("New label");
 			this.lblNewLabel_1.setIcon(new ImageIcon(ErrorPassword.class
-					.getResource("/Images/avertissements.png")));
+					.getResource("/Images/fonds/avertissements.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 622, 211);
 		}
 		return this.lblNewLabel_1;
@@ -86,7 +86,7 @@ public class ErrorPassword extends JFrame {
 		if (this.lblNewLabel_2 == null) {
 			this.lblNewLabel_2 = new JLabel("");
 			this.lblNewLabel_2.setIcon(new ImageIcon(ErrorPassword.class
-					.getResource("/Images/annuler.png")));
+					.getResource("/Images/actionbutons/annuler.png")));
 			this.lblNewLabel_2.setBounds(264, 136, 99, 23);
 		}
 		return this.lblNewLabel_2;

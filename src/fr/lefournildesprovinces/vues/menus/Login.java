@@ -179,7 +179,7 @@ public class Login extends JFrame {
 	private JLabel getLabel_1() {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
-			this.fond.setIcon(new ImageIcon(Login.class.getResource("/Images/administration.png")));
+			this.fond.setIcon(new ImageIcon(Login.class.getResource("/Images/fonds/administration.png")));
 			this.fond.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.fond.setHorizontalAlignment(SwingConstants.CENTER);
 			this.fond.setBounds(216, 231, 850, 357);
@@ -245,7 +245,7 @@ public class Login extends JFrame {
 	private JLabel getLblNewLabel_1() {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
-			this.lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/Images/fond-logiciel.png")));
+			this.lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNewLabel_1.setBounds(0, 0, 1280, 800);

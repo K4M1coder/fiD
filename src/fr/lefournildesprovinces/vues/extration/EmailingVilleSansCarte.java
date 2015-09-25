@@ -556,7 +556,7 @@ public class EmailingVilleSansCarte extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(EmailingVilleSansCarte.class
-					.getResource("/Images/menus-extraction-long.png")));
+					.getResource("/Images/fonds/menus-extraction-long.png")));
 			this.fond.setBounds(216, 55, 850, 690);
 		}
 		return this.fond;
@@ -701,7 +701,7 @@ public class EmailingVilleSansCarte extends JFrame {
 			this.lblExportCvs = new JLabel("");
 			this.lblExportCvs.setIcon(new ImageIcon(
 					EmailingVilleSansCarte.class
-							.getResource("/Images/export-csv.png")));
+							.getResource("/Images/actionbutons/export-csv.png")));
 			this.lblExportCvs.setVisible(false);
 			this.lblExportCvs.addMouseListener(new MouseAdapter() {
 				@Override
@@ -799,7 +799,7 @@ public class EmailingVilleSansCarte extends JFrame {
 			this.lblExportxls = new JLabel("");
 			this.lblExportxls.setIcon(new ImageIcon(
 					EmailingVilleSansCarte.class
-							.getResource("/Images/export-excel.png")));
+							.getResource("/Images/actionbutons/export-excel.png")));
 			this.lblExportxls.setVisible(false);
 			this.lblExportxls.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblExportxls.setForeground(Color.GRAY);
@@ -904,7 +904,7 @@ public class EmailingVilleSansCarte extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(EmailingVilleSansCarte.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -926,7 +926,7 @@ public class EmailingVilleSansCarte extends JFrame {
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
 			this.lblValider.setIcon(new ImageIcon(EmailingVilleSansCarte.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setHorizontalAlignment(SwingConstants.RIGHT);
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));

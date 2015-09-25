@@ -71,7 +71,7 @@ public class LoginDenied extends JFrame {
 		if (this.lblCliquerPourContinuer == null) {
 			this.lblCliquerPourContinuer = new JLabel("");
 			this.lblCliquerPourContinuer.setIcon(new ImageIcon(
-					LoginDenied.class.getResource("/Images/annuler.png")));
+					LoginDenied.class.getResource("/Images/actionbutons/annuler.png")));
 			this.lblCliquerPourContinuer.setBounds(264, 140, 99, 23);
 		}
 		return this.lblCliquerPourContinuer;
@@ -93,7 +93,7 @@ public class LoginDenied extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(LoginDenied.class
-					.getResource("/Images/avertissements.png")));
+					.getResource("/Images/fonds/avertissements.png")));
 			this.lblNewLabel.setBounds(0, 0, 628, 215);
 		}
 		return this.lblNewLabel;

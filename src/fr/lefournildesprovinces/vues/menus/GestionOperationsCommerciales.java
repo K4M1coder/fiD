@@ -28,7 +28,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class GestionOperationsCommerciales extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1266027016940960939L;
 
@@ -73,7 +73,7 @@ public class GestionOperationsCommerciales extends JFrame {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.interfaceActuelle = this;
-		
+
 		GestionOperationsCommerciales.this.lblMerciDeFaire.setVisible(false);
 		GestionOperationsCommerciales.this.lblMerciDeFaire.setEnabled(false);
 		GestionOperationsCommerciales.this.lblValider.setVisible(false);
@@ -175,7 +175,7 @@ public class GestionOperationsCommerciales extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(GestionOperationsCommerciales.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -190,12 +190,12 @@ public class GestionOperationsCommerciales extends JFrame {
 				this.label_GestionOC.setEnabled(false);
 				this.label_GestionOC.setVisible(false);
 				this.fond.setIcon(new ImageIcon(GestionOperationsCommerciales.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(GestionOperationsCommerciales.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -382,7 +382,7 @@ public class GestionOperationsCommerciales extends JFrame {
 		}
 		return this.lblMerciDeFaire;
 	}
-	
+
 	private JLabel getLblNewLabel() {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel(
@@ -393,12 +393,12 @@ public class GestionOperationsCommerciales extends JFrame {
 		}
 		return this.lblNewLabel;
 	}
-	
+
 	private JLabel getLblNewLabel_1() {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(GestionOperationsCommerciales.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNewLabel_1.setBounds(0, 0, 1280, 800);
@@ -414,7 +414,7 @@ public class GestionOperationsCommerciales extends JFrame {
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setIcon(new ImageIcon(GestionOperationsCommerciales.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {

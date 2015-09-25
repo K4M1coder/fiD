@@ -26,7 +26,7 @@ import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 public class SuccesMajClientFidelite extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 6243037195155185329L;
 	private final String civiliteClient;
@@ -106,7 +106,7 @@ public class SuccesMajClientFidelite extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(SuccesMajClientFidelite.class
-						.getResource("/Images/menus-grises-fidelite.png")));
+						.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				this.label.setEnabled(false);
 				this.label.setVisible(false);
 				this.label_2.setEnabled(false);
@@ -121,12 +121,12 @@ public class SuccesMajClientFidelite extends JFrame {
 				this.label_2.setVisible(false);
 
 				this.fond.setIcon(new ImageIcon(SuccesMajClientFidelite.class
-						.getResource("/Images/menus-grises-fidelite.png")));
+						.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(SuccesMajClientFidelite.class
-						.getResource("/Images/menus_fidelite.png")));
+						.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 			}
 			this.fond.setBounds(216, 231, 850, 338);
@@ -271,7 +271,7 @@ public class SuccesMajClientFidelite extends JFrame {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(
 					SuccesMajClientFidelite.class
-							.getResource("/Images/continuer.png")));
+							.getResource("/Images/actionbutons/continuer.png")));
 			this.lblNewLabel_1.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblNewLabel_1.addMouseListener(new MouseAdapter() {
@@ -309,7 +309,7 @@ public class SuccesMajClientFidelite extends JFrame {
 			this.lblNewLabel_2 = new JLabel("");
 			this.lblNewLabel_2.setIcon(new ImageIcon(
 					SuccesMajClientFidelite.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_2.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_2;
@@ -320,7 +320,7 @@ public class SuccesMajClientFidelite extends JFrame {
 			this.lblQuitterLaSaisie = new JLabel("");
 			this.lblQuitterLaSaisie.setIcon(new ImageIcon(
 					SuccesMajClientFidelite.class
-							.getResource("/Images/quitter-saisie.png")));
+							.getResource("/Images/actionbutons/quitter-saisie.png")));
 			this.lblQuitterLaSaisie
 					.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblQuitterLaSaisie

@@ -134,7 +134,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(
-						ConfirmationOperationCarteFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
+						ConfirmationOperationCarteFidelite.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				this.label_1.setEnabled(false);
 				this.label_1.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -147,12 +147,12 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 				this.label_3.setEnabled(false);
 				this.label_3.setVisible(false);
 				this.fond.setIcon(new ImageIcon(
-						ConfirmationOperationCarteFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
+						ConfirmationOperationCarteFidelite.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
-						ConfirmationOperationCarteFidelite.class.getResource("/Images/menus_fidelite.png")));
+						ConfirmationOperationCarteFidelite.class.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 
 			}
@@ -290,7 +290,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(
-					new ImageIcon(ConfirmationOperationCarteFidelite.class.getResource("/Images/fond-logiciel.png")));
+					new ImageIcon(ConfirmationOperationCarteFidelite.class.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -311,7 +311,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 		if (this.lblNon == null) {
 			this.lblNon = new JLabel("");
 			this.lblNon.setIcon(
-					new ImageIcon(ConfirmationOperationCarteFidelite.class.getResource("/Images/annuler.png")));
+					new ImageIcon(ConfirmationOperationCarteFidelite.class.getResource("/Images/actionbutons/annuler.png")));
 			this.lblNon.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -332,7 +332,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 		if (this.lblOui == null) {
 			this.lblOui = new JLabel("");
 			this.lblOui.setIcon(
-					new ImageIcon(ConfirmationOperationCarteFidelite.class.getResource("/Images/valider.png")));
+					new ImageIcon(ConfirmationOperationCarteFidelite.class.getResource("/Images/actionbutons/valider.png")));
 			this.lblOui.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

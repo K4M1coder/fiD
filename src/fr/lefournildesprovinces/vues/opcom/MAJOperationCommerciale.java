@@ -41,7 +41,7 @@ public class MAJOperationCommerciale extends JFrame {
 
 	private static Connection c;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 3173171250319915928L;
 	private static PreparedStatement stm;
@@ -569,7 +569,7 @@ public class MAJOperationCommerciale extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(MAJOperationCommerciale.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_3.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -584,12 +584,12 @@ public class MAJOperationCommerciale extends JFrame {
 				this.label_3.setVisible(false);
 
 				this.fond.setIcon(new ImageIcon(MAJOperationCommerciale.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(MAJOperationCommerciale.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 			}
 			this.fond.setBounds(216, 231, 850, 338);
@@ -855,7 +855,7 @@ public class MAJOperationCommerciale extends JFrame {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(
 					MAJOperationCommerciale.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -867,7 +867,7 @@ public class MAJOperationCommerciale extends JFrame {
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(MAJOperationCommerciale.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setFont(new Font("Tahoma", Font.PLAIN, 11));

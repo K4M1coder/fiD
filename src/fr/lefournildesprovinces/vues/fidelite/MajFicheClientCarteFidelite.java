@@ -842,7 +842,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(
-						MajFicheClientCarteFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
+						MajFicheClientCarteFidelite.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				this.label_5.setEnabled(false);
 				this.label_5.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -857,12 +857,12 @@ public class MajFicheClientCarteFidelite extends JFrame {
 				this.label_3.setVisible(false);
 
 				this.fond.setIcon(new ImageIcon(
-						MajFicheClientCarteFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
+						MajFicheClientCarteFidelite.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(
-						new ImageIcon(MajFicheClientCarteFidelite.class.getResource("/Images/menus_fidelite.png")));
+						new ImageIcon(MajFicheClientCarteFidelite.class.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 
 			}
@@ -1190,7 +1190,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1
-					.setIcon(new ImageIcon(MajFicheClientCarteFidelite.class.getResource("/Images/fond-logiciel.png")));
+					.setIcon(new ImageIcon(MajFicheClientCarteFidelite.class.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -1227,14 +1227,14 @@ public class MajFicheClientCarteFidelite extends JFrame {
 	}
 
 	private JLabel getLblValider() {
-		final ImageIcon baseIcon = new ImageIcon(MajFicheClientCarteFidelite.class.getResource("/Images/valider.png"));
+		final ImageIcon baseIcon = new ImageIcon(MajFicheClientCarteFidelite.class.getResource("/Images/actionbutons/valider.png"));
 		final ImageIcon focusedIcon = new ImageIcon(
-				MajFicheClientCarteFidelite.class.getResource("/Images/validerFocus.png"));
+				MajFicheClientCarteFidelite.class.getResource("/Images/actionbutons/validerFocus.png"));
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
 			this.lblValider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider
-					.setIcon(new ImageIcon(MajFicheClientCarteFidelite.class.getResource("/Images/valider.png")));
+					.setIcon(new ImageIcon(MajFicheClientCarteFidelite.class.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

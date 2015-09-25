@@ -33,7 +33,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class SuppressionClientOC extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6409798500793216521L;
 	private String age;
@@ -250,7 +250,7 @@ public class SuppressionClientOC extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(SuppressionClientOC.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -265,12 +265,12 @@ public class SuppressionClientOC extends JFrame {
 				this.label_3.setVisible(false);
 
 				this.fond.setIcon(new ImageIcon(SuppressionClientOC.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(SuppressionClientOC.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -426,7 +426,7 @@ public class SuppressionClientOC extends JFrame {
 			this.lblNewLabel_2.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNewLabel_2.setIcon(new ImageIcon(SuppressionClientOC.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblNewLabel_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
@@ -484,7 +484,7 @@ public class SuppressionClientOC extends JFrame {
 		if (this.lblNewLabel_4 == null) {
 			this.lblNewLabel_4 = new JLabel("");
 			this.lblNewLabel_4.setIcon(new ImageIcon(SuppressionClientOC.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_4.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_4;

@@ -34,7 +34,7 @@ public class Password extends JFrame {
 
 	private static Connection c;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -2834870965879093822L;
 	private static PreparedStatement stm;
@@ -85,7 +85,7 @@ public class Password extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(Password.class
-					.getResource("/Images/menus_magasin.png")));
+					.getResource("/Images/fonds/menus_magasin.png")));
 			this.fond.setBounds(216, 232, 850, 338);
 		}
 		return this.fond;
@@ -219,7 +219,7 @@ public class Password extends JFrame {
 			this.lblAnnuler.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblAnnuler.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblAnnuler.setIcon(new ImageIcon(Password.class
-					.getResource("/Images/annuler.png")));
+					.getResource("/Images/actionbutons/annuler.png")));
 			this.lblAnnuler.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblAnnuler.addMouseListener(new MouseAdapter() {
@@ -262,7 +262,7 @@ public class Password extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(Password.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, -1, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -274,7 +274,7 @@ public class Password extends JFrame {
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(Password.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.addMouseListener(new MouseAdapter() {

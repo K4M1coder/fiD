@@ -27,7 +27,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class CollecteInformationsSansCarte extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 8991791660553355526L;
 	private JComboBox<Object> comboBox;
@@ -118,7 +118,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(CollecteInformationsSansCarte.class
-					.getResource("/Images/menus_extraction.png")));
+					.getResource("/Images/fonds/menus_extraction.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -257,7 +257,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(
 					CollecteInformationsSansCarte.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -286,7 +286,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 			this.lblValider = new JLabel("");
 			this.lblValider.setIcon(new ImageIcon(
 					CollecteInformationsSansCarte.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setCursor(Cursor

@@ -301,7 +301,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(
-						SelectionNumeroCarteFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
+						SelectionNumeroCarteFidelite.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				this.label_1.setEnabled(false);
 				this.label_1.setVisible(false);
 				this.label_2.setEnabled(false);
@@ -316,12 +316,12 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 				this.label_2.setVisible(false);
 
 				this.fond.setIcon(new ImageIcon(
-						SelectionNumeroCarteFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
+						SelectionNumeroCarteFidelite.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(
-						new ImageIcon(SelectionNumeroCarteFidelite.class.getResource("/Images/menus_fidelite.png")));
+						new ImageIcon(SelectionNumeroCarteFidelite.class.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 
 			}
@@ -518,7 +518,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(
-					new ImageIcon(SelectionNumeroCarteFidelite2.class.getResource("/Images/fond-logiciel.png")));
+					new ImageIcon(SelectionNumeroCarteFidelite2.class.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -574,7 +574,7 @@ public class SelectionNumeroCarteFidelite2 extends JFrame {
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider
-					.setIcon(new ImageIcon(SelectionNumeroCarteFidelite2.class.getResource("/Images/valider.png")));
+					.setIcon(new ImageIcon(SelectionNumeroCarteFidelite2.class.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setForeground(Color.GRAY);
 			this.lblValider.setFont(new Font("Tahoma", Font.PLAIN, 11));

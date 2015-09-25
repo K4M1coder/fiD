@@ -25,7 +25,7 @@ import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 public class SuccesMAJClientOC extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -5671883931760381452L;
 	private final String civiliteClient;
@@ -98,7 +98,7 @@ public class SuccesMAJClientOC extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(SuccesMAJClientOC.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -113,12 +113,12 @@ public class SuccesMAJClientOC extends JFrame {
 				this.label_3.setVisible(false);
 
 				this.fond.setIcon(new ImageIcon(SuccesMAJClientOC.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(SuccesMAJClientOC.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -221,7 +221,7 @@ public class SuccesMAJClientOC extends JFrame {
 		if (this.label_6 == null) {
 			this.label_6 = new JLabel("");
 			this.label_6.setIcon(new ImageIcon(SuccesMAJClientOC.class
-					.getResource("/Images/continuer.png")));
+					.getResource("/Images/actionbutons/continuer.png")));
 			this.label_6.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_6.addMouseListener(new MouseAdapter() {
@@ -286,7 +286,7 @@ public class SuccesMAJClientOC extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(SuccesMAJClientOC.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;

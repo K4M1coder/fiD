@@ -33,7 +33,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class SelectionOperationCommerciale extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 2457668521366857012L;
 	private final String choixmenuprecedent;
@@ -146,7 +146,7 @@ public class SelectionOperationCommerciale extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								SelectionOperationCommerciale.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -163,13 +163,13 @@ public class SelectionOperationCommerciale extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								SelectionOperationCommerciale.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
 						SelectionOperationCommerciale.class
-								.getResource("/Images/menus_operation.png")));
+								.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -306,7 +306,7 @@ public class SelectionOperationCommerciale extends JFrame {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(
 					SelectionOperationCommerciale.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -339,7 +339,7 @@ public class SelectionOperationCommerciale extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setIcon(new ImageIcon(
 					SelectionOperationCommerciale.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

@@ -38,7 +38,7 @@ import fr.lefournildesprovinces.vues.popups.MessageExport;
 public class FicheClientCompleteSansCarte extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 3481196798959409227L;
 	private String adresseclientcarte;
@@ -184,7 +184,7 @@ public class FicheClientCompleteSansCarte extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(FicheClientCompleteSansCarte.class
-					.getResource("/Images/menus-extraction-long.png")));
+					.getResource("/Images/fonds/menus-extraction-long.png")));
 			this.fond.setBounds(216, 55, 850, 690);
 		}
 		return this.fond;
@@ -194,7 +194,7 @@ public class FicheClientCompleteSansCarte extends JFrame {
 		if (this.label == null) {
 			this.label = new JLabel("");
 			this.label.setIcon(new ImageIcon(FicheClientCompleteSansCarte.class
-					.getResource("/Images/ecrire.png")));
+					.getResource("/Images/actionbutons/ecrire.png")));
 			this.label.setVisible(false);
 			this.label
 					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -515,7 +515,7 @@ public class FicheClientCompleteSansCarte extends JFrame {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(
 					FicheClientCompleteSansCarte.class
-							.getResource("/Images/carte-vierge.png")));
+							.getResource("/Images/cartes/carte-vierge.png")));
 			this.lblNewLabel_1.setBounds(242, 280, 360, 237);
 		}
 		return this.lblNewLabel_1;
@@ -556,7 +556,7 @@ public class FicheClientCompleteSansCarte extends JFrame {
 			this.lblNewLabel_5 = new JLabel("");
 			this.lblNewLabel_5.setIcon(new ImageIcon(
 					FicheClientCompleteSansCarte.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_5.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_5;
@@ -593,7 +593,7 @@ public class FicheClientCompleteSansCarte extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblPrint.setIcon(new ImageIcon(
 					FicheClientCompleteSansCarte.class
-							.getResource("/Images/export-imp.png")));
+							.getResource("/Images/actionbutons/export-imp.png")));
 			this.lblPrint.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblPrint.setForeground(Color.GRAY);
 			this.lblPrint.addMouseListener(new MouseAdapter() {
@@ -721,7 +721,7 @@ public class FicheClientCompleteSansCarte extends JFrame {
 						/*
 						 * Desktop bureau=Desktop.getDesktop();
 						 * bureau.print(file);
-						 * 
+						 *
 						 * try { Thread.sleep(6000); } catch
 						 * (InterruptedException e) { catch block
 						 * e.printStackTrace(); }

@@ -193,7 +193,7 @@ public class MenuPrincipal extends JFrame {
 		case "utilisateur":
 
 			this.fond.setIcon(new ImageIcon(MenuPrincipal.class
-					.getResource("/Images/menus-grises-acceuil-1.png")));
+					.getResource("/Images/fonds/menus-grises-acceuil-1.png")));
 			this.lienmagasin.setEnabled(false);
 			this.lienmagasin.setVisible(false);
 			this.lienextraction.setEnabled(false);
@@ -224,12 +224,12 @@ public class MenuPrincipal extends JFrame {
 			this.label_Magasins.setVisible(false);
 
 			this.fond.setIcon(new ImageIcon(MenuPrincipal.class
-					.getResource("/Images/menus-grises-acceuil-1.png")));
+					.getResource("/Images/fonds/menus-grises-acceuil-1.png")));
 			break;
 
 		case "administrateur":
 			this.fond.setIcon(new ImageIcon(MenuPrincipal.class
-					.getResource("/Images/menus_accueil.png")));
+					.getResource("/Images/fonds/menus_accueil.png")));
 			break;
 
 		}
@@ -273,7 +273,7 @@ public class MenuPrincipal extends JFrame {
 	private JLabel getLabel_ADM() {
 		if (this.label_ADM == null) {
 			this.label_ADM = new JLabel("");
-			this.label_ADM.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Images/bouton-admin.png")));
+			this.label_ADM.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Images/menubutons/bouton-admin.png")));
 			this.label_ADM
 					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_ADM.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -286,7 +286,7 @@ public class MenuPrincipal extends JFrame {
 				}
 			});
 			this.label_ADM.setHorizontalAlignment(SwingConstants.CENTER);
-			this.label_ADM.setBounds(881, 318, 145, 225);
+			this.label_ADM.setBounds(881, 318, 145, 183);
 		}
 		return this.label_ADM;
 	}
@@ -294,7 +294,7 @@ public class MenuPrincipal extends JFrame {
 	private JLabel getLabel_Import() {
 		if (this.label_Import == null) {
 			this.label_Import = new JLabel("");
-			this.label_Import.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Images/import-excel.png")));
+			this.label_Import.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Images/actionbutons/import-excel.png")));
 			this.label_Import
 					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_Import.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -308,7 +308,7 @@ public class MenuPrincipal extends JFrame {
 //				}
 //			});
 			this.label_Import.setHorizontalAlignment(SwingConstants.CENTER);
-			this.label_Import.setBounds(863, 728, 127, 44);
+			this.label_Import.setBounds(891, 503, 127, 44);
 		}
 		return this.label_Import;
 	}
@@ -317,7 +317,7 @@ public class MenuPrincipal extends JFrame {
 		if (this.label_CartesFid == null) {
 			this.label_CartesFid = new JLabel("");
 			this.label_CartesFid.setIcon(new ImageIcon(MenuPrincipal.class
-					.getResource("/Images/menus-carte-fid.png")));
+					.getResource("/Images/menubutons/menus-carte-fid.png")));
 			this.label_CartesFid
 					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_CartesFid.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -340,7 +340,7 @@ public class MenuPrincipal extends JFrame {
 		if (this.label_OpCom == null) {
 			this.label_OpCom = new JLabel("");
 			this.label_OpCom.setIcon(new ImageIcon(MenuPrincipal.class
-					.getResource("/Images/menus-operations.png")));
+					.getResource("/Images/menubutons/menus-operations.png")));
 			this.label_OpCom
 					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_OpCom.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -363,7 +363,7 @@ public class MenuPrincipal extends JFrame {
 		if (this.label_Magasins == null) {
 			this.label_Magasins = new JLabel("");
 			this.label_Magasins.setIcon(new ImageIcon(MenuPrincipal.class
-					.getResource("/Images/menus-magasins.png")));
+					.getResource("/Images/menubutons/menus-magasins.png")));
 			this.label_Magasins
 					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_Magasins.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -387,7 +387,7 @@ public class MenuPrincipal extends JFrame {
 		if (this.label_Extraction == null) {
 			this.label_Extraction = new JLabel("");
 			this.label_Extraction.setIcon(new ImageIcon(MenuPrincipal.class
-					.getResource("/Images/menus-extraction.png")));
+					.getResource("/Images/menubutons/menus-extraction.png")));
 			this.label_Extraction
 					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_Extraction.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -458,7 +458,7 @@ public class MenuPrincipal extends JFrame {
 			this.Cadre = new JLabel("");
 			Cadre.setHorizontalAlignment(SwingConstants.CENTER);
 			this.Cadre.setIcon(new ImageIcon(MenuPrincipal.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.Cadre.setBounds(0, 0, 1280, 800);
 		}
 		return this.Cadre;
@@ -470,7 +470,7 @@ public class MenuPrincipal extends JFrame {
 			this.lblValider.setVisible(false);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(MenuPrincipal.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));

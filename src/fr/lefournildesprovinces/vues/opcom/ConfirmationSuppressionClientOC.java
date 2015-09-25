@@ -28,7 +28,7 @@ import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 public class ConfirmationSuppressionClientOC extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 249181412573311625L;
 	private String adresse;
@@ -142,7 +142,7 @@ public class ConfirmationSuppressionClientOC extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								ConfirmationSuppressionClientOC.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -157,13 +157,13 @@ public class ConfirmationSuppressionClientOC extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								ConfirmationSuppressionClientOC.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
 						ConfirmationSuppressionClientOC.class
-								.getResource("/Images/menus_operation.png")));
+								.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -388,7 +388,7 @@ public class ConfirmationSuppressionClientOC extends JFrame {
 			this.lblNewLabel_7 = new JLabel("");
 			this.lblNewLabel_7.setIcon(new ImageIcon(
 					ConfirmationSuppressionClientOC.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_7.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_7;
@@ -411,7 +411,7 @@ public class ConfirmationSuppressionClientOC extends JFrame {
 			this.lblNon.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNon.setIcon(new ImageIcon(
 					ConfirmationSuppressionClientOC.class
-							.getResource("/Images/annuler.png")));
+							.getResource("/Images/actionbutons/annuler.png")));
 			this.lblNon.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
@@ -437,7 +437,7 @@ public class ConfirmationSuppressionClientOC extends JFrame {
 			this.lblOui.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblOui.setIcon(new ImageIcon(
 					ConfirmationSuppressionClientOC.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblOui.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

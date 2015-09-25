@@ -41,7 +41,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class GestionClientOperationCommerciale extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -7357692923550332674L;
 	private String adresse;
@@ -179,7 +179,7 @@ public class GestionClientOperationCommerciale extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								GestionClientOperationCommerciale.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -196,13 +196,13 @@ public class GestionClientOperationCommerciale extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								GestionClientOperationCommerciale.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
 						GestionClientOperationCommerciale.class
-								.getResource("/Images/menus_operation.png")));
+								.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -435,7 +435,7 @@ public class GestionClientOperationCommerciale extends JFrame {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(
 					GestionClientOperationCommerciale.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -497,7 +497,7 @@ public class GestionClientOperationCommerciale extends JFrame {
 			this.lblValider = new JLabel("");
 			this.lblValider.setIcon(new ImageIcon(
 					GestionClientOperationCommerciale.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.addMouseListener(new MouseAdapter() {

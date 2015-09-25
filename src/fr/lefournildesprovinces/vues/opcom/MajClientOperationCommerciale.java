@@ -44,7 +44,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class MajClientOperationCommerciale extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1158064770865088784L;
 	private String adresse;
@@ -384,7 +384,7 @@ public class MajClientOperationCommerciale extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								MajClientOperationCommerciale.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -401,13 +401,13 @@ public class MajClientOperationCommerciale extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								MajClientOperationCommerciale.class
-										.getResource("/Images/menus-grises-operation.png")));
+										.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
 						MajClientOperationCommerciale.class
-								.getResource("/Images/menus_operation.png")));
+								.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -674,7 +674,7 @@ public class MajClientOperationCommerciale extends JFrame {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(
 					MajClientOperationCommerciale.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 1, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -728,7 +728,7 @@ public class MajClientOperationCommerciale extends JFrame {
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(
 					MajClientOperationCommerciale.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));

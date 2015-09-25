@@ -32,7 +32,7 @@ public class ConfirmationMAJClientOC extends JFrame {
 	private static Connection c;
 	private static PreparedStatement prestm;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -5799137853749049941L;
 	private final String adresseClient;
@@ -171,7 +171,7 @@ public class ConfirmationMAJClientOC extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(ConfirmationMAJClientOC.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -184,12 +184,12 @@ public class ConfirmationMAJClientOC extends JFrame {
 				this.label_3.setEnabled(false);
 				this.label_3.setVisible(false);
 				this.fond.setIcon(new ImageIcon(ConfirmationMAJClientOC.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(ConfirmationMAJClientOC.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fond/menus_operation.png")));
 				break;
 
 			}
@@ -526,7 +526,7 @@ public class ConfirmationMAJClientOC extends JFrame {
 			this.lblNewLabel_4 = new JLabel("");
 			this.lblNewLabel_4.setIcon(new ImageIcon(
 					ConfirmationMAJClientOC.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_4.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_4;
@@ -546,7 +546,7 @@ public class ConfirmationMAJClientOC extends JFrame {
 		if (this.lblNon == null) {
 			this.lblNon = new JLabel("");
 			this.lblNon.setIcon(new ImageIcon(ConfirmationMAJClientOC.class
-					.getResource("/Images/annuler.png")));
+					.getResource("/Images/actionbutons/annuler.png")));
 			this.lblNon.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNon.addMouseListener(new MouseAdapter() {
 				@Override
@@ -571,7 +571,7 @@ public class ConfirmationMAJClientOC extends JFrame {
 		if (this.lblOui == null) {
 			this.lblOui = new JLabel("");
 			this.lblOui.setIcon(new ImageIcon(ConfirmationMAJClientOC.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblOui.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblOui.addMouseListener(new MouseAdapter() {
 				@Override
@@ -595,14 +595,14 @@ public class ConfirmationMAJClientOC extends JFrame {
 						 * String majtableparticiper=
 						 * "Update participer set idoperationcommerciale=?, idmagasin=? where idclient=?"
 						 * ; prestm=c.prepareStatement(majtableparticiper);
-						 * 
-						 * 
+						 *
+						 *
 						 * prestm.setInt(1,IdOperationCommerciale);
 						 * prestm.setInt(2,idmagasin);
 						 * prestm.setInt(3,identifiantclient);
-						 * 
-						 * 
-						 * 
+						 *
+						 *
+						 *
 						 * prestm.executeUpdate();
 						 */
 

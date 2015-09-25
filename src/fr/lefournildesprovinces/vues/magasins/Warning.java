@@ -24,7 +24,7 @@ import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 public class Warning extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -8172889158567781416L;
 	private final JPanel contentPane;
@@ -77,7 +77,7 @@ public class Warning extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(Warning.class
-					.getResource("/Images/menus_magasin.png")));
+					.getResource("/Images/fonds/menus_magasin.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -221,7 +221,7 @@ public class Warning extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(Warning.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -233,7 +233,7 @@ public class Warning extends JFrame {
 			this.lblNon.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblNon.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblNon.setIcon(new ImageIcon(Warning.class
-					.getResource("/Images/annuler.png")));
+					.getResource("/Images/actionbutons/annuler.png")));
 			this.lblNon.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblNon.addMouseListener(new MouseAdapter() {
@@ -258,7 +258,7 @@ public class Warning extends JFrame {
 			this.lblOui.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblOui.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblOui.setIcon(new ImageIcon(Warning.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblOui.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblOui.setFont(new Font("Tahoma", Font.BOLD, 11));

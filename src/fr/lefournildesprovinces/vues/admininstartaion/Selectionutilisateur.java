@@ -33,7 +33,7 @@ import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 public class Selectionutilisateur extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -2734534353365590098L;
 	private JComboBox<Object> comboBox;
@@ -134,7 +134,7 @@ public class Selectionutilisateur extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(Selectionutilisateur.class
-					.getResource("/Images/menus_accueil-2.png")));
+					.getResource("/Images/fonds/menus_accueil-2.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -266,7 +266,7 @@ public class Selectionutilisateur extends JFrame {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(Selectionutilisateur.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -320,7 +320,7 @@ public class Selectionutilisateur extends JFrame {
 			this.valider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.valider.setIcon(new ImageIcon(Selectionutilisateur.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.valider.setBounds(887, 392, 150, 67);
 		}
 		return this.valider;

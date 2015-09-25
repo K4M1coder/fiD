@@ -128,7 +128,7 @@ public class CollecteInformations extends JFrame {
 	private JLabel getFond() {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
-			this.fond.setIcon(new ImageIcon(CollecteInformations.class.getResource("/Images/menus_extraction.png")));
+			this.fond.setIcon(new ImageIcon(CollecteInformations.class.getResource("/Images/fonds/menus_extraction.png")));
 			this.fond.setBounds(216, 55, 850, 690);
 		}
 		return this.fond;
@@ -402,7 +402,7 @@ public class CollecteInformations extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(CollecteInformations.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -436,7 +436,7 @@ public class CollecteInformations extends JFrame {
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(CollecteInformations.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

@@ -152,7 +152,7 @@ public class deplacementdatas extends JFrame {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(deplacementdatas.class
-					.getResource("/Images/avertissements.png")));
+					.getResource("/Images/fonds/avertissements.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 628, 215);
 		}
 		return this.lblNewLabel_1;
@@ -162,7 +162,7 @@ public class deplacementdatas extends JFrame {
 		if (this.lblNon == null) {
 			this.lblNon = new JLabel("");
 			this.lblNon.setIcon(new ImageIcon(deplacementdatas.class
-					.getResource("/Images/non.png")));
+					.getResource("/Images/actionbutons/non.png")));
 			this.lblNon.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -184,7 +184,7 @@ public class deplacementdatas extends JFrame {
 		if (this.lblOui == null) {
 			this.lblOui = new JLabel("");
 			this.lblOui.setIcon(new ImageIcon(deplacementdatas.class
-					.getResource("/Images/oui.png")));
+					.getResource("/Images/actionbutons/oui.png")));
 			this.lblOui.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {

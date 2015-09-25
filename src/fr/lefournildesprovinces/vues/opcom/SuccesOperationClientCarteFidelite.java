@@ -25,7 +25,7 @@ import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 public class SuccesOperationClientCarteFidelite extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -2383762713781352517L;
 	private final String choixprecedent;
@@ -113,7 +113,7 @@ public class SuccesOperationClientCarteFidelite extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								SuccesOperationClientCarteFidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+										.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				this.label.setEnabled(false);
 				this.label.setVisible(false);
 				this.label_2.setEnabled(false);
@@ -130,13 +130,13 @@ public class SuccesOperationClientCarteFidelite extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								SuccesOperationClientCarteFidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+										.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
 						SuccesOperationClientCarteFidelite.class
-								.getResource("/Images/menus_fidelite.png")));
+								.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 
 			}
@@ -240,7 +240,7 @@ public class SuccesOperationClientCarteFidelite extends JFrame {
 			this.label_5 = new JLabel("");
 			this.label_5.setIcon(new ImageIcon(
 					SuccesOperationClientCarteFidelite.class
-							.getResource("/Images/continuer.png")));
+							.getResource("/Images/actionbutons/continuer.png")));
 			this.label_5.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_5.addMouseListener(new MouseAdapter() {
@@ -303,7 +303,7 @@ public class SuccesOperationClientCarteFidelite extends JFrame {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(
 					SuccesOperationClientCarteFidelite.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;

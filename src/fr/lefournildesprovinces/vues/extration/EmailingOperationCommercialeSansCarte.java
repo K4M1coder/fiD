@@ -731,7 +731,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(
 					EmailingOperationCommercialeSansCarte.class
-							.getResource("/Images/menus-extraction-long.png")));
+							.getResource("/Images/actionbutons/menus-extraction-long.png")));
 			this.fond.setBounds(216, 55, 850, 690);
 		}
 		return this.fond;
@@ -890,7 +890,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.lblExportCvs = new JLabel("");
 			this.lblExportCvs.setIcon(new ImageIcon(
 					EmailingOperationCommercialeSansCarte.class
-							.getResource("/Images/export-csv.png")));
+							.getResource("/Images/actionbutons/export-csv.png")));
 			this.lblExportCvs.setVisible(false);
 			this.lblExportCvs.addMouseListener(new MouseAdapter() {
 				@Override
@@ -988,7 +988,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.lblExportxls = new JLabel("");
 			this.lblExportxls.setIcon(new ImageIcon(
 					EmailingOperationCommercialeSansCarte.class
-							.getResource("/Images/export-excel.png")));
+							.getResource("/Images/actionbutons/export-excel.png")));
 			this.lblExportxls.setVisible(false);
 			this.lblExportxls.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblExportxls.setForeground(Color.GRAY);

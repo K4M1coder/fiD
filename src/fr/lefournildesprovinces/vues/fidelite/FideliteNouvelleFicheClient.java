@@ -880,7 +880,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(
-						FideliteNouvelleFicheClient.class.getResource("/Images/menus-grises-fidelite.png")));
+						FideliteNouvelleFicheClient.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				this.label_5.setEnabled(false);
 				this.label_5.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -895,12 +895,12 @@ public class FideliteNouvelleFicheClient extends JFrame {
 				this.label_3.setVisible(false);
 
 				this.fond.setIcon(new ImageIcon(
-						FideliteNouvelleFicheClient.class.getResource("/Images/menus-grises-fidelite.png")));
+						FideliteNouvelleFicheClient.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(
-						new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/menus_fidelite.png")));
+						new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 
 			}
@@ -1216,7 +1216,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1
-					.setIcon(new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/fond-logiciel.png")));
+					.setIcon(new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -1253,13 +1253,13 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	}
 
 	private JLabel getLblValider() {
-		final ImageIcon baseIcon = new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/valider.png"));
+		final ImageIcon baseIcon = new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/actionbutons/valider.png"));
 		final ImageIcon focusedIcon = new ImageIcon(
-				FideliteNouvelleFicheClient.class.getResource("/Images/validerFocus.png"));
+				FideliteNouvelleFicheClient.class.getResource("/Images/actionbutons/validerFocus.png"));
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
 			this.lblValider
-					.setIcon(new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/valider.png")));
+					.setIcon(new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

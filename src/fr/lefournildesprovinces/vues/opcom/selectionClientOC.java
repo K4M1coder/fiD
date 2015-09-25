@@ -37,7 +37,7 @@ public class selectionClientOC extends JFrame {
 	private static PreparedStatement preStm;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 4704559585980446620L;
 	private String ageclient;
@@ -230,7 +230,7 @@ public class selectionClientOC extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(selectionClientOC.class
-					.getResource("/Images/menus_extraction.png")));
+					.getResource("/Images/fonds/menus_extraction.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -394,7 +394,7 @@ public class selectionClientOC extends JFrame {
 			this.lblNewLabel_2.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblNewLabel_2.setIcon(new ImageIcon(selectionClientOC.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblNewLabel_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
@@ -456,7 +456,7 @@ public class selectionClientOC extends JFrame {
 		if (this.lblNewLabel_3 == null) {
 			this.lblNewLabel_3 = new JLabel("");
 			this.lblNewLabel_3.setIcon(new ImageIcon(selectionClientOC.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_3.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_3;

@@ -46,7 +46,7 @@ public class NouveauMagasin extends JFrame {
 
 	private static Connection c;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -8299477811754499948L;
 	private static PreparedStatement stm;
@@ -152,7 +152,7 @@ public class NouveauMagasin extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("New label");
 			this.fond.setIcon(new ImageIcon(NouveauMagasin.class
-					.getResource("/Images/menus_magasin.png")));
+					.getResource("/Images/fonds/menus_magasin.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -367,7 +367,7 @@ public class NouveauMagasin extends JFrame {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(NouveauMagasin.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -389,7 +389,7 @@ public class NouveauMagasin extends JFrame {
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblValider.setIcon(new ImageIcon(NouveauMagasin.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setVisible(false);
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override

@@ -37,7 +37,7 @@ public class Majprivilege extends JFrame {
 	private static Connection c;
 	private static PreparedStatement preStm;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -7536686983541607640L;
 	private JComboBox<Object> comboBox;
@@ -134,7 +134,7 @@ public class Majprivilege extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(Majprivilege.class
-					.getResource("/Images/menus_accueil-2.png")));
+					.getResource("/Images/fonds/menus_accueil-2.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -301,7 +301,7 @@ public class Majprivilege extends JFrame {
 				}
 			});
 			this.label_5.setIcon(new ImageIcon(Majprivilege.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.label_5.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.label_5.setHorizontalAlignment(SwingConstants.CENTER);
 			this.label_5.setBounds(881, 394, 150, 67);
@@ -387,7 +387,7 @@ public class Majprivilege extends JFrame {
 		if (this.lblNewLabel_4 == null) {
 			this.lblNewLabel_4 = new JLabel("");
 			this.lblNewLabel_4.setIcon(new ImageIcon(Majprivilege.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_4.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_4;

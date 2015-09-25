@@ -177,7 +177,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(
-						ConfirmationMAJClientFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
+						ConfirmationMAJClientFidelite.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				this.label_5.setEnabled(false);
 				this.label_5.setVisible(false);
 				this.label_7.setEnabled(false);
@@ -190,12 +190,12 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 				this.label_7.setEnabled(false);
 				this.label_7.setVisible(false);
 				this.fond.setIcon(new ImageIcon(
-						ConfirmationMAJClientFidelite.class.getResource("/Images/menus-grises-fidelite.png")));
+						ConfirmationMAJClientFidelite.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(
-						new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/menus_fidelite.png")));
+						new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 
 			}
@@ -376,11 +376,11 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 		if (this.label_CartesFid == null) {
 			this.label_CartesFid = new JLabel("");
 			this.label_CartesFid.setIcon(new ImageIcon(
-					ConfirmationInsertionClientFidelite.class.getResource("/Images/carte-fidelite-3d.png")));
+					ConfirmationInsertionClientFidelite.class.getResource("/Images/cartes/carte-fidelite-3d.png")));
 			if (!ConfirmationMAJClientFidelite.this.vip.equals(null)) {
 				if (ConfirmationMAJClientFidelite.this.vip) {
 					this.label_CartesFid.setIcon(new ImageIcon(
-							ConfirmationMAJClientFidelite.class.getResource("/Images/carte-privilege-3d.png")));
+							ConfirmationMAJClientFidelite.class.getResource("/Images/cartes/carte-privilege-3d.png")));
 				}
 			}
 			this.label_CartesFid.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -556,7 +556,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 		if (this.lblNewLabel_3 == null) {
 			this.lblNewLabel_3 = new JLabel("");
 			this.lblNewLabel_3.setIcon(
-					new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/fond-logiciel.png")));
+					new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_3.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_3;
@@ -576,7 +576,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 		if (this.lblNon == null) {
 			this.lblNon = new JLabel("");
 			this.lblNon.setHorizontalAlignment(SwingConstants.CENTER);
-			this.lblNon.setIcon(new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/annuler.png")));
+			this.lblNon.setIcon(new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/actionbutons/annuler.png")));
 			this.lblNon.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -596,7 +596,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 	private JLabel getLblOui() {
 		if (this.lblOui == null) {
 			this.lblOui = new JLabel("");
-			this.lblOui.setIcon(new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/valider.png")));
+			this.lblOui.setIcon(new ImageIcon(ConfirmationMAJClientFidelite.class.getResource("/Images/actionbutons/valider.png")));
 			this.lblOui.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblOui.addMouseListener(new MouseAdapter() {
 				@Override

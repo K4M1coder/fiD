@@ -37,7 +37,7 @@ public class PassworddeleteClientfidelite extends JFrame {
 
 	private static Connection c;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 960524369481813363L;
 	private static PreparedStatement stm;
@@ -108,7 +108,7 @@ public class PassworddeleteClientfidelite extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								PassworddeleteClientfidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+										.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				this.label_1.setEnabled(false);
 				this.label_1.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -125,13 +125,13 @@ public class PassworddeleteClientfidelite extends JFrame {
 				this.fond
 						.setIcon(new ImageIcon(
 								PassworddeleteClientfidelite.class
-										.getResource("/Images/menus-grises-fidelite.png")));
+										.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(
 						PassworddeleteClientfidelite.class
-								.getResource("/Images/menus_fidelite.png")));
+								.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 
 			}
@@ -261,7 +261,7 @@ public class PassworddeleteClientfidelite extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblAnnuler.setIcon(new ImageIcon(
 					PassworddeleteClientfidelite.class
-							.getResource("/Images/annuler.png")));
+							.getResource("/Images/actionbutons/annuler.png")));
 			this.lblAnnuler.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -313,7 +313,7 @@ public class PassworddeleteClientfidelite extends JFrame {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(
 					PassworddeleteClientfidelite.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -327,7 +327,7 @@ public class PassworddeleteClientfidelite extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setIcon(new ImageIcon(
 					PassworddeleteClientfidelite.class
-							.getResource("/Images/valider.png")));
+							.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {

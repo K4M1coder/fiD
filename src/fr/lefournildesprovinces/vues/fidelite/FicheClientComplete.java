@@ -142,10 +142,10 @@ public class FicheClientComplete extends JFrame {
 					}
 					if (FicheClientComplete.this.label_7_2.getText().equals("0")) {
 						FicheClientComplete.this.lblNewLabel_1.setIcon(
-								new ImageIcon(FicheClientComplete.class.getResource("/Images/carte-vierge.png")));
+								new ImageIcon(FicheClientComplete.class.getResource("/Images/cartes/carte-vierge.png")));
 					} else {
 						FicheClientComplete.this.lblNewLabel_1.setIcon(
-								new ImageIcon(FicheClientComplete.class.getResource("/Images/carte-vierge-vip2.png")));
+								new ImageIcon(FicheClientComplete.class.getResource("/Images/cartes/carte-vierge-vip2.png")));
 					}
 				}
 
@@ -188,7 +188,7 @@ public class FicheClientComplete extends JFrame {
 				this.label_14.setVisible(false);
 				this.label_14.setEnabled(false);
 				this.fond.setIcon(
-						new ImageIcon(MenuPrincipal.class.getResource("/Images/menus-extraction-long-extraction.png")));
+						new ImageIcon(MenuPrincipal.class.getResource("/Images/fonds/menus-extraction-long-extraction.png")));
 
 				break;
 
@@ -196,11 +196,11 @@ public class FicheClientComplete extends JFrame {
 				this.label_14.setVisible(false);
 				this.label_14.setEnabled(false);
 				this.fond.setIcon(
-						new ImageIcon(MenuPrincipal.class.getResource("/Images/menus-extraction-long-extraction.png")));
+						new ImageIcon(MenuPrincipal.class.getResource("/Images/fonds/menus-extraction-long-extraction.png")));
 				break;
 
 			case "administrateur":
-				this.fond.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Images/menus-extraction-long.png")));
+				this.fond.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Images/fonds/menus-extraction-long.png")));
 				break;
 			}
 			this.fond.setBounds(216, 55, 850, 690);
@@ -500,7 +500,7 @@ public class FicheClientComplete extends JFrame {
 	private JLabel getLblLuiEcrire() {
 		if (this.lblLuiEcrire == null) {
 			this.lblLuiEcrire = new JLabel("");
-			this.lblLuiEcrire.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/ecrire.png")));
+			this.lblLuiEcrire.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/actionbutons/ecrire.png")));
 			this.lblLuiEcrire.setVisible(false);
 			this.lblLuiEcrire.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblLuiEcrire.setForeground(Color.RED);
@@ -652,7 +652,7 @@ public class FicheClientComplete extends JFrame {
 		if (this.lblNewLabel_5 == null) {
 			this.lblNewLabel_5 = new JLabel("");
 			this.lblNewLabel_5
-					.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/fond-logiciel.png")));
+					.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_5.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_5;
@@ -691,7 +691,7 @@ public class FicheClientComplete extends JFrame {
 	private JLabel getLblPrint() {
 		if (this.lblPrint == null) {
 			this.lblPrint = new JLabel("");
-			this.lblPrint.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/export-imp.png")));
+			this.lblPrint.setIcon(new ImageIcon(FicheClientComplete.class.getResource("/Images/actionbutons/export-imp.png")));
 			this.lblPrint.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblPrint.setForeground(Color.GRAY);
 			this.lblPrint.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

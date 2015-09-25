@@ -32,7 +32,7 @@ public class Consultationficheutilisateur extends JFrame {
 	private static Connection c;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -3663211058305640819L;
 	private static PreparedStatement stm;
@@ -140,7 +140,7 @@ public class Consultationficheutilisateur extends JFrame {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(Consultationficheutilisateur.class
-					.getResource("/Images/menus_accueil-2.png")));
+					.getResource("/Images/fonds/menus_accueil-2.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -335,7 +335,7 @@ public class Consultationficheutilisateur extends JFrame {
 			this.lblNewLabel_5 = new JLabel("");
 			this.lblNewLabel_5.setIcon(new ImageIcon(
 					Consultationficheutilisateur.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_5.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_5;

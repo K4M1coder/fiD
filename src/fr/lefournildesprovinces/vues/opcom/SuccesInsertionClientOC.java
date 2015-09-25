@@ -32,7 +32,7 @@ public class SuccesInsertionClientOC extends JFrame {
 	private static Connection c;
 	private static ResultSet rs;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 8295829903159137666L;
 	private static PreparedStatement stm;
@@ -172,7 +172,7 @@ public class SuccesInsertionClientOC extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(SuccesInsertionClientOC.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -187,12 +187,12 @@ public class SuccesInsertionClientOC extends JFrame {
 				this.label_3.setVisible(false);
 
 				this.fond.setIcon(new ImageIcon(SuccesInsertionClientOC.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(SuccesInsertionClientOC.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -333,7 +333,7 @@ public class SuccesInsertionClientOC extends JFrame {
 			this.lblContinuer = new JLabel("");
 			this.lblContinuer.setIcon(new ImageIcon(
 					SuccesInsertionClientOC.class
-							.getResource("/Images/continuer.png")));
+							.getResource("/Images/actionbutons/continuer.png")));
 			this.lblContinuer.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblContinuer.addMouseListener(new MouseAdapter() {
@@ -359,7 +359,7 @@ public class SuccesInsertionClientOC extends JFrame {
 			this.lblModifierLaDerniere = new JLabel("");
 			this.lblModifierLaDerniere.setIcon(new ImageIcon(
 					SuccesInsertionClientOC.class
-							.getResource("/Images/modifier.png")));
+							.getResource("/Images/actionbutons/modifier.png")));
 			this.lblModifierLaDerniere.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblModifierLaDerniere.addMouseListener(new MouseAdapter() {
@@ -387,7 +387,7 @@ public class SuccesInsertionClientOC extends JFrame {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(
 					SuccesInsertionClientOC.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -437,7 +437,7 @@ public class SuccesInsertionClientOC extends JFrame {
 		if (this.lblQuitter == null) {
 			this.lblQuitter = new JLabel("");
 			this.lblQuitter.setIcon(new ImageIcon(SuccesInsertionClientOC.class
-					.getResource("/Images/quitter-saisie.png")));
+					.getResource("/Images/actionbutons/quitter-saisie.png")));
 			this.lblQuitter.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblQuitter.addMouseListener(new MouseAdapter() {

@@ -26,7 +26,7 @@ import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 public class SuccesMagasinOperation extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 6743634670741063180L;
 	private final JPanel contentPane;
@@ -123,72 +123,72 @@ public class SuccesMagasinOperation extends JFrame {
 			switch (texte) {
 			case "Désincription Newslettter":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_fidelite.png")));
+						.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 			case "Mise à jour d'une carte de fidélité":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_fidelite.png")));
+						.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 			case "Suppression d'une carte de fidélité":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_fidelite.png")));
+						.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 			case "Nouvelle carte de fidélité":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_fidelite.png")));
+						.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 			case "Nouvelle Opération Commerciale":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 			case "Mise à Jour d'une Opération Commerciale":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 			case "Suppression d'une Opération Commerciale":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 			case "Supprimer un bulletin":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 			case "Mettre à jour un bulletin":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 			case "Saisir un bulletin":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 			case "Mettre à jour un mot de passe utilisateur":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_accueil.png")));
+						.getResource("/Images/fonds/menus_accueil.png")));
 				break;
 			case "Créer un profil utilisateur":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_accueil.png")));
+						.getResource("/Images/fonds/menus_accueil.png")));
 				break;
 			case "Supprimer un utilisateur":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_accueil.png")));
+						.getResource("/Images/fonds/menus_accueil.png")));
 				break;
 			case "Mettre a jour un privilege utilisateur":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_accueil.png")));
+						.getResource("/Images/fonds/menus_accueil.png")));
 				break;
 			case "Mise à jour d'un magasin":
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_magasin.png")));
+						.getResource("/Images/fonds/menus_magasin.png")));
 				break;
 			default:
 				this.fond.setIcon(new ImageIcon(SuccesMagasinOperation.class
-						.getResource("/Images/menus_magasin.png")));
+						.getResource("/Images/fonds/menus_magasin.png")));
 				break;
 			}
 
 			// fond.setIcon(new
-			// ImageIcon(SuccesMagasinOperation.class.getResource("/Images/menus_magasin.png")));
+			// ImageIcon(SuccesMagasinOperation.class.getResource("/Images/fonds/menus_magasin.png")));
 
 		}
 		return this.fond;
@@ -329,7 +329,7 @@ public class SuccesMagasinOperation extends JFrame {
 			this.lblCliquerPourContinuer = new JLabel("");
 			this.lblCliquerPourContinuer.setIcon(new ImageIcon(
 					SuccesMagasinOperation.class
-							.getResource("/Images/continuer.png")));
+							.getResource("/Images/actionbutons/continuer.png")));
 
 			this.lblCliquerPourContinuer.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -372,7 +372,7 @@ public class SuccesMagasinOperation extends JFrame {
 			this.lblNewLabel_2 = new JLabel("");
 			this.lblNewLabel_2.setIcon(new ImageIcon(
 					SuccesMagasinOperation.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_2.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_2;
@@ -383,7 +383,7 @@ public class SuccesMagasinOperation extends JFrame {
 			this.lblQuitterLaSaisie = new JLabel("");
 			this.lblQuitterLaSaisie.setIcon(new ImageIcon(
 					SuccesMagasinOperation.class
-							.getResource("/Images/quitter-saisie.png")));
+							.getResource("/Images/actionbutons/quitter-saisie.png")));
 			this.lblQuitterLaSaisie.setVisible(false);
 			this.lblQuitterLaSaisie.addMouseListener(new MouseAdapter() {
 				@Override

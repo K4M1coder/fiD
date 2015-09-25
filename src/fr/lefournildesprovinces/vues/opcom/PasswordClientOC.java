@@ -35,7 +35,7 @@ public class PasswordClientOC extends JFrame {
 
 	private static Connection c;
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -789225315172352112L;
 	private static PreparedStatement stm;
@@ -103,7 +103,7 @@ public class PasswordClientOC extends JFrame {
 			case "utilisateur":
 
 				this.fond.setIcon(new ImageIcon(PasswordClientOC.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_4.setEnabled(false);
 				this.label_4.setVisible(false);
 				this.label_3.setEnabled(false);
@@ -118,12 +118,12 @@ public class PasswordClientOC extends JFrame {
 				this.label_3.setVisible(false);
 
 				this.fond.setIcon(new ImageIcon(PasswordClientOC.class
-						.getResource("/Images/menus-grises-operation.png")));
+						.getResource("/Images/fonds/menus-grises-operation.png")));
 				break;
 
 			case "administrateur":
 				this.fond.setIcon(new ImageIcon(PasswordClientOC.class
-						.getResource("/Images/menus_operation.png")));
+						.getResource("/Images/fonds/menus_operation.png")));
 				break;
 
 			}
@@ -260,7 +260,7 @@ public class PasswordClientOC extends JFrame {
 			this.lblAnnuler.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblAnnuler.setIcon(new ImageIcon(PasswordClientOC.class
-					.getResource("/Images/annuler.png")));
+					.getResource("/Images/actionbutons/annuler.png")));
 			this.lblAnnuler.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -301,7 +301,7 @@ public class PasswordClientOC extends JFrame {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(PasswordClientOC.class
-					.getResource("/Images/fond-logiciel.png")));
+					.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -315,7 +315,7 @@ public class PasswordClientOC extends JFrame {
 			this.lblValider.setCursor(Cursor
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setIcon(new ImageIcon(PasswordClientOC.class
-					.getResource("/Images/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
