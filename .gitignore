@@ -28,3 +28,7 @@ SQLCredentials.java
 /UML_CLASS.ucls
 
 /target/
+/maintainj/
+/doc/
+/bin/
+/pom.xml
