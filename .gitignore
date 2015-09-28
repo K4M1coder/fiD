@@ -33,3 +33,5 @@ SQLCredentials.java
 /bin/
 /pom.xml
 /manifest
+/applet-fidelite.iml
+/jar-in-jar-loader.zip
