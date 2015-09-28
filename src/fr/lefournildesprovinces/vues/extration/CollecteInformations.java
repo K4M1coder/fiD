@@ -19,10 +19,9 @@ import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
-import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
-import java.awt.SystemColor;
 
 public class CollecteInformations extends JFrame {
 
