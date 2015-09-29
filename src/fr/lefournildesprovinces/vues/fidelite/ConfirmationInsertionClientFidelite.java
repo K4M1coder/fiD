@@ -388,11 +388,11 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 		if (this.label_CartesFid == null) {
 			this.label_CartesFid = new JLabel("");
 			this.label_CartesFid.setIcon(new ImageIcon(
-					ConfirmationInsertionClientFidelite.class.getResource("/Images/cartes/carte-fidelite-3d.png")));
+					ConfirmationInsertionClientFidelite.class.getResource("/Images/cartesfid/carte-fidelite-3d.png")));
 			if (!ConfirmationInsertionClientFidelite.this.vip.equals(null)) {
 				if (ConfirmationInsertionClientFidelite.this.vip) {
 					this.label_CartesFid.setIcon(new ImageIcon(
-							ConfirmationInsertionClientFidelite.class.getResource("/Images/cartes/carte-privilege-3d.png")));
+							ConfirmationInsertionClientFidelite.class.getResource("/Images/cartesfid/carte-privilege-3d.png")));
 				}
 			}
 			this.label_CartesFid.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

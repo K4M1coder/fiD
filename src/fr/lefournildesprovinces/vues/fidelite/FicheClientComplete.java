@@ -142,10 +142,10 @@ public class FicheClientComplete extends JFrame {
 					}
 					if (FicheClientComplete.this.label_7_2.getText().equals("0")) {
 						FicheClientComplete.this.lblNewLabel_1.setIcon(
-								new ImageIcon(FicheClientComplete.class.getResource("/Images/cartes/carte-vierge.png")));
+								new ImageIcon(FicheClientComplete.class.getResource("/Images/cartesfid/carte-vierge.png")));
 					} else {
 						FicheClientComplete.this.lblNewLabel_1.setIcon(
-								new ImageIcon(FicheClientComplete.class.getResource("/Images/cartes/carte-vierge-vip2.png")));
+								new ImageIcon(FicheClientComplete.class.getResource("/Images/cartesfid/carte-vierge-vip2.png")));
 					}
 				}
 

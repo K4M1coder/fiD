@@ -248,7 +248,7 @@ public class MajMotdepasse extends JFrame {
 				}
 			});
 			this.label_5.setIcon(new ImageIcon(MajMotdepasse.class
-					.getResource("/Images/fonds/valider.png")));
+					.getResource("/Images/actionbutons/valider.png")));
 			this.label_5.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.label_5.setHorizontalAlignment(SwingConstants.CENTER);
 			this.label_5.setBounds(876, 369, 150, 67);

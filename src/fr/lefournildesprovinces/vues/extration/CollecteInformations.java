@@ -457,7 +457,7 @@ public class CollecteInformations extends JFrame {
 	protected void Action() {
 		System.out.print(CollecteInformations.this.selection);
 		switch (CollecteInformations.this.selection) {
-		case "Tranche d'AGE":
+		case "Tranche d'AGE": case "1":
 			final EmailingAge age = new EmailingAge(
 					CollecteInformations.this.interfaceActuelle);
 			age.setVisible(true);
@@ -467,7 +467,7 @@ public class CollecteInformations extends JFrame {
 					.setEnabled(false);
 			break;
 
-		case "Date ANNIVERSAIRE":
+		case "Date ANNIVERSAIRE": case "2":
 			final EmailingAnniversaire anniversaire = new EmailingAnniversaire(
 					CollecteInformations.this.interfaceActuelle);
 			anniversaire.setVisible(true);
@@ -477,7 +477,7 @@ public class CollecteInformations extends JFrame {
 					.setEnabled(false);
 			break;
 
-		case "Client fidélité d'un MAGASIN":
+		case "Client fidélité d'un MAGASIN": case "3":
 			final EmailingMagasin triparmagasin = new EmailingMagasin(
 					CollecteInformations.this.interfaceActuelle);
 			triparmagasin.setVisible(true);
@@ -487,7 +487,7 @@ public class CollecteInformations extends JFrame {
 					.setEnabled(false);
 			break;
 
-		case "Participants OPERATION commerciale":
+		case "Participants OPERATION commerciale": case "4":
 			final EmailingOperationCommerciale trioperation = new EmailingOperationCommerciale(
 					CollecteInformations.this.interfaceActuelle);
 			trioperation.setVisible(true);
@@ -497,7 +497,7 @@ public class CollecteInformations extends JFrame {
 					.setEnabled(false);
 			break;
 
-		case "VILLE de résidence":
+		case "VILLE de résidence": case "5":
 			final EmailingVille triville = new EmailingVille(
 					CollecteInformations.this.interfaceActuelle);
 			triville.setVisible(true);
@@ -507,7 +507,7 @@ public class CollecteInformations extends JFrame {
 					.setEnabled(false);
 			break;
 
-		case "TOUTES les cartes de fidélité":
+		case "TOUTES les cartes de fidélité": case "6":
 			final Ensembleporteurcarte tous = new Ensembleporteurcarte(
 					CollecteInformations.this.interfaceActuelle);
 			tous.setVisible(true);
@@ -517,7 +517,7 @@ public class CollecteInformations extends JFrame {
 					.setEnabled(false);
 			break;
 
-		case "RECHERCHER un titulaire":
+		case "RECHERCHER un titulaire": case "7":
 			final SelectionNumeroCarteFidelitePourFiche infos = new SelectionNumeroCarteFidelitePourFiche(
 					CollecteInformations.this.interfaceActuelle,
 					CollecteInformations.this.choixprecedent);

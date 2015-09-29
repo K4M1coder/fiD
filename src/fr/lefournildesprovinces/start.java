@@ -8,6 +8,7 @@ import fr.lefournildesprovinces.controler.Control;
 
 public class start {
 
+
 	/**
 	 * this is the entry point of the application
 	 *
