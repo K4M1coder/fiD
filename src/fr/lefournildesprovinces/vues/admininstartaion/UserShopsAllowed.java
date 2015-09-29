@@ -10,6 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -18,17 +19,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import javax.swing.JButton;
-import javax.swing.UIManager;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 
 public class UserShopsAllowed extends JFrame {
 
