@@ -14,6 +14,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
@@ -21,26 +24,54 @@ import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
+import javax.swing.JButton;
+import javax.swing.UIManager;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 public class UserShopsAllowed extends JFrame {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 8433946420651749054L;
+	private static final long serialVersionUID = 6340878408145735684L;
+
+	/**
+	 *
+	 */
+	private JLabel action_Menu_Acceuil;
+	private JLabel action_Menu_Extraction;
+	private JLabel action_Menu_Fidelite;
+	private JLabel action_Menu_Magasin;
+	private JLabel action_Menu_OperationsCommerciales;
 	private JLabel action_Retour;
 	private JLabel action_Valider;
 	private JLabel ariane;
 	private JLabel background;
 	private JLabel fond;
-	private JLabel menu_Extraction;
-	private JLabel menu_Fidelite;
-	private JLabel menu_Magasin;
-	private JLabel menu_OperationsCommerciales;
-	private JLayeredPane layeredPane;
+	private JLabel lbl_AllShops;
+	private JLabel lbl_AllowedShops;
+	private JLabel lbl_AddShops;
+	private JLabel lbl_DelShops;
+	private JLayeredPane layeredPane_Base;
+	private JScrollPane scrollPane_AllowedShops;
+	private JScrollPane scrollPane_Shops;
+	private JTable table_AllowedShops;
+	private JTable table_Shops;
 	private final JFrame interfaceActuelle;
 	private final JFrame interfacePrecedente;
 	private final JPanel contentPane;
+	private JButton btn_AddOne;
+	private JButton btn_AddAll;
+	private JButton btn_DelOne;
+	private JButton btn_DelAll;
+	private JLabel lblTextUser;
+	private JLabel lblFieldUser;
+	private JLabel lblTextPrivilege;
+	private JLabel lblFieldPrivilege;
+	private JTextPane lbl_Note;
+
 
 
 	public UserShopsAllowed(final String utilisateurselectionne, final JFrame interfacePrecedente) {
@@ -58,7 +89,7 @@ public class UserShopsAllowed extends JFrame {
 		this.contentPane.setBorder(null);
 		this.contentPane.setLayout(new BorderLayout(0, 0));
 		this.setContentPane(this.contentPane);
-		this.contentPane.add(this.getLayeredPane_1(), BorderLayout.CENTER);
+		this.contentPane.add(this.getLayeredPane_Base(), BorderLayout.CENTER);
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 1.0f));
 		this.interfacePrecedente= interfacePrecedente;
 		this.interfaceActuelle = this;
@@ -74,7 +105,10 @@ public class UserShopsAllowed extends JFrame {
 				public void mouseClicked(final MouseEvent e) {
 					final MenuPrincipal fenetre = new MenuPrincipal();
 					fenetre.setVisible(true);
+					UserShopsAllowed.this.interfacePrecedente.setEnabled(true);
+					UserShopsAllowed.this.interfacePrecedente.setVisible(true);
 					UserShopsAllowed.this.dispose();
+
 				}
 			});
 			this.action_Retour.setCursor(Cursor
@@ -82,16 +116,6 @@ public class UserShopsAllowed extends JFrame {
 			this.action_Retour.setBounds(876, 231, 179, 44);
 		}
 		return this.action_Retour;
-	}
-
-	private JLabel getLblNewLabel_1() {
-		if (this.background == null) {
-			this.background = new JLabel("");
-			this.background.setIcon(new ImageIcon(Selectionutilisateur.class
-					.getResource("/Images/fonds/fond-logiciel.png")));
-			this.background.setBounds(0, 0, 1281, 800);
-		}
-		return this.background;
 	}
 
 	private JLabel getFond() {
@@ -104,27 +128,183 @@ public class UserShopsAllowed extends JFrame {
 		return this.fond;
 	}
 
-	private JLayeredPane getLayeredPane_1() {
-		if (this.layeredPane == null) {
-			this.layeredPane = new JLayeredPane();
-			this.layeredPane.add(this.getLbl_Ariane());
-			this.layeredPane.add(this.getMenu_Fidelite());
-			this.layeredPane.add(this.getMenu_Magasin());
-			this.layeredPane.add(this.getMenu_OperationsCommerciales());
-			this.layeredPane.add(this.getMenu_Extraction());
-			this.layeredPane.add(this.getAction_Retour());
-			this.layeredPane.add(this.getLbl_Valider());
-			this.layeredPane.add(this.getFond());
-			this.layeredPane.add(this.getLblNewLabel_1());
+	private JLabel getLbl_TextUser() {
+		if (this.lblTextUser == null) {
+			this.lblTextUser = new JLabel("L'utilisateur :");
+			lblTextUser.setHorizontalAlignment(SwingConstants.CENTER);
+			this.lblTextUser.setForeground(Color.GRAY);
+			this.lblTextUser.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lblTextUser.setBounds(735, 348, 101, 14);
+		}
+		return this.lblTextUser;
+	}
+
+	private JLabel getLbl_FieldUser() {
+		if (this.lblFieldUser == null) {
+			this.lblFieldUser = new JLabel("USER");
+			lblFieldUser.setHorizontalAlignment(SwingConstants.CENTER);
+			this.lblFieldUser.setForeground(Color.GRAY);
+			this.lblFieldUser.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lblFieldUser.setBounds(846, 348, 150, 14);
+		}
+		return this.lblFieldUser;
+	}
+
+	private JLabel getLbl_TextPrivilege() {
+		if (this.lblTextPrivilege == null) {
+			this.lblTextPrivilege = new JLabel("avec le privilege :");
+			lblTextPrivilege.setHorizontalAlignment(SwingConstants.CENTER);
+			this.lblTextPrivilege.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lblTextPrivilege.setForeground(Color.GRAY);
+			this.lblTextPrivilege.setBounds(735, 378, 101, 14);
+		}
+		return this.lblTextPrivilege;
+	}
+
+	private JLabel getLbl_FieldPrivilege() {
+		if (this.lblFieldPrivilege == null) {
+			this.lblFieldPrivilege = new JLabel("UTILISATEUR");
+			lblFieldPrivilege.setHorizontalAlignment(SwingConstants.CENTER);
+			this.lblFieldPrivilege.setForeground(Color.GRAY);
+			this.lblFieldPrivilege.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lblFieldPrivilege.setBounds(846, 378, 150, 14);
+		}
+		return this.lblFieldPrivilege;
+	}
+
+	private JTextPane getTextPane_Note() {
+		if (this.lbl_Note == null) {
+			this.lbl_Note = new JTextPane();
+			lbl_Note.setBackground(Color.YELLOW);
+			lbl_Note.setText("ne pourra acceder qu'aux magasins qui lui sont attribués");
+			this.lbl_Note.setForeground(new Color(139, 69, 19));
+			this.lbl_Note.setFont(new Font("Tahoma", Font.BOLD, 12));
+			this.lbl_Note.setBounds(735, 412, 261, 36);
+			StyledDocument doc = this.lbl_Note.getStyledDocument();
+			SimpleAttributeSet center = new SimpleAttributeSet();
+			StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+			doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		}
+		return this.lbl_Note;
+	}
+
+	private JButton getJBtn_AddAll(){
+		if (this.btn_AddAll == null){
+			this.btn_AddAll = new JButton("> Tous >");
+			this.btn_AddAll.setBounds(435, 408, 77, 23);
+		}
+		return this.btn_AddAll;
+	}
+
+	private JButton getJBtn_AddOne(){
+		if (this.btn_AddOne == null){
+			this.btn_AddOne = new JButton("> 1 >");
+			this.btn_AddOne.setBounds(435, 374, 77, 23);
+		}
+		return this.btn_AddOne;
+	}
+
+	private JButton getJBtn_DelAll(){
+		if (this.btn_DelAll == null){
+			this.btn_DelAll = new JButton("< Tous <");
+			this.btn_DelAll.setBounds(435, 518, 77, 23);
+		}
+		return this.btn_DelAll;
+	}
+
+	private JButton getJBtn_DelOne(){
+		if (this.btn_DelOne == null){
+			this.btn_DelOne = new JButton("< 1 <");
+			this.btn_DelOne.setBounds(435, 484, 77, 23);
+		}
+		return this.btn_DelOne;
+	}
+
+	private JLayeredPane getLayeredPane_Base() {
+		if (this.layeredPane_Base == null) {
+			this.layeredPane_Base = new JLayeredPane();
+			this.layeredPane_Base.add(this.getTextPane_Note());
+			this.layeredPane_Base.add(this.getLbl_TextUser());
+			this.layeredPane_Base.add(this.getLbl_FieldUser());
+			this.layeredPane_Base.add(this.getLbl_TextPrivilege());
+			this.layeredPane_Base.add(this.getLbl_FieldPrivilege());
+			this.layeredPane_Base.add(this.getLbl_AddShops());
+			this.layeredPane_Base.add(this.getLbl_DelShops());
+			this.layeredPane_Base.add(this.getJBtn_AddOne());
+			this.layeredPane_Base.add(this.getJBtn_AddAll());
+			this.layeredPane_Base.add(this.getJBtn_DelOne());
+			this.layeredPane_Base.add(this.getJBtn_DelAll());
+			this.layeredPane_Base.add(this.getLbl_allowedShops());
+			this.layeredPane_Base.add(this.getLbl_allShops());
+			this.layeredPane_Base.add(this.getScrollPane_Shops());
+			this.layeredPane_Base.add(this.getScrollPane_AllowedShops());
+			this.layeredPane_Base.add(this.getLbl_Ariane());
+			this.layeredPane_Base.add(this.getMenu_Acceuil());
+			this.layeredPane_Base.add(this.getMenu_Fidelite());
+			this.layeredPane_Base.add(this.getMenu_Magasin());
+			this.layeredPane_Base.add(this.getMenu_OperationsCommerciales());
+			this.layeredPane_Base.add(this.getMenu_Extraction());
+			this.layeredPane_Base.add(this.getAction_Retour());
+			this.layeredPane_Base.add(this.getLbl_Valider());
+			this.layeredPane_Base.add(this.getFond());
+			this.layeredPane_Base.add(this.getLblBackground());
 
 		}
-		return this.layeredPane;
+		return this.layeredPane_Base;
+	}
+
+	private JLabel getLbl_allowedShops() {
+		if (this.lbl_AllowedShops == null) {
+			this.lbl_AllowedShops = new JLabel(
+					"Magasins attribués");
+			lbl_AllowedShops.setHorizontalAlignment(SwingConstants.CENTER);
+			this.lbl_AllowedShops.setForeground(Color.GRAY);
+			this.lbl_AllowedShops.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lbl_AllowedShops.setBounds(520, 322, 179, 14);
+		}
+		return this.lbl_AllowedShops;
+	}
+
+	private JLabel getLbl_AddShops() {
+		if (this.lbl_AddShops == null) {
+			this.lbl_AddShops = new JLabel(
+					"Ajouter");
+			lbl_AddShops.setHorizontalAlignment(SwingConstants.CENTER);
+			this.lbl_AddShops.setForeground(Color.GRAY);
+			this.lbl_AddShops.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lbl_AddShops.setBounds(435, 348, 77, 14);
+		}
+		return this.lbl_AddShops;
+	}
+
+	private JLabel getLbl_DelShops() {
+		if (this.lbl_DelShops == null) {
+			this.lbl_DelShops = new JLabel(
+					"Supprimer");
+			lbl_DelShops.setHorizontalAlignment(SwingConstants.CENTER);
+			this.lbl_DelShops.setForeground(Color.GRAY);
+			this.lbl_DelShops.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lbl_DelShops.setBounds(435, 459, 77, 14);
+		}
+		return this.lbl_DelShops;
+	}
+
+	private JLabel getLbl_allShops() {
+		if (this.lbl_AllShops == null) {
+			this.lbl_AllShops = new JLabel(
+					"Liste des magasins");
+			lbl_AllShops.setHorizontalAlignment(SwingConstants.CENTER);
+			this.lbl_AllShops.setForeground(Color.GRAY);
+			this.lbl_AllShops.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lbl_AllShops.setBounds(246, 322, 179, 14);
+		}
+		return this.lbl_AllShops;
 	}
 
 	private JLabel getLbl_Ariane() {
 		if (this.ariane == null) {
 			this.ariane = new JLabel(
-					"Mettre à jour un mot de passe utilisateur");
+					"ADMINISTRATION > PROFIL > Attribuer des magasins");
 			this.ariane.setForeground(Color.GRAY);
 			this.ariane.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.ariane.setBounds(242, 286, 624, 14);
@@ -148,32 +328,26 @@ public class UserShopsAllowed extends JFrame {
 					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.action_Valider.setIcon(new ImageIcon(UserShopsAllowed.class
 					.getResource("/Images/actionbutons/valider.png")));
-			this.action_Valider.setBounds(876, 447, 150, 67);
+			this.action_Valider.setBounds(811, 484, 108, 33);
 
 		}
 		return this.action_Valider;
 	}
 
-	private JLabel getMenu_Extraction() {
-		if (this.menu_Extraction == null) {
-			this.menu_Extraction = new JLabel("");
-			this.menu_Extraction.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(final MouseEvent e) {
-					final GestionExtractionBases collecte = new GestionExtractionBases();
-					collecte.setVisible(true);
-					UserShopsAllowed.this.dispose();
-				}
-			});
-			this.menu_Extraction.setBounds(702, 231, 114, 44);
+	private JLabel getLblBackground() {
+		if (this.background == null) {
+			this.background = new JLabel("");
+			this.background.setIcon(new ImageIcon(Selectionutilisateur.class
+					.getResource("/Images/fonds/fond-logiciel.png")));
+			this.background.setBounds(0, 0, 1281, 800);
 		}
-		return this.menu_Extraction;
+		return this.background;
 	}
 
-	private JLabel getMenu_Fidelite() {
-		if (this.menu_Fidelite == null) {
-			this.menu_Fidelite = new JLabel("");
-			this.menu_Fidelite.addMouseListener(new MouseAdapter() {
+	private JLabel getMenu_Acceuil() {
+		if (this.action_Menu_Acceuil == null) {
+			this.action_Menu_Acceuil = new JLabel("");
+			this.action_Menu_Acceuil.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
@@ -181,15 +355,47 @@ public class UserShopsAllowed extends JFrame {
 					UserShopsAllowed.this.dispose();
 				}
 			});
-			this.menu_Fidelite.setBounds(367, 231, 114, 44);
+			this.action_Menu_Acceuil.setBounds(242, 231, 114, 44);
 		}
-		return this.menu_Fidelite;
+		return this.action_Menu_Acceuil;
+	}
+
+	private JLabel getMenu_Extraction() {
+		if (this.action_Menu_Extraction == null) {
+			this.action_Menu_Extraction = new JLabel("");
+			this.action_Menu_Extraction.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					final GestionExtractionBases collecte = new GestionExtractionBases();
+					collecte.setVisible(true);
+					UserShopsAllowed.this.dispose();
+				}
+			});
+			this.action_Menu_Extraction.setBounds(702, 231, 114, 44);
+		}
+		return this.action_Menu_Extraction;
+	}
+
+	private JLabel getMenu_Fidelite() {
+		if (this.action_Menu_Fidelite == null) {
+			this.action_Menu_Fidelite = new JLabel("");
+			this.action_Menu_Fidelite.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					final GestionCartesDeFidelite gestionclientcarte = new GestionCartesDeFidelite();
+					gestionclientcarte.setVisible(true);
+					UserShopsAllowed.this.dispose();
+				}
+			});
+			this.action_Menu_Fidelite.setBounds(367, 231, 114, 44);
+		}
+		return this.action_Menu_Fidelite;
 	}
 
 	private JLabel getMenu_Magasin() {
-		if (this.menu_Magasin == null) {
-			this.menu_Magasin = new JLabel("");
-			this.menu_Magasin.addMouseListener(new MouseAdapter() {
+		if (this.action_Menu_Magasin == null) {
+			this.action_Menu_Magasin = new JLabel("");
+			this.action_Menu_Magasin.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 					final GestionMagasins gestionMagasin = new GestionMagasins();
@@ -197,15 +403,15 @@ public class UserShopsAllowed extends JFrame {
 					UserShopsAllowed.this.dispose();
 				}
 			});
-			this.menu_Magasin.setBounds(476, 231, 114, 44);
+			this.action_Menu_Magasin.setBounds(476, 231, 114, 44);
 		}
-		return this.menu_Magasin;
+		return this.action_Menu_Magasin;
 	}
 
 	private JLabel getMenu_OperationsCommerciales() {
-		if (this.menu_OperationsCommerciales == null) {
-			this.menu_OperationsCommerciales = new JLabel("");
-			this.menu_OperationsCommerciales.addMouseListener(new MouseAdapter() {
+		if (this.action_Menu_OperationsCommerciales == null) {
+			this.action_Menu_OperationsCommerciales = new JLabel("");
+			this.action_Menu_OperationsCommerciales.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 					final GestionOperationsCommerciales operation = new GestionOperationsCommerciales();
@@ -213,9 +419,46 @@ public class UserShopsAllowed extends JFrame {
 					UserShopsAllowed.this.dispose();
 				}
 			});
-			this.menu_OperationsCommerciales.setBounds(588, 231, 114, 44);
+			this.action_Menu_OperationsCommerciales.setBounds(588, 231, 114, 44);
 		}
-		return this.menu_OperationsCommerciales;
+		return this.action_Menu_OperationsCommerciales;
+	}
+
+	private JScrollPane getScrollPane_AllowedShops() {
+		if (this.scrollPane_AllowedShops == null) {
+			this.scrollPane_AllowedShops = new JScrollPane();
+			this.scrollPane_AllowedShops.setBorder(null);
+			this.scrollPane_AllowedShops.setBounds(520, 347, 179, 194);
+			this.scrollPane_AllowedShops.setViewportView(this.getTable_AllowedShops());
+		}
+		return this.scrollPane_AllowedShops;
+	}
+	private JScrollPane getScrollPane_Shops() {
+		if (this.scrollPane_Shops == null) {
+			this.scrollPane_Shops = new JScrollPane();
+			this.scrollPane_Shops.setBorder(null);
+			this.scrollPane_Shops.setBounds(246, 347, 179, 194);
+			this.scrollPane_Shops.setViewportView(this.getTable_Shops());
+		}
+		return this.scrollPane_Shops;
+	}
+
+	private JTable getTable_AllowedShops() {
+		if (this.table_AllowedShops == null) {
+			this.table_AllowedShops = new JTable();
+			this.table_AllowedShops.setColumnSelectionAllowed(true);
+			this.table_AllowedShops.setCellSelectionEnabled(true);
+		}
+		return this.table_AllowedShops;
+	}
+
+	private JTable getTable_Shops() {
+		if (this.table_Shops == null) {
+			this.table_Shops = new JTable();
+			this.table_Shops.setColumnSelectionAllowed(true);
+			this.table_Shops.setCellSelectionEnabled(true);
+		}
+		return this.table_Shops;
 	}
 
 	private void validateAction() {
