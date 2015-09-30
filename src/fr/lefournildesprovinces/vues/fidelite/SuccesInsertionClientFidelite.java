@@ -76,6 +76,7 @@ public class SuccesInsertionClientFidelite extends JFrame {
 			final String numcarte, final String age,
 			final String choixetprovenance, final int idoperation,
 			final int idmagasinoperation) {
+		System.out.println("successinsertion invoked");
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent arg0) {
@@ -490,7 +491,7 @@ public class SuccesInsertionClientFidelite extends JFrame {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(
 					SuccesInsertionClientFidelite.class
-							.getResource("/Images/actionbutons/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;

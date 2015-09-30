@@ -719,7 +719,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 				stm.close();
 			}
 
-			System.out.print("link to fidelity card N°");
+			System.out.print("link to fidelity card N° ");
 			final String table_carte_de_fidelite = "INSERT INTO CARTE_DE_FIDELITE (IDCLIENT,NUMEROCARTEDEFIDELITE) VALUES (?,?)";
 			stm = c.prepareStatement(table_carte_de_fidelite);
 
@@ -744,6 +744,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 			rs.close();
 			stm.close();
 
+			System.out.print("link fidelity card to shop : ");
 			if (idmagasinClient != 0) {
 				final String table_delivrer = "INSERT INTO DELIVRER (IDCARTEDEFIDELITE, IDMAGASIN) VALUES (?,?)";
 				stm = c.prepareStatement(table_delivrer);
@@ -753,8 +754,12 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 
 				stm.executeUpdate();
 				stm.close();
+				System.out.print("OK\n");
 			}
+
+			System.out.print("check compteur precedent : "+ConfirmationInsertionClientFidelite.this.compteurprecedent + "\n");
 			if (ConfirmationInsertionClientFidelite.this.compteurprecedent == 1) {
+				System.out.print("insert a new participation to OpCom");
 
 				for (int i = 0; i < ConfirmationInsertionClientFidelite.this.requeteprecedente.size(); i++) {
 
@@ -770,13 +775,14 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 					stm.executeUpdate();
 
 					stm.close();
+					System.out.print("OK\n");
 
 				}
 			}
 
-			if (ConfirmationInsertionClientFidelite.this.choixetprovenance.equals("creationcarteparoperation"))
-
-			{
+			System.out.print("choix provenance is : "+ ConfirmationInsertionClientFidelite.this.choixetprovenance + "\n");
+				if (ConfirmationInsertionClientFidelite.this.choixetprovenance.equals("creationcarteparoperation")) {
+				System.out.print("insert a new participation to OpCom");
 
 				final String majcopyparticiper = "INSERT INTO PARTICIPER(IDOPERATIONCOMMERCIALE,IDCLIENT,IDMAGASIN) VALUES (?,?,?)";
 				stm = c.prepareStatement(majcopyparticiper);
@@ -788,12 +794,16 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 				stm.executeUpdate();
 
 				stm.close();
+				System.out.print("OK\n");
 
 			}
 
+			System.out.println("comminting");
 			c.commit();
 			c.setAutoCommit(true);
+			System.out.println("donne");
 
+			System.out.println("init success window");
 			final SuccesInsertionClientFidelite fenetre = new SuccesInsertionClientFidelite(
 					ConfirmationInsertionClientFidelite.this.civiliteClient,
 					ConfirmationInsertionClientFidelite.this.nomClient,
@@ -807,11 +817,12 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 			fenetre.setVisible(true);
 			ConfirmationInsertionClientFidelite.this.InterfacePrecedente.dispose();
 			ConfirmationInsertionClientFidelite.this.dispose();
+			System.out.print("insertion process is over\n");
 
 		} catch (final Exception e1)
 
 		{
-			System.out.print("erreur\n" + e1.getMessage() + "\n");
+			System.out.print("erreur\n" + e1.getMessage() + "\nEOE\n");
 			try {
 				c.rollback();
 				final String erreur = e1.getMessage();
