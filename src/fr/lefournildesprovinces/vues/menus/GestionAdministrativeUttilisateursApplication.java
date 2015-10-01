@@ -42,6 +42,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 	private JLabel lblNewLabel;
 	private String selection;
 	private JLabel valider;
+	private JLabel label_ADMAllowShops;
 	private JLabel label_ADMNewProfil;
 	private JLabel label_ADMModPassword;
 	private JLabel label_ADMDelUser;
@@ -214,6 +215,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 			this.layeredPane.add(this.getLblMerciDeFaire());
 			this.layeredPane.add(this.getValider());
 			this.layeredPane.add(this.getLabel_ADMNewProfil());
+			this.layeredPane.add(this.getLabel_ADMAllowShops());
 			this.layeredPane.add(this.getLabel_ADMModPassword());
 			this.layeredPane.add(this.getLabel_ADMDelUser());
 			this.layeredPane.add(this.getLabel_ADMMajPrivilege());
@@ -250,6 +252,28 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 			this.label_ADMNewProfil.setBounds(256, 318, 145, 225);
 		}
 		return this.label_ADMNewProfil;
+	}
+
+	private JLabel getLabel_ADMAllowShops() {
+		if (this.label_ADMAllowShops == null) {
+			this.label_ADMAllowShops = new JLabel("");
+			this.label_ADMAllowShops.setIcon(new ImageIcon(GestionAdministrativeUttilisateursApplication.class.getResource("/Images/menubutons/bouton-admin-creer-profil.png")));
+			this.label_ADMAllowShops
+					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_ADMAllowShops.setFont(new Font("Tahoma", Font.BOLD, 17));
+			this.label_ADMAllowShops.setForeground(Color.GRAY);
+			this.label_ADMAllowShops.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+
+					GestionAdministrativeUttilisateursApplication.this.selection="Autoriser des magasins pour un utilisateur";
+					validateAction();
+				}
+			});
+			this.label_ADMAllowShops.setHorizontalAlignment(SwingConstants.CENTER);
+			this.label_ADMAllowShops.setBounds(256, 550, 145, 225);
+		}
+		return this.label_ADMAllowShops;
 	}
 
 	private JLabel getLabel_ADMModPassword() {
@@ -398,6 +422,14 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 
 		System.out.print(GestionAdministrativeUttilisateursApplication.this.selection);
 		switch (GestionAdministrativeUttilisateursApplication.this.selection){
+
+		case "Autoriser des magasins pour un utilisateur":
+			final Selectionutilisateur fenetre5 = new Selectionutilisateur(
+					GestionAdministrativeUttilisateursApplication.this.selection);
+			fenetre5.setVisible(true);
+			GestionAdministrativeUttilisateursApplication.this.dispose();
+			break;
+
 		case "METTRE A JOUR un mot de passe utilisateur":
 			final Selectionutilisateur fenetre = new Selectionutilisateur(
 					GestionAdministrativeUttilisateursApplication.this.selection);

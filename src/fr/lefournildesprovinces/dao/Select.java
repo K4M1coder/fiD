@@ -28,9 +28,8 @@ public class Select {
 	private static ResultSet rs;
 	private static Statement stm;
 
-	public static Vector<ResultatRecherche> eMailinganniversaire(
-			final String valeurCasechoix, final int magasinidSelectionne,
-			final boolean boutoncochetous)
+	public static Vector<ResultatRecherche> eMailinganniversaire(final String valeurCasechoix,
+			final int magasinidSelectionne, final boolean boutoncochetous)
 
 	{
 
@@ -174,9 +173,8 @@ public class Select {
 
 	}
 
-	public static Vector<ResultatRecherche> eMailinganniversaireSansCarte(
-			final String valeurCasechoix, final int magasinidSelectionne,
-			final boolean boutoncochetous)
+	public static Vector<ResultatRecherche> eMailinganniversaireSansCarte(final String valeurCasechoix,
+			final int magasinidSelectionne, final boolean boutoncochetous)
 
 	{
 
@@ -318,8 +316,7 @@ public class Select {
 
 	}
 
-	public static Vector<ResultatRecherche> eMailingmagasin(
-			final int magasinidSelectionne)
+	public static Vector<ResultatRecherche> eMailingmagasin(final int magasinidSelectionne)
 
 	{
 
@@ -376,8 +373,7 @@ public class Select {
 
 	}
 
-	public static Vector<ResultatRecherche> eMailingmagasinSansCarte(
-			final int magasinidSelectionne)
+	public static Vector<ResultatRecherche> eMailingmagasinSansCarte(final int magasinidSelectionne)
 
 	{
 
@@ -433,9 +429,8 @@ public class Select {
 
 	}
 
-	public static Vector<ResultatRecherche> eMailingoperationcommerciale(
-			final int idoperationcommerciale, final int magasinidSelectionne,
-			final boolean boutoncochetous)
+	public static Vector<ResultatRecherche> eMailingoperationcommerciale(final int idoperationcommerciale,
+			final int magasinidSelectionne, final boolean boutoncochetous)
 
 	{
 		System.out.println(boutoncochetous);
@@ -511,9 +506,8 @@ public class Select {
 
 	}
 
-	public static Vector<ResultatRecherche> eMailingoperationcommercialeSansCarte(
-			final int idoperationcommerciale, final int magasinidSelectionne,
-			final boolean boutoncochetous)
+	public static Vector<ResultatRecherche> eMailingoperationcommercialeSansCarte(final int idoperationcommerciale,
+			final int magasinidSelectionne, final boolean boutoncochetous)
 
 	{
 		System.out.println(boutoncochetous);
@@ -588,9 +582,8 @@ public class Select {
 
 	}
 
-	public static Vector<ResultatRecherche> eMailingoperationcommercialeTOUS(
-			final int idoperationcommerciale, final int magasinidSelectionne,
-			final boolean boutoncochetous)
+	public static Vector<ResultatRecherche> eMailingoperationcommercialeTOUS(final int idoperationcommerciale,
+			final int magasinidSelectionne, final boolean boutoncochetous)
 
 	{
 		System.out.println(boutoncochetous);
@@ -665,8 +658,7 @@ public class Select {
 
 	}
 
-	public static Vector<ResultatRecherche> eMailingTrancheAge(
-			final int valuemin, final int valuemax,
+	public static Vector<ResultatRecherche> eMailingTrancheAge(final int valuemin, final int valuemax,
 			final int magasinidSelectionne, final boolean boutoncochetous)
 
 	{
@@ -676,7 +668,8 @@ public class Select {
 		 *
 		 * int AnneeFin=year-valuemin; int Anneedebut=year-valuemax;
 		 *
-		 * System.out.println(Anneedebut+"\n"); System.out.println(AnneeFin+"\n");
+		 * System.out.println(Anneedebut+"\n");
+		 * System.out.println(AnneeFin+"\n");
 		 */
 
 		System.out.println(boutoncochetous);
@@ -754,8 +747,7 @@ public class Select {
 
 	}
 
-	public static Vector<ResultatRecherche> eMailingTrancheAgeSansCarte(
-			final int valuemin, final int valuemax,
+	public static Vector<ResultatRecherche> eMailingTrancheAgeSansCarte(final int valuemin, final int valuemax,
 			final int magasinidSelectionne, final boolean boutoncochetous)
 
 	{
@@ -765,7 +757,8 @@ public class Select {
 		 *
 		 * int AnneeFin=year-valuemin; int Anneedebut=year-valuemax;
 		 *
-		 * System.out.println(Anneedebut+"\n"); System.out.println(AnneeFin+"\n");
+		 * System.out.println(Anneedebut+"\n");
+		 * System.out.println(AnneeFin+"\n");
 		 */
 
 		System.out.println(boutoncochetous);
@@ -900,8 +893,7 @@ public class Select {
 
 	}
 
-	public static Vector<ResultatRecherche> eMailingvilleSansCarte(
-			final int idville)
+	public static Vector<ResultatRecherche> eMailingvilleSansCarte(final int idville)
 
 	{
 		System.out.println(idville);
@@ -1067,8 +1059,7 @@ public class Select {
 
 	}
 
-	public static Vector<ResultatRecherche> fichecompleteporteurcarte(
-			final int idclient)
+	public static Vector<ResultatRecherche> fichecompleteporteurcarte(final int idclient)
 
 	{
 		final int identifiantclient = idclient;
@@ -1127,8 +1118,7 @@ public class Select {
 
 	}
 
-	public static Vector<ResultatRecherche> fichecompleteSansCarte(
-			final int idclient)
+	public static Vector<ResultatRecherche> fichecompleteSansCarte(final int idclient)
 
 	{
 		final int identifiantclient = idclient;
@@ -1185,8 +1175,8 @@ public class Select {
 
 	}
 
-	public static Vector<ClientOperationCommerciale> infosclient(
-			final String nom, final String prenom, final String age)
+	public static Vector<ClientOperationCommerciale> infosclient(final String nom, final String prenom,
+			final String age)
 
 	{
 
@@ -1255,8 +1245,7 @@ public class Select {
 
 	}
 
-	public static Vector<Clientcartedefidelite> infosclientcartefidelite(
-			final String numerocartefidelite)
+	public static Vector<Clientcartedefidelite> infosclientcartefidelite(final String numerocartefidelite)
 
 	{
 
@@ -1266,23 +1255,10 @@ public class Select {
 
 			c = Connexion.getCon();
 
-			final String sql = "SELECT CLIENT.IDCLIENT,"
-					+ " CIVILITECLIENT,"
-					+ " NOMCLIENT,"
-					+ " PRENOMCLIENT,"
-					+ " ADRESSECLIENT,"
-					+ " NOMVILLE,"
-					+ " CODEPOSTALVILLE,"
-					+ " DATENAISSANCECLIENT,"
-					+ " NOMMAGASIN,"
-					+ " MAILCLIENT,"
-					+ " ABONNEMENTNEWSLETTERCLIENT,"
-					+ " NUMEROCARTEDEFIDELITE,"
-					+ " AGECLIENT,"
-					+ " TELEPHONEFIXECLIENT,"
-					+ " TELEPHONEPORTABLECLIENT,"
-					+ " VIP"
-					+ " FROM CLIENT"
+			final String sql = "SELECT CLIENT.IDCLIENT," + " CIVILITECLIENT," + " NOMCLIENT," + " PRENOMCLIENT,"
+					+ " ADRESSECLIENT," + " NOMVILLE," + " CODEPOSTALVILLE," + " DATENAISSANCECLIENT," + " NOMMAGASIN,"
+					+ " MAILCLIENT," + " ABONNEMENTNEWSLETTERCLIENT," + " NUMEROCARTEDEFIDELITE," + " AGECLIENT,"
+					+ " TELEPHONEFIXECLIENT," + " TELEPHONEPORTABLECLIENT," + " VIP" + " FROM CLIENT"
 					+ " INNER JOIN VILLE ON VILLE.IDVILLE=CLIENT.IDVILLE"
 					+ " INNER JOIN FREQUENTER ON FREQUENTER.IDCLIENT=CLIENT.IDCLIENT"
 					+ " INNER JOIN MAGASIN ON MAGASIN.IDMAGASIN=FREQUENTER.IDMAGASIN"
@@ -1388,8 +1364,7 @@ public class Select {
 
 	}
 
-	public static OperationCommercialeInfos InfosoperationCommerciale(
-			final int idoperation)
+	public static OperationCommercialeInfos InfosoperationCommerciale(final int idoperation)
 
 	{
 		final OperationCommercialeInfos requete = new OperationCommercialeInfos();
@@ -1434,8 +1409,7 @@ public class Select {
 
 	}
 
-	public static Vector<infosparticipation> infospartipationjeux(
-			final int idclient)
+	public static Vector<infosparticipation> infospartipationjeux(final int idclient)
 
 	{
 		final int identifiantclient = idclient;
@@ -1482,8 +1456,7 @@ public class Select {
 
 	}
 
-	public static Object[] listeageClient(final String nomClient,
-			final String prenomClient)
+	public static Object[] listeageClient(final String nomClient, final String prenomClient)
 
 	{
 		final Vector<DateNaissanceClient> requete = new Vector<DateNaissanceClient>();
@@ -1537,8 +1510,7 @@ public class Select {
 
 	}
 
-	public static Object[] listeageClientsanscarte(final String nomClient,
-			final String prenomClient)
+	public static Object[] listeageClientsanscarte(final String nomClient, final String prenomClient)
 
 	{
 		final Vector<DateNaissanceClient> requete = new Vector<DateNaissanceClient>();
@@ -1592,8 +1564,7 @@ public class Select {
 
 	}
 
-	public static Object[] listedateClientfidelite(final String nomClient,
-			final String prenomClient)
+	public static Object[] listedateClientfidelite(final String nomClient, final String prenomClient)
 
 	{
 		final Vector<DateNaissanceClient> requete = new Vector<DateNaissanceClient>();
@@ -1643,8 +1614,7 @@ public class Select {
 
 	}
 
-	public static Object[] listeClientFideliteHomonymes(final String nomClient,
-			final String prenomClient)
+	public static Object[] listeClientFideliteHomonymes(final String nomClient, final String prenomClient)
 
 	{
 		final Vector<Clientcartedefidelite> requete = new Vector<Clientcartedefidelite>();
@@ -1652,28 +1622,15 @@ public class Select {
 		try {
 
 			c = Connexion.getCon();
-			final String sql = "SELECT"
-					+ " CLIENT.IDCLIENT,"
-					+ " CIVILITECLIENT,"
-					+ " NOMCLIENT,"
-					+ " PRENOMCLIENT,"
-					+ " ADRESSECLIENT,"
-					+ " NOMVILLE,"
-					+ " CODEPOSTALVILLE,"
-					+ " DATENAISSANCECLIENT,"
-					+ " NOMMAGASIN,"
-					+ " MAILCLIENT,"
-					+ " ABONNEMENTNEWSLETTERCLIENT,"
-					+ " NUMEROCARTEDEFIDELITE,"
-					+ " AGECLIENT,"
-					+ " TELEPHONEFIXECLIENT,"
-					+ " TELEPHONEPORTABLECLIENT"
+			final String sql = "SELECT" + " CLIENT.IDCLIENT," + " CIVILITECLIENT," + " NOMCLIENT," + " PRENOMCLIENT,"
+					+ " ADRESSECLIENT," + " NOMVILLE," + " CODEPOSTALVILLE," + " DATENAISSANCECLIENT," + " NOMMAGASIN,"
+					+ " MAILCLIENT," + " ABONNEMENTNEWSLETTERCLIENT," + " NUMEROCARTEDEFIDELITE," + " AGECLIENT,"
+					+ " TELEPHONEFIXECLIENT," + " TELEPHONEPORTABLECLIENT"
 					+ " FROM CLIENT INNER JOIN VILLE ON VILLE.IDVILLE=CLIENT.IDVILLE"
 					+ " INNER JOIN FREQUENTER ON FREQUENTER.IDCLIENT=CLIENT.IDCLIENT"
 					+ " INNER JOIN MAGASIN ON MAGASIN.IDMAGASIN=FREQUENTER.IDMAGASIN"
 					+ " INNER JOIN CARTE_DE_FIDELITE ON CARTE_DE_FIDELITE.IDCLIENT=CLIENT.IDCLIENT"
-					+ " WHERE NOMCLIENT=?"
-					+ " AND PRENOMCLIENT=?";
+					+ " WHERE NOMCLIENT=?" + " AND PRENOMCLIENT=?";
 
 			preStm = c.prepareStatement(sql);
 			preStm.setString(1, nomClient);
@@ -1682,7 +1639,7 @@ public class Select {
 
 		} catch (final Exception e) {
 
-			System.out.println("erreur\n" + e.getMessage()+"\n");
+			System.out.println("erreur\n" + e.getMessage() + "\n");
 			e.printStackTrace();
 		}
 
@@ -1728,48 +1685,66 @@ public class Select {
 
 	}
 
-
 	public static Object[] listemagasins()
-
 	{
 		final Vector<Magasin> result = new Vector<Magasin>();
-
 		try {
-
 			c = Connexion.getCon();
-
 			stm = c.createStatement();
 			final String SQL = "SELECT IDMAGASIN, NOMMAGASIN FROM MAGASIN";
-
 			rs = stm.executeQuery(SQL);
 		} catch (final Exception e) {
-
 			System.out.println("erreur" + e.getMessage());
 		}
-
 		try {
 			result.add(new Magasin());
 			Magasin listeMagasins = null;
 			while (rs.next()) {
-
 				listeMagasins = new Magasin();
 				listeMagasins.setIdMagasin(rs.getInt(1));
 				listeMagasins.setNomMagasin(rs.getString(2));
-
 				result.add(listeMagasins);
 			}
 			rs.close();
 			stm.close();
-
-		} catch (final Exception e)
-
-		{
+		} catch (final Exception e) {
 			System.out.println("error" + e.getMessage());
-
 		}
-
 		return result.toArray(new Object[0]);
+	}
 
+	public static Object[] listemagasinsautorises(final String userName) {
+		final Vector<Magasin> result = new Vector<Magasin>();
+		try {
+			c = Connexion.getCon();
+			final String SQL = "select MAGASIN.IDMAGASIN,"
+					+ " NOMMAGASIN"
+					+ " from MAGASIN"
+					+ " inner join GERER on GERER.IDMAGASIN=MAGASIN.IDMAGASIN"
+					+ " inner join USERS on USERS.IDUSER=GERER.IDUSER"
+					+ " WHERE USERS.IDENTIFIANT=?";
+
+			preStm = c.prepareStatement(SQL);
+			preStm.setString(1, userName);
+			rs = preStm.executeQuery();
+		} catch (final Exception e) {
+			System.out.println("erreur" + e.getMessage());
+		}
+		try {
+			result.add(new Magasin());
+			Magasin listeMagasins = null;
+			while (rs.next()) {
+				listeMagasins = new Magasin();
+				listeMagasins.setIdMagasin(rs.getInt(1));
+				listeMagasins.setNomMagasin(rs.getString(2));
+				result.add(listeMagasins);
+			}
+			rs.close();
+			preStm.close();
+		} catch (final Exception e) {
+			System.out.println("error" + e.getMessage());
+		}
+		return result.toArray(new Object[0]);
 	}
 
 	public static Object[] listenomclient()
@@ -1835,7 +1810,7 @@ public class Select {
 				liste = new NomClient();
 				liste.setNom(rs.getString(1));
 				requete.add(liste);
-				System.out.println("listenomclientfidelite, liste is : "+liste);
+				System.out.println("listenomclientfidelite, liste is : " + liste);
 			}
 			rs.close();
 			preStm.close();
@@ -1843,9 +1818,9 @@ public class Select {
 			System.out.println("errorlistenom" + e.getMessage());
 		}
 
-//		Collections.sort(requete, NomClient.Comparators.NAME);
-//		Object[] result = requete.toArray(new Object[0]);
-//		return result;
+		// Collections.sort(requete, NomClient.Comparators.NAME);
+		// Object[] result = requete.toArray(new Object[0]);
+		// return result;
 		Collections.sort(requete);
 		return requete.toArray(new Object[0]);
 	}
@@ -2093,8 +2068,7 @@ public class Select {
 			c = Connexion.getCon();
 			String sql;
 			if (selection.equals("Supprimer un utilisateur")
-					|| selection
-							.equals("Mettre a jour un privilege utilisateur")) {
+					|| selection.equals("Mettre a jour un privilege utilisateur")) {
 				sql = "SELECT IDUSER, IDENTIFIANT, MOTDEPASSE FROM USERS";
 			} else {
 
@@ -2180,8 +2154,7 @@ public class Select {
 		return requete.toArray(new Object[0]);
 	}
 
-	public static String privilege(final String nomutilisateur,
-			final String password)
+	public static String privilege(final String nomutilisateur, final String password)
 
 	{
 		String requete = null;
@@ -2221,8 +2194,7 @@ public class Select {
 
 	}
 
-	public static boolean verificationuUsers(final String nomutilisateur,
-			final String password)
+	public static boolean verificationuUsers(final String nomutilisateur, final String password)
 
 	{
 		boolean requete = false;

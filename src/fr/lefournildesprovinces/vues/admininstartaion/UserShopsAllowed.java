@@ -9,20 +9,22 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
@@ -39,6 +41,11 @@ public class UserShopsAllowed extends JFrame {
 	/**
 	 *
 	 */
+	private DefaultListModel<Object> availableShopsModel;
+	private JButton btn_AddAll;
+	private JButton btn_AddOne;
+	private JButton btn_DelAll;
+	private JButton btn_DelOne;
 	private JLabel action_Menu_Acceuil;
 	private JLabel action_Menu_Extraction;
 	private JLabel action_Menu_Fidelite;
@@ -49,31 +56,29 @@ public class UserShopsAllowed extends JFrame {
 	private JLabel ariane;
 	private JLabel background;
 	private JLabel fond;
+	private JLabel lblFieldPrivilege;
+	private JLabel lblFieldUser;
+	private JLabel lblTextPrivilege;
+	private JLabel lblTextUser;
+	private JLabel lbl_AddShops;
 	private JLabel lbl_AllShops;
 	private JLabel lbl_AllowedShops;
-	private JLabel lbl_AddShops;
 	private JLabel lbl_DelShops;
 	private JLayeredPane layeredPane_Base;
+	private JList<Object> list_AllowedShops;
+	private JList<Object> list_AvailableShops;
 	private JScrollPane scrollPane_AllowedShops;
 	private JScrollPane scrollPane_Shops;
-	private JTable table_AllowedShops;
-	private JTable table_Shops;
+	private JTextPane lbl_Note;
 	private final JFrame interfaceActuelle;
 	private final JFrame interfacePrecedente;
 	private final JPanel contentPane;
-	private JButton btn_AddOne;
-	private JButton btn_AddAll;
-	private JButton btn_DelOne;
-	private JButton btn_DelAll;
-	private JLabel lblTextUser;
-	private JLabel lblFieldUser;
-	private JLabel lblTextPrivilege;
-	private JLabel lblFieldPrivilege;
-	private JTextPane lbl_Note;
+	private final String selecteduser;
 
-
+	private DefaultListModel<Object> allowedShopsModel;
 
 	public UserShopsAllowed(final String utilisateurselectionne, final JFrame interfacePrecedente) {
+		this.selecteduser = utilisateurselectionne;
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent arg0) {
@@ -90,7 +95,7 @@ public class UserShopsAllowed extends JFrame {
 		this.setContentPane(this.contentPane);
 		this.contentPane.add(this.getLayeredPane_Base(), BorderLayout.CENTER);
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 1.0f));
-		this.interfacePrecedente= interfacePrecedente;
+		this.interfacePrecedente = interfacePrecedente;
 		this.interfaceActuelle = this;
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -110,8 +115,7 @@ public class UserShopsAllowed extends JFrame {
 
 				}
 			});
-			this.action_Retour.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.action_Retour.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.action_Retour.setBounds(876, 231, 179, 44);
 		}
 		return this.action_Retour;
@@ -120,8 +124,7 @@ public class UserShopsAllowed extends JFrame {
 	private JLabel getFond() {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
-			this.fond.setIcon(new ImageIcon(UserShopsAllowed.class
-					.getResource("/Images/fonds/menus_accueil-2.png")));
+			this.fond.setIcon(new ImageIcon(UserShopsAllowed.class.getResource("/Images/fonds/menus_accueil-2.png")));
 			this.fond.setBounds(216, 231, 850, 338);
 		}
 		return this.fond;
@@ -140,7 +143,7 @@ public class UserShopsAllowed extends JFrame {
 
 	private JLabel getLbl_FieldUser() {
 		if (this.lblFieldUser == null) {
-			this.lblFieldUser = new JLabel("USER");
+			this.lblFieldUser = new JLabel(this.selecteduser);
 			lblFieldUser.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblFieldUser.setForeground(Color.GRAY);
 			this.lblFieldUser.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -187,32 +190,32 @@ public class UserShopsAllowed extends JFrame {
 		return this.lbl_Note;
 	}
 
-	private JButton getJBtn_AddAll(){
-		if (this.btn_AddAll == null){
+	private JButton getJBtn_AddAll() {
+		if (this.btn_AddAll == null) {
 			this.btn_AddAll = new JButton("> Tous >");
 			this.btn_AddAll.setBounds(435, 408, 77, 23);
 		}
 		return this.btn_AddAll;
 	}
 
-	private JButton getJBtn_AddOne(){
-		if (this.btn_AddOne == null){
+	private JButton getJBtn_AddOne() {
+		if (this.btn_AddOne == null) {
 			this.btn_AddOne = new JButton("> 1 >");
 			this.btn_AddOne.setBounds(435, 374, 77, 23);
 		}
 		return this.btn_AddOne;
 	}
 
-	private JButton getJBtn_DelAll(){
-		if (this.btn_DelAll == null){
+	private JButton getJBtn_DelAll() {
+		if (this.btn_DelAll == null) {
 			this.btn_DelAll = new JButton("< Tous <");
 			this.btn_DelAll.setBounds(435, 518, 77, 23);
 		}
 		return this.btn_DelAll;
 	}
 
-	private JButton getJBtn_DelOne(){
-		if (this.btn_DelOne == null){
+	private JButton getJBtn_DelOne() {
+		if (this.btn_DelOne == null) {
 			this.btn_DelOne = new JButton("< 1 <");
 			this.btn_DelOne.setBounds(435, 484, 77, 23);
 		}
@@ -254,8 +257,7 @@ public class UserShopsAllowed extends JFrame {
 
 	private JLabel getLbl_allowedShops() {
 		if (this.lbl_AllowedShops == null) {
-			this.lbl_AllowedShops = new JLabel(
-					"Magasins attribués");
+			this.lbl_AllowedShops = new JLabel("Magasins attribués");
 			lbl_AllowedShops.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lbl_AllowedShops.setForeground(Color.GRAY);
 			this.lbl_AllowedShops.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -266,8 +268,7 @@ public class UserShopsAllowed extends JFrame {
 
 	private JLabel getLbl_AddShops() {
 		if (this.lbl_AddShops == null) {
-			this.lbl_AddShops = new JLabel(
-					"Ajouter");
+			this.lbl_AddShops = new JLabel("Ajouter");
 			lbl_AddShops.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lbl_AddShops.setForeground(Color.GRAY);
 			this.lbl_AddShops.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -278,8 +279,7 @@ public class UserShopsAllowed extends JFrame {
 
 	private JLabel getLbl_DelShops() {
 		if (this.lbl_DelShops == null) {
-			this.lbl_DelShops = new JLabel(
-					"Supprimer");
+			this.lbl_DelShops = new JLabel("Supprimer");
 			lbl_DelShops.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lbl_DelShops.setForeground(Color.GRAY);
 			this.lbl_DelShops.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -290,8 +290,7 @@ public class UserShopsAllowed extends JFrame {
 
 	private JLabel getLbl_allShops() {
 		if (this.lbl_AllShops == null) {
-			this.lbl_AllShops = new JLabel(
-					"Liste des magasins");
+			this.lbl_AllShops = new JLabel("Liste des magasins");
 			lbl_AllShops.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lbl_AllShops.setForeground(Color.GRAY);
 			this.lbl_AllShops.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -302,8 +301,7 @@ public class UserShopsAllowed extends JFrame {
 
 	private JLabel getLbl_Ariane() {
 		if (this.ariane == null) {
-			this.ariane = new JLabel(
-					"ADMINISTRATION > PROFIL > Attribuer des magasins");
+			this.ariane = new JLabel("ADMINISTRATION > PROFIL > Attribuer des magasins");
 			this.ariane.setForeground(Color.GRAY);
 			this.ariane.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.ariane.setBounds(242, 286, 624, 14);
@@ -323,10 +321,9 @@ public class UserShopsAllowed extends JFrame {
 			});
 			this.action_Valider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.action_Valider.setHorizontalAlignment(SwingConstants.CENTER);
-			this.action_Valider.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
-			this.action_Valider.setIcon(new ImageIcon(UserShopsAllowed.class
-					.getResource("/Images/actionbutons/valider.png")));
+			this.action_Valider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.action_Valider
+					.setIcon(new ImageIcon(UserShopsAllowed.class.getResource("/Images/actionbutons/valider.png")));
 			this.action_Valider.setBounds(811, 484, 108, 33);
 
 		}
@@ -336,8 +333,8 @@ public class UserShopsAllowed extends JFrame {
 	private JLabel getLblBackground() {
 		if (this.background == null) {
 			this.background = new JLabel("");
-			this.background.setIcon(new ImageIcon(Selectionutilisateur.class
-					.getResource("/Images/fonds/fond-logiciel.png")));
+			this.background
+					.setIcon(new ImageIcon(Selectionutilisateur.class.getResource("/Images/fonds/fond-logiciel.png")));
 			this.background.setBounds(0, 0, 1281, 800);
 		}
 		return this.background;
@@ -428,36 +425,44 @@ public class UserShopsAllowed extends JFrame {
 			this.scrollPane_AllowedShops = new JScrollPane();
 			this.scrollPane_AllowedShops.setBorder(null);
 			this.scrollPane_AllowedShops.setBounds(520, 347, 179, 194);
-			this.scrollPane_AllowedShops.setViewportView(this.getTable_AllowedShops());
+			this.scrollPane_AllowedShops.setViewportView(this.getList_AllowedShops());
 		}
 		return this.scrollPane_AllowedShops;
 	}
+
 	private JScrollPane getScrollPane_Shops() {
 		if (this.scrollPane_Shops == null) {
 			this.scrollPane_Shops = new JScrollPane();
 			this.scrollPane_Shops.setBorder(null);
 			this.scrollPane_Shops.setBounds(246, 347, 179, 194);
-			this.scrollPane_Shops.setViewportView(this.getTable_Shops());
+			this.scrollPane_Shops.setViewportView(this.getList_Shops());
+
 		}
 		return this.scrollPane_Shops;
 	}
 
-	private JTable getTable_AllowedShops() {
-		if (this.table_AllowedShops == null) {
-			this.table_AllowedShops = new JTable();
-			this.table_AllowedShops.setColumnSelectionAllowed(true);
-			this.table_AllowedShops.setCellSelectionEnabled(true);
+	private JList<Object> getList_AllowedShops() {
+		if (this.list_AllowedShops == null) {
+			this.allowedShopsModel = new DefaultListModel<Object>();
+			this.list_AllowedShops = new JList<Object>(allowedShopsModel);
+			for (Object o : Select.listemagasinsautorises(this.selecteduser)){
+				this.allowedShopsModel.addElement(o);
+			}
+
 		}
-		return this.table_AllowedShops;
+		return this.list_AllowedShops;
 	}
 
-	private JTable getTable_Shops() {
-		if (this.table_Shops == null) {
-			this.table_Shops = new JTable();
-			this.table_Shops.setColumnSelectionAllowed(true);
-			this.table_Shops.setCellSelectionEnabled(true);
+	private JList<Object> getList_Shops() {
+		if (this.list_AvailableShops == null) {
+			this.availableShopsModel = new DefaultListModel<Object>();
+			this.list_AvailableShops = new JList<Object>(availableShopsModel);
+			for (Object o : Select.listemagasins()) {
+				this.availableShopsModel.addElement(o);
+			}
+
 		}
-		return this.table_Shops;
+		return this.list_AvailableShops;
 	}
 
 	private void validateAction() {

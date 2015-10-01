@@ -282,10 +282,17 @@ public class Selectionutilisateur extends JFrame {
 					switch (Selectionutilisateur.this.selectionprecedente)
 
 					{
-					case "METTRE A JOUR un mot de passe utilisateur":
-						final MajMotdepasse fenetre = new MajMotdepasse(
-								Selectionutilisateur.this.utilisateurselectionne);
+
+					case "Autoriser des magasins pour un utilisateur":
+						final UserShopsAllowed fenetre = new UserShopsAllowed(Selectionutilisateur.this.utilisateurselectionne, interfaceActuelle);
 						fenetre.setVisible(true);
+						Selectionutilisateur.this.dispose();
+						break;
+
+					case "METTRE A JOUR un mot de passe utilisateur":
+						final MajMotdepasse fenetre5 = new MajMotdepasse(
+								Selectionutilisateur.this.utilisateurselectionne);
+						fenetre5.setVisible(true);
 						Selectionutilisateur.this.dispose();
 						break;
 
