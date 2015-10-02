@@ -19,6 +19,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -443,6 +444,7 @@ public class UserShopsAllowed extends JFrame {
 		if (this.list_AllowedShops == null) {
 			this.allowedShopsModel = new DefaultListModel<Object>();
 			this.list_AllowedShops = new JList<Object>(allowedShopsModel);
+			this.list_AllowedShops.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			for (Object o : Select.listemagasinsautorises(this.selecteduser)){
 				this.allowedShopsModel.addElement(o);
 			}
@@ -455,6 +457,7 @@ public class UserShopsAllowed extends JFrame {
 		if (this.list_AvailableShops == null) {
 			this.availableShopsModel = new DefaultListModel<Object>();
 			this.list_AvailableShops = new JList<Object>(availableShopsModel);
+			this.list_AvailableShops.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			for (Object o : Select.listemagasins()) {
 				this.availableShopsModel.addElement(o);
 //				this.availableShopsModel.
