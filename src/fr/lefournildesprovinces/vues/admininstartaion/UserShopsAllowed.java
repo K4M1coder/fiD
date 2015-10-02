@@ -30,6 +30,7 @@ import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 
 public class UserShopsAllowed extends JFrame {
@@ -164,7 +165,7 @@ public class UserShopsAllowed extends JFrame {
 
 	private JLabel getLbl_FieldPrivilege() {
 		if (this.lblFieldPrivilege == null) {
-			this.lblFieldPrivilege = new JLabel("UTILISATEUR");
+			this.lblFieldPrivilege = new JLabel(Login.getPrivilege());
 			lblFieldPrivilege.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblFieldPrivilege.setForeground(Color.GRAY);
 			this.lblFieldPrivilege.setFont(new Font("Tahoma", Font.BOLD, 11));
