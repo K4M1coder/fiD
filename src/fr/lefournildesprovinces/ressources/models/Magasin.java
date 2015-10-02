@@ -46,4 +46,26 @@ public class Magasin implements Comparable<Magasin>{
 		return last;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj)
+	        return true;
+	    if (obj == null)
+	        return false;
+	    if (getClass() != obj.getClass())
+	        return false;
+	    Magasin other = (Magasin) obj;
+	    if (nomMagasin == null) {
+	        if (other.nomMagasin != null)
+	            return false;
+	    } else if (!nomMagasin.equals(other.nomMagasin))
+	        return false;
+	    if (idMagasin == 0) {
+	        if (other.idMagasin != 0)
+	            return false;
+	    } else if (!(idMagasin == (other.idMagasin)))
+	        return false;
+	    return true;
+	}
+
 }

@@ -224,6 +224,7 @@ public class UserShopsAllowed extends JFrame {
 	private JLayeredPane getLayeredPane_Base() {
 		if (this.layeredPane_Base == null) {
 			this.layeredPane_Base = new JLayeredPane();
+			this.layeredPane_Base.add(this.getLbl_Valider());
 			this.layeredPane_Base.add(this.getTextPane_Note());
 			this.layeredPane_Base.add(this.getLbl_TextUser());
 			this.layeredPane_Base.add(this.getLbl_FieldUser());
@@ -246,7 +247,6 @@ public class UserShopsAllowed extends JFrame {
 			this.layeredPane_Base.add(this.getMenu_OperationsCommerciales());
 			this.layeredPane_Base.add(this.getMenu_Extraction());
 			this.layeredPane_Base.add(this.getAction_Retour());
-			this.layeredPane_Base.add(this.getLbl_Valider());
 			this.layeredPane_Base.add(this.getFond());
 			this.layeredPane_Base.add(this.getLblBackground());
 
@@ -311,19 +311,19 @@ public class UserShopsAllowed extends JFrame {
 	private JLabel getLbl_Valider() {
 		if (this.action_Valider == null) {
 			this.action_Valider = new JLabel("");
-			this.action_Valider.setVisible(false);
+			this.action_Valider.setHorizontalTextPosition(SwingConstants.CENTER);
+			this.action_Valider.setHorizontalAlignment(SwingConstants.CENTER);
+			this.action_Valider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.action_Valider.setIcon(new ImageIcon(UserShopsAllowed.class.getResource("/Images/actionbutons/valider.png")));
+			this.action_Valider.setBounds(811, 484, 108, 33);
+			this.action_Valider.setVisible(true);
 			this.action_Valider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 					validateAction();
 				}
 			});
-			this.action_Valider.setHorizontalTextPosition(SwingConstants.CENTER);
-			this.action_Valider.setHorizontalAlignment(SwingConstants.CENTER);
-			this.action_Valider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			this.action_Valider
-					.setIcon(new ImageIcon(UserShopsAllowed.class.getResource("/Images/actionbutons/valider.png")));
-			this.action_Valider.setBounds(811, 484, 108, 33);
+
 
 		}
 		return this.action_Valider;
@@ -445,8 +445,10 @@ public class UserShopsAllowed extends JFrame {
 			this.allowedShopsModel = new DefaultListModel<Object>();
 			this.list_AllowedShops = new JList<Object>(allowedShopsModel);
 			this.list_AllowedShops.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			for (Object o : Select.listemagasinsautorises(this.selecteduser)){
-				this.allowedShopsModel.addElement(o);
+			for (Object o : Select.listemagasinsautorises(this.selecteduser)) {
+				if (!o.toString().equals("")) {
+					this.allowedShopsModel.addElement(o);
+				}
 			}
 
 		}
@@ -458,9 +460,17 @@ public class UserShopsAllowed extends JFrame {
 			this.availableShopsModel = new DefaultListModel<Object>();
 			this.list_AvailableShops = new JList<Object>(availableShopsModel);
 			this.list_AvailableShops.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			System.out.println("allowed "+ this.allowedShopsModel.getSize() +" shops are " + this.allowedShopsModel);
 			for (Object o : Select.listemagasins()) {
-				this.availableShopsModel.addElement(o);
-//				this.availableShopsModel.
+				if (!o.toString().equals("")) {
+					System.out.print("check if " + o + " is allowed :");
+					DefaultListModel<Object> allowed = (DefaultListModel<Object>) this.list_AllowedShops.getModel();
+					System.out.println(allowed.contains(o));
+					if (!this.allowedShopsModel.contains(o)) { // need to override equals to make this working as i expect. look at Magasin class
+						this.availableShopsModel.addElement(o);
+					}
+				}
+
 			}
 
 		}
