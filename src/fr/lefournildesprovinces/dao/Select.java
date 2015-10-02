@@ -1710,6 +1710,7 @@ public class Select {
 		} catch (final Exception e) {
 			System.out.println("error" + e.getMessage());
 		}
+		Collections.sort(result);
 		return result.toArray(new Object[0]);
 	}
 
@@ -1744,6 +1745,7 @@ public class Select {
 		} catch (final Exception e) {
 			System.out.println("error" + e.getMessage());
 		}
+		Collections.sort(result);
 		return result.toArray(new Object[0]);
 	}
 

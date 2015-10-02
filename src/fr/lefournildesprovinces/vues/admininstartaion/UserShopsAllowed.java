@@ -107,8 +107,6 @@ public class UserShopsAllowed extends JFrame {
 			this.action_Retour.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					final MenuPrincipal fenetre = new MenuPrincipal();
-					fenetre.setVisible(true);
 					UserShopsAllowed.this.interfacePrecedente.setEnabled(true);
 					UserShopsAllowed.this.interfacePrecedente.setVisible(true);
 					UserShopsAllowed.this.dispose();
@@ -193,7 +191,7 @@ public class UserShopsAllowed extends JFrame {
 	private JButton getJBtn_AddAll() {
 		if (this.btn_AddAll == null) {
 			this.btn_AddAll = new JButton("> Tous >");
-			this.btn_AddAll.setBounds(435, 408, 77, 23);
+			this.btn_AddAll.setBounds(435, 408, 85, 23);
 		}
 		return this.btn_AddAll;
 	}
@@ -201,7 +199,7 @@ public class UserShopsAllowed extends JFrame {
 	private JButton getJBtn_AddOne() {
 		if (this.btn_AddOne == null) {
 			this.btn_AddOne = new JButton("> 1 >");
-			this.btn_AddOne.setBounds(435, 374, 77, 23);
+			this.btn_AddOne.setBounds(435, 374, 85, 23);
 		}
 		return this.btn_AddOne;
 	}
@@ -209,7 +207,7 @@ public class UserShopsAllowed extends JFrame {
 	private JButton getJBtn_DelAll() {
 		if (this.btn_DelAll == null) {
 			this.btn_DelAll = new JButton("< Tous <");
-			this.btn_DelAll.setBounds(435, 518, 77, 23);
+			this.btn_DelAll.setBounds(435, 518, 85, 23);
 		}
 		return this.btn_DelAll;
 	}
@@ -217,7 +215,7 @@ public class UserShopsAllowed extends JFrame {
 	private JButton getJBtn_DelOne() {
 		if (this.btn_DelOne == null) {
 			this.btn_DelOne = new JButton("< 1 <");
-			this.btn_DelOne.setBounds(435, 484, 77, 23);
+			this.btn_DelOne.setBounds(435, 484, 85, 23);
 		}
 		return this.btn_DelOne;
 	}
@@ -238,8 +236,8 @@ public class UserShopsAllowed extends JFrame {
 			this.layeredPane_Base.add(this.getJBtn_DelAll());
 			this.layeredPane_Base.add(this.getLbl_allowedShops());
 			this.layeredPane_Base.add(this.getLbl_allShops());
-			this.layeredPane_Base.add(this.getScrollPane_Shops());
 			this.layeredPane_Base.add(this.getScrollPane_AllowedShops());
+			this.layeredPane_Base.add(this.getScrollPane_Shops());
 			this.layeredPane_Base.add(this.getLbl_Ariane());
 			this.layeredPane_Base.add(this.getMenu_Acceuil());
 			this.layeredPane_Base.add(this.getMenu_Fidelite());
@@ -261,7 +259,7 @@ public class UserShopsAllowed extends JFrame {
 			lbl_AllowedShops.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lbl_AllowedShops.setForeground(Color.GRAY);
 			this.lbl_AllowedShops.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lbl_AllowedShops.setBounds(520, 322, 179, 14);
+			this.lbl_AllowedShops.setBounds(530, 322, 179, 14);
 		}
 		return this.lbl_AllowedShops;
 	}
@@ -272,7 +270,7 @@ public class UserShopsAllowed extends JFrame {
 			lbl_AddShops.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lbl_AddShops.setForeground(Color.GRAY);
 			this.lbl_AddShops.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lbl_AddShops.setBounds(435, 348, 77, 14);
+			this.lbl_AddShops.setBounds(435, 348, 85, 14);
 		}
 		return this.lbl_AddShops;
 	}
@@ -283,7 +281,7 @@ public class UserShopsAllowed extends JFrame {
 			lbl_DelShops.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lbl_DelShops.setForeground(Color.GRAY);
 			this.lbl_DelShops.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lbl_DelShops.setBounds(435, 459, 77, 14);
+			this.lbl_DelShops.setBounds(435, 459, 85, 14);
 		}
 		return this.lbl_DelShops;
 	}
@@ -424,7 +422,7 @@ public class UserShopsAllowed extends JFrame {
 		if (this.scrollPane_AllowedShops == null) {
 			this.scrollPane_AllowedShops = new JScrollPane();
 			this.scrollPane_AllowedShops.setBorder(null);
-			this.scrollPane_AllowedShops.setBounds(520, 347, 179, 194);
+			this.scrollPane_AllowedShops.setBounds(530, 348, 179, 194);
 			this.scrollPane_AllowedShops.setViewportView(this.getList_AllowedShops());
 		}
 		return this.scrollPane_AllowedShops;
@@ -459,6 +457,7 @@ public class UserShopsAllowed extends JFrame {
 			this.list_AvailableShops = new JList<Object>(availableShopsModel);
 			for (Object o : Select.listemagasins()) {
 				this.availableShopsModel.addElement(o);
+//				this.availableShopsModel.
 			}
 
 		}

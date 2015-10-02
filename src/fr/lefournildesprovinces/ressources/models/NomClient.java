@@ -41,22 +41,22 @@ public class NomClient implements Comparable<NomClient> {
 		//
 		// the following could be used later...
 		//
-		// /**
-		// * List the authors. Sort them by name so it will look good.
-		// */
-		// public List<NomClient> listNomClient(){
-		// List<NomClient> nomClients = readNomClientsFromFileOrSomething();
-		// Collections.sort(authors);
-		// return authors;
-		// }
-		//
-		// /**
-		// * List unique authors. Sort them by name so it will look good.
-		// */
-		// public SortedSet<NomClient> listUniqueNomClients(){
-		// List<NomClient> nomClients = readNomClientsFromFileOrSomething();
-		// return new TreeSet<NomClient>(nomClients);
-		// }
+//		 /**
+//		 * List the authors. Sort them by name so it will look good.
+//		 */
+//		 public List<NomClient> listNomClient(){
+//		 List<NomClient> nomClients = readNomClientsFromFileOrSomething();
+//		 Collections.sort(authors);
+//		 return authors;
+//		 }
+//		
+//		 /**
+//		 * List unique authors. Sort them by name so it will look good.
+//		 */
+//		 public SortedSet<NomClient> listUniqueNomClients(){
+//		 List<NomClient> nomClients = readNomClientsFromFileOrSomething();
+//		 return new TreeSet<NomClient>(nomClients);
+//		 }
 
 	}
 //	public static class Comparators {
