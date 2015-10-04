@@ -3,6 +3,7 @@ package fr.lefournildesprovinces.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collections;
 import java.util.Vector;
@@ -17,7 +18,7 @@ import fr.lefournildesprovinces.ressources.models.OperationCommerciale;
 import fr.lefournildesprovinces.ressources.models.OperationCommercialeInfos;
 import fr.lefournildesprovinces.ressources.models.PrenomClient;
 import fr.lefournildesprovinces.ressources.models.ResultatRecherche;
-import fr.lefournildesprovinces.ressources.models.UtilisateursLogiciel;
+import fr.lefournildesprovinces.ressources.models.UtilisateurLogiciel;
 import fr.lefournildesprovinces.ressources.models.Ville;
 import fr.lefournildesprovinces.ressources.models.infosparticipation;
 
@@ -1714,6 +1715,69 @@ public class Select {
 		return result.toArray(new Object[0]);
 	}
 
+	public static UtilisateurLogiciel getUser(String login){
+		UtilisateurLogiciel utilisateur = new UtilisateurLogiciel();
+		try {
+			c = Connexion.getCon();
+
+			final String sql = "SELECT MOTDEPASSE, PRIVILEGE, IDUSER FROM USERS WHERE IDENTIFIANT=?";
+
+			preStm = c.prepareStatement(sql);
+			preStm.setString(1, login);
+			rs = preStm.executeQuery();
+		} catch (final SQLException e56) {
+			e56.getMessage();
+		}
+		try {
+			while (rs.next()) {
+				utilisateur.setMotdepasse(rs.getString(1));
+				utilisateur.setIdentifiant(login);
+				utilisateur.setPrivilege(rs.getString(2));
+				utilisateur.setNumeroutilisateur(""+rs.getInt(3));
+			}
+			rs.close();
+			stm.close();
+		} catch (final Exception e8)
+
+		{
+			System.out.print("error" + e8.getMessage());
+
+		}
+		return utilisateur;
+	}
+
+	public static UtilisateurLogiciel getUser(Integer uid){
+		UtilisateurLogiciel utilisateur = new UtilisateurLogiciel();
+		try {
+			c = Connexion.getCon();
+
+			final String sql = "SELECT IDENTIFIANT, MOTDEPASSE, PRIVILEGE FROM USERS WHERE IDUSER=?";
+
+			preStm = c.prepareStatement(sql);
+			preStm.setInt(1, uid);
+			rs = preStm.executeQuery();
+		} catch (final SQLException e56) {
+			e56.getMessage();
+		}
+		try {
+			while (rs.next()) {
+				utilisateur.setMotdepasse(rs.getString(2));
+				utilisateur.setIdentifiant(rs.getString(1));
+				utilisateur.setPrivilege(rs.getString(3));
+				utilisateur.setNumeroutilisateur(uid.toString());
+			}
+			rs.close();
+			stm.close();
+		} catch (final Exception e8)
+
+		{
+			System.out.print("error" + e8.getMessage());
+
+		}
+		return utilisateur;
+	}
+
+
 	public static Object[] listemagasinsautorises(final String userName) {
 		final Vector<Magasin> result = new Vector<Magasin>();
 		try {
@@ -2063,7 +2127,7 @@ public class Select {
 	public static Object[] listeutilisateur(final String selection)
 
 	{
-		final Vector<UtilisateursLogiciel> requete = new Vector<UtilisateursLogiciel>();
+		final Vector<UtilisateurLogiciel> requete = new Vector<UtilisateurLogiciel>();
 
 		try {
 
@@ -2088,10 +2152,10 @@ public class Select {
 		try {
 
 			requete.add(null);
-			UtilisateursLogiciel liste;
+			UtilisateurLogiciel liste;
 			while (rs.next()) {
 
-				liste = new UtilisateursLogiciel();
+				liste = new UtilisateurLogiciel();
 				liste.setNumeroutilisateur(rs.getString(1));
 				liste.setIdentifiant(rs.getString(2));
 				liste.setMotdepasse(rs.getString(3));

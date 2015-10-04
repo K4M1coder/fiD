@@ -48,6 +48,7 @@ public class Magasin implements Comparable<Magasin>{
 
 	@Override
 	public boolean equals(Object obj) {
+//	    System.out.print("override .equals()");
 	    if (this == obj)
 	        return true;
 	    if (obj == null)

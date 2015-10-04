@@ -59,7 +59,7 @@ public class start {
 			public void run() {
 				try {
 					Control control = new Control();
-					control.vueLogin();
+					control.initUI();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

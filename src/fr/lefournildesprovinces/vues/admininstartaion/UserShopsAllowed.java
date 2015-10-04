@@ -6,8 +6,12 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -25,13 +29,16 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import fr.lefournildesprovinces.controler.Control;
 import fr.lefournildesprovinces.dao.Select;
+import fr.lefournildesprovinces.ressources.models.Magasin;
+import fr.lefournildesprovinces.ressources.models.UtilisateurLogiciel;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.Login;
-import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
+import fr.lefournildesprovinces.vues.popups.Loading;
 
 public class UserShopsAllowed extends JFrame {
 
@@ -43,7 +50,11 @@ public class UserShopsAllowed extends JFrame {
 	/**
 	 *
 	 */
-	private DefaultListModel<Object> availableShopsModel;
+	private DefaultListModel<Object> shopsAllowedModel;
+	private DefaultListModel<Object> shopsAvailableModel;
+	private DefaultListModel<Object> ShopsToAddModel;
+	private DefaultListModel<Object> ShopsToDelModel;
+	private final DefaultListModel<Object> lastAllowedShopsModel;
 	private JButton btn_AddAll;
 	private JButton btn_AddOne;
 	private JButton btn_DelAll;
@@ -75,19 +86,13 @@ public class UserShopsAllowed extends JFrame {
 	private final JFrame interfaceActuelle;
 	private final JFrame interfacePrecedente;
 	private final JPanel contentPane;
-	private final String selecteduser;
-
-	private DefaultListModel<Object> allowedShopsModel;
+	private UtilisateurLogiciel selecteduser;
+	private Loading lblLoading;
 
 	public UserShopsAllowed(final String utilisateurselectionne, final JFrame interfacePrecedente) {
-		this.selecteduser = utilisateurselectionne;
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowOpened(final WindowEvent arg0) {
-
-				// TODO
-			}
-		});
+		this.selecteduser = Select.getUser(utilisateurselectionne);
+		this.ShopsToAddModel = new DefaultListModel<Object>();
+		this.ShopsToDelModel = new DefaultListModel<Object>();
 		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1280, 800);
@@ -101,6 +106,14 @@ public class UserShopsAllowed extends JFrame {
 		this.interfaceActuelle = this;
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
+		this.lastAllowedShopsModel = this.shopsAllowedModel;
+		this.addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowOpened(final WindowEvent arg0) {
+				// TODO
+			}
+		});
 	}
 
 	private JLabel getAction_Retour() {
@@ -143,7 +156,7 @@ public class UserShopsAllowed extends JFrame {
 
 	private JLabel getLbl_FieldUser() {
 		if (this.lblFieldUser == null) {
-			this.lblFieldUser = new JLabel(this.selecteduser);
+			this.lblFieldUser = new JLabel(this.selecteduser.getIdentifiant());
 			lblFieldUser.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblFieldUser.setForeground(Color.GRAY);
 			this.lblFieldUser.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -165,7 +178,7 @@ public class UserShopsAllowed extends JFrame {
 
 	private JLabel getLbl_FieldPrivilege() {
 		if (this.lblFieldPrivilege == null) {
-			this.lblFieldPrivilege = new JLabel(Login.getPrivilege());
+			this.lblFieldPrivilege = new JLabel(this.selecteduser.getPrivilege());
 			lblFieldPrivilege.setHorizontalAlignment(SwingConstants.CENTER);
 			this.lblFieldPrivilege.setForeground(Color.GRAY);
 			this.lblFieldPrivilege.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -194,6 +207,26 @@ public class UserShopsAllowed extends JFrame {
 		if (this.btn_AddAll == null) {
 			this.btn_AddAll = new JButton("> Tous >");
 			this.btn_AddAll.setBounds(435, 408, 85, 23);
+			this.btn_AddAll.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					for (int i = 0; i < shopsAvailableModel.getSize(); i++) {
+						Object s = shopsAvailableModel.elementAt(i);
+						if (!shopsAllowedModel.contains(s)) {
+							shopsAllowedModel.add(0, s);
+						}
+						if (ShopsToDelModel.contains(s)) {
+							ShopsToDelModel.removeElement(s);
+						} else {
+							if (!ShopsToAddModel.contains(s)) {
+								ShopsToAddModel.addElement(s);
+							}
+						}
+					}
+					shopsAvailableModel.removeAllElements();
+					Control.sortShopsListModel(shopsAllowedModel);
+				}
+			});
 		}
 		return this.btn_AddAll;
 	}
@@ -202,6 +235,35 @@ public class UserShopsAllowed extends JFrame {
 		if (this.btn_AddOne == null) {
 			this.btn_AddOne = new JButton("> 1 >");
 			this.btn_AddOne.setBounds(435, 374, 85, 23);
+			this.btn_AddOne.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					int i = list_AvailableShops.getSelectedIndex();
+					if (i > -1) {
+						Object s = shopsAvailableModel.elementAt(i);
+						if (!shopsAllowedModel.contains(s)) {
+							shopsAllowedModel.add(0, s);
+						}
+						if (ShopsToDelModel.contains(s)) {
+							ShopsToDelModel.removeElement(s);
+						} else {
+							if (!ShopsToAddModel.contains(s)) {
+								ShopsToAddModel.addElement(s);
+							}
+						}
+						shopsAvailableModel.removeElement(s);
+						Control.sortShopsListModel(shopsAvailableModel);
+						int imax = shopsAvailableModel.getSize();
+						if (imax > 0) {
+							if (i < imax) {
+								list_AvailableShops.setSelectedIndex(i);
+							} else {
+								list_AvailableShops.setSelectedIndex(i - 1);
+							}
+						}
+					}
+				}
+			});
 		}
 		return this.btn_AddOne;
 	}
@@ -210,6 +272,27 @@ public class UserShopsAllowed extends JFrame {
 		if (this.btn_DelAll == null) {
 			this.btn_DelAll = new JButton("< Tous <");
 			this.btn_DelAll.setBounds(435, 518, 85, 23);
+			this.btn_DelAll.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					for (int i = 0; i < shopsAllowedModel.getSize(); i++) {
+						Object s = shopsAllowedModel.elementAt(i);
+						if (!shopsAvailableModel.contains(s)) {
+							shopsAvailableModel.add(0, s);
+						}
+						if (ShopsToAddModel.contains(s)) {
+							ShopsToAddModel.removeElement(s);
+						} else {
+							if (!ShopsToDelModel.contains(s)) {
+								ShopsToDelModel.addElement(s);
+							}
+						}
+					}
+					shopsAllowedModel.removeAllElements();
+					Control.sortShopsListModel(shopsAvailableModel);
+
+				}
+			});
 		}
 		return this.btn_DelAll;
 	}
@@ -218,6 +301,35 @@ public class UserShopsAllowed extends JFrame {
 		if (this.btn_DelOne == null) {
 			this.btn_DelOne = new JButton("< 1 <");
 			this.btn_DelOne.setBounds(435, 484, 85, 23);
+			this.btn_DelOne.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					int i = list_AllowedShops.getSelectedIndex();
+					if (i > -1) {
+						Object s = shopsAllowedModel.elementAt(i);
+						if (!shopsAvailableModel.contains(s)) {
+							shopsAvailableModel.add(0, s);
+						}
+						if (ShopsToAddModel.contains(s)) {
+							ShopsToAddModel.removeElement(s);
+						} else {
+							if (!ShopsToDelModel.contains(s)) {
+								ShopsToDelModel.addElement(s);
+							}
+						}
+						shopsAllowedModel.removeElement(s);
+						Control.sortShopsListModel(shopsAvailableModel);
+						int imax = shopsAllowedModel.getSize();
+						if (imax > 0) {
+							if (i < imax) {
+								list_AllowedShops.setSelectedIndex(i);
+							} else {
+								list_AllowedShops.setSelectedIndex(i - 1);
+							}
+						}
+					}
+				}
+			});
 		}
 		return this.btn_DelOne;
 	}
@@ -225,6 +337,7 @@ public class UserShopsAllowed extends JFrame {
 	private JLayeredPane getLayeredPane_Base() {
 		if (this.layeredPane_Base == null) {
 			this.layeredPane_Base = new JLayeredPane();
+			this.layeredPane_Base.add(this.getLoading());
 			this.layeredPane_Base.add(this.getLbl_Valider());
 			this.layeredPane_Base.add(this.getTextPane_Note());
 			this.layeredPane_Base.add(this.getLbl_TextUser());
@@ -315,7 +428,8 @@ public class UserShopsAllowed extends JFrame {
 			this.action_Valider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.action_Valider.setHorizontalAlignment(SwingConstants.CENTER);
 			this.action_Valider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			this.action_Valider.setIcon(new ImageIcon(UserShopsAllowed.class.getResource("/Images/actionbutons/valider.png")));
+			this.action_Valider
+					.setIcon(new ImageIcon(UserShopsAllowed.class.getResource("/Images/actionbutons/valider.png")));
 			this.action_Valider.setBounds(811, 484, 108, 33);
 			this.action_Valider.setVisible(true);
 			this.action_Valider.addMouseListener(new MouseAdapter() {
@@ -324,7 +438,6 @@ public class UserShopsAllowed extends JFrame {
 					validateAction();
 				}
 			});
-
 
 		}
 		return this.action_Valider;
@@ -443,43 +556,51 @@ public class UserShopsAllowed extends JFrame {
 
 	private JList<Object> getList_AllowedShops() {
 		if (this.list_AllowedShops == null) {
-			this.allowedShopsModel = new DefaultListModel<Object>();
-			this.list_AllowedShops = new JList<Object>(allowedShopsModel);
+			this.shopsAllowedModel = new DefaultListModel<Object>();
+			this.list_AllowedShops = new JList<Object>(shopsAllowedModel);
 			this.list_AllowedShops.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			for (Object o : Select.listemagasinsautorises(this.selecteduser)) {
+			for (Object o : Select.listemagasinsautorises(this.selecteduser.getIdentifiant())) {
 				if (!o.toString().equals("")) {
-					this.allowedShopsModel.addElement(o);
+					this.shopsAllowedModel.addElement(o);
 				}
 			}
-
 		}
 		return this.list_AllowedShops;
 	}
 
 	private JList<Object> getList_Shops() {
 		if (this.list_AvailableShops == null) {
-			this.availableShopsModel = new DefaultListModel<Object>();
-			this.list_AvailableShops = new JList<Object>(availableShopsModel);
+			this.shopsAvailableModel = new DefaultListModel<Object>();
+			this.list_AvailableShops = new JList<Object>(shopsAvailableModel);
 			this.list_AvailableShops.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			System.out.println("allowed "+ this.allowedShopsModel.getSize() +" shops are " + this.allowedShopsModel);
+			System.out.println("allowed " + this.shopsAllowedModel.getSize() + " shops are " + this.shopsAllowedModel);
 			for (Object o : Select.listemagasins()) {
 				if (!o.toString().equals("")) {
 					System.out.print("check if " + o + " is allowed :");
 					DefaultListModel<Object> allowed = (DefaultListModel<Object>) this.list_AllowedShops.getModel();
 					System.out.println(allowed.contains(o));
-					if (!this.allowedShopsModel.contains(o)) { // need to override equals to make this working as i expect. look at Magasin class
-						this.availableShopsModel.addElement(o);
+					if (!this.shopsAllowedModel.contains(o)) { 																// class
+						this.shopsAvailableModel.addElement(o);
 					}
 				}
 
 			}
-
 		}
 		return this.list_AvailableShops;
+	}
+
+	private Loading getLoading() {
+		if (this.lblLoading == null) {
+			this.lblLoading = new Loading();
+		}
+		this.lblLoading.setVisible(false);
+		return this.lblLoading;
 	}
 
 	private void validateAction() {
 
 		UserShopsAllowed.this.interfaceActuelle.setEnabled(false);
+		this.lblLoading.setVisible(true);
+		//TODO
 	}
 }

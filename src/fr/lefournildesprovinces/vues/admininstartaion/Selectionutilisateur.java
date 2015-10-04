@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.dao.Select;
-import fr.lefournildesprovinces.ressources.models.UtilisateursLogiciel;
+import fr.lefournildesprovinces.ressources.models.UtilisateurLogiciel;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
@@ -100,7 +100,7 @@ public class Selectionutilisateur extends JFrame {
 					try {
 						Selectionutilisateur.this.utilisateurselectionne = Selectionutilisateur.this.comboBox
 								.getSelectedItem().toString().substring(1);
-						Selectionutilisateur.this.password = ((UtilisateursLogiciel) Selectionutilisateur.this.comboBox
+						Selectionutilisateur.this.password = ((UtilisateurLogiciel) Selectionutilisateur.this.comboBox
 								.getSelectedItem()).getMotdepasse().toString();
 						Selectionutilisateur.this.valider.setVisible(true);
 						Selectionutilisateur.this.lblMerciDeSlectionner
