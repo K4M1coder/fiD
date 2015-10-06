@@ -28,6 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import fr.lefournildesprovinces.controler.Control;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.OperationCommerciale;
@@ -35,8 +36,8 @@ import fr.lefournildesprovinces.ressources.models.ResultatRecherche;
 import fr.lefournildesprovinces.ressources.util.ExcelExporter;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
-import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.MessageExport;
 
@@ -777,7 +778,7 @@ public class EmailingOperationCommerciale extends JFrame {
 			this.comboBox_1.setBounds(532, 236, 486, 22);
 			this.comboBox_1.setEnabled(false);
 			this.listemagasins = new DefaultComboBoxModel<Object>(
-					Select.listemagasins());
+					Control.listemagasins());
 			this.comboBox_1.setModel(this.listemagasins);
 			this.comboBox_1.setFocusable(false);
 

@@ -28,14 +28,15 @@ import javax.swing.border.LineBorder;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import fr.lefournildesprovinces.controler.Control;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.ClientOperationCommerciale;
 import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.OperationCommerciale;
 import fr.lefournildesprovinces.ressources.models.Ville;
 import fr.lefournildesprovinces.ressources.util.AutoCompletion;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
@@ -289,7 +290,7 @@ public class MajClientOperationCommerciale extends JFrame {
 			this.comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.comboBox.setBounds(303, 485, 206, 22);
 			this.magasin = new DefaultComboBoxModel<Object>(
-					Select.listemagasins());
+					Control.listemagasins());
 			this.comboBox.setModel(this.magasin);
 
 		}

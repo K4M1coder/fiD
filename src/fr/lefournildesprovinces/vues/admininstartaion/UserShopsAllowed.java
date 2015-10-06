@@ -6,12 +6,8 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -30,14 +26,13 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import fr.lefournildesprovinces.controler.Control;
+import fr.lefournildesprovinces.dao.MagasinDAO;
 import fr.lefournildesprovinces.dao.Select;
-import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.UtilisateurLogiciel;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
-import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.popups.Loading;
 
 public class UserShopsAllowed extends JFrame {
@@ -52,13 +47,13 @@ public class UserShopsAllowed extends JFrame {
 	 */
 	private DefaultListModel<Object> shopsAllowedModel;
 	private DefaultListModel<Object> shopsAvailableModel;
-	private DefaultListModel<Object> ShopsToAddModel;
-	private DefaultListModel<Object> ShopsToDelModel;
-	private final DefaultListModel<Object> lastAllowedShopsModel;
+	private DefaultListModel<Object> shopsToAddModel;
+	private DefaultListModel<Object> shopsToDelModel;
 	private JButton btn_AddAll;
 	private JButton btn_AddOne;
 	private JButton btn_DelAll;
 	private JButton btn_DelOne;
+	private JButton btn_Reset;
 	private JLabel action_Menu_Acceuil;
 	private JLabel action_Menu_Extraction;
 	private JLabel action_Menu_Fidelite;
@@ -69,10 +64,6 @@ public class UserShopsAllowed extends JFrame {
 	private JLabel ariane;
 	private JLabel background;
 	private JLabel fond;
-	private JLabel lblFieldPrivilege;
-	private JLabel lblFieldUser;
-	private JLabel lblTextPrivilege;
-	private JLabel lblTextUser;
 	private JLabel lbl_AddShops;
 	private JLabel lbl_AllShops;
 	private JLabel lbl_AllowedShops;
@@ -83,16 +74,16 @@ public class UserShopsAllowed extends JFrame {
 	private JScrollPane scrollPane_AllowedShops;
 	private JScrollPane scrollPane_Shops;
 	private JTextPane lbl_Note;
+	private Loading lblLoading;
+	private UtilisateurLogiciel selecteduser;
 	private final JFrame interfaceActuelle;
 	private final JFrame interfacePrecedente;
 	private final JPanel contentPane;
-	private UtilisateurLogiciel selecteduser;
-	private Loading lblLoading;
 
 	public UserShopsAllowed(final String utilisateurselectionne, final JFrame interfacePrecedente) {
 		this.selecteduser = Select.getUser(utilisateurselectionne);
-		this.ShopsToAddModel = new DefaultListModel<Object>();
-		this.ShopsToDelModel = new DefaultListModel<Object>();
+		this.shopsToAddModel = new DefaultListModel<Object>();
+		this.shopsToDelModel = new DefaultListModel<Object>();
 		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setBounds(100, 100, 1280, 800);
@@ -106,7 +97,6 @@ public class UserShopsAllowed extends JFrame {
 		this.interfaceActuelle = this;
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		this.lastAllowedShopsModel = this.shopsAllowedModel;
 		this.addWindowListener(new WindowAdapter() {
 
 			@Override
@@ -143,58 +133,19 @@ public class UserShopsAllowed extends JFrame {
 		return this.fond;
 	}
 
-	private JLabel getLbl_TextUser() {
-		if (this.lblTextUser == null) {
-			this.lblTextUser = new JLabel("L'utilisateur :");
-			lblTextUser.setHorizontalAlignment(SwingConstants.CENTER);
-			this.lblTextUser.setForeground(Color.GRAY);
-			this.lblTextUser.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lblTextUser.setBounds(735, 348, 101, 14);
-		}
-		return this.lblTextUser;
-	}
-
-	private JLabel getLbl_FieldUser() {
-		if (this.lblFieldUser == null) {
-			this.lblFieldUser = new JLabel(this.selecteduser.getIdentifiant());
-			lblFieldUser.setHorizontalAlignment(SwingConstants.CENTER);
-			this.lblFieldUser.setForeground(Color.GRAY);
-			this.lblFieldUser.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lblFieldUser.setBounds(846, 348, 150, 14);
-		}
-		return this.lblFieldUser;
-	}
-
-	private JLabel getLbl_TextPrivilege() {
-		if (this.lblTextPrivilege == null) {
-			this.lblTextPrivilege = new JLabel("avec le privilege :");
-			lblTextPrivilege.setHorizontalAlignment(SwingConstants.CENTER);
-			this.lblTextPrivilege.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lblTextPrivilege.setForeground(Color.GRAY);
-			this.lblTextPrivilege.setBounds(735, 378, 101, 14);
-		}
-		return this.lblTextPrivilege;
-	}
-
-	private JLabel getLbl_FieldPrivilege() {
-		if (this.lblFieldPrivilege == null) {
-			this.lblFieldPrivilege = new JLabel(this.selecteduser.getPrivilege());
-			lblFieldPrivilege.setHorizontalAlignment(SwingConstants.CENTER);
-			this.lblFieldPrivilege.setForeground(Color.GRAY);
-			this.lblFieldPrivilege.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lblFieldPrivilege.setBounds(846, 378, 150, 14);
-		}
-		return this.lblFieldPrivilege;
-	}
-
 	private JTextPane getTextPane_Note() {
 		if (this.lbl_Note == null) {
 			this.lbl_Note = new JTextPane();
 			lbl_Note.setBackground(Color.YELLOW);
-			lbl_Note.setText("ne pourra acceder qu'aux magasins qui lui sont attribués");
+			lbl_Note.setText("Attribuez un ou plusieurs magasins\n\n"
+					+ "à l'utilisateur \""+this.selecteduser.getIdentifiant()+"\"\n"
+					+ "avec le privilège \""+this.selecteduser.getPrivilege()+"\"\n\n"
+					+ "Il ne pourra acceder qu'aux magasins\n"
+					+ "qui lui sont attribués pour toute opération d'extraction,\n"
+					+ "de création et de modification.");
 			this.lbl_Note.setForeground(new Color(139, 69, 19));
 			this.lbl_Note.setFont(new Font("Tahoma", Font.BOLD, 12));
-			this.lbl_Note.setBounds(735, 412, 261, 36);
+			this.lbl_Note.setBounds(745, 348, 261, 141);
 			StyledDocument doc = this.lbl_Note.getStyledDocument();
 			SimpleAttributeSet center = new SimpleAttributeSet();
 			StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
@@ -215,11 +166,11 @@ public class UserShopsAllowed extends JFrame {
 						if (!shopsAllowedModel.contains(s)) {
 							shopsAllowedModel.add(0, s);
 						}
-						if (ShopsToDelModel.contains(s)) {
-							ShopsToDelModel.removeElement(s);
+						if (shopsToDelModel.contains(s)) {
+							shopsToDelModel.removeElement(s);
 						} else {
-							if (!ShopsToAddModel.contains(s)) {
-								ShopsToAddModel.addElement(s);
+							if (!shopsToAddModel.contains(s)) {
+								shopsToAddModel.addElement(s);
 							}
 						}
 					}
@@ -244,15 +195,15 @@ public class UserShopsAllowed extends JFrame {
 						if (!shopsAllowedModel.contains(s)) {
 							shopsAllowedModel.add(0, s);
 						}
-						if (ShopsToDelModel.contains(s)) {
-							ShopsToDelModel.removeElement(s);
+						if (shopsToDelModel.contains(s)) {
+							shopsToDelModel.removeElement(s);
 						} else {
-							if (!ShopsToAddModel.contains(s)) {
-								ShopsToAddModel.addElement(s);
+							if (!shopsToAddModel.contains(s)) {
+								shopsToAddModel.addElement(s);
 							}
 						}
 						shopsAvailableModel.removeElement(s);
-						Control.sortShopsListModel(shopsAvailableModel);
+						Control.sortShopsListModel(shopsAllowedModel);
 						int imax = shopsAvailableModel.getSize();
 						if (imax > 0) {
 							if (i < imax) {
@@ -280,21 +231,34 @@ public class UserShopsAllowed extends JFrame {
 						if (!shopsAvailableModel.contains(s)) {
 							shopsAvailableModel.add(0, s);
 						}
-						if (ShopsToAddModel.contains(s)) {
-							ShopsToAddModel.removeElement(s);
+						if (shopsToAddModel.contains(s)) {
+							shopsToAddModel.removeElement(s);
 						} else {
-							if (!ShopsToDelModel.contains(s)) {
-								ShopsToDelModel.addElement(s);
+							if (!shopsToDelModel.contains(s)) {
+								shopsToDelModel.addElement(s);
 							}
 						}
 					}
 					shopsAllowedModel.removeAllElements();
 					Control.sortShopsListModel(shopsAvailableModel);
-
 				}
 			});
 		}
 		return this.btn_DelAll;
+	}
+
+	private JButton getJBtn_Reset() {
+		if (this.btn_Reset == null) {
+			this.btn_Reset = new JButton("reset");
+			this.btn_Reset.setBounds(745, 518, 85, 23);
+			this.btn_Reset.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(final MouseEvent e) {
+					//TODO
+				}
+			});
+		}
+		return this.btn_Reset;
 	}
 
 	private JButton getJBtn_DelOne() {
@@ -310,11 +274,11 @@ public class UserShopsAllowed extends JFrame {
 						if (!shopsAvailableModel.contains(s)) {
 							shopsAvailableModel.add(0, s);
 						}
-						if (ShopsToAddModel.contains(s)) {
-							ShopsToAddModel.removeElement(s);
+						if (shopsToAddModel.contains(s)) {
+							shopsToAddModel.removeElement(s);
 						} else {
-							if (!ShopsToDelModel.contains(s)) {
-								ShopsToDelModel.addElement(s);
+							if (!shopsToDelModel.contains(s)) {
+								shopsToDelModel.addElement(s);
 							}
 						}
 						shopsAllowedModel.removeElement(s);
@@ -339,11 +303,8 @@ public class UserShopsAllowed extends JFrame {
 			this.layeredPane_Base = new JLayeredPane();
 			this.layeredPane_Base.add(this.getLoading());
 			this.layeredPane_Base.add(this.getLbl_Valider());
+			this.layeredPane_Base.add(this.getJBtn_Reset());
 			this.layeredPane_Base.add(this.getTextPane_Note());
-			this.layeredPane_Base.add(this.getLbl_TextUser());
-			this.layeredPane_Base.add(this.getLbl_FieldUser());
-			this.layeredPane_Base.add(this.getLbl_TextPrivilege());
-			this.layeredPane_Base.add(this.getLbl_FieldPrivilege());
 			this.layeredPane_Base.add(this.getLbl_AddShops());
 			this.layeredPane_Base.add(this.getLbl_DelShops());
 			this.layeredPane_Base.add(this.getJBtn_AddOne());
@@ -430,7 +391,7 @@ public class UserShopsAllowed extends JFrame {
 			this.action_Valider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.action_Valider
 					.setIcon(new ImageIcon(UserShopsAllowed.class.getResource("/Images/actionbutons/valider.png")));
-			this.action_Valider.setBounds(811, 484, 108, 33);
+			this.action_Valider.setBounds(907, 518, 99, 23);
 			this.action_Valider.setVisible(true);
 			this.action_Valider.addMouseListener(new MouseAdapter() {
 				@Override
@@ -559,7 +520,7 @@ public class UserShopsAllowed extends JFrame {
 			this.shopsAllowedModel = new DefaultListModel<Object>();
 			this.list_AllowedShops = new JList<Object>(shopsAllowedModel);
 			this.list_AllowedShops.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			for (Object o : Select.listemagasinsautorises(this.selecteduser.getIdentifiant())) {
+			for (Object o : MagasinDAO.listemagasinsautorises(this.selecteduser.getIdentifiant())) {
 				if (!o.toString().equals("")) {
 					this.shopsAllowedModel.addElement(o);
 				}
@@ -574,7 +535,7 @@ public class UserShopsAllowed extends JFrame {
 			this.list_AvailableShops = new JList<Object>(shopsAvailableModel);
 			this.list_AvailableShops.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			System.out.println("allowed " + this.shopsAllowedModel.getSize() + " shops are " + this.shopsAllowedModel);
-			for (Object o : Select.listemagasins()) {
+			for (Object o : MagasinDAO.listemagasins()) {
 				if (!o.toString().equals("")) {
 					System.out.print("check if " + o + " is allowed :");
 					DefaultListModel<Object> allowed = (DefaultListModel<Object>) this.list_AllowedShops.getModel();
@@ -583,7 +544,6 @@ public class UserShopsAllowed extends JFrame {
 						this.shopsAvailableModel.addElement(o);
 					}
 				}
-
 			}
 		}
 		return this.list_AvailableShops;
@@ -601,6 +561,15 @@ public class UserShopsAllowed extends JFrame {
 
 		UserShopsAllowed.this.interfaceActuelle.setEnabled(false);
 		this.lblLoading.setVisible(true);
-		//TODO
+		Thread longThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				Control.userShopsAllowedUpdate(shopsToAddModel, shopsToDelModel, selecteduser);
+				UserShopsAllowed.this.lblLoading.setVisible(false);
+				UserShopsAllowed.this.interfaceActuelle.setEnabled(true);
+			}
+
+		});
+		longThread.start();
 	}
 }

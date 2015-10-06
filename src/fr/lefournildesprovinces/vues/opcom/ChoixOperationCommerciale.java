@@ -19,11 +19,12 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fr.lefournildesprovinces.controler.Control;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.OperationCommerciale;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
@@ -169,7 +170,7 @@ public class ChoixOperationCommerciale extends JFrame {
 			this.comboBox_1.setBackground(Color.WHITE);
 			this.comboBox_1.setBounds(451, 426, 384, 22);
 			this.listemagasins = new DefaultComboBoxModel<Object>(
-					Select.listemagasins());
+					Control.listemagasins());
 			this.comboBox_1.setModel(this.listemagasins);
 			this.comboBox_1.setEnabled(false);
 			this.comboBox_1.setFocusable(false);

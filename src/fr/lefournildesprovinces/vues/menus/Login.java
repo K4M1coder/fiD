@@ -26,6 +26,7 @@ import fr.lefournildesprovinces.vues.popups.Loading;
 public class Login extends JFrame {
 
 	private static String privilege;
+	private static String login;
 	/**
 	 *
 	 */
@@ -37,6 +38,9 @@ public class Login extends JFrame {
 
 	public static void setPrivilege(final String privilege) {
 		Login.privilege = privilege;
+	}
+	public static String getlogin(){
+		return login;
 	}
 
 	private JLabel boutonValider;
@@ -93,6 +97,7 @@ public class Login extends JFrame {
 
 	private void connectcheck() {
 		this.utilisateur = this.fieldIdentifiant.getText();
+		Login.login = this.utilisateur;
 		System.out.print("connect user : " + this.utilisateur + " / ");
 		final char[] tabPassword = this.fieldPassword.getPassword();
 		this.motdepasse = String.valueOf(tabPassword);

@@ -1686,35 +1686,6 @@ public class Select {
 
 	}
 
-	public static Object[] listemagasins()
-	{
-		final Vector<Magasin> result = new Vector<Magasin>();
-		try {
-			c = Connexion.getCon();
-			stm = c.createStatement();
-			final String SQL = "SELECT IDMAGASIN, NOMMAGASIN FROM MAGASIN";
-			rs = stm.executeQuery(SQL);
-		} catch (final Exception e) {
-			System.out.println("erreur" + e.getMessage());
-		}
-		try {
-			result.add(new Magasin());
-			Magasin listeMagasins = null;
-			while (rs.next()) {
-				listeMagasins = new Magasin();
-				listeMagasins.setIdMagasin(rs.getInt(1));
-				listeMagasins.setNomMagasin(rs.getString(2));
-				result.add(listeMagasins);
-			}
-			rs.close();
-			stm.close();
-		} catch (final Exception e) {
-			System.out.println("error" + e.getMessage());
-		}
-		Collections.sort(result);
-		return result.toArray(new Object[0]);
-	}
-
 	public static UtilisateurLogiciel getUser(String login){
 		UtilisateurLogiciel utilisateur = new UtilisateurLogiciel();
 		try {
@@ -1775,42 +1746,6 @@ public class Select {
 
 		}
 		return utilisateur;
-	}
-
-
-	public static Object[] listemagasinsautorises(final String userName) {
-		final Vector<Magasin> result = new Vector<Magasin>();
-		try {
-			c = Connexion.getCon();
-			final String SQL = "select MAGASIN.IDMAGASIN,"
-					+ " NOMMAGASIN"
-					+ " from MAGASIN"
-					+ " inner join GERER on GERER.IDMAGASIN=MAGASIN.IDMAGASIN"
-					+ " inner join USERS on USERS.IDUSER=GERER.IDUSER"
-					+ " WHERE USERS.IDENTIFIANT=?";
-
-			preStm = c.prepareStatement(SQL);
-			preStm.setString(1, userName);
-			rs = preStm.executeQuery();
-		} catch (final Exception e) {
-			System.out.println("erreur" + e.getMessage());
-		}
-		try {
-			result.add(new Magasin());
-			Magasin listeMagasins = null;
-			while (rs.next()) {
-				listeMagasins = new Magasin();
-				listeMagasins.setIdMagasin(rs.getInt(1));
-				listeMagasins.setNomMagasin(rs.getString(2));
-				result.add(listeMagasins);
-			}
-			rs.close();
-			preStm.close();
-		} catch (final Exception e) {
-			System.out.println("error" + e.getMessage());
-		}
-		Collections.sort(result);
-		return result.toArray(new Object[0]);
 	}
 
 	public static Object[] listenomclient()

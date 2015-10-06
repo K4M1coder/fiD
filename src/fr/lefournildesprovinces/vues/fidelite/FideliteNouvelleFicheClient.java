@@ -41,6 +41,7 @@ import javax.swing.text.MaskFormatter;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import fr.lefournildesprovinces.controler.Control;
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Magasin;
@@ -675,7 +676,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			this.comboBoxMagasins.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.comboBoxMagasins.setBorder(null);
 			this.comboBoxMagasins.setBounds(668, 333, 364, 22);
-			this.listemagasins = new DefaultComboBoxModel<Object>(Select.listemagasins());
+			this.listemagasins = new DefaultComboBoxModel<Object>(Control.listemagasins());
 			this.comboBoxMagasins.setModel(this.listemagasins);
 
 		}

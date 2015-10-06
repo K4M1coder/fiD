@@ -19,6 +19,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fr.lefournildesprovinces.dao.MagasinDAO;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
@@ -111,7 +112,7 @@ public class SelectionMagasin extends JFrame {
 			this.comboBox.setForeground(Color.GRAY);
 			this.comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.comboBox.setBounds(439, 414, 404, 22);
-			this.mod = new DefaultComboBoxModel<Object>(Select.listemagasins());
+			this.mod = new DefaultComboBoxModel<Object>(MagasinDAO.listemagasins());
 			this.comboBox.setModel(this.mod);
 			this.comboBox.setEditable(false);
 			this.comboBox.setFocusable(false);
