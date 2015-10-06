@@ -11,7 +11,6 @@ import java.util.Vector;
 import fr.lefournildesprovinces.ressources.models.ClientOperationCommerciale;
 import fr.lefournildesprovinces.ressources.models.Clientcartedefidelite;
 import fr.lefournildesprovinces.ressources.models.DateNaissanceClient;
-import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.MagasinsInfos;
 import fr.lefournildesprovinces.ressources.models.NomClient;
 import fr.lefournildesprovinces.ressources.models.OperationCommerciale;

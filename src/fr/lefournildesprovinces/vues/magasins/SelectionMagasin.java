@@ -20,12 +20,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.dao.MagasinDAO;
-import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Magasin;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
-import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class SelectionMagasin extends JFrame {
