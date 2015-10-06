@@ -29,12 +29,12 @@ public class Connexion {
 //
 //				public static ArrayList<String> getList() {
 //					ArrayList<String> listParams = new ArrayList<String>();
-//					listparams.add("*://"); // Driver
-//					listparams.add("*"); // Server_name
-//					listparams.add(":*"); // Port
-//					listparams.add("/*"); // database_name
-//					listparams.add("*"); // SQL_username
-//					listparams.add("*"); // SQL_password
+//					listparams.add("*://"); // * =Driver
+//					listparams.add("*"); // * = Server_name
+//					listparams.add(":*"); // * = Port
+//					listparams.add("/*"); // * = database_name
+//					listparams.add("*"); // * = SQL_username
+//					listparams.add("*"); // * = SQL_password
 //					return listParams;
 //				}
 //			}
@@ -45,12 +45,14 @@ public class Connexion {
 			con = d.connect(listParams.get(0)+listParams.get(1)+listParams.get(2)+listParams.get(3),
 					connectProperties);
 
+			return con;
 		} catch (Exception e) {
 			System.out.println("##### Connection failed #####" + e.getMessage());
 			e.printStackTrace();
+			return con = null;
 		}
 
-		return con;
+
 
 		// try {
 		// System.out.println("Loading driver...");
