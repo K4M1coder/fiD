@@ -25,6 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import fr.lefournildesprovinces.controler.Control;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.ResultatRecherche;
 import fr.lefournildesprovinces.ressources.models.infosparticipation;
@@ -516,7 +517,6 @@ public class FicheClientComplete extends JFrame {
 					try {
 						desktop.mail(uri);
 					} catch (final IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -537,7 +537,7 @@ public class FicheClientComplete extends JFrame {
 			this.label_Supprimer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					// TODO : action when clicked
+					Control.delCard(interfaceActuelle, numCli);
 				}
 			});
 			this.label_Supprimer.setHorizontalAlignment(SwingConstants.CENTER);

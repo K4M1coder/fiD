@@ -12,7 +12,9 @@ import fr.lefournildesprovinces.dao.MagasinDAO;
 import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.UtilisateurLogiciel;
 import fr.lefournildesprovinces.vues.admininstartaion.UserShopsAllowed;
+import fr.lefournildesprovinces.vues.fidelite.SelectionNumeroCarteFidelite2;
 import fr.lefournildesprovinces.vues.menus.Login;
+import fr.lefournildesprovinces.vues.popups.ConfirmationOperationCarteFidelite;
 
 public class Control {
 
@@ -81,6 +83,16 @@ public class Control {
 			System.out.println("del : " + delList);
 			MagasinDAO.userShopsToDel(delList, Integer.parseInt(selecteduser.getNumeroutilisateur()));
 		}
+
+	}
+
+	public static void delCard(JFrame interfaceActuelle, String numcarteliste) {
+		final ConfirmationOperationCarteFidelite fenetre2 = new ConfirmationOperationCarteFidelite(
+				interfaceActuelle,
+				numcarteliste,
+				"Menu > Gestion Carte de Fidélité > Suppression Fiche Client",
+				"Suppression Fiche Client");
+		fenetre2.setVisible(true);
 
 	}
 }
