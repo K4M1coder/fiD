@@ -1024,6 +1024,8 @@ public class EmailingVille extends JFrame {
 									.setModel(EmailingVille.this.model);
 							EmailingVille.this.table_3.repaint();
 						}
+					}else{
+						chckbxSelectionnerLensembleDes.setText("selectionner les "+membres.size()+" résultats");
 					}
 					if (compteur < 2) {
 						final String message = "Deux choix en sortie minimum";

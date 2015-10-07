@@ -1123,6 +1123,8 @@ public class EmailingAgeSansCarte extends JFrame {
 									.setModel(EmailingAgeSansCarte.this.model);
 							EmailingAgeSansCarte.this.table_3.repaint();
 						}
+					}else{
+						chckbxSelectionnerLensembleDes.setText("selectionner les "+membres.size()+" résultats");
 					}
 					if (compteur < 2) {
 						final String message = "Deux choix en sortie minimum";

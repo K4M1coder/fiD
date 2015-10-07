@@ -353,7 +353,7 @@ public class EmailingAge extends JFrame {
 	private JCheckBox getChckbxSelectionnerLensembleDes() {
 		if (this.chckbxSelectionnerLensembleDes == null) {
 			this.chckbxSelectionnerLensembleDes = new JCheckBox(
-					"Selectionner l'ensemble des resultats ");
+					"Selectionner l'ensemble des résultats ");
 			this.chckbxSelectionnerLensembleDes.setVisible(false);
 			this.chckbxSelectionnerLensembleDes
 					.addMouseListener(new MouseAdapter() {
@@ -1126,7 +1126,11 @@ public class EmailingAge extends JFrame {
 							EmailingAge.this.table_3
 									.setModel(EmailingAge.this.model);
 							EmailingAge.this.table_3.repaint();
+						} else {
 						}
+
+					}else{
+						chckbxSelectionnerLensembleDes.setText("selectionner les "+membres.size()+" résultats");
 					}
 					if (compteur < 2) {
 						final String message = "Deux choix en sortie minimum";
