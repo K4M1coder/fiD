@@ -257,6 +257,7 @@ public class GestionAdministrativeUttilisateursApplication extends JFrame {
 	private JLabel getLabel_ADMAllowShops() {
 		if (this.label_ADMAllowShops == null) {
 			this.label_ADMAllowShops = new JLabel("");
+			this.label_ADMAllowShops.setVisible(false);
 			this.label_ADMAllowShops.setIcon(new ImageIcon(GestionAdministrativeUttilisateursApplication.class.getResource("/Images/menubutons/bouton-admin-creer-profil.png")));
 			this.label_ADMAllowShops
 					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
