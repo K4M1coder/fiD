@@ -31,7 +31,6 @@ import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
 import fr.lefournildesprovinces.vues.opcom.SuccesOperationClientCarteFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
@@ -364,7 +363,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 							message = "La carte n° " + ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient
 									+ " n'existe pas";
 							Message.setMessageaffichagefond(ConfirmationOperationCarteFidelite.this.text);
-							final SuccesMagasinOperation fenetre1 = new SuccesMagasinOperation(message, etat,
+							final SuccesOperation fenetre1 = new SuccesOperation(message, etat,
 									ConfirmationOperationCarteFidelite.this.text,
 									ConfirmationOperationCarteFidelite.this.messageinsertion2,
 									ConfirmationOperationCarteFidelite.this.provenance,
@@ -434,7 +433,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 							etat = false;
 							message = "La carte n° " + ConfirmationOperationCarteFidelite.this.numeroCarteFideliteClient
 									+ " n'existe pas";
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(message, etat,
+							final SuccesOperation fenetre = new SuccesOperation(message, etat,
 									ConfirmationOperationCarteFidelite.this.text,
 									ConfirmationOperationCarteFidelite.this.messageinsertion2,
 									ConfirmationOperationCarteFidelite.this.provenance,

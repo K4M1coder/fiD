@@ -38,9 +38,9 @@ import fr.lefournildesprovinces.ressources.util.AutoCompletion;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 
 public class NouveauMagasin extends JFrame {
 
@@ -549,7 +549,7 @@ public class NouveauMagasin extends JFrame {
 							System.out.print(messageInsertion);
 							final boolean etat = true;
 							Message.setMessageaffichagefond(NouveauMagasin.this.text);
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									messageInsertion, etat,
 									NouveauMagasin.this.text,
 									NouveauMagasin.this.messageinsertion2,
@@ -571,7 +571,7 @@ public class NouveauMagasin extends JFrame {
 								System.out.print(messageInsertion);
 								final boolean etat = false;
 								Message.setMessageaffichagefond(NouveauMagasin.this.text);
-								final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+								final SuccesOperation fenetre = new SuccesOperation(
 										messageInsertion, etat,
 										NouveauMagasin.this.text,
 										NouveauMagasin.this.messageinsertion2,

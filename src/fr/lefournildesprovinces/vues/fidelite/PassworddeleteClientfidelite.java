@@ -29,8 +29,8 @@ import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.opcom.GestionOperationCommerciale;
-import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
 import fr.lefournildesprovinces.vues.popups.ErrorPassword;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class PassworddeleteClientfidelite extends JFrame {
@@ -378,7 +378,7 @@ public class PassworddeleteClientfidelite extends JFrame {
 							message = "la carte "
 									+ PassworddeleteClientfidelite.this.numcarte
 									+ " à été supprimée de la base";
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									message,
 									etat,
 									PassworddeleteClientfidelite.this.text,
@@ -399,7 +399,7 @@ public class PassworddeleteClientfidelite extends JFrame {
 								message = "impossible de supprimer la carte "
 										+ PassworddeleteClientfidelite.this.numcarte
 										+ " de la base";
-								final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+								final SuccesOperation fenetre = new SuccesOperation(
 										message,
 										etat,
 										PassworddeleteClientfidelite.this.text,

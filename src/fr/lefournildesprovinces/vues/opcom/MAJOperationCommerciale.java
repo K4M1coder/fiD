@@ -36,6 +36,7 @@ import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 
 public class MAJOperationCommerciale extends JFrame {
 
@@ -966,7 +967,7 @@ public class MAJOperationCommerciale extends JFrame {
 							final boolean etat = true;
 							MAJOperationCommerciale.this.text = "Mise à Jour d'une Opération Commerciale";
 							Message.setMessageaffichagefond(MAJOperationCommerciale.this.text);
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									messageInsertion,
 									etat,
 									MAJOperationCommerciale.this.text,
@@ -988,7 +989,7 @@ public class MAJOperationCommerciale extends JFrame {
 								final boolean etat = false;
 								MAJOperationCommerciale.this.text = "Mise à Jour d'une Opération Commerciale";
 								Message.setMessageaffichagefond(MAJOperationCommerciale.this.text);
-								final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+								final SuccesOperation fenetre = new SuccesOperation(
 										messageInsertion,
 										etat,
 										MAJOperationCommerciale.this.text,

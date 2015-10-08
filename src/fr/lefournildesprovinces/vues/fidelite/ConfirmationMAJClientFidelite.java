@@ -26,7 +26,7 @@ import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class ConfirmationMAJClientFidelite extends JFrame {
@@ -807,7 +807,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 				ConfirmationMAJClientFidelite.this.text = "Mise à jour Fiche Client";
 				Message.setMessageaffichagefond(ConfirmationMAJClientFidelite.this.text);
 
-				final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(messageInsertion, etat,
+				final SuccesOperation fenetre = new SuccesOperation(messageInsertion, etat,
 						ConfirmationMAJClientFidelite.this.text, ConfirmationMAJClientFidelite.this.messageinsertion2,
 						ConfirmationMAJClientFidelite.this.operationprecedente,
 						ConfirmationMAJClientFidelite.this.IdOperationCommerciale,

@@ -26,8 +26,8 @@ import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
 import fr.lefournildesprovinces.vues.popups.ErrorPassword;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class Password extends JFrame {
@@ -326,7 +326,7 @@ public class Password extends JFrame {
 									+ Password.this.magasinselectionne
 									+ " à été supprimé de la base";
 							Message.setMessageaffichagefond(Password.this.text);
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									message, etat, Password.this.text,
 									Password.this.messageinsertion2,
 									Password.this.provenance,
@@ -342,7 +342,7 @@ public class Password extends JFrame {
 									+ Password.this.magasinselectionne
 									+ " de la base";
 							Message.setMessageaffichagefond(Password.this.text);
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									message, etat, Password.this.text,
 									Password.this.messageinsertion2,
 									Password.this.provenance,

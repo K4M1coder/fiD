@@ -25,15 +25,16 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import fr.lefournildesprovinces.controler.Control;
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.ressources.models.Message;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 
 public class newuser extends JFrame {
 
@@ -225,124 +226,7 @@ public class newuser extends JFrame {
 			this.label_5.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-
-					boolean verification = true;
-
-					final String nomuser = newuser.this.textField.getText();
-
-					if (newuser.this.textField.getText().isEmpty()) {
-						verification = false;
-						newuser.this.message = "Le champs identifiant ne peut etre vide";
-					}
-
-					final char[] tabPassword = newuser.this.textField_1
-							.getPassword();
-					final String passuser = String.valueOf(tabPassword);
-
-					if (newuser.this.textField_1.getPassword().length == 0) {
-						verification = false;
-						newuser.this.message = "Le champs mot de passe ne peut etre vide";
-
-					}
-					final char[] tabPassword2 = newuser.this.textField_1
-							.getPassword();
-					final String passuser2 = String.valueOf(tabPassword2);
-					if (newuser.this.textField_2.getPassword().length == 0) {
-						verification = false;
-						newuser.this.message = "Le champs mot de passe ne peut etre vide";
-					}
-
-					if (!passuser.equals(passuser2)) {
-
-						verification = false;
-						newuser.this.message = "Les mots de passe ne correpondent pas";
-
-					}
-
-					if (verification == true) {
-
-						try {
-							c = Connexion.getCon();
-							c.setAutoCommit(false);
-
-							final String sql = "INSERT INTO USERS (IDENTIFIANT,MOTDEPASSE,PRIVILEGE) VALUES (?,?,?)";
-
-							preStm = c.prepareStatement(sql);
-
-							preStm.setString(1, nomuser);
-							preStm.setString(2, passuser);
-							preStm.setString(3, newuser.this.selection);
-
-							preStm.executeUpdate();
-
-							final String messageInsertion = "l'utilisateur "
-									+ nomuser + " à été crée avec succès";
-							final String messageinsertion2 = null;
-							final String text = "Créer un profil utilisateur";
-							Message.setMessageaffichagefond(text);
-							System.out.print(messageInsertion);
-							final boolean etat = true;
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
-									messageInsertion, etat, text,
-									messageinsertion2, newuser.this.provenance,
-									newuser.this.idoperationtest,
-									newuser.this.idmagasintest);
-							fenetre.setVisible(true);
-							fenetre.setAlwaysOnTop(true);
-							newuser.this.dispose();
-
-							c.commit();
-							c.setAutoCommit(true);
-
-						} catch (final SQLException e6) {
-							try {
-								c.rollback();
-
-								final String messageInsertion = "Impossible de crée l'utilisateur "
-										+ nomuser;
-								final String messageinsertion2 = null;
-								final String text = "Créer un profil utilisateur";
-								Message.setMessageaffichagefond(text);
-								System.out.print(messageInsertion);
-								final boolean etat = false;
-								;
-								final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
-										messageInsertion, etat, text,
-										messageinsertion2,
-										newuser.this.provenance,
-										newuser.this.idoperationtest,
-										newuser.this.idmagasintest);
-								fenetre.setVisible(true);
-								fenetre.setAlwaysOnTop(true);
-								newuser.this.dispose();
-
-							} catch (final SQLException e2) {
-
-								e2.printStackTrace();
-							}
-						}
-
-						try {
-							preStm.close();
-						} catch (final SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-
-					} else {
-
-						final AlerteSelection fenetre = new AlerteSelection(
-								newuser.this.interfaceActuelle,
-								newuser.this.message);
-						fenetre.setVisible(true);
-						newuser.this.interfaceActuelle.setEnabled(false);
-						newuser.this.interfaceActuelle.setVisible(false);
-						newuser.this.label_5.setVisible(false);
-						newuser.this.label_5.setEnabled(false);
-						newuser.this.lblMerciDeFaire.setVisible(true);
-
-					}
-
+					validateaction();
 				}
 			});
 			this.label_5.setIcon(new ImageIcon(newuser.class
@@ -511,4 +395,136 @@ public class newuser extends JFrame {
 		}
 		return this.textField_2;
 	}
+
+	protected void validateaction() {
+
+		boolean verification = true;
+
+		final String nomuser = newuser.this.textField.getText();
+
+		if (newuser.this.textField.getText().isEmpty()) {
+			verification = false;
+			newuser.this.message = "Le champs identifiant ne peut etre vide";
+		}
+
+		final char[] tabPassword = newuser.this.textField_1
+				.getPassword();
+		final String passuser = String.valueOf(tabPassword);
+
+		if (newuser.this.textField_1.getPassword().length == 0) {
+			verification = false;
+			newuser.this.message = "Le champs mot de passe ne peut etre vide";
+
+		}
+		final char[] tabPassword2 = newuser.this.textField_1
+				.getPassword();
+		final String passuser2 = String.valueOf(tabPassword2);
+		if (newuser.this.textField_2.getPassword().length == 0) {
+			verification = false;
+			newuser.this.message = "Le champs mot de passe ne peut etre vide";
+		}
+
+		if (!passuser.equals(passuser2)) {
+
+			verification = false;
+			newuser.this.message = "Les mots de passe ne correpondent pas";
+
+		}
+
+		if (verification == true) {
+
+			try {
+				c = Connexion.getCon();
+				c.setAutoCommit(false);
+
+				final String sql = "INSERT INTO USERS (IDENTIFIANT,MOTDEPASSE,PRIVILEGE) VALUES (?,?,?)";
+
+				preStm = c.prepareStatement(sql);
+
+				preStm.setString(1, nomuser);
+				preStm.setString(2, passuser);
+				preStm.setString(3, newuser.this.selection);
+
+				preStm.executeUpdate();
+
+				final String messageInsertion = "l'utilisateur "
+						+ nomuser + " à été crée avec succès";
+				String messageinsertion2 = null;
+				final String text = "Créer un profil utilisateur";
+				Message.setMessageaffichagefond(text);
+				System.out.print(messageInsertion);
+				final boolean etat = true;
+				if(!this.selection.equals("administrateur")){
+					Control.initUIUserShopsmanagement(nomuser, newuser.this.interfaceActuelle);
+					messageinsertion2="initUIUserShopsmanagement";
+				}
+
+				final SuccesOperation fenetre = new SuccesOperation(
+						messageInsertion, etat, text,
+						messageinsertion2, newuser.this.provenance,
+						newuser.this.idoperationtest,
+						newuser.this.idmagasintest);
+				fenetre.setVisible(true);
+				fenetre.setAlwaysOnTop(true);
+
+				c.commit();
+				c.setAutoCommit(true);
+				newuser.this.dispose();
+
+
+			} catch (final SQLException e6) {
+				try {
+					c.rollback();
+
+					final String messageInsertion = "Impossible de créer l'utilisateur "
+							+ nomuser;
+					final String messageinsertion2 = null;
+					final String text = "Créer un profil utilisateur";
+					Message.setMessageaffichagefond(text);
+					System.out.print(messageInsertion);
+					final boolean etat = false;
+					;
+					final SuccesOperation fenetre = new SuccesOperation(
+							messageInsertion, etat, text,
+							messageinsertion2,
+							newuser.this.provenance,
+							newuser.this.idoperationtest,
+							newuser.this.idmagasintest);
+					fenetre.setVisible(true);
+					fenetre.setAlwaysOnTop(true);
+					newuser.this.dispose();
+
+				} catch (final SQLException e2) {
+
+					e2.printStackTrace();
+				}
+			}
+
+			try {
+				preStm.close();
+			} catch (final SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+
+		} else {
+
+			final AlerteSelection fenetre = new AlerteSelection(
+					newuser.this.interfaceActuelle,
+					newuser.this.message);
+			fenetre.setVisible(true);
+			newuser.this.interfaceActuelle.setEnabled(false);
+			newuser.this.interfaceActuelle.setVisible(false);
+			newuser.this.label_5.setVisible(false);
+			newuser.this.label_5.setEnabled(false);
+			newuser.this.lblMerciDeFaire.setVisible(true);
+
+		}
+
+
+
+	}
+
+
 }

@@ -29,7 +29,7 @@ import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class ConfirmationInsertionClientFidelite extends JFrame {
@@ -851,7 +851,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 				etat = false;
 				ConfirmationInsertionClientFidelite.this.text = "Nouvelle Fiche Client";
 				Message.setMessageaffichagefond(ConfirmationInsertionClientFidelite.this.text);
-				final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+				final SuccesOperation fenetre = new SuccesOperation(
 						ConfirmationInsertionClientFidelite.this.messageInsertion, etat,
 						ConfirmationInsertionClientFidelite.this.text,
 						ConfirmationInsertionClientFidelite.this.messageinsertion2,

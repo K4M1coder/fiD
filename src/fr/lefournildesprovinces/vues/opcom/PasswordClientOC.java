@@ -30,6 +30,7 @@ import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.ErrorPassword;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 
 public class PasswordClientOC extends JFrame {
 
@@ -363,7 +364,7 @@ public class PasswordClientOC extends JFrame {
 									+ " à été supprimée de la base";
 							PasswordClientOC.this.text = "Suppression d'une participation";
 							Message.setMessageaffichagefond(PasswordClientOC.this.text);
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									message, etat, PasswordClientOC.this.text,
 									PasswordClientOC.this.messageinsertion2,
 									PasswordClientOC.this.provenance,
@@ -380,7 +381,7 @@ public class PasswordClientOC extends JFrame {
 							message = "impossible de supprimer"
 									+ PasswordClientOC.this.NomcompletClient
 									+ " de la base";
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									message, etat, PasswordClientOC.this.text,
 									PasswordClientOC.this.messageinsertion2,
 									PasswordClientOC.this.provenance,

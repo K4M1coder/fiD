@@ -28,9 +28,9 @@ import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 
 public class Majprivilege extends JFrame {
 
@@ -249,7 +249,7 @@ public class Majprivilege extends JFrame {
 						Message.setMessageaffichagefond(text);
 						System.out.print(messageInsertion);
 						final boolean etat = true;
-						final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+						final SuccesOperation fenetre = new SuccesOperation(
 								messageInsertion, etat, text,
 								messageinsertion2,
 								Majprivilege.this.provenance,
@@ -274,7 +274,7 @@ public class Majprivilege extends JFrame {
 							System.out.print(messageInsertion);
 							final boolean etat = false;
 							;
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									messageInsertion, etat, text,
 									messageinsertion2,
 									Majprivilege.this.provenance,

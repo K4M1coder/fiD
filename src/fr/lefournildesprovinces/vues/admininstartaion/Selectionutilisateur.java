@@ -21,6 +21,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fr.lefournildesprovinces.controler.Control;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.UtilisateurLogiciel;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
@@ -284,9 +285,11 @@ public class Selectionutilisateur extends JFrame {
 					{
 
 					case "Autoriser des magasins pour un utilisateur":
-						final UserShopsAllowed fenetre = new UserShopsAllowed(Selectionutilisateur.this.utilisateurselectionne, interfaceActuelle);
-						fenetre.setVisible(true);
-						Selectionutilisateur.this.dispose();
+
+						Control.initUIUserShopsmanagement(Selectionutilisateur.this.utilisateurselectionne, interfaceActuelle);
+//						final UserShopsAllowed fenetre = new UserShopsAllowed(Selectionutilisateur.this.utilisateurselectionne, interfaceActuelle);
+//						fenetre.setVisible(true);
+//						Selectionutilisateur.this.dispose();
 						break;
 
 					case "METTRE A JOUR un mot de passe utilisateur":

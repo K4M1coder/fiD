@@ -27,6 +27,7 @@ import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 
 public class ConfirmationInsertionClientOC extends JFrame {
 
@@ -819,7 +820,7 @@ public class ConfirmationInsertionClientOC extends JFrame {
 							ConfirmationInsertionClientOC.this.text = "Nouvelle participation";
 							Message.setMessageaffichagefond(ConfirmationInsertionClientOC.this.text);
 							final String provenance = "operationcommerciale";
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									messageInsertion,
 									etat,
 									ConfirmationInsertionClientOC.this.text,

@@ -28,12 +28,14 @@ import javax.swing.text.StyledDocument;
 import fr.lefournildesprovinces.controler.Control;
 import fr.lefournildesprovinces.dao.MagasinDAO;
 import fr.lefournildesprovinces.dao.Select;
+import fr.lefournildesprovinces.ressources.models.Message;
 import fr.lefournildesprovinces.ressources.models.UtilisateurLogiciel;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.popups.Loading;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 
 public class UserShopsAllowed extends JFrame {
 
@@ -566,7 +568,16 @@ public class UserShopsAllowed extends JFrame {
 			public void run() {
 				Control.userShopsAllowedUpdate(shopsToAddModel, shopsToDelModel, selecteduser);
 				UserShopsAllowed.this.lblLoading.setVisible(false);
-				UserShopsAllowed.this.interfaceActuelle.setEnabled(true);
+				UserShopsAllowed.this.interfaceActuelle.setEnabled(true);//TODO
+				Message.setMessageaffichagefond("test");
+				final SuccesOperation fenetre = new SuccesOperation(
+						"les magasins ont été correctement attribués à "+UserShopsAllowed.this.selecteduser.getIdentifiant(), true, "attribution des magasins",
+						" ", "test",
+						0,
+						0);
+				fenetre.setVisible(true);
+				fenetre.setAlwaysOnTop(true);
+				UserShopsAllowed.this.dispose();
 			}
 
 		});

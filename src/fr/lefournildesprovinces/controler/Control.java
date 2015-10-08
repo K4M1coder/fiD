@@ -29,10 +29,11 @@ public class Control {
 		fenetre.setVisible(true);
 	}
 
-	public void initUIUserShopsmanagement(String param, JFrame frame) {
+	public static void initUIUserShopsmanagement(String param, JFrame frame) {
 		System.out.println("initUIUserShopsmanagement invoked");
 		UserShopsAllowed uiUserShopAllowed = new UserShopsAllowed(param, frame);
 		uiUserShopAllowed.setVisible(true);
+		frame.dispose();
 	}
 
 	public void getUserShopsManagement() {

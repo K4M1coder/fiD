@@ -25,7 +25,7 @@ import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.opcom.SuccesMagasinOperation;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 import fr.lefournildesprovinces.vues.menus.GestionAdministrativeUttilisateursApplication;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
@@ -183,6 +183,7 @@ public class deleteuser extends JFrame {
 						c = Connexion.getCon();
 						c.setAutoCommit(false);
 
+						final String sql1 = "DELETE FROM GERER WHERE ";
 						final String sql = "DELETE FROM USERS WHERE IDENTIFIANT=?";
 
 						preStm = c.prepareStatement(sql);
@@ -197,9 +198,11 @@ public class deleteuser extends JFrame {
 						final String messageinsertion2 = null;
 						final String text = "Supprimer un utilisateur";
 						Message.setMessageaffichagefond(text);
-						System.out.print(messageInsertion);
+						System.out.println("\nmessage "+messageInsertion);
+						System.out.println("message2 "+messageinsertion2);
 						final boolean etat = true;
-						final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+						System.out.println("delete :"+deleteuser.this.provenance);
+						final SuccesOperation fenetre = new SuccesOperation(
 								messageInsertion, etat, text,
 								messageinsertion2, deleteuser.this.provenance,
 								deleteuser.this.idoperationtest,
@@ -223,7 +226,7 @@ public class deleteuser extends JFrame {
 							System.out.print(messageInsertion);
 							final boolean etat = false;
 							;
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									messageInsertion, etat, text,
 									messageinsertion2,
 									deleteuser.this.provenance,

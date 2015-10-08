@@ -30,6 +30,7 @@ import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.ErrorPassword;
+import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 
 public class PasswordOperationCommerciale extends JFrame {
 
@@ -369,7 +370,7 @@ public class PasswordOperationCommerciale extends JFrame {
 							message = "l'opération "
 									+ PasswordOperationCommerciale.this.operationselectionne
 									+ " à été supprimée de la base";
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									message,
 									etat,
 									PasswordOperationCommerciale.this.text,
@@ -388,7 +389,7 @@ public class PasswordOperationCommerciale extends JFrame {
 							message = "impossible de supprimer"
 									+ PasswordOperationCommerciale.this.operationselectionne
 									+ " de la base";
-							final SuccesMagasinOperation fenetre = new SuccesMagasinOperation(
+							final SuccesOperation fenetre = new SuccesOperation(
 									message,
 									etat,
 									PasswordOperationCommerciale.this.text,
