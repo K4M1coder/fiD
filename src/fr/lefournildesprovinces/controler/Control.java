@@ -12,7 +12,6 @@ import fr.lefournildesprovinces.dao.MagasinDAO;
 import fr.lefournildesprovinces.ressources.models.Magasin;
 import fr.lefournildesprovinces.ressources.models.UtilisateurLogiciel;
 import fr.lefournildesprovinces.vues.admininstartaion.UserShopsAllowed;
-import fr.lefournildesprovinces.vues.fidelite.SelectionNumeroCarteFidelite2;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.popups.ConfirmationOperationCarteFidelite;
 

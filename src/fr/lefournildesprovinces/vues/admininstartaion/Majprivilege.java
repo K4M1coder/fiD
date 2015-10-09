@@ -22,8 +22,11 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fr.lefournildesprovinces.controler.Control;
 import fr.lefournildesprovinces.dao.Connexion;
+import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Message;
+import fr.lefournildesprovinces.ressources.models.UtilisateurLogiciel;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
@@ -62,14 +65,18 @@ public class Majprivilege extends JFrame {
 	private final String provenance = "test";
 	private String selection;
 	private final String utilisateur;
+	private UtilisateurLogiciel user;
 
 	public Majprivilege(final String utilisateurselectionne) {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent arg0) {
 
+				Majprivilege.this.user = Select.getUser(utilisateurselectionne);
 				Majprivilege.this.lblNewLabel_2
-						.setText(Majprivilege.this.utilisateur);
+						.setText(Majprivilege.this.utilisateur+" ["+Majprivilege.this.user.getPrivilege()+"]");
+
+
 			}
 		});
 		this.setUndecorated(true);
@@ -244,11 +251,16 @@ public class Majprivilege extends JFrame {
 						final String messageInsertion = "le privilege de l'utilisateur "
 								+ Majprivilege.this.utilisateur
 								+ " à été modifié avec succès";
-						final String messageinsertion2 = null;
+						String messageinsertion2 = null;
 						final String text = "Mettre à jour un privilege utilisateur";
 						Message.setMessageaffichagefond(text);
 						System.out.print(messageInsertion);
 						final boolean etat = true;
+
+						if(!Majprivilege.this.selection.equals("administrateur")){
+							Control.initUIUserShopsmanagement(Majprivilege.this.utilisateur, Majprivilege.this.interfaceActuelle);
+							messageinsertion2="initUIUserShopsmanagement";
+						}
 						final SuccesOperation fenetre = new SuccesOperation(
 								messageInsertion, etat, text,
 								messageinsertion2,
@@ -257,10 +269,11 @@ public class Majprivilege extends JFrame {
 								Majprivilege.this.idmagasintest);
 						fenetre.setVisible(true);
 						fenetre.setAlwaysOnTop(true);
-						Majprivilege.this.dispose();
+
 
 						c.commit();
 						c.setAutoCommit(true);
+						Majprivilege.this.dispose();
 
 					} catch (final SQLException e6) {
 						try {

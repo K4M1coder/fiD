@@ -20,14 +20,16 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.dao.Connexion;
+import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Message;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
+import fr.lefournildesprovinces.ressources.models.UtilisateurLogiciel;
+import fr.lefournildesprovinces.vues.menus.GestionAdministrativeUttilisateursApplication;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.SuccesOperation;
-import fr.lefournildesprovinces.vues.menus.GestionAdministrativeUttilisateursApplication;
-import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class deleteuser extends JFrame {
 
@@ -55,6 +57,7 @@ public class deleteuser extends JFrame {
 	private JLabel lblNewLabel_3;
 	private final String provenance = "test";
 	private final String utilisateur;
+	protected UtilisateurLogiciel user;
 
 	public deleteuser(final String utilisateurselectionne) {
 		this.addWindowListener(new WindowAdapter() {
@@ -179,17 +182,23 @@ public class deleteuser extends JFrame {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
+					deleteuser.this.user = Select.getUser(deleteuser.this.utilisateur);
+
 					try {
 						c = Connexion.getCon();
 						c.setAutoCommit(false);
 
-						final String sql1 = "DELETE FROM GERER WHERE ";
-						final String sql = "DELETE FROM USERS WHERE IDENTIFIANT=?";
+						System.out.println("delete user N°" + deleteuser.this.user.getNumeroutilisateur()+" with name : "+deleteuser.this.user.getIdentifiant());
+						System.out.println("delete shopsAllowed");
+						final String sqlDelUserShopsAllowed = "DELETE FROM GERER WHERE IDUSER=?";
+						preStm = c.prepareStatement(sqlDelUserShopsAllowed);
+						preStm.setString(1, deleteuser.this.user.getNumeroutilisateur());
+						preStm.executeUpdate();
 
-						preStm = c.prepareStatement(sql);
-
-						preStm.setString(1, deleteuser.this.utilisateur);
-
+						System.out.println("delete profile");
+						final String sqlDelUser = "DELETE FROM USERS WHERE IDENTIFIANT=?";
+						preStm = c.prepareStatement(sqlDelUser);
+						preStm.setString(1, deleteuser.this.user.getIdentifiant());
 						preStm.executeUpdate();
 
 						final String messageInsertion = "l'utilisateur "
