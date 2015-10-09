@@ -880,6 +880,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			this.textField_NumCli.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.textField_NumCli.setBorder(new LineBorder(new Color(171, 173, 179)));
 			this.textField_NumCli.setBounds(312, 334, 188, 20);
+//TODO			this.textField_NumCli.addFocusListener(l);
 		}
 		return this.textField_NumCli;
 	}
@@ -1192,7 +1193,7 @@ public class MajFicheClientCarteFidelite extends JFrame {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1
 					.setIcon(new ImageIcon(MajFicheClientCarteFidelite.class.getResource("/Images/fonds/fond-logiciel.png")));
-			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
+			this.lblNewLabel_1.setBounds(216, 231, 1281, 800);
 		}
 		return this.lblNewLabel_1;
 	}

@@ -900,8 +900,8 @@ public class FideliteNouvelleFicheClient extends JFrame {
 				break;
 
 			case "administrateur":
-				this.fond.setIcon(
-						new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/fonds/menus_fidelite.png")));
+				this.fond.setIcon(new ImageIcon(
+						FideliteNouvelleFicheClient.class.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 
 			}
@@ -915,7 +915,7 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			// try {
 			// this.mask = new MaskFormatter("##########");
 			// } catch (final ParseException e) {
-			// // TODO Auto-generated catch block
+			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			// }
 			// this.mask.setValidCharacters("0123456789");
@@ -932,6 +932,24 @@ public class FideliteNouvelleFicheClient extends JFrame {
 			});
 			this.formattedTextFieldNumCli.setBorder(new LineBorder(new Color(171, 173, 179)));
 			this.formattedTextFieldNumCli.setBounds(310, 334, 188, 20);
+			this.formattedTextFieldNumCli.addFocusListener(new FocusListener() {
+
+				@Override
+				public void focusLost(FocusEvent e) {
+					if (FideliteNouvelleFicheClient.this.formattedTextFieldNumCli != null) {
+						Boolean test = checkNumCliIsNew();
+						if (test == false) {
+							System.out.println(test); // TODO
+							checkFalse();
+						}
+					}
+				}
+
+				@Override
+				public void focusGained(FocusEvent arg0) {
+				} // nothing for now
+
+			});
 		}
 		return this.formattedTextFieldNumCli;
 	}
@@ -1216,8 +1234,8 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	private JLabel getLblNewLabel_1() {
 		if (this.lblNewLabel_1 == null) {
 			this.lblNewLabel_1 = new JLabel("");
-			this.lblNewLabel_1
-					.setIcon(new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/fonds/fond-logiciel.png")));
+			this.lblNewLabel_1.setIcon(
+					new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel_1.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel_1;
@@ -1254,13 +1272,14 @@ public class FideliteNouvelleFicheClient extends JFrame {
 	}
 
 	private JLabel getLblValider() {
-		final ImageIcon baseIcon = new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/actionbutons/valider.png"));
+		final ImageIcon baseIcon = new ImageIcon(
+				FideliteNouvelleFicheClient.class.getResource("/Images/actionbutons/valider.png"));
 		final ImageIcon focusedIcon = new ImageIcon(
 				FideliteNouvelleFicheClient.class.getResource("/Images/actionbutons/validerFocus.png"));
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
-			this.lblValider
-					.setIcon(new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/actionbutons/valider.png")));
+			this.lblValider.setIcon(
+					new ImageIcon(FideliteNouvelleFicheClient.class.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -1532,66 +1551,9 @@ public class FideliteNouvelleFicheClient extends JFrame {
 				System.out.println("vérif saisie :::::::::" + verification + ":::::::::");
 
 				if (verification == true) {
-
-					checkClientExist();
-
-					if (FideliteNouvelleFicheClient.this.compteur2 == 0) {
-						final Vector<infostemporaire> requete = new Vector<infostemporaire>();
-						final ConfirmationInsertionClientFidelite fenetre = new ConfirmationInsertionClientFidelite(
-								FideliteNouvelleFicheClient.this.interfaceActuelle,
-								FideliteNouvelleFicheClient.this.numerocarte, FideliteNouvelleFicheClient.this.magasin,
-								FideliteNouvelleFicheClient.this.idmagasin, FideliteNouvelleFicheClient.this.civilite,
-								FideliteNouvelleFicheClient.this.nomClient,
-								FideliteNouvelleFicheClient.this.prenomClient,
-								FideliteNouvelleFicheClient.this.adresseClient,
-								FideliteNouvelleFicheClient.this.idville, FideliteNouvelleFicheClient.this.villeClient,
-								FideliteNouvelleFicheClient.this.CodePostalClient,
-								FideliteNouvelleFicheClient.this.dateComplete, FideliteNouvelleFicheClient.this.email,
-								FideliteNouvelleFicheClient.this.newsletter,
-								FideliteNouvelleFicheClient.this.telephonefixe,
-								FideliteNouvelleFicheClient.this.telephoneportable,
-								FideliteNouvelleFicheClient.this.age, FideliteNouvelleFicheClient.this.vip,
-								FideliteNouvelleFicheClient.this.idoperationcommercialeparticipation,
-								FideliteNouvelleFicheClient.this.idmagasinparticipation,
-								FideliteNouvelleFicheClient.this.choixmenuprecedent,
-								FideliteNouvelleFicheClient.this.compteur2, requete);
-						fenetre.setVisible(true);
-						FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
-						FideliteNouvelleFicheClient.this.interfaceActuelle.setVisible(false);
-
-					} else {
-
-						final deplacementdatas fenetre1 = new deplacementdatas(
-								FideliteNouvelleFicheClient.this.interfaceActuelle,
-								FideliteNouvelleFicheClient.this.numerocarte, FideliteNouvelleFicheClient.this.magasin,
-								FideliteNouvelleFicheClient.this.idmagasin, FideliteNouvelleFicheClient.this.civilite,
-								FideliteNouvelleFicheClient.this.nomClient,
-								FideliteNouvelleFicheClient.this.prenomClient,
-								FideliteNouvelleFicheClient.this.adresseClient,
-								FideliteNouvelleFicheClient.this.idville, FideliteNouvelleFicheClient.this.villeClient,
-								FideliteNouvelleFicheClient.this.CodePostalClient,
-								FideliteNouvelleFicheClient.this.dateComplete, FideliteNouvelleFicheClient.this.email,
-								FideliteNouvelleFicheClient.this.newsletter,
-								FideliteNouvelleFicheClient.this.telephonefixe,
-								FideliteNouvelleFicheClient.this.telephoneportable,
-								FideliteNouvelleFicheClient.this.age, FideliteNouvelleFicheClient.this.vip,
-								FideliteNouvelleFicheClient.this.idoperationcommercialeparticipation,
-								FideliteNouvelleFicheClient.this.idmagasinparticipation,
-								FideliteNouvelleFicheClient.this.choixmenuprecedent,
-								FideliteNouvelleFicheClient.this.compteur2);
-						fenetre1.setVisible(true);
-						FideliteNouvelleFicheClient.this.dispose();
-
-					}
-
+					checkTrue();
 				} else {
-					System.out.println("impossible");
-
-					final AlerteSelection fenetre = new AlerteSelection(
-							FideliteNouvelleFicheClient.this.interfaceActuelle,
-							FideliteNouvelleFicheClient.this.message);
-					fenetre.setVisible(true);
-					FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
+					checkFalse();
 				}
 
 				FideliteNouvelleFicheClient.this.lblLoading.setVisible(false);
@@ -1599,6 +1561,62 @@ public class FideliteNouvelleFicheClient extends JFrame {
 
 		});
 		longThread.start();
+	}
+
+	protected void checkFalse() {
+
+		System.out.println("impossible");
+
+		final AlerteSelection fenetre = new AlerteSelection(FideliteNouvelleFicheClient.this.interfaceActuelle,
+				FideliteNouvelleFicheClient.this.message);
+		fenetre.setVisible(true);
+		FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
+	}
+
+	protected void checkTrue() {
+
+		checkClientExist();
+
+		if (FideliteNouvelleFicheClient.this.compteur2 == 0) {
+			final Vector<infostemporaire> requete = new Vector<infostemporaire>();
+			final ConfirmationInsertionClientFidelite fenetre = new ConfirmationInsertionClientFidelite(
+					FideliteNouvelleFicheClient.this.interfaceActuelle, FideliteNouvelleFicheClient.this.numerocarte,
+					FideliteNouvelleFicheClient.this.magasin, FideliteNouvelleFicheClient.this.idmagasin,
+					FideliteNouvelleFicheClient.this.civilite, FideliteNouvelleFicheClient.this.nomClient,
+					FideliteNouvelleFicheClient.this.prenomClient, FideliteNouvelleFicheClient.this.adresseClient,
+					FideliteNouvelleFicheClient.this.idville, FideliteNouvelleFicheClient.this.villeClient,
+					FideliteNouvelleFicheClient.this.CodePostalClient, FideliteNouvelleFicheClient.this.dateComplete,
+					FideliteNouvelleFicheClient.this.email, FideliteNouvelleFicheClient.this.newsletter,
+					FideliteNouvelleFicheClient.this.telephonefixe, FideliteNouvelleFicheClient.this.telephoneportable,
+					FideliteNouvelleFicheClient.this.age, FideliteNouvelleFicheClient.this.vip,
+					FideliteNouvelleFicheClient.this.idoperationcommercialeparticipation,
+					FideliteNouvelleFicheClient.this.idmagasinparticipation,
+					FideliteNouvelleFicheClient.this.choixmenuprecedent, FideliteNouvelleFicheClient.this.compteur2,
+					requete);
+			fenetre.setVisible(true);
+			FideliteNouvelleFicheClient.this.interfaceActuelle.setEnabled(false);
+			FideliteNouvelleFicheClient.this.interfaceActuelle.setVisible(false);
+
+		} else {
+
+			final deplacementdatas fenetre1 = new deplacementdatas(FideliteNouvelleFicheClient.this.interfaceActuelle,
+					FideliteNouvelleFicheClient.this.numerocarte, FideliteNouvelleFicheClient.this.magasin,
+					FideliteNouvelleFicheClient.this.idmagasin, FideliteNouvelleFicheClient.this.civilite,
+					FideliteNouvelleFicheClient.this.nomClient, FideliteNouvelleFicheClient.this.prenomClient,
+					FideliteNouvelleFicheClient.this.adresseClient, FideliteNouvelleFicheClient.this.idville,
+					FideliteNouvelleFicheClient.this.villeClient, FideliteNouvelleFicheClient.this.CodePostalClient,
+					FideliteNouvelleFicheClient.this.dateComplete, FideliteNouvelleFicheClient.this.email,
+					FideliteNouvelleFicheClient.this.newsletter, FideliteNouvelleFicheClient.this.telephonefixe,
+					FideliteNouvelleFicheClient.this.telephoneportable, FideliteNouvelleFicheClient.this.age,
+					FideliteNouvelleFicheClient.this.vip,
+					FideliteNouvelleFicheClient.this.idoperationcommercialeparticipation,
+					FideliteNouvelleFicheClient.this.idmagasinparticipation,
+					FideliteNouvelleFicheClient.this.choixmenuprecedent, FideliteNouvelleFicheClient.this.compteur2);
+			fenetre1.setVisible(true);
+			FideliteNouvelleFicheClient.this.dispose();
+
+		}
+
 	}
 
 	private void checkClientExist() {
