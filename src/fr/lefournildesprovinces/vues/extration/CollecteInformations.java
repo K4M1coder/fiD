@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
@@ -52,6 +53,7 @@ public class CollecteInformations extends JFrame {
 	private JLabel label_OpCom;
 	private JLabel label_Ville;
 	private JLabel label_Mag;
+	private String privilege;
 
 	public CollecteInformations(final String choix) {
 		this.setUndecorated(true);
@@ -76,15 +78,12 @@ public class CollecteInformations extends JFrame {
 
 	private JComboBox<Object> getComboBox() {
 		if (this.comboBox == null) {
-			final String[] choix = { null, " TOUTES les cartes de fidélité",
-					" RECHERCHER un titulaire", " Tranche d'AGE",
-					" Date ANNIVERSAIRE", " Client fidélité d'un MAGASIN",
-					" Participants OPERATION commerciale",
-					" VILLE de résidence", };
+			final String[] choix = { null, " TOUTES les cartes de fidélité", " RECHERCHER un titulaire",
+					" Tranche d'AGE", " Date ANNIVERSAIRE", " Client fidélité d'un MAGASIN",
+					" Participants OPERATION commerciale", " VILLE de résidence", };
 			this.comboBox = new JComboBox<Object>(choix);
 			this.comboBox.setBorder(null);
-			this.comboBox.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.comboBox.setBackground(Color.WHITE);
 			this.comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.comboBox.setForeground(Color.GRAY);
@@ -95,25 +94,20 @@ public class CollecteInformations extends JFrame {
 				public void actionPerformed(final ActionEvent arg0) {
 
 					try {
-						CollecteInformations.this.lblMerciDeSelectionner
-								.setVisible(false);
-						CollecteInformations.this.selection = CollecteInformations.this.comboBox
-								.getSelectedItem().toString().substring(1);
+						CollecteInformations.this.lblMerciDeSelectionner.setVisible(false);
+						CollecteInformations.this.selection = CollecteInformations.this.comboBox.getSelectedItem()
+								.toString().substring(1);
 						CollecteInformations.this.lblValider.setVisible(true);
 
 					} catch (final Exception e) {
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
-						final AlerteSelection fenetre = new AlerteSelection(
-								CollecteInformations.this.interfaceActuelle,
+						final AlerteSelection fenetre = new AlerteSelection(CollecteInformations.this.interfaceActuelle,
 								message);
 						fenetre.setVisible(true);
-						CollecteInformations.this.interfaceActuelle
-								.setEnabled(false);
-						CollecteInformations.this.interfaceActuelle
-								.setVisible(false);
+						CollecteInformations.this.interfaceActuelle.setEnabled(false);
+						CollecteInformations.this.interfaceActuelle.setVisible(false);
 						CollecteInformations.this.lblValider.setVisible(false);
-						CollecteInformations.this.lblMerciDeSelectionner
-								.setVisible(true);
+						CollecteInformations.this.lblMerciDeSelectionner.setVisible(true);
 					}
 
 				}
@@ -127,8 +121,19 @@ public class CollecteInformations extends JFrame {
 	private JLabel getFond() {
 		if (this.fond == null) {
 			this.fond = new JLabel("");
-			this.fond.setIcon(new ImageIcon(CollecteInformations.class.getResource("/Images/fonds/menus_extraction.png")));
+			this.fond.setIcon(
+					new ImageIcon(CollecteInformations.class.getResource("/Images/fonds/menus_extraction.png")));
 			this.fond.setBounds(216, 55, 850, 690);
+
+			this.privilege = Login.getPrivilege();
+			switch (this.privilege) {
+
+			case "utilisateur":
+
+				this.label_2.setEnabled(false);
+				this.label_2.setVisible(false);
+				break;
+			}
 		}
 		return this.fond;
 	}
@@ -144,8 +149,7 @@ public class CollecteInformations extends JFrame {
 					CollecteInformations.this.dispose();
 				}
 			});
-			this.label
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label.setBounds(238, 232, 114, 44);
 		}
 		return this.label;
@@ -162,8 +166,7 @@ public class CollecteInformations extends JFrame {
 					CollecteInformations.this.dispose();
 				}
 			});
-			this.label_1.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_1.setBounds(347, 232, 114, 44);
 		}
 		return this.label_1;
@@ -180,8 +183,7 @@ public class CollecteInformations extends JFrame {
 					CollecteInformations.this.dispose();
 				}
 			});
-			this.label_2.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_2.setBounds(459, 232, 114, 44);
 		}
 		return this.label_2;
@@ -198,8 +200,7 @@ public class CollecteInformations extends JFrame {
 					CollecteInformations.this.dispose();
 				}
 			});
-			this.label_3.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_3.setBounds(573, 232, 114, 44);
 		}
 		return this.label_3;
@@ -233,16 +234,16 @@ public class CollecteInformations extends JFrame {
 	private JLabel getLabel_Mag() {
 		if (this.label_Mag == null) {
 			this.label_Mag = new JLabel("");
-			this.label_Mag.setIcon(new ImageIcon(CollecteInformations.class.getResource("/Images/menubutons/bouton-extraction-magasin.png")));
-			this.label_Mag
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_Mag.setIcon(new ImageIcon(
+					CollecteInformations.class.getResource("/Images/menubutons/bouton-extraction-magasin.png")));
+			this.label_Mag.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_Mag.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_Mag.setForeground(Color.GRAY);
 			this.label_Mag.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					CollecteInformations.this.selection="3";
+					CollecteInformations.this.selection = "3";
 					Action();
 				}
 			});
@@ -251,19 +252,20 @@ public class CollecteInformations extends JFrame {
 		}
 		return this.label_Mag;
 	}
+
 	private JLabel getLabel_OpCom() {
 		if (this.label_OpCom == null) {
 			this.label_OpCom = new JLabel("");
-			this.label_OpCom.setIcon(new ImageIcon(CollecteInformations.class.getResource("/Images/menubutons/bouton-extraction-ope-com.png")));
-			this.label_OpCom
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_OpCom.setIcon(new ImageIcon(
+					CollecteInformations.class.getResource("/Images/menubutons/bouton-extraction-ope-com.png")));
+			this.label_OpCom.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_OpCom.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_OpCom.setForeground(Color.GRAY);
 			this.label_OpCom.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					CollecteInformations.this.selection="4";
+					CollecteInformations.this.selection = "4";
 					Action();
 				}
 			});
@@ -272,19 +274,20 @@ public class CollecteInformations extends JFrame {
 		}
 		return this.label_OpCom;
 	}
+
 	private JLabel getLabel_Ville() {
 		if (this.label_Ville == null) {
 			this.label_Ville = new JLabel("");
-			this.label_Ville.setIcon(new ImageIcon(CollecteInformations.class.getResource("/Images/menubutons/bouton-extraction-ville.png")));
-			this.label_Ville
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_Ville.setIcon(new ImageIcon(
+					CollecteInformations.class.getResource("/Images/menubutons/bouton-extraction-ville.png")));
+			this.label_Ville.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_Ville.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_Ville.setForeground(Color.GRAY);
 			this.label_Ville.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					CollecteInformations.this.selection="5";
+					CollecteInformations.this.selection = "5";
 					Action();
 				}
 			});
@@ -297,16 +300,16 @@ public class CollecteInformations extends JFrame {
 	private JLabel getLabel_BirthDay() {
 		if (this.label_BirthDay == null) {
 			this.label_BirthDay = new JLabel("");
-			this.label_BirthDay.setIcon(new ImageIcon(CollecteInformations.class.getResource("/Images/menubutons/bouton-extraction-date-anniv.png")));
-			this.label_BirthDay
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_BirthDay.setIcon(new ImageIcon(
+					CollecteInformations.class.getResource("/Images/menubutons/bouton-extraction-date-anniv.png")));
+			this.label_BirthDay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_BirthDay.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_BirthDay.setForeground(Color.GRAY);
 			this.label_BirthDay.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					CollecteInformations.this.selection="2";
+					CollecteInformations.this.selection = "2";
 					Action();
 				}
 			});
@@ -319,16 +322,16 @@ public class CollecteInformations extends JFrame {
 	private JLabel getLabel_AllIFidCards() {
 		if (this.label_AllIFidCards == null) {
 			this.label_AllIFidCards = new JLabel("");
-			this.label_AllIFidCards.setIcon(new ImageIcon(CollecteInformations.class.getResource("/Images/menubutons/bouton-extraction-toute-carte-large.png")));
-			this.label_AllIFidCards
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_AllIFidCards.setIcon(new ImageIcon(CollecteInformations.class
+					.getResource("/Images/menubutons/bouton-extraction-toute-carte-large.png")));
+			this.label_AllIFidCards.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_AllIFidCards.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_AllIFidCards.setForeground(new Color(255, 255, 255));
 			this.label_AllIFidCards.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					CollecteInformations.this.selection="6";
+					CollecteInformations.this.selection = "6";
 					Action();
 				}
 			});
@@ -341,16 +344,16 @@ public class CollecteInformations extends JFrame {
 	private JLabel getLabel_Age() {
 		if (this.label_Age == null) {
 			this.label_Age = new JLabel("");
-			this.label_Age.setIcon(new ImageIcon(CollecteInformations.class.getResource("/Images/menubutons/bouton-extraction-tranche-age.png")));
-			this.label_Age
-					.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.label_Age.setIcon(new ImageIcon(
+					CollecteInformations.class.getResource("/Images/menubutons/bouton-extraction-tranche-age.png")));
+			this.label_Age.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_Age.setFont(new Font("Tahoma", Font.BOLD, 17));
 			this.label_Age.setForeground(Color.GRAY);
 			this.label_Age.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					CollecteInformations.this.selection="1";
+					CollecteInformations.this.selection = "1";
 					Action();
 				}
 			});
@@ -362,12 +365,10 @@ public class CollecteInformations extends JFrame {
 
 	private JLabel getLblCollecteDonformations() {
 		if (this.lblCollecteDonformations == null) {
-			this.lblCollecteDonformations = new JLabel(
-					"Collecte d'informations Emailing");
+			this.lblCollecteDonformations = new JLabel("Collecte d'informations Emailing");
 			this.lblCollecteDonformations.setVisible(false);
 			this.lblCollecteDonformations.setForeground(Color.GRAY);
-			this.lblCollecteDonformations.setFont(new Font("Tahoma", Font.BOLD,
-					11));
+			this.lblCollecteDonformations.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblCollecteDonformations.setBounds(489, 325, 227, 14);
 		}
 		return this.lblCollecteDonformations;
@@ -378,8 +379,7 @@ public class CollecteInformations extends JFrame {
 			this.lblExtractionDesInformations = new JLabel(
 					"Extraction des informations Client titulaire d'une carte de fid\u00E9lit\u00E9");
 			this.lblExtractionDesInformations.setForeground(Color.GRAY);
-			this.lblExtractionDesInformations.setFont(new Font("Tahoma",
-					Font.BOLD, 11));
+			this.lblExtractionDesInformations.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblExtractionDesInformations.setBounds(238, 286, 414, 14);
 		}
 		return this.lblExtractionDesInformations;
@@ -387,10 +387,8 @@ public class CollecteInformations extends JFrame {
 
 	private JLabel getLblMerciDeSelectionner() {
 		if (this.lblMerciDeSelectionner == null) {
-			this.lblMerciDeSelectionner = new JLabel(
-					"Merci choisir le mode TRI");
-			this.lblMerciDeSelectionner.setFont(new Font("Tahoma", Font.BOLD,
-					11));
+			this.lblMerciDeSelectionner = new JLabel("Merci choisir le mode TRI");
+			this.lblMerciDeSelectionner.setFont(new Font("Tahoma", Font.BOLD, 11));
 			this.lblMerciDeSelectionner.setForeground(Color.GRAY);
 			this.lblMerciDeSelectionner.setBounds(555, 679, 251, 14);
 		}
@@ -400,8 +398,8 @@ public class CollecteInformations extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (this.lblNewLabel == null) {
 			this.lblNewLabel = new JLabel("");
-			this.lblNewLabel.setIcon(new ImageIcon(CollecteInformations.class
-					.getResource("/Images/fonds/fond-logiciel.png")));
+			this.lblNewLabel
+					.setIcon(new ImageIcon(CollecteInformations.class.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -410,8 +408,7 @@ public class CollecteInformations extends JFrame {
 	private JLabel getLblRetour() {
 		if (this.lblRetour == null) {
 			this.lblRetour = new JLabel("");
-			this.lblRetour.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblRetour.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblRetour.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			this.lblRetour.setForeground(Color.GRAY);
 			this.lblRetour.addMouseListener(new MouseAdapter() {
@@ -430,19 +427,18 @@ public class CollecteInformations extends JFrame {
 	private JLabel getLblValider() {
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
-			this.lblValider.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblValider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.setHorizontalTextPosition(SwingConstants.CENTER);
 			this.lblValider.setHorizontalAlignment(SwingConstants.CENTER);
-			this.lblValider.setIcon(new ImageIcon(CollecteInformations.class
-					.getResource("/Images/actionbutons/valider.png")));
+			this.lblValider
+					.setIcon(new ImageIcon(CollecteInformations.class.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
 					Action();
 
-					}
+				}
 
 			});
 			this.lblValider.setForeground(Color.GRAY);
@@ -457,77 +453,65 @@ public class CollecteInformations extends JFrame {
 	protected void Action() {
 		System.out.print(CollecteInformations.this.selection);
 		switch (CollecteInformations.this.selection) {
-		case "Tranche d'AGE": case "1":
-			final EmailingAge age = new EmailingAge(
-					CollecteInformations.this.interfaceActuelle);
+		case "Tranche d'AGE":
+		case "1":
+			final EmailingAge age = new EmailingAge(CollecteInformations.this.interfaceActuelle);
 			age.setVisible(true);
-			CollecteInformations.this.interfaceActuelle
-					.setVisible(false);
-			CollecteInformations.this.interfaceActuelle
-					.setEnabled(false);
+			CollecteInformations.this.interfaceActuelle.setVisible(false);
+			CollecteInformations.this.interfaceActuelle.setEnabled(false);
 			break;
 
-		case "Date ANNIVERSAIRE": case "2":
+		case "Date ANNIVERSAIRE":
+		case "2":
 			final EmailingAnniversaire anniversaire = new EmailingAnniversaire(
 					CollecteInformations.this.interfaceActuelle);
 			anniversaire.setVisible(true);
-			CollecteInformations.this.interfaceActuelle
-					.setVisible(false);
-			CollecteInformations.this.interfaceActuelle
-					.setEnabled(false);
+			CollecteInformations.this.interfaceActuelle.setVisible(false);
+			CollecteInformations.this.interfaceActuelle.setEnabled(false);
 			break;
 
-		case "Client fidélité d'un MAGASIN": case "3":
-			final EmailingMagasin triparmagasin = new EmailingMagasin(
-					CollecteInformations.this.interfaceActuelle);
+		case "Client fidélité d'un MAGASIN":
+		case "3":
+			final EmailingMagasin triparmagasin = new EmailingMagasin(CollecteInformations.this.interfaceActuelle);
 			triparmagasin.setVisible(true);
-			CollecteInformations.this.interfaceActuelle
-					.setVisible(false);
-			CollecteInformations.this.interfaceActuelle
-					.setEnabled(false);
+			CollecteInformations.this.interfaceActuelle.setVisible(false);
+			CollecteInformations.this.interfaceActuelle.setEnabled(false);
 			break;
 
-		case "Participants OPERATION commerciale": case "4":
+		case "Participants OPERATION commerciale":
+		case "4":
 			final EmailingOperationCommerciale trioperation = new EmailingOperationCommerciale(
 					CollecteInformations.this.interfaceActuelle);
 			trioperation.setVisible(true);
-			CollecteInformations.this.interfaceActuelle
-					.setVisible(false);
-			CollecteInformations.this.interfaceActuelle
-					.setEnabled(false);
+			CollecteInformations.this.interfaceActuelle.setVisible(false);
+			CollecteInformations.this.interfaceActuelle.setEnabled(false);
 			break;
 
-		case "VILLE de résidence": case "5":
-			final EmailingVille triville = new EmailingVille(
-					CollecteInformations.this.interfaceActuelle);
+		case "VILLE de résidence":
+		case "5":
+			final EmailingVille triville = new EmailingVille(CollecteInformations.this.interfaceActuelle);
 			triville.setVisible(true);
-			CollecteInformations.this.interfaceActuelle
-					.setVisible(false);
-			CollecteInformations.this.interfaceActuelle
-					.setEnabled(false);
+			CollecteInformations.this.interfaceActuelle.setVisible(false);
+			CollecteInformations.this.interfaceActuelle.setEnabled(false);
 			break;
 
-		case "TOUTES les cartes de fidélité": case "6":
-			final Ensembleporteurcarte tous = new Ensembleporteurcarte(
-					CollecteInformations.this.interfaceActuelle);
+		case "TOUTES les cartes de fidélité":
+		case "6":
+			final Ensembleporteurcarte tous = new Ensembleporteurcarte(CollecteInformations.this.interfaceActuelle);
 			tous.setVisible(true);
-			CollecteInformations.this.interfaceActuelle
-					.setVisible(false);
-			CollecteInformations.this.interfaceActuelle
-					.setEnabled(false);
+			CollecteInformations.this.interfaceActuelle.setVisible(false);
+			CollecteInformations.this.interfaceActuelle.setEnabled(false);
 			break;
 
-		case "RECHERCHER un titulaire": case "7":
+		case "RECHERCHER un titulaire":
+		case "7":
 			final SelectionNumeroCarteFidelitePourFiche infos = new SelectionNumeroCarteFidelitePourFiche(
-					CollecteInformations.this.interfaceActuelle,
-					CollecteInformations.this.choixprecedent);
+					CollecteInformations.this.interfaceActuelle, CollecteInformations.this.choixprecedent);
 			infos.setVisible(true);
-			CollecteInformations.this.interfaceActuelle
-					.setVisible(false);
-			CollecteInformations.this.interfaceActuelle
-					.setEnabled(false);
+			CollecteInformations.this.interfaceActuelle.setVisible(false);
+			CollecteInformations.this.interfaceActuelle.setEnabled(false);
 			break;
 
-	}
+		}
 	}
 }

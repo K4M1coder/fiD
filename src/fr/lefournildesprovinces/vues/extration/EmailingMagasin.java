@@ -35,6 +35,7 @@ import fr.lefournildesprovinces.ressources.util.ExcelExporter;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.MessageExport;
@@ -93,6 +94,7 @@ public class EmailingMagasin extends JFrame {
 	private JScrollPane scrollPane_1;
 	private int selectionIDMagasin;
 	private JTable table_3;
+	private String privilege;
 
 	public EmailingMagasin(final JFrame interfacepre) {
 		this.setUndecorated(true);
@@ -586,6 +588,16 @@ public class EmailingMagasin extends JFrame {
 			this.fond.setIcon(new ImageIcon(EmailingMagasin.class
 					.getResource("/Images/fonds/menus-extraction-long.png")));
 			this.fond.setBounds(216, 55, 850, 690);
+
+			this.privilege = Login.getPrivilege();
+			switch (this.privilege) {
+
+			case "utilisateur":
+
+				this.label_2.setEnabled(false);
+				this.label_2.setVisible(false);
+				break;
+			}
 		}
 		return this.fond;
 	}

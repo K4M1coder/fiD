@@ -39,6 +39,7 @@ import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.opcom.FicheClientCompleteSansCarte;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class SelectionNumeroCarteFidelitePourFiche extends JFrame {
@@ -91,6 +92,7 @@ public class SelectionNumeroCarteFidelitePourFiche extends JFrame {
 
 	private JRadioButton rdbtnSelectionParNumero;
 	private JSeparator separator;
+	private String privilege;
 
 	public SelectionNumeroCarteFidelitePourFiche(final JFrame interfacepre,
 			final String choix) {
@@ -259,6 +261,16 @@ public class SelectionNumeroCarteFidelitePourFiche extends JFrame {
 					SelectionNumeroCarteFidelitePourFiche.class
 							.getResource("/Images/fonds/menus_extraction.png")));
 			this.fond.setBounds(216, 231, 850, 338);
+
+			this.privilege = Login.getPrivilege();
+			switch (this.privilege) {
+
+			case "utilisateur":
+
+				this.label_2.setEnabled(false);
+				this.label_2.setVisible(false);
+				break;
+			}
 		}
 		return this.fond;
 	}

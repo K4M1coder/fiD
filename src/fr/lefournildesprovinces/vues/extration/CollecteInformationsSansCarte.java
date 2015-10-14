@@ -22,6 +22,7 @@ import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.opcom.selectionClientOC;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class CollecteInformationsSansCarte extends JFrame {
@@ -46,6 +47,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 	private JLabel lblRetour;
 	private JLabel lblValider;
 	private String selection;
+	private String privilege;
 
 	public CollecteInformationsSansCarte(final String choix) {
 		this.setUndecorated(true);
@@ -120,6 +122,16 @@ public class CollecteInformationsSansCarte extends JFrame {
 			this.fond.setIcon(new ImageIcon(CollecteInformationsSansCarte.class
 					.getResource("/Images/fonds/menus_extraction.png")));
 			this.fond.setBounds(216, 231, 850, 338);
+
+			this.privilege = Login.getPrivilege();
+			switch (this.privilege) {
+
+			case "utilisateur":
+
+				this.label_2.setEnabled(false);
+				this.label_2.setVisible(false);
+				break;
+			}
 		}
 		return this.fond;
 	}

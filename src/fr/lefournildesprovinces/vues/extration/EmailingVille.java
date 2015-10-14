@@ -36,6 +36,7 @@ import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.MessageExport;
 
@@ -93,6 +94,7 @@ public class EmailingVille extends JFrame {
 	private JScrollPane scrollPane_1;
 	private int selectionIDville;
 	private JTable table_3;
+	private String privilege;
 
 	public EmailingVille(final JFrame interfacepre) {
 		this.setUndecorated(true);
@@ -570,6 +572,16 @@ public class EmailingVille extends JFrame {
 			this.fond.setIcon(new ImageIcon(EmailingVille.class
 					.getResource("/Images/fonds/menus-extraction-long.png")));
 			this.fond.setBounds(216, 55, 850, 690);
+
+			this.privilege = Login.getPrivilege();
+			switch (this.privilege) {
+
+			case "utilisateur":
+
+				this.label_2.setEnabled(false);
+				this.label_2.setVisible(false);
+				break;
+			}
 		}
 		return this.fond;
 	}

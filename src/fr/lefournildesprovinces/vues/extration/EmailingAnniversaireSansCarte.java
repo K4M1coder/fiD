@@ -40,6 +40,7 @@ import fr.lefournildesprovinces.ressources.util.ExcelExporter;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.MessageExport;
@@ -109,6 +110,7 @@ public class EmailingAnniversaireSansCarte extends JFrame {
 	private int selectionIDMagasin;
 	private JTable table_3;
 	private String valeurCasechoix;
+	private String privilege;
 
 	public EmailingAnniversaireSansCarte(final JFrame interfacepre) {
 		this.setUndecorated(true);
@@ -733,6 +735,16 @@ public class EmailingAnniversaireSansCarte extends JFrame {
 			this.fond.setIcon(new ImageIcon(EmailingAnniversaireSansCarte.class
 					.getResource("/Images/fonds/menus-extraction-long.png")));
 			this.fond.setBounds(0, 0, 850, 690);
+
+			this.privilege = Login.getPrivilege();
+			switch (this.privilege) {
+
+			case "utilisateur":
+
+				this.label_2.setEnabled(false);
+				this.label_2.setVisible(false);
+				break;
+			}
 		}
 		return this.fond;
 	}
