@@ -49,6 +49,8 @@ public class GestionExtractionBases extends JFrame {
 	private JLabel label_ExtBaseFid;
 	private JLabel label_ExtBaseOCNoCard;
 	private JLabel label_ExtBaseOCAll;
+	private JLabel navBar;
+	private String privilege;
 
 	public GestionExtractionBases() {
 		this.setUndecorated(true);
@@ -135,13 +137,33 @@ public class GestionExtractionBases extends JFrame {
 			this.fond.setIcon(new ImageIcon(GestionExtractionBases.class
 					.getResource("/Images/fonds/menus_extraction.png")));
 			this.fond.setBounds(216, 231, 850, 338);
-		}
+			this.privilege = Login.getPrivilege();
+			switch (this.privilege) {
+
+			case "utilisateur":
+
+//				this.fond.setIcon(new ImageIcon(GestionOperationsCommerciales.class
+//						.getResource("/Images/fonds/menus-grises-operation.png")));
+				this.label_2.setEnabled(false);
+				this.label_2.setVisible(false);
+				this.label_3.setEnabled(true);
+				this.label_3.setVisible(true);
+				this.label_1.setEnabled(true);
+				this.label_1.setVisible(true);
+				this.label.setEnabled(true);
+				this.label.setVisible(true);
+				this.navBar.setVisible(true);
+				this.navBar.setEnabled(true);
+				break;
+		}}
 		return this.fond;
 	}
 
 	private JLabel getLabel() {
 		if (this.label == null) {
 			this.label = new JLabel("");
+			this.label.setCursor(Cursor
+					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -158,6 +180,8 @@ public class GestionExtractionBases extends JFrame {
 	private JLabel getLabel_1() {
 		if (this.label_1 == null) {
 			this.label_1 = new JLabel("");
+			this.label_1.setCursor(Cursor
+					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -174,6 +198,8 @@ public class GestionExtractionBases extends JFrame {
 	private JLabel getLabel_2() {
 		if (this.label_2 == null) {
 			this.label_2 = new JLabel("");
+			this.label_2.setCursor(Cursor
+					.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.label_2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -221,10 +247,24 @@ public class GestionExtractionBases extends JFrame {
 			this.layeredPane.add(this.getLabel_1());
 			this.layeredPane.add(this.getLabel_2());
 			this.layeredPane.add(this.getLabel_3());
+			this.layeredPane.add(this.getNavBar());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel());
 		}
 		return this.layeredPane;
+	}
+
+	private JLabel getNavBar() {
+		if (this.navBar == null) {
+			this.navBar = new JLabel("");
+			this.navBar.setBackground(Color.WHITE);
+			this.navBar.setHorizontalAlignment(SwingConstants.CENTER);
+			this.navBar.setBounds(216, 230, 850, 77);
+			this.navBar.setIcon(new ImageIcon(GestionExtractionBases.class.getResource("/Images/navbar/nav_grise_extraction.png")));
+			this.navBar.setVisible(false);
+			this.navBar.setEnabled(false);
+		}
+		return this.navBar;
 	}
 
 	private JLabel getLblCollecteDonformations() {

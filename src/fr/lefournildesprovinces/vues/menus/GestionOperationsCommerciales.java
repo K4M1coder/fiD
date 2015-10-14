@@ -52,6 +52,8 @@ public class GestionOperationsCommerciales extends JFrame {
 	private final JFrame interfaceActuelle;
 	private final JPanel contentPane;
 
+	private JLabel navBar;
+
 	public GestionOperationsCommerciales() {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
@@ -178,8 +180,10 @@ public class GestionOperationsCommerciales extends JFrame {
 						.getResource("/Images/fonds/menus-grises-operation.png")));
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
-				this.label_3.setEnabled(false);
-				this.label_3.setVisible(false);
+				this.label_3.setEnabled(true);
+				this.label_3.setVisible(true);
+				this.navBar.setVisible(true);
+				this.navBar.setEnabled(true);
 				break;
 
 			case "invite":
@@ -335,10 +339,24 @@ public class GestionOperationsCommerciales extends JFrame {
 			this.layeredPane.add(this.getLabel_1());
 			this.layeredPane.add(this.getLabel_2());
 			this.layeredPane.add(this.getLabel_3());
+			this.layeredPane.add(this.getNavBar());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel_1());
 		}
 		return this.layeredPane;
+	}
+
+	private JLabel getNavBar() {
+		if (this.navBar == null) {
+			this.navBar = new JLabel("");
+			this.navBar.setBackground(Color.WHITE);
+			this.navBar.setHorizontalAlignment(SwingConstants.CENTER);
+			this.navBar.setBounds(217, 229, 850, 77);
+			this.navBar.setIcon(new ImageIcon(GestionOperationsCommerciales.class.getResource("/Images/navbar/nav_grise_operation.png")));
+			this.navBar.setVisible(false);
+			this.navBar.setEnabled(false);
+		}
+		return this.navBar;
 	}
 
 	private JLabel getLblFermer() {
@@ -368,7 +386,7 @@ public class GestionOperationsCommerciales extends JFrame {
 			this.lblMenuPrincipal.setVisible(false);
 			this.lblMenuPrincipal.setForeground(Color.GRAY);
 			this.lblMenuPrincipal.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.lblMenuPrincipal.setBounds(299, 364, 249, 14);
+			this.lblMenuPrincipal.setBounds(491, 327, 249, 14);
 		}
 		return this.lblMenuPrincipal;
 	}

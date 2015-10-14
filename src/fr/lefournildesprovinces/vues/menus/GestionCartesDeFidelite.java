@@ -53,6 +53,7 @@ public class GestionCartesDeFidelite extends JFrame {
 	private final JFrame interfaceActuelle;
 	private final JPanel contentPane;
 	private Loading lblLoading;
+	private JLabel navBar;
 
 	public GestionCartesDeFidelite() {
 
@@ -166,8 +167,10 @@ public class GestionCartesDeFidelite extends JFrame {
 						new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/fonds/menus-grises-fidelite.png")));
 				this.label.setEnabled(false);
 				this.label.setVisible(false);
-				this.label_2.setEnabled(false);
-				this.label_2.setVisible(false);
+				this.label_2.setEnabled(true);
+				this.label_2.setVisible(true);
+				this.navBar.setVisible(true);
+				this.navBar.setEnabled(true);
 
 				break;
 
@@ -281,12 +284,27 @@ public class GestionCartesDeFidelite extends JFrame {
 			this.layeredPane.add(this.getLabel_1());
 			this.layeredPane.add(this.getLabel_2());
 			this.layeredPane.add(this.getLabel_3());
+			this.layeredPane.add(this.getNavBar());
 			this.layeredPane.add(this.getFond());
 			this.layeredPane.add(this.getLblNewLabel());
 
 		}
 		return this.layeredPane;
 	}
+
+	private JLabel getNavBar() {
+		if (this.navBar == null) {
+			this.navBar = new JLabel("");
+			this.navBar.setBackground(Color.WHITE);
+			this.navBar.setHorizontalAlignment(SwingConstants.CENTER);
+			this.navBar.setBounds(214, 231, 850, 77);
+			this.navBar.setIcon(new ImageIcon(GestionCartesDeFidelite.class.getResource("/Images/navbar/nav_grise_fidelite.png")));
+			this.navBar.setVisible(false);
+			this.navBar.setEnabled(false);
+		}
+		return this.navBar;
+	}
+
 
 	private Loading getLoading() {
 		if (this.lblLoading == null) {

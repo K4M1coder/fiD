@@ -44,9 +44,9 @@ public class EmailSender {
 
 		getMailSession = Session.getDefaultInstance(mailServerProperties, null);
 		generateMailMessage = new MimeMessage(getMailSession);
-		generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("sendto"));
-		generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("copycarbonto"));
-		generateMailMessage.setSubject("Greetings from javamail..");
+		generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("cedric@thedrez.fr"));
+		generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("kamicth@gmail.com"));
+		generateMailMessage.setSubject("Greetings from Crunchify..");
 		String emailBody = "Test email  JavaMail API example. " + "<br><br> Regards, <br> Admin";
 		generateMailMessage.setContent(emailBody, "text/html");
 		System.out.println("Mail Session has been created successfully..");
@@ -57,7 +57,7 @@ public class EmailSender {
 
 		// Enter your correct gmail UserID and Password
 		// if you have 2FA enabled then provide App Specific Password
-		transport.connect("smtp.gmail.com", "mailuser", "password");
+		transport.connect("smtp.gmail.com", "kamicth@gmail.com", "BB$hade3457227");
 		transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
 		transport.close();
 	}
