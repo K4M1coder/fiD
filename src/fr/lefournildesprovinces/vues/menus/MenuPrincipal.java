@@ -221,7 +221,7 @@ public class MenuPrincipal extends JFrame {
 			break;
 
 		case "administrateur":
-
+			this.fond.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Images/fonds/menus_accueil.png")));
 			break;
 
 		}

@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.Login;
@@ -132,6 +133,10 @@ public class CollecteInformations extends JFrame {
 
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
+				this.label_Ville.setEnabled(false);
+				this.label_Ville.setVisible(false);
+				this.label_AllIFidCards.setVisible(false);
+				this.label_AllIFidCards.setEnabled(false);
 				break;
 			}
 		}
@@ -414,7 +419,7 @@ public class CollecteInformations extends JFrame {
 			this.lblRetour.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
-					final MenuPrincipal fenetre = new MenuPrincipal();
+					final GestionExtractionBases fenetre = new GestionExtractionBases();
 					fenetre.setVisible(true);
 					CollecteInformations.this.dispose();
 				}

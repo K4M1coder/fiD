@@ -515,7 +515,7 @@ public class FicheClientCompleteSansCarte extends JFrame {
 			this.lblNewLabel_1 = new JLabel("");
 			this.lblNewLabel_1.setIcon(new ImageIcon(
 					FicheClientCompleteSansCarte.class
-							.getResource("/Images/cartes/carte-vierge.png")));
+							.getResource("/Images/cartesfid/carte-vierge.png")));
 			this.lblNewLabel_1.setBounds(242, 280, 360, 237);
 		}
 		return this.lblNewLabel_1;

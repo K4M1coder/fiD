@@ -79,7 +79,7 @@ public class EmailingOperationCommercialeTOUS extends JFrame {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
-	private JLabel label_4;
+	private JLabel lblOu;
 	private JLabel label_5;
 	private JLayeredPane layeredPane;
 	private JLabel lblEmailingParMagasin;
@@ -323,7 +323,7 @@ public class EmailingOperationCommercialeTOUS extends JFrame {
 
 			this.chckbxSurLensembleDes.setForeground(Color.GRAY);
 			this.chckbxSurLensembleDes.setBounds(242, 233, 204, 23);
-			this.chckbxSurLensembleDes.setSelected(true);
+			this.chckbxSurLensembleDes.setSelected(false);
 			this.chckbxSurLensembleDes.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -335,7 +335,7 @@ public class EmailingOperationCommercialeTOUS extends JFrame {
 								.setVisible(true);
 						EmailingOperationCommercialeTOUS.this.comboBox_1
 								.setEnabled(true);
-						EmailingOperationCommercialeTOUS.this.label_4
+						EmailingOperationCommercialeTOUS.this.lblOu
 								.setVisible(true);
 						// lblMerciDeSlectionner_1.setVisible(true);
 						EmailingOperationCommercialeTOUS.this.lblValider
@@ -348,7 +348,7 @@ public class EmailingOperationCommercialeTOUS extends JFrame {
 								.setVisible(false);
 						EmailingOperationCommercialeTOUS.this.comboBox_1
 								.setEnabled(false);
-						EmailingOperationCommercialeTOUS.this.label_4
+						EmailingOperationCommercialeTOUS.this.lblOu
 								.setVisible(false);
 						EmailingOperationCommercialeTOUS.this.lblMerciDeSlectionner_1
 								.setVisible(false);
@@ -551,6 +551,8 @@ public class EmailingOperationCommercialeTOUS extends JFrame {
 								.setVisible(false);
 						EmailingOperationCommercialeTOUS.this.lblValider
 								.setVisible(true);
+						EmailingOperationCommercialeTOUS.this.chckbxSurLensembleDes.setEnabled(true);
+						EmailingOperationCommercialeTOUS.this.chckbxSurLensembleDes.setVisible(true);
 
 					} catch (final Exception e) {
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
@@ -719,11 +721,11 @@ public class EmailingOperationCommercialeTOUS extends JFrame {
 			});
 			this.comboBox_1.setBackground(Color.WHITE);
 			this.comboBox_1.setBounds(521, 233, 508, 22);
-			this.comboBox_1.setEnabled(false);
+			this.comboBox_1.setEnabled(true);
 			this.listemagasins = new DefaultComboBoxModel<Object>(
 					Control.listemagasins());
 			this.comboBox_1.setModel(this.listemagasins);
-			this.comboBox_1.setFocusable(false);
+			this.comboBox_1.setFocusable(true);
 
 		}
 		return this.comboBox_1;
@@ -744,6 +746,10 @@ public class EmailingOperationCommercialeTOUS extends JFrame {
 
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
+				this.chckbxSurLensembleDes.setEnabled(false);
+				this.chckbxSurLensembleDes.setVisible(false);
+				this.lblOu.setEnabled(false);
+				this.lblOu.setVisible(false);
 				break;
 			}
 		}
@@ -823,13 +829,13 @@ public class EmailingOperationCommercialeTOUS extends JFrame {
 	}
 
 	private JLabel getLabel_4() {
-		if (this.label_4 == null) {
-			this.label_4 = new JLabel("Ou");
-			this.label_4.setForeground(Color.GRAY);
-			this.label_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-			this.label_4.setBounds(464, 237, 34, 14);
+		if (this.lblOu == null) {
+			this.lblOu = new JLabel("Ou");
+			this.lblOu.setForeground(Color.GRAY);
+			this.lblOu.setFont(new Font("Tahoma", Font.BOLD, 11));
+			this.lblOu.setBounds(464, 237, 34, 14);
 		}
-		return this.label_4;
+		return this.lblOu;
 	}
 
 	private JLabel getLabel_5() {

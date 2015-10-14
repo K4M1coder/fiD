@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.opcom.selectionClientOC;
@@ -65,9 +66,11 @@ public class CollecteInformationsSansCarte extends JFrame {
 	}
 
 	private JComboBox<Object> getComboBox() {
-		if (this.comboBox == null) {
-			final String[] choix = { null, " TOUS les participants",
-					" RECHERCHER un participant", " Tranche d'AGE",
+		if (this.comboBox == null) { //TODO
+			final String[] choix = { null,
+					" TOUS les participants",
+					" RECHERCHER un participant",
+					" Tranche d'AGE",
 					" Participant d'un MAGASIN",
 					" Participants OPERATION commerciale",
 					" VILLE de résidence" };
@@ -283,7 +286,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 			this.lblRetour.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {
-					final MenuPrincipal fenetre = new MenuPrincipal();
+					final GestionExtractionBases fenetre = new GestionExtractionBases();
 					fenetre.setVisible(true);
 					CollecteInformationsSansCarte.this.dispose();
 				}
@@ -307,7 +310,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
 
-					switch (CollecteInformationsSansCarte.this.selection) {
+					switch (CollecteInformationsSansCarte.this.selection) { //TODO
 					case "Tranche d'AGE":
 						final EmailingAgeSansCarte age = new EmailingAgeSansCarte(
 								CollecteInformationsSansCarte.this.interfaceActuelle);
@@ -329,7 +332,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 								.setEnabled(false);
 						break;
 
-					case "Client d'un MAGASIN":
+					case "Participant d'un MAGASIN":
 						final EmailingMagasinSansCarte triparmagasin = new EmailingMagasinSansCarte(
 								CollecteInformationsSansCarte.this.interfaceActuelle);
 						triparmagasin.setVisible(true);
@@ -359,7 +362,7 @@ public class CollecteInformationsSansCarte extends JFrame {
 								.setEnabled(false);
 						break;
 
-					case "TOUTES les participants":
+					case "TOUS les participants":
 						final EnsembleSansCarte tous = new EnsembleSansCarte(
 								CollecteInformationsSansCarte.this.interfaceActuelle);
 						tous.setVisible(true);

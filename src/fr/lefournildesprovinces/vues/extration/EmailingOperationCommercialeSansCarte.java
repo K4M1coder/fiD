@@ -734,7 +734,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.fond = new JLabel("");
 			this.fond.setIcon(new ImageIcon(
 					EmailingOperationCommercialeSansCarte.class
-							.getResource("/Images/actionbutons/menus-extraction-long.png")));
+							.getResource("/Images/fonds/menus-extraction-long.png")));
 			this.fond.setBounds(216, 55, 850, 690);
 
 			this.privilege = Login.getPrivilege();
@@ -1122,7 +1122,7 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 			this.lblNewLabel = new JLabel("");
 			this.lblNewLabel.setIcon(new ImageIcon(
 					EmailingOperationCommercialeSansCarte.class
-							.getResource("/Images/fond-logiciel.png")));
+							.getResource("/Images/fonds/fond-logiciel.png")));
 			this.lblNewLabel.setBounds(0, 0, 1281, 800);
 		}
 		return this.lblNewLabel;
@@ -1143,12 +1143,9 @@ public class EmailingOperationCommercialeSansCarte extends JFrame {
 	private JLabel getLblValider() {
 		if (this.lblValider == null) {
 			this.lblValider = new JLabel("");
-			this.lblValider.setIcon(new ImageIcon(
-					EmailingOperationCommercialeSansCarte.class
-							.getResource("/Images/valider.png")));
+			this.lblValider.setIcon(new ImageIcon(EmailingOperationCommercialeSansCarte.class.getResource("/Images/actionbutons/valider.png")));
 			this.lblValider.setHorizontalAlignment(SwingConstants.RIGHT);
-			this.lblValider.setCursor(Cursor
-					.getPredefinedCursor(Cursor.HAND_CURSOR));
+			this.lblValider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			this.lblValider.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent arg0) {

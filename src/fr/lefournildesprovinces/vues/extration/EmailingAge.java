@@ -1455,6 +1455,16 @@ public class EmailingAge extends JFrame {
 							EmailingAge.this.table_3.repaint();
 						}
 					}
+					switch (Login.getPrivilege()) {
+					case "utilisateur":
+
+						EmailingAge.this.chckbxSurLensembleDes.setEnabled(false);
+						EmailingAge.this.chckbxSurLensembleDes.setVisible(false);
+						EmailingAge.this.lblOu.setEnabled(false);
+						EmailingAge.this.lblOu.setVisible(false);
+
+						break;
+					}
 				}
 			});
 			this.slider_1.addChangeListener(new ChangeListener() {

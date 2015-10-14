@@ -737,6 +737,12 @@ public class EmailingAnniversaire extends JFrame {
 
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
+				this.chckbxSurLensembleDes.setEnabled(false);
+				this.chckbxSurLensembleDes.setVisible(false);
+				this.lblOu.setEnabled(false);
+				this.lblOu.setVisible(false);
+
+
 				break;
 			}
 		}

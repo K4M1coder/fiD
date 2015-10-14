@@ -368,7 +368,7 @@ public class EmailingOperationCommerciale extends JFrame {
 
 			this.chckbxSurLensembleDes.setForeground(Color.GRAY);
 			this.chckbxSurLensembleDes.setBounds(242, 236, 219, 23);
-			this.chckbxSurLensembleDes.setSelected(true);
+			this.chckbxSurLensembleDes.setSelected(false);
 			this.chckbxSurLensembleDes.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(final MouseEvent e) {
@@ -382,7 +382,7 @@ public class EmailingOperationCommerciale extends JFrame {
 								.setEnabled(true);
 						EmailingOperationCommerciale.this.lblOu
 								.setVisible(true);
-						// lblMerciDeSlectionner_1.setVisible(true);
+//						 lblMerciDeSlectionner_1.setVisible(true);
 						EmailingOperationCommerciale.this.lblValider
 								.setVisible(false);
 						EmailingOperationCommerciale.this.etatbouton = false;
@@ -399,6 +399,8 @@ public class EmailingOperationCommerciale extends JFrame {
 								.setVisible(false);
 						EmailingOperationCommerciale.this.lblValider
 								.setVisible(true);
+						EmailingOperationCommerciale.this.lblValider
+						.setEnabled(true);
 						EmailingOperationCommerciale.this.etatbouton = true;
 
 					}
@@ -705,6 +707,8 @@ public class EmailingOperationCommerciale extends JFrame {
 								.setVisible(false);
 						EmailingOperationCommerciale.this.lblValider
 								.setVisible(true);
+						EmailingOperationCommerciale.this.lblValider
+						.setEnabled(true);
 
 					} catch (final Exception e) {
 						final String message = "Choix Impossible - Merci de vérifier votre sélection";
@@ -778,11 +782,11 @@ public class EmailingOperationCommerciale extends JFrame {
 			});
 			this.comboBox_1.setBackground(Color.WHITE);
 			this.comboBox_1.setBounds(532, 236, 486, 22);
-			this.comboBox_1.setEnabled(false);
+			this.comboBox_1.setEnabled(true);
 			this.listemagasins = new DefaultComboBoxModel<Object>(
 					Control.listemagasins());
 			this.comboBox_1.setModel(this.listemagasins);
-			this.comboBox_1.setFocusable(false);
+			this.comboBox_1.setFocusable(true);
 
 		}
 		return this.comboBox_1;
@@ -802,8 +806,13 @@ public class EmailingOperationCommerciale extends JFrame {
 
 				this.label_2.setEnabled(false);
 				this.label_2.setVisible(false);
+				this.chckbxSurLensembleDes.setEnabled(false);
+				this.chckbxSurLensembleDes.setVisible(false);
+				this.lblOu.setEnabled(false);
+				this.lblOu.setVisible(false);
 				break;
 			}
+
 		}
 		return this.fond;
 	}
