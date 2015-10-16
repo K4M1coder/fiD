@@ -28,11 +28,11 @@ import javax.swing.border.LineBorder;
 import fr.lefournildesprovinces.controler.Control;
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.ressources.models.Message;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
-import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 
@@ -457,13 +457,14 @@ public class newuser extends JFrame {
 				if(!this.selection.equals("administrateur")){
 					Control.initUIUserShopsmanagement(nomuser, newuser.this.interfaceActuelle);
 					messageinsertion2="initUIUserShopsmanagement";
+					Message.setMessageaffichagefond("initUIUserShopsmanagement");
 				}
 
 				final SuccesOperation fenetre = new SuccesOperation(
 						messageInsertion, etat, text,
 						messageinsertion2, newuser.this.provenance,
 						newuser.this.idoperationtest,
-						newuser.this.idmagasintest);
+						newuser.this.idmagasintest,null);
 				fenetre.setVisible(true);
 				fenetre.setAlwaysOnTop(true);
 
@@ -489,7 +490,7 @@ public class newuser extends JFrame {
 							messageinsertion2,
 							newuser.this.provenance,
 							newuser.this.idoperationtest,
-							newuser.this.idmagasintest);
+							newuser.this.idmagasintest,null);
 					fenetre.setVisible(true);
 					fenetre.setAlwaysOnTop(true);
 					newuser.this.dispose();

@@ -36,10 +36,10 @@ import fr.lefournildesprovinces.ressources.util.AutoCompletion;
 import fr.lefournildesprovinces.vues.fidelite.FicheClientComplete;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
-import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
-import fr.lefournildesprovinces.vues.opcom.FicheClientCompleteSansCarte;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.Login;
+import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
+import fr.lefournildesprovinces.vues.opcom.FicheClientCompleteSansCarte;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 
 public class SelectionNumeroCarteFidelitePourFiche extends JFrame {

@@ -1,7 +1,9 @@
 package fr.lefournildesprovinces.ressources.util;
 
-import java.util.*;
-import javax.swing.*;
+import java.util.Comparator;
+import java.util.Vector;
+
+import javax.swing.DefaultComboBoxModel;
 
 /*
  *  Custom model to make sure the items are stored in a sorted order.

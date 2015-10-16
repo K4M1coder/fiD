@@ -49,23 +49,25 @@ public class SuccesOperation extends JFrame {
 	private JLabel lblSu;
 	private final String MessageInsertion;
 	private final String provenance;
-	private String message2;
+	private final JFrame interfacePrecedente;
+	private boolean state;
 
 	public SuccesOperation(final String message, final boolean etat, final String text, final String message2,
-			final String pro, final int operation, final int magasin) {
-		SuccesOperation.this.message2 = message2;
+			final String pro, final int operation, final int magasin, JFrame interfacePrecedente) {
+		System.out.println("\nen cours : [" + Message.getMessageaffichagefond() + "]");
+		this.interfacePrecedente = interfacePrecedente;
+		this.provenance = pro;
+		this.MessageInsertion = message;
+		this.state = etat;
+		System.out.println("message : " + message + "\nprovenance : " + provenance);
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(final WindowEvent arg0) {
-
-				System.out.println("en cours : " + SuccesOperation.this.message2);
-				System.out.println("en cours2 : " + message2);
 				SuccesOperation.this.lblSu.setText(text);
 				SuccesOperation.this.lblNewLabel.setText(SuccesOperation.this.MessageInsertion);
 				if (message2 != null && !message2.equals("initUIUserShopsmanagement")) {
 					SuccesOperation.this.lblNewLabel_1.setText(message2);
 				}
-
 				if (SuccesOperation.this.provenance.equals("operationcommerciale")) {
 					SuccesOperation.this.lblQuitterLaSaisie.setVisible(true);
 					SuccesOperation.this.lblCliquerPourContinuer.setBounds(401, 458, 313, 44);
@@ -86,16 +88,64 @@ public class SuccesOperation extends JFrame {
 					SuccesOperation.this.lblCliquerPourContinuer.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(final MouseEvent arg0) {
-							try {
-								if (message2.equals("initUIUserShopsmanagement")) {
 
+							switch (Message.getMessageaffichagefond()) {
+							case "Désincription Newslettter":
+
+							case "Mise à jour d'une carte de fidélité":
+
+							case "Suppression Fiche Client":
+
+							case "Nouvelle carte de fidélité":
+								final GestionCartesDeFidelite fenetrefi = new GestionCartesDeFidelite();
+								fenetrefi.setVisible(true);
+								break;
+							case "Nouvelle Fiche Client":
+								if (SuccesOperation.this.state == false) {
+									SuccesOperation.this.interfacePrecedente.setVisible(true);
+									SuccesOperation.this.interfacePrecedente.setEnabled(true);
 								} else {
-									final GestionAdministrativeUttilisateursApplication fenetre = new GestionAdministrativeUttilisateursApplication();
-									fenetre.setVisible(true);
+									final GestionCartesDeFidelite fenetrefid = new GestionCartesDeFidelite();
+									fenetrefid.setVisible(true);
 								}
-							} catch (Exception e) {
-								final GestionAdministrativeUttilisateursApplication fenetre = new GestionAdministrativeUttilisateursApplication();
-								fenetre.setVisible(true);
+								break;
+
+							case "Nouvelle Opération Commerciale":
+
+							case "Mise à Jour d'une Opération Commerciale":
+
+							case "Suppression d'une Opération Commerciale":
+
+							case "Supprimer un bulletin":
+
+							case "Mettre à jour un bulletin":
+
+							case "Saisir un bulletin":
+								final GestionOperationsCommerciales fenetreopco = new GestionOperationsCommerciales();
+								fenetreopco.setVisible(true);
+								break;
+							case "Mettre à jour un mot de passe utilisateur":
+
+							case "Créer un profil utilisateur":
+
+							case "Supprimer un utilisateur":
+
+							case "Mettre a jour un privilege utilisateur":
+
+							case "UserShopsmanagement":
+								final GestionAdministrativeUttilisateursApplication fenetreadm = new GestionAdministrativeUttilisateursApplication();
+								fenetreadm.setVisible(true);
+								break;
+							case "initUIUserShopsmanagement":
+								break;
+							case "Mise à jour d'un magasin":
+								final GestionMagasins fenetreshop = new GestionMagasins();
+								fenetreshop.setVisible(true);
+								break;
+							default:
+								final MenuPrincipal fenetremp = new MenuPrincipal();
+								fenetremp.setVisible(true);
+								break;
 							}
 
 							close();
@@ -118,12 +168,11 @@ public class SuccesOperation extends JFrame {
 		this.contentPane.setLayout(new BorderLayout(0, 0));
 		this.setContentPane(this.contentPane);
 		this.contentPane.add(this.getLayeredPane_1(), BorderLayout.CENTER);
-		this.MessageInsertion = message;
+
 		this.setAlwaysOnTop(true);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 1.0f));
-		this.provenance = pro;
 
 	}
 
@@ -136,6 +185,7 @@ public class SuccesOperation extends JFrame {
 
 			switch (texte) {
 			case "Désincription Newslettter":
+			case "Impossible d'insérer le Client":
 				this.fond.setIcon(new ImageIcon(SuccesOperation.class.getResource("/Images/fonds/menus_fidelite.png")));
 				break;
 			case "Mise à jour d'une carte de fidélité":
@@ -172,6 +222,8 @@ public class SuccesOperation extends JFrame {
 						.setIcon(new ImageIcon(SuccesOperation.class.getResource("/Images/fonds/menus_operation.png")));
 				break;
 			case "Mettre à jour un mot de passe utilisateur":
+			case "initUIUserShopsmanagement":
+			case "UserShopsmanagement":
 				this.fond.setIcon(new ImageIcon(SuccesOperation.class.getResource("/Images/fonds/menus_accueil.png")));
 				break;
 			case "Créer un profil utilisateur":

@@ -21,8 +21,8 @@ import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.ressources.models.Message;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
@@ -749,7 +749,7 @@ public class ConfirmationMAJClientOC extends JFrame {
 									ConfirmationMAJClientOC.this.messageinsertion2,
 									provenance,
 									ConfirmationMAJClientOC.this.IdOperationCommerciale,
-									ConfirmationMAJClientOC.this.idmagasin);
+									ConfirmationMAJClientOC.this.idmagasin,null);
 							fenetre.setVisible(true);
 
 							fenetre.setAlwaysOnTop(true);

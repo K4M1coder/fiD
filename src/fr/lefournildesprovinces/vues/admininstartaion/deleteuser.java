@@ -55,7 +55,7 @@ public class deleteuser extends JFrame {
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
-	private final String provenance = "test";
+	private final String provenance = "admin";
 	private final String utilisateur;
 	protected UtilisateurLogiciel user;
 
@@ -215,7 +215,7 @@ public class deleteuser extends JFrame {
 								messageInsertion, etat, text,
 								messageinsertion2, deleteuser.this.provenance,
 								deleteuser.this.idoperationtest,
-								deleteuser.this.idmagasintest);
+								deleteuser.this.idmagasintest,null);
 						fenetre.setVisible(true);
 						fenetre.setAlwaysOnTop(true);
 						deleteuser.this.dispose();
@@ -240,7 +240,7 @@ public class deleteuser extends JFrame {
 									messageinsertion2,
 									deleteuser.this.provenance,
 									deleteuser.this.idoperationtest,
-									deleteuser.this.idmagasintest);
+									deleteuser.this.idmagasintest,null);
 							fenetre.setVisible(true);
 
 							fenetre.setAlwaysOnTop(true);

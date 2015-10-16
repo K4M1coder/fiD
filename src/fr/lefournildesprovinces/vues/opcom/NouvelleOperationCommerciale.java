@@ -30,8 +30,8 @@ import javax.swing.SwingConstants;
 
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.ressources.models.Message;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
@@ -884,7 +884,7 @@ public class NouvelleOperationCommerciale extends JFrame {
 									NouvelleOperationCommerciale.this.messageinsertion2,
 									NouvelleOperationCommerciale.this.provenance,
 									NouvelleOperationCommerciale.this.idoperationtest,
-									NouvelleOperationCommerciale.this.idmagasintest);
+									NouvelleOperationCommerciale.this.idmagasintest,null);
 							fenetre.setVisible(true);
 							fenetre.setAlwaysOnTop(true);
 							NouvelleOperationCommerciale.this.dispose();
@@ -906,7 +906,7 @@ public class NouvelleOperationCommerciale extends JFrame {
 										NouvelleOperationCommerciale.this.messageinsertion2,
 										NouvelleOperationCommerciale.this.provenance,
 										NouvelleOperationCommerciale.this.idoperationtest,
-										NouvelleOperationCommerciale.this.idmagasintest);
+										NouvelleOperationCommerciale.this.idmagasintest,null);
 								fenetre.setVisible(true);
 
 								fenetre.setAlwaysOnTop(true);

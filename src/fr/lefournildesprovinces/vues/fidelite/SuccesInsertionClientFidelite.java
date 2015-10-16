@@ -23,10 +23,10 @@ import javax.swing.SwingConstants;
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.opcom.InterrogationClientPorteurdeCarte;
-import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 /**
  * @author admin

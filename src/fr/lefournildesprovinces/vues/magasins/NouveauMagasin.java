@@ -35,10 +35,10 @@ import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Message;
 import fr.lefournildesprovinces.ressources.models.Ville;
 import fr.lefournildesprovinces.ressources.util.AutoCompletion;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
-import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 
@@ -555,7 +555,7 @@ public class NouveauMagasin extends JFrame {
 									NouveauMagasin.this.messageinsertion2,
 									NouveauMagasin.this.provenance,
 									NouveauMagasin.this.idoperationtest,
-									NouveauMagasin.this.idmagasintest);
+									NouveauMagasin.this.idmagasintest,null);
 							fenetre.setVisible(true);
 							fenetre.setAlwaysOnTop(true);
 							NouveauMagasin.this.dispose();
@@ -577,7 +577,7 @@ public class NouveauMagasin extends JFrame {
 										NouveauMagasin.this.messageinsertion2,
 										NouveauMagasin.this.provenance,
 										NouveauMagasin.this.idoperationtest,
-										NouveauMagasin.this.idmagasintest);
+										NouveauMagasin.this.idmagasintest,null);
 								fenetre.setVisible(true);
 
 								fenetre.setAlwaysOnTop(true);

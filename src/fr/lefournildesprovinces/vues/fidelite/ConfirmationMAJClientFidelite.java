@@ -24,10 +24,10 @@ import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.ressources.models.Message;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.SuccesOperation;
-import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class ConfirmationMAJClientFidelite extends JFrame {
 
@@ -811,7 +811,7 @@ public class ConfirmationMAJClientFidelite extends JFrame {
 						ConfirmationMAJClientFidelite.this.text, ConfirmationMAJClientFidelite.this.messageinsertion2,
 						ConfirmationMAJClientFidelite.this.operationprecedente,
 						ConfirmationMAJClientFidelite.this.IdOperationCommerciale,
-						ConfirmationMAJClientFidelite.this.Idmagasinoperation);
+						ConfirmationMAJClientFidelite.this.Idmagasinoperation,null);
 				fenetre.setVisible(true);
 
 				fenetre.setAlwaysOnTop(true);

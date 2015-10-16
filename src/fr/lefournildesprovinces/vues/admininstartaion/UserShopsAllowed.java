@@ -83,6 +83,7 @@ public class UserShopsAllowed extends JFrame {
 	private final JPanel contentPane;
 
 	public UserShopsAllowed(final String utilisateurselectionne, final JFrame interfacePrecedente) {
+		Message.setMessageaffichagefond("UserShopsmanagement");
 		this.selecteduser = Select.getUser(utilisateurselectionne);
 		this.shopsToAddModel = new DefaultListModel<Object>();
 		this.shopsToDelModel = new DefaultListModel<Object>();
@@ -569,12 +570,12 @@ public class UserShopsAllowed extends JFrame {
 				Control.userShopsAllowedUpdate(shopsToAddModel, shopsToDelModel, selecteduser);
 				UserShopsAllowed.this.lblLoading.setVisible(false);
 				UserShopsAllowed.this.interfaceActuelle.setEnabled(true);//TODO
-				Message.setMessageaffichagefond("test");
+				Message.setMessageaffichagefond("UserShopsmanagement");
 				final SuccesOperation fenetre = new SuccesOperation(
 						"les magasins ont été correctement attribués à "+UserShopsAllowed.this.selecteduser.getIdentifiant(), true, "attribution des magasins",
 						" ", "test",
 						0,
-						0);
+						0,null);
 				fenetre.setVisible(true);
 				fenetre.setAlwaysOnTop(true);
 				UserShopsAllowed.this.dispose();

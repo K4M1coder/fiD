@@ -24,8 +24,8 @@ import javax.swing.border.LineBorder;
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.ressources.models.Message;
 import fr.lefournildesprovinces.ressources.models.Motdepassesuppression;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
@@ -369,7 +369,7 @@ public class PasswordClientOC extends JFrame {
 									PasswordClientOC.this.messageinsertion2,
 									PasswordClientOC.this.provenance,
 									PasswordClientOC.this.idoperationtest,
-									PasswordClientOC.this.idmagasintest);
+									PasswordClientOC.this.idmagasintest,null);
 							fenetre.setVisible(true);
 							PasswordClientOC.this.dispose();
 
@@ -386,7 +386,7 @@ public class PasswordClientOC extends JFrame {
 									PasswordClientOC.this.messageinsertion2,
 									PasswordClientOC.this.provenance,
 									PasswordClientOC.this.idoperationtest,
-									PasswordClientOC.this.idmagasintest);
+									PasswordClientOC.this.idmagasintest,null);
 							fenetre.setVisible(true);
 							PasswordClientOC.this.dispose();
 						}

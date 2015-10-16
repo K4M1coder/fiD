@@ -27,11 +27,11 @@ import javax.swing.border.LineBorder;
 
 import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.ressources.models.Message;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
-import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
+import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.AlerteSelection;
 import fr.lefournildesprovinces.vues.popups.SuccesOperation;
 
@@ -471,7 +471,7 @@ public class MajMotdepasse extends JFrame {
 									messageinsertion2,
 									MajMotdepasse.this.provenance,
 									MajMotdepasse.this.idoperationtest,
-									MajMotdepasse.this.idmagasintest);
+									MajMotdepasse.this.idmagasintest,null);
 							fenetre.setVisible(true);
 							fenetre.setAlwaysOnTop(true);
 							MajMotdepasse.this.dispose();
@@ -495,7 +495,7 @@ public class MajMotdepasse extends JFrame {
 										messageinsertion2,
 										MajMotdepasse.this.provenance,
 										MajMotdepasse.this.idoperationtest,
-										MajMotdepasse.this.idmagasintest);
+										MajMotdepasse.this.idmagasintest,null);
 								fenetre.setVisible(true);
 
 								fenetre.setAlwaysOnTop(true);

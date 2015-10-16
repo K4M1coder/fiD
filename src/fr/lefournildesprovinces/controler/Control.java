@@ -47,7 +47,7 @@ public class Control {
 		// TODO
 	}
 
-//	public static Object[] shopsAllowedForCurrentUser() {
+
 	public static Object[] listemagasins() {
 		final Object[] result;
 		if (Login.getPrivilege().equals("administrateur")) {

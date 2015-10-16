@@ -27,10 +27,10 @@ import fr.lefournildesprovinces.ressources.models.Message;
 import fr.lefournildesprovinces.ressources.models.infostemporaire;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.popups.SuccesOperation;
-import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class ConfirmationInsertionClientFidelite extends JFrame {
 
@@ -329,6 +329,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 			this.label_8 = new JLabel("");
 			this.label_8.addMouseListener(new MouseAdapter() {
 				@Override
+				//TODO
 				public void mouseClicked(final MouseEvent arg0) {
 					final MenuPrincipal fenetre = new MenuPrincipal();
 					fenetre.setVisible(true);
@@ -830,7 +831,7 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 				 * String [] tab =dateNaissanceClient.split("/"); String
 				 * day=tab[0]; String month=tab[1]; String year=tab[2];
 				 */
-				final String erreurtype = "Duplicate entry '" + ConfirmationInsertionClientFidelite.this.nomClient + "-"
+				final String erreurtype = "Duplicate entry " + ConfirmationInsertionClientFidelite.this.nomClient + "-"
 						+ ConfirmationInsertionClientFidelite.this.prenomClient + "-"
 						+ ConfirmationInsertionClientFidelite.this.ageClient + "-"
 						+ ConfirmationInsertionClientFidelite.this.idvilleClient + "' for key 'NOMCLIENT'";
@@ -842,7 +843,8 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 							+ ConfirmationInsertionClientFidelite.this.prenomClient + " possède deja une carte";
 
 				} else {
-					ConfirmationInsertionClientFidelite.this.messageInsertion = "Impossible d'insérer le Client "
+					Message.setMessageaffichagefond("Impossible d'insérer le Client");
+							ConfirmationInsertionClientFidelite.this.messageInsertion = "Impossible d'insérer le Client "
 							+ ConfirmationInsertionClientFidelite.this.civiliteClient + " "
 							+ ConfirmationInsertionClientFidelite.this.nomClient + " "
 							+ ConfirmationInsertionClientFidelite.this.prenomClient + "";
@@ -857,9 +859,8 @@ public class ConfirmationInsertionClientFidelite extends JFrame {
 						ConfirmationInsertionClientFidelite.this.messageinsertion2,
 						ConfirmationInsertionClientFidelite.this.choixetprovenance,
 						ConfirmationInsertionClientFidelite.this.idoperationclientparticipant,
-						ConfirmationInsertionClientFidelite.this.idmagasinclientparticipant);
+						ConfirmationInsertionClientFidelite.this.idmagasinclientparticipant,ConfirmationInsertionClientFidelite.this.InterfacePrecedente);
 				fenetre.setVisible(true);
-
 				fenetre.setAlwaysOnTop(true);
 				ConfirmationInsertionClientFidelite.this.dispose();
 

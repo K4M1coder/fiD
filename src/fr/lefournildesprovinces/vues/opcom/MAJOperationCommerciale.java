@@ -30,8 +30,8 @@ import fr.lefournildesprovinces.dao.Connexion;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Message;
 import fr.lefournildesprovinces.ressources.models.OperationCommercialeInfos;
-import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionCartesDeFidelite;
+import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
@@ -974,7 +974,7 @@ public class MAJOperationCommerciale extends JFrame {
 									MAJOperationCommerciale.this.messageinsertion2,
 									MAJOperationCommerciale.this.provenance,
 									MAJOperationCommerciale.this.idoperationtest,
-									MAJOperationCommerciale.this.idmagasintest);
+									MAJOperationCommerciale.this.idmagasintest,null);
 							fenetre.setVisible(true);
 							fenetre.setAlwaysOnTop(true);
 							MAJOperationCommerciale.this.dispose();
@@ -996,7 +996,7 @@ public class MAJOperationCommerciale extends JFrame {
 										MAJOperationCommerciale.this.messageinsertion2,
 										MAJOperationCommerciale.this.provenance,
 										MAJOperationCommerciale.this.idoperationtest,
-										MAJOperationCommerciale.this.idmagasintest);
+										MAJOperationCommerciale.this.idmagasintest,null);
 								fenetre.setVisible(true);
 
 								fenetre.setAlwaysOnTop(true);

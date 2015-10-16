@@ -29,10 +29,10 @@ import fr.lefournildesprovinces.vues.fidelite.MajFicheClientCarteFidelite;
 import fr.lefournildesprovinces.vues.fidelite.PassworddeleteClientfidelite;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.opcom.SuccesOperationClientCarteFidelite;
-import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class ConfirmationOperationCarteFidelite extends JFrame {
 
@@ -368,7 +368,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 									ConfirmationOperationCarteFidelite.this.messageinsertion2,
 									ConfirmationOperationCarteFidelite.this.provenance,
 									ConfirmationOperationCarteFidelite.this.idoperation,
-									ConfirmationOperationCarteFidelite.this.idmagasin);
+									ConfirmationOperationCarteFidelite.this.idmagasin,null);
 							fenetre1.setVisible(true);
 							ConfirmationOperationCarteFidelite.this.dispose();
 						} else {
@@ -438,7 +438,7 @@ public class ConfirmationOperationCarteFidelite extends JFrame {
 									ConfirmationOperationCarteFidelite.this.messageinsertion2,
 									ConfirmationOperationCarteFidelite.this.provenance,
 									ConfirmationOperationCarteFidelite.this.idoperation,
-									ConfirmationOperationCarteFidelite.this.idmagasin);
+									ConfirmationOperationCarteFidelite.this.idmagasin,null);
 							fenetre.setVisible(true);
 							ConfirmationOperationCarteFidelite.this.dispose();
 						}

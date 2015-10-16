@@ -26,12 +26,12 @@ import fr.lefournildesprovinces.ressources.models.Message;
 import fr.lefournildesprovinces.ressources.models.Motdepassesuppression;
 import fr.lefournildesprovinces.vues.menus.GestionExtractionBases;
 import fr.lefournildesprovinces.vues.menus.GestionMagasins;
+import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 import fr.lefournildesprovinces.vues.menus.Login;
 import fr.lefournildesprovinces.vues.menus.MenuPrincipal;
 import fr.lefournildesprovinces.vues.opcom.GestionOperationCommerciale;
 import fr.lefournildesprovinces.vues.popups.ErrorPassword;
 import fr.lefournildesprovinces.vues.popups.SuccesOperation;
-import fr.lefournildesprovinces.vues.menus.GestionOperationsCommerciales;
 
 public class PassworddeleteClientfidelite extends JFrame {
 
@@ -64,7 +64,7 @@ public class PassworddeleteClientfidelite extends JFrame {
 	private final String messageinsertion2 = null;
 	String numcarte;
 	private String privilege;
-	private final String provenance = "test";
+	private final String provenance = "delete";
 	private String text;
 	private JPasswordField textField;
 
@@ -385,7 +385,7 @@ public class PassworddeleteClientfidelite extends JFrame {
 									PassworddeleteClientfidelite.this.messageinsertion2,
 									PassworddeleteClientfidelite.this.provenance,
 									PassworddeleteClientfidelite.this.idoperationtest,
-									PassworddeleteClientfidelite.this.idmagasintest);
+									PassworddeleteClientfidelite.this.idmagasintest,null);
 							fenetre.setVisible(true);
 							PassworddeleteClientfidelite.this.dispose();
 
@@ -406,7 +406,7 @@ public class PassworddeleteClientfidelite extends JFrame {
 										PassworddeleteClientfidelite.this.messageinsertion2,
 										PassworddeleteClientfidelite.this.provenance,
 										PassworddeleteClientfidelite.this.idoperationtest,
-										PassworddeleteClientfidelite.this.idmagasintest);
+										PassworddeleteClientfidelite.this.idmagasintest,null);
 								fenetre.setVisible(true);
 								PassworddeleteClientfidelite.this.dispose();
 							} catch (final SQLException e3) {
