@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import fr.lefournildesprovinces.applet.Accueil;
 import fr.lefournildesprovinces.dao.Select;
 import fr.lefournildesprovinces.ressources.models.Motdepassesuppression;
+import fr.lefournildesprovinces.ressources.util.SendMailTLS;
 import fr.lefournildesprovinces.vues.popups.Loading;
 
 public class Login extends JFrame {
@@ -110,9 +111,11 @@ public class Login extends JFrame {
 			privilege = Select.privilege(this.utilisateur, this.motdepasse);
 			System.out.println("user " + this.utilisateur + " have " + privilege + " privilege ");
 			final MenuPrincipal menu = new MenuPrincipal();
+//TODO			new SendMailTLS("communication@lefournildesprovinces.com", "succes connection application fidelite",this.utilisateur + " c'est connécté avec le privilege  " + privilege + ".");
 			menu.setVisible(true);
 			this.dispose();
 		} else {
+//TODO			new SendMailTLS("communication@lefournildesprovinces.com", "echec connection application fidelite",this.utilisateur + " à essayé de se connecter avec un mauvais mot de passe");
 			System.out.println("#### credential error ####");
 			final LoginDenied fenetre = new LoginDenied();
 			fenetre.setVisible(true);
